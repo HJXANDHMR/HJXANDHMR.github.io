@@ -4,9 +4,9 @@
   <subtitle>Android学习积累</subtitle>
   <link href="/atom.xml" rel="self"/>
   
-  <link href="http://yoursite.com/"/>
-  <updated>2016-04-16T12:08:20.468Z</updated>
-  <id>http://yoursite.com/</id>
+  <link href="http://HJXANDHMR.github.io/"/>
+  <updated>2016-04-16T14:16:24.669Z</updated>
+  <id>http://HJXANDHMR.github.io/</id>
   
   <author>
     <name>何健雄</name>
@@ -16,11 +16,41 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>hexo 常用命令和更换主题</title>
+    <link href="http://HJXANDHMR.github.io/2016/04/16/hexoCommand/"/>
+    <id>http://HJXANDHMR.github.io/2016/04/16/hexoCommand/</id>
+    <published>2016-04-16T13:36:08.038Z</published>
+    <updated>2016-04-16T14:16:24.669Z</updated>
+    
+    <content type="html">&lt;p&gt; 上一篇博客我们已经学会如何在GitHub加hexo搭建博客&lt;a href=&quot;http://hjxandhmr.github.io/2016/04/15/hello-hexo/&quot;&gt;GitHub加hexo搭建博客教程&lt;/a&gt; 这篇博客就来学学常用的hexo命令和更换主题。&lt;/p&gt;
+&lt;h2 id=&quot;hexo命令&quot;&gt;&lt;a href=&quot;#hexo命令&quot; class=&quot;headerlink&quot; title=&quot;hexo命令&quot;&gt;&lt;/a&gt;hexo命令&lt;/h2&gt;&lt;p&gt; 本地查看博客内容&lt;br&gt; &lt;figure class=&quot;highlight bash&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;hexo s &lt;span class=&quot;comment&quot;&gt;#本地预览文章内容，登录 localhost:4000 查看效果&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
+&lt;p&gt;发布内容到 public 文件夹&lt;br&gt; &lt;figure class=&quot;highlight bash&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;hexo clean  &lt;span class=&quot;comment&quot;&gt;#修改主题是必须要执行这个命令，否则会有问题&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;hexo g      &lt;span class=&quot;comment&quot;&gt;#生成public文件，可以手动copy到github上去&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
+&lt;p&gt;新建一个文章&lt;br&gt;&lt;figure class=&quot;highlight bash&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;hexo n     &lt;span class=&quot;comment&quot;&gt;#新建一个博客名，也可以手动在source\_posts新建&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
+&lt;h2 id=&quot;更换主题&quot;&gt;&lt;a href=&quot;#更换主题&quot; class=&quot;headerlink&quot; title=&quot;更换主题&quot;&gt;&lt;/a&gt;更换主题&lt;/h2&gt;&lt;h3 id=&quot;安装主题&quot;&gt;&lt;a href=&quot;#安装主题&quot; class=&quot;headerlink&quot; title=&quot;安装主题&quot;&gt;&lt;/a&gt;安装主题&lt;/h3&gt;&lt;p&gt;在博客目录如E:\Androidstudiochengxu\GitHubPage\hexo下右键点击Git Bash，输入以下命令。其他的主题也类似操作。&lt;br&gt;&lt;figure class=&quot;highlight bash&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;git &lt;span class=&quot;built_in&quot;&gt;clone&lt;/span&gt; https://github.com/wuchong/jacman.git themes/jacman&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
+&lt;h3 id=&quot;启用主题&quot;&gt;&lt;a href=&quot;#启用主题&quot; class=&quot;headerlink&quot; title=&quot;启用主题&quot;&gt;&lt;/a&gt;启用主题&lt;/h3&gt;&lt;p&gt;修改博客目录E:\Androidstudiochengxu\GitHubPage\hexo_config.yml中的theme属性，将其设置为jacman。&lt;br&gt;&lt;figure class=&quot;highlight bash&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;theme: jacman&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
+&lt;p&gt;到这里主题的更换就好了，启动本地预览一下，可以的话就同步到Github上面吧。&lt;/p&gt;
+&lt;p&gt;###主题的配置&lt;br&gt;主题的配置当然就是在E:\Androidstudiochengxu\GitHubPage\hexo\themes\jacman_config.yml文件里面了。一般而言，主题的作者都会有对主题的相关介绍，看他介绍的修改就可以了。我主要针对导航栏和右边栏小部件举例简单说明一下，后面你就知道如何配置了。&lt;/p&gt;
+&lt;figure class=&quot;highlight bash&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;10&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;11&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;menu:  &lt;span class=&quot;comment&quot;&gt;#导航栏&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  主页: /&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  归档: /archives&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  关于: /about  &lt;span class=&quot;comment&quot;&gt;#介绍自己&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  网络工具: /tools  &lt;span class=&quot;comment&quot;&gt;#自己添加&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  资源共享: /share  &lt;span class=&quot;comment&quot;&gt;#自己添加&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;widgets:  &lt;span class=&quot;comment&quot;&gt;## 右边的零部件，jacman主题提供了7个：category、tag、rss、archive、tagcloud、links、weibo、douban，可以根据自己喜好增减&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;- category  &lt;span class=&quot;comment&quot;&gt;#目录&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;- tags      &lt;span class=&quot;comment&quot;&gt;#标签（标签上显示数量）&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;- links  &lt;span class=&quot;comment&quot;&gt;#友情链接&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;注意，修改任何的配置内容，都需要生成之后才有效。&lt;/p&gt;
+</content>
+    
+    <summary type="html">
+    
+      hexo 常用命令
+    
+    </summary>
+    
+    
+      <category term="hexo" scheme="http://HJXANDHMR.github.io/tags/hexo/"/>
+    
+  </entry>
+  
+  <entry>
     <title>GitHub加hexo搭建博客教程</title>
-    <link href="http://yoursite.com/2016/04/15/hello-hexo/"/>
-    <id>http://yoursite.com/2016/04/15/hello-hexo/</id>
+    <link href="http://HJXANDHMR.github.io/2016/04/15/hello-hexo/"/>
+    <id>http://HJXANDHMR.github.io/2016/04/15/hello-hexo/</id>
     <published>2016-04-15T12:26:43.840Z</published>
-    <updated>2016-04-16T12:08:20.468Z</updated>
+    <updated>2016-04-16T13:48:27.109Z</updated>
     
     <content type="html">&lt;p&gt;这是我第一次使用GitHub+hexo搭建博客，搭建的过程中也遇到了些问题，将怎样搭建博客的步骤记录下来。&lt;/p&gt;
 &lt;h2 id=&quot;准备环境&quot;&gt;&lt;a href=&quot;#准备环境&quot; class=&quot;headerlink&quot; title=&quot;准备环境&quot;&gt;&lt;/a&gt;准备环境&lt;/h2&gt;&lt;hr&gt;
@@ -42,7 +72,7 @@
 &lt;h3 id=&quot;注册设置GitHub&quot;&gt;&lt;a href=&quot;#注册设置GitHub&quot; class=&quot;headerlink&quot; title=&quot;注册设置GitHub&quot;&gt;&lt;/a&gt;注册设置GitHub&lt;/h3&gt;&lt;ul&gt;
 &lt;li&gt;登录GitHub，注册自定义用户名如HJXANDHMR&lt;/li&gt;
 &lt;li&gt;在主页右下角创建New repository，name必须和用户名一致如HJXANDHMR.github.io&lt;/li&gt;
-&lt;li&gt;首次创建耐心等待15分钟左右审核，之后即可访问静态主页如&lt;a href=&quot;http://HJXANDHMR.github.io&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;http://HJXANDHMR.github.io&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;首次创建耐心等待15分钟左右审核，之后即可访问静态主页如&lt;a href=&quot;http://HJXANDHMR.github.io&quot;&gt;http://HJXANDHMR.github.io&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;如果打开主页地址一直出现not found 404，可以手动设置，打开Setting-》Automatic page generator&lt;/li&gt;
 &lt;/ul&gt;
 &lt;h3 id=&quot;同步内容至GitHub&quot;&gt;&lt;a href=&quot;#同步内容至GitHub&quot; class=&quot;headerlink&quot; title=&quot;同步内容至GitHub&quot;&gt;&lt;/a&gt;同步内容至GitHub&lt;/h3&gt;&lt;ul&gt;
@@ -59,6 +89,8 @@
     
     </summary>
     
+    
+      <category term="hexo" scheme="http://HJXANDHMR.github.io/tags/hexo/"/>
     
   </entry>
   
