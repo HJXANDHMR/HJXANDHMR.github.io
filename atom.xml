@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://HJXANDHMR.github.io/"/>
-  <updated>2016-04-16T14:16:24.669Z</updated>
+  <updated>2016-04-17T02:49:21.322Z</updated>
   <id>http://HJXANDHMR.github.io/</id>
   
   <author>
@@ -16,11 +16,95 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>Markdown基本语法</title>
+    <link href="http://HJXANDHMR.github.io/2016/04/17/markdown-grammar/"/>
+    <id>http://HJXANDHMR.github.io/2016/04/17/markdown-grammar/</id>
+    <published>2016-04-17T01:50:55.174Z</published>
+    <updated>2016-04-17T02:49:21.322Z</updated>
+    
+    <content type="html">&lt;p&gt;前面我们已经学会了如何在&lt;a href=&quot;http://hjxandhmr.github.io/2016/04/15/hello-hexo/&quot;&gt;Github上搭建博客&lt;/a&gt;以及&lt;a href=&quot;http://hjxandhmr.github.io/2016/04/16/hexoCommand/&quot;&gt;hexo常用的命令以及更换主题&lt;/a&gt;，现在我们来学习下&lt;br&gt;Makrdown的基本语法。&lt;/p&gt;
+&lt;h2 id=&quot;标题&quot;&gt;&lt;a href=&quot;#标题&quot; class=&quot;headerlink&quot; title=&quot;标题&quot;&gt;&lt;/a&gt;标题&lt;/h2&gt;&lt;p&gt;在 Markdown 中，你只需要在文本前面加上#即可，同理、你还可以增加二级标题、三级标题、四级标题、五级标题和六级标题，总共六级，只需要增加  # 即可，标题字号相应降低。例如：                &lt;/p&gt;
+&lt;figure class=&quot;highlight bash&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;comment&quot;&gt;# 一级标题&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;comment&quot;&gt;## 二级标题&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;comment&quot;&gt;### 三级标题&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;comment&quot;&gt;#### 四级标题&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;comment&quot;&gt;##### 五级标题&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;comment&quot;&gt;###### 六级标题&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;效果图:&lt;/p&gt;
+&lt;h1 id=&quot;一级标题&quot;&gt;&lt;a href=&quot;#一级标题&quot; class=&quot;headerlink&quot; title=&quot;一级标题&quot;&gt;&lt;/a&gt;一级标题&lt;/h1&gt;&lt;h2 id=&quot;二级标题&quot;&gt;&lt;a href=&quot;#二级标题&quot; class=&quot;headerlink&quot; title=&quot;二级标题&quot;&gt;&lt;/a&gt;二级标题&lt;/h2&gt;&lt;h3 id=&quot;三级标题&quot;&gt;&lt;a href=&quot;#三级标题&quot; class=&quot;headerlink&quot; title=&quot;三级标题&quot;&gt;&lt;/a&gt;三级标题&lt;/h3&gt;&lt;h4 id=&quot;四级标题&quot;&gt;&lt;a href=&quot;#四级标题&quot; class=&quot;headerlink&quot; title=&quot;四级标题&quot;&gt;&lt;/a&gt;四级标题&lt;/h4&gt;&lt;h5 id=&quot;五级标题&quot;&gt;&lt;a href=&quot;#五级标题&quot; class=&quot;headerlink&quot; title=&quot;五级标题&quot;&gt;&lt;/a&gt;五级标题&lt;/h5&gt;&lt;h6 id=&quot;六级标题&quot;&gt;&lt;a href=&quot;#六级标题&quot; class=&quot;headerlink&quot; title=&quot;六级标题&quot;&gt;&lt;/a&gt;六级标题&lt;/h6&gt;&lt;p&gt;注意 :# 和标题之间必须要隔开一个空格，否则Markdown识别不了这是个标题&lt;/p&gt;
+&lt;h2 id=&quot;列表&quot;&gt;&lt;a href=&quot;#列表&quot; class=&quot;headerlink&quot; title=&quot;列表&quot;&gt;&lt;/a&gt;列表&lt;/h2&gt;&lt;h3 id=&quot;无序列表&quot;&gt;&lt;a href=&quot;#无序列表&quot; class=&quot;headerlink&quot; title=&quot;无序列表&quot;&gt;&lt;/a&gt;无序列表&lt;/h3&gt;&lt;p&gt;无序列表格式也很常用，在 Markdown 中，你只需要在文字前面加上 - 就可以了，例如：&lt;/p&gt;
+&lt;figure class=&quot;highlight bash&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;- 文本1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;- 文本2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;- 文本3&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;效果图:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;文本1&lt;/li&gt;
+&lt;li&gt;文本2&lt;/li&gt;
+&lt;li&gt;文本3&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&quot;有序列表&quot;&gt;&lt;a href=&quot;#有序列表&quot; class=&quot;headerlink&quot; title=&quot;有序列表&quot;&gt;&lt;/a&gt;有序列表&lt;/h3&gt;&lt;p&gt;如果你希望有序列表，也可以在文字前面加上 1. 2. 3. 就可以了，例如：&lt;br&gt;&lt;figure class=&quot;highlight bash&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1. 文本1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2. 文本2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3. 文本3&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
+&lt;p&gt;效果图:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;文本1&lt;/li&gt;
+&lt;li&gt;文本2&lt;/li&gt;
+&lt;li&gt;文本3&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;注意：Markdown中-，1. 和文本之间必须有个空格&lt;/p&gt;
+&lt;h2 id=&quot;插入链接和图片&quot;&gt;&lt;a href=&quot;#插入链接和图片&quot; class=&quot;headerlink&quot; title=&quot;插入链接和图片&quot;&gt;&lt;/a&gt;插入链接和图片&lt;/h2&gt;&lt;h3 id=&quot;插入链接&quot;&gt;&lt;a href=&quot;#插入链接&quot; class=&quot;headerlink&quot; title=&quot;插入链接&quot;&gt;&lt;/a&gt;插入链接&lt;/h3&gt;&lt;p&gt;插入链接只要按照&lt;a href=&quot;&quot;&gt;&lt;/a&gt;这个格式就可以了,列如：&lt;br&gt;&lt;figure class=&quot;highlight bash&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;[博客](http://hjxandhmr.github.io/)&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
+&lt;p&gt;效果图:&lt;br&gt;&lt;a href=&quot;http://hjxandhmr.github.io/&quot;&gt;博客&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;注意：标点符号必须是英文状态。&lt;/p&gt;
+&lt;h3 id=&quot;插入图片&quot;&gt;&lt;a href=&quot;#插入图片&quot; class=&quot;headerlink&quot; title=&quot;插入图片&quot;&gt;&lt;/a&gt;插入图片&lt;/h3&gt;&lt;p&gt;插入链接只要按照&lt;img src=&quot;&quot; alt=&quot;&quot;&gt;这个格式就可以了,列如：&lt;br&gt;&lt;figure class=&quot;highlight bash&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;![](https://raw.githubusercontent.com/HJXANDHMR/HJXANDHMR.github.io/master/img/logo.png) &lt;span class=&quot;comment&quot;&gt;#引用网络上的图片&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;![](/images/logo.jpg) &lt;span class=&quot;comment&quot;&gt;#引用本地的图片&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
+&lt;p&gt;效果图:&lt;br&gt;&lt;img src=&quot;https://raw.githubusercontent.com/HJXANDHMR/HJXANDHMR.github.io/master/img/logo.png&quot; alt=&quot;&quot;&gt;&lt;br&gt;&lt;img src=&quot;/images/logo.jpg&quot; alt=&quot;&quot;&gt; &lt;/p&gt;
+&lt;h2 id=&quot;引用&quot;&gt;&lt;a href=&quot;#引用&quot; class=&quot;headerlink&quot; title=&quot;引用&quot;&gt;&lt;/a&gt;引用&lt;/h2&gt;&lt;p&gt;在我们写作的时候经常需要引用他人的文字，这个时候引用这个格式就很有必要了，在 Markdown 中，你只需要在你希望引用的文字前面加上 &amp;gt; 就好了，例如：&lt;br&gt;&lt;figure class=&quot;highlight bash&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&amp;gt; 床前明月光，&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;gt; 疑是地上霜。&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;gt; 举头望明月，&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;gt; 低头思故乡。&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
+&lt;p&gt;效果图:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;床前明月光，&lt;br&gt;疑是地上霜。&lt;br&gt;举头望明月，&lt;br&gt;低头思故乡。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h2 id=&quot;粗体和斜体&quot;&gt;&lt;a href=&quot;#粗体和斜体&quot; class=&quot;headerlink&quot; title=&quot;粗体和斜体&quot;&gt;&lt;/a&gt;粗体和斜体&lt;/h2&gt;&lt;p&gt;Markdown 的粗体和斜体也非常简单，用两个 &lt;em&gt; 包含一段文本就是粗体的语法，用一个 &lt;/em&gt; 包含一段文本就是斜体的语法。例如：&lt;/p&gt;
+&lt;figure class=&quot;highlight bash&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;**这是粗体**&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;*这是斜体*&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;效果图:&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;这是粗体&lt;/strong&gt;&lt;br&gt;&lt;em&gt;这是斜体&lt;/em&gt;&lt;/p&gt;
+&lt;h2 id=&quot;表格&quot;&gt;&lt;a href=&quot;#表格&quot; class=&quot;headerlink&quot; title=&quot;表格&quot;&gt;&lt;/a&gt;表格&lt;/h2&gt;&lt;p&gt;相关代码：&lt;br&gt;&lt;figure class=&quot;highlight bash&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;dog | bird | cat&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;----|------|----&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;foo | foo  | foo&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;bar | bar  | bar&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;baz | baz  | baz&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
+&lt;p&gt;效果图:&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;dog&lt;/th&gt;
+&lt;th&gt;bird&lt;/th&gt;
+&lt;th&gt;cat&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;foo&lt;/td&gt;
+&lt;td&gt;foo&lt;/td&gt;
+&lt;td&gt;foo&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;bar&lt;/td&gt;
+&lt;td&gt;bar&lt;/td&gt;
+&lt;td&gt;bar&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;baz&lt;/td&gt;
+&lt;td&gt;baz&lt;/td&gt;
+&lt;td&gt;baz&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;以上就是Markdown的基本语法了&lt;/p&gt;
+</content>
+    
+    <summary type="html">
+    
+      Markdown基本语法，github加hexo搭建博客基本必须要掌握的知识
+    
+    </summary>
+    
+    
+      <category term="Markdown" scheme="http://HJXANDHMR.github.io/tags/Markdown/"/>
+    
+  </entry>
+  
+  <entry>
     <title>hexo 常用命令和更换主题</title>
     <link href="http://HJXANDHMR.github.io/2016/04/16/hexoCommand/"/>
     <id>http://HJXANDHMR.github.io/2016/04/16/hexoCommand/</id>
     <published>2016-04-16T13:36:08.038Z</published>
-    <updated>2016-04-16T14:16:24.669Z</updated>
+    <updated>2016-04-17T01:54:54.283Z</updated>
     
     <content type="html">&lt;p&gt; 上一篇博客我们已经学会如何在GitHub加hexo搭建博客&lt;a href=&quot;http://hjxandhmr.github.io/2016/04/15/hello-hexo/&quot;&gt;GitHub加hexo搭建博客教程&lt;/a&gt; 这篇博客就来学学常用的hexo命令和更换主题。&lt;/p&gt;
 &lt;h2 id=&quot;hexo命令&quot;&gt;&lt;a href=&quot;#hexo命令&quot; class=&quot;headerlink&quot; title=&quot;hexo命令&quot;&gt;&lt;/a&gt;hexo命令&lt;/h2&gt;&lt;p&gt; 本地查看博客内容&lt;br&gt; &lt;figure class=&quot;highlight bash&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;hexo s &lt;span class=&quot;comment&quot;&gt;#本地预览文章内容，登录 localhost:4000 查看效果&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
@@ -29,7 +113,7 @@
 &lt;h2 id=&quot;更换主题&quot;&gt;&lt;a href=&quot;#更换主题&quot; class=&quot;headerlink&quot; title=&quot;更换主题&quot;&gt;&lt;/a&gt;更换主题&lt;/h2&gt;&lt;h3 id=&quot;安装主题&quot;&gt;&lt;a href=&quot;#安装主题&quot; class=&quot;headerlink&quot; title=&quot;安装主题&quot;&gt;&lt;/a&gt;安装主题&lt;/h3&gt;&lt;p&gt;在博客目录如E:\Androidstudiochengxu\GitHubPage\hexo下右键点击Git Bash，输入以下命令。其他的主题也类似操作。&lt;br&gt;&lt;figure class=&quot;highlight bash&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;git &lt;span class=&quot;built_in&quot;&gt;clone&lt;/span&gt; https://github.com/wuchong/jacman.git themes/jacman&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
 &lt;h3 id=&quot;启用主题&quot;&gt;&lt;a href=&quot;#启用主题&quot; class=&quot;headerlink&quot; title=&quot;启用主题&quot;&gt;&lt;/a&gt;启用主题&lt;/h3&gt;&lt;p&gt;修改博客目录E:\Androidstudiochengxu\GitHubPage\hexo_config.yml中的theme属性，将其设置为jacman。&lt;br&gt;&lt;figure class=&quot;highlight bash&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;theme: jacman&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
 &lt;p&gt;到这里主题的更换就好了，启动本地预览一下，可以的话就同步到Github上面吧。&lt;/p&gt;
-&lt;p&gt;###主题的配置&lt;br&gt;主题的配置当然就是在E:\Androidstudiochengxu\GitHubPage\hexo\themes\jacman_config.yml文件里面了。一般而言，主题的作者都会有对主题的相关介绍，看他介绍的修改就可以了。我主要针对导航栏和右边栏小部件举例简单说明一下，后面你就知道如何配置了。&lt;/p&gt;
+&lt;h3 id=&quot;主题的配置&quot;&gt;&lt;a href=&quot;#主题的配置&quot; class=&quot;headerlink&quot; title=&quot;主题的配置&quot;&gt;&lt;/a&gt;主题的配置&lt;/h3&gt;&lt;p&gt;主题的配置当然就是在E:\Androidstudiochengxu\GitHubPage\hexo\themes\jacman_config.yml文件里面了。一般而言，主题的作者都会有对主题的相关介绍，看他介绍的修改就可以了。我主要针对导航栏和右边栏小部件举例简单说明一下，后面你就知道如何配置了。&lt;/p&gt;
 &lt;figure class=&quot;highlight bash&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;10&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;11&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;menu:  &lt;span class=&quot;comment&quot;&gt;#导航栏&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  主页: /&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  归档: /archives&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  关于: /about  &lt;span class=&quot;comment&quot;&gt;#介绍自己&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  网络工具: /tools  &lt;span class=&quot;comment&quot;&gt;#自己添加&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  资源共享: /share  &lt;span class=&quot;comment&quot;&gt;#自己添加&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;widgets:  &lt;span class=&quot;comment&quot;&gt;## 右边的零部件，jacman主题提供了7个：category、tag、rss、archive、tagcloud、links、weibo、douban，可以根据自己喜好增减&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;- category  &lt;span class=&quot;comment&quot;&gt;#目录&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;- tags      &lt;span class=&quot;comment&quot;&gt;#标签（标签上显示数量）&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;- links  &lt;span class=&quot;comment&quot;&gt;#友情链接&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
 &lt;p&gt;注意，修改任何的配置内容，都需要生成之后才有效。&lt;/p&gt;
 </content>

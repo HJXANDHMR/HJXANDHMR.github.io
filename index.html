@@ -81,6 +81,124 @@
         <header class="article-info clearfix">
   <h1 itemprop="name">
     
+      <a href="/2016/04/17/markdown-grammar/" title="Markdown基本语法" itemprop="url">Markdown基本语法</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="/about" title="何健雄" target="_blank" itemprop="author">何健雄</a>
+		
+  <p class="article-time">
+    <time datetime="2016-04-17T01:50:55.174Z" itemprop="datePublished"> 发表于 2016-04-17</time>
+    
+  </p>
+</header>
+    <div class="article-content">
+        
+        <p>前面我们已经学会了如何在<a href="http://hjxandhmr.github.io/2016/04/15/hello-hexo/">Github上搭建博客</a>以及<a href="http://hjxandhmr.github.io/2016/04/16/hexoCommand/">hexo常用的命令以及更换主题</a>，现在我们来学习下<br>Makrdown的基本语法。</p>
+<h2 id="标题"><a href="#标题" class="headerlink" title="标题"></a>标题</h2><p>在 Markdown 中，你只需要在文本前面加上#即可，同理、你还可以增加二级标题、三级标题、四级标题、五级标题和六级标题，总共六级，只需要增加  # 即可，标题字号相应降低。例如：                </p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 一级标题</span></span><br><span class="line"><span class="comment">## 二级标题</span></span><br><span class="line"><span class="comment">### 三级标题</span></span><br><span class="line"><span class="comment">#### 四级标题</span></span><br><span class="line"><span class="comment">##### 五级标题</span></span><br><span class="line"><span class="comment">###### 六级标题</span></span><br></pre></td></tr></table></figure>
+<p>效果图:</p>
+<h1 id="一级标题"><a href="#一级标题" class="headerlink" title="一级标题"></a>一级标题</h1><h2 id="二级标题"><a href="#二级标题" class="headerlink" title="二级标题"></a>二级标题</h2><h3 id="三级标题"><a href="#三级标题" class="headerlink" title="三级标题"></a>三级标题</h3><h4 id="四级标题"><a href="#四级标题" class="headerlink" title="四级标题"></a>四级标题</h4><h5 id="五级标题"><a href="#五级标题" class="headerlink" title="五级标题"></a>五级标题</h5><h6 id="六级标题"><a href="#六级标题" class="headerlink" title="六级标题"></a>六级标题</h6><p>注意 :# 和标题之间必须要隔开一个空格，否则Markdown识别不了这是个标题</p>
+<h2 id="列表"><a href="#列表" class="headerlink" title="列表"></a>列表</h2><h3 id="无序列表"><a href="#无序列表" class="headerlink" title="无序列表"></a>无序列表</h3><p>无序列表格式也很常用，在 Markdown 中，你只需要在文字前面加上 - 就可以了，例如：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">- 文本1</span><br><span class="line">- 文本2</span><br><span class="line">- 文本3</span><br></pre></td></tr></table></figure>
+<p>效果图:</p>
+<ul>
+<li>文本1</li>
+<li>文本2</li>
+<li>文本3</li>
+</ul>
+<h3 id="有序列表"><a href="#有序列表" class="headerlink" title="有序列表"></a>有序列表</h3><p>如果你希望有序列表，也可以在文字前面加上 1. 2. 3. 就可以了，例如：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">1. 文本1</span><br><span class="line">2. 文本2</span><br><span class="line">3. 文本3</span><br></pre></td></tr></table></figure></p>
+<p>效果图:</p>
+<ol>
+<li>文本1</li>
+<li>文本2</li>
+<li>文本3</li>
+</ol>
+<p>注意：Markdown中-，1. 和文本之间必须有个空格</p>
+<h2 id="插入链接和图片"><a href="#插入链接和图片" class="headerlink" title="插入链接和图片"></a>插入链接和图片</h2><h3 id="插入链接"><a href="#插入链接" class="headerlink" title="插入链接"></a>插入链接</h3><p>插入链接只要按照<a href=""></a>这个格式就可以了,列如：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[博客](http://hjxandhmr.github.io/)</span><br></pre></td></tr></table></figure></p>
+<p>效果图:<br><a href="http://hjxandhmr.github.io/">博客</a></p>
+<p>注意：标点符号必须是英文状态。</p>
+<h3 id="插入图片"><a href="#插入图片" class="headerlink" title="插入图片"></a>插入图片</h3><p>插入链接只要按照<img src="" alt="">这个格式就可以了,列如：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">![](https://raw.githubusercontent.com/HJXANDHMR/HJXANDHMR.github.io/master/img/logo.png) <span class="comment">#引用网络上的图片</span></span><br><span class="line">![](/images/logo.jpg) <span class="comment">#引用本地的图片</span></span><br></pre></td></tr></table></figure></p>
+<p>效果图:<br><img src="https://raw.githubusercontent.com/HJXANDHMR/HJXANDHMR.github.io/master/img/logo.png" alt=""><br><img src="/images/logo.jpg" alt=""> </p>
+<h2 id="引用"><a href="#引用" class="headerlink" title="引用"></a>引用</h2><p>在我们写作的时候经常需要引用他人的文字，这个时候引用这个格式就很有必要了，在 Markdown 中，你只需要在你希望引用的文字前面加上 &gt; 就好了，例如：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&gt; 床前明月光，</span><br><span class="line">&gt; 疑是地上霜。</span><br><span class="line">&gt; 举头望明月，</span><br><span class="line">&gt; 低头思故乡。</span><br></pre></td></tr></table></figure></p>
+<p>效果图:</p>
+<blockquote>
+<p>床前明月光，<br>疑是地上霜。<br>举头望明月，<br>低头思故乡。</p>
+</blockquote>
+<h2 id="粗体和斜体"><a href="#粗体和斜体" class="headerlink" title="粗体和斜体"></a>粗体和斜体</h2><p>Markdown 的粗体和斜体也非常简单，用两个 <em> 包含一段文本就是粗体的语法，用一个 </em> 包含一段文本就是斜体的语法。例如：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">**这是粗体**</span><br><span class="line">*这是斜体*</span><br></pre></td></tr></table></figure>
+<p>效果图:</p>
+<p><strong>这是粗体</strong><br><em>这是斜体</em></p>
+<h2 id="表格"><a href="#表格" class="headerlink" title="表格"></a>表格</h2><p>相关代码：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">dog | bird | cat</span><br><span class="line">----|------|----</span><br><span class="line">foo | foo  | foo</span><br><span class="line">bar | bar  | bar</span><br><span class="line">baz | baz  | baz</span><br></pre></td></tr></table></figure></p>
+<p>效果图:</p>
+<table>
+<thead>
+<tr>
+<th>dog</th>
+<th>bird</th>
+<th>cat</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>foo</td>
+<td>foo</td>
+<td>foo</td>
+</tr>
+<tr>
+<td>bar</td>
+<td>bar</td>
+<td>bar</td>
+</tr>
+<tr>
+<td>baz</td>
+<td>baz</td>
+<td>baz</td>
+</tr>
+</tbody>
+</table>
+<p>以上就是Markdown的基本语法了</p>
+
+        
+        
+        <p class="article-more-link">
+          
+       </p>
+    </div>
+    <footer class="article-footer clearfix">
+<div class="article-catetags">
+
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/Markdown/">Markdown</a>
+  </div>
+
+</div>
+
+
+
+
+<div class="comments-count">
+	
+</div>
+
+</footer>
+
+
+    </article>
+
+
+
+
+
+
+   
+    
+    <article class="post-expand post" itemprop="articleBody"> 
+        <header class="article-info clearfix">
+  <h1 itemprop="name">
+    
       <a href="/2016/04/16/hexoCommand/" title="hexo 常用命令和更换主题" itemprop="url">hexo 常用命令和更换主题</a>
   </h1>
   <p class="article-author">By
@@ -101,7 +219,7 @@
 <h2 id="更换主题"><a href="#更换主题" class="headerlink" title="更换主题"></a>更换主题</h2><h3 id="安装主题"><a href="#安装主题" class="headerlink" title="安装主题"></a>安装主题</h3><p>在博客目录如E:\Androidstudiochengxu\GitHubPage\hexo下右键点击Git Bash，输入以下命令。其他的主题也类似操作。<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git <span class="built_in">clone</span> https://github.com/wuchong/jacman.git themes/jacman</span><br></pre></td></tr></table></figure></p>
 <h3 id="启用主题"><a href="#启用主题" class="headerlink" title="启用主题"></a>启用主题</h3><p>修改博客目录E:\Androidstudiochengxu\GitHubPage\hexo_config.yml中的theme属性，将其设置为jacman。<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">theme: jacman</span><br></pre></td></tr></table></figure></p>
 <p>到这里主题的更换就好了，启动本地预览一下，可以的话就同步到Github上面吧。</p>
-<p>###主题的配置<br>主题的配置当然就是在E:\Androidstudiochengxu\GitHubPage\hexo\themes\jacman_config.yml文件里面了。一般而言，主题的作者都会有对主题的相关介绍，看他介绍的修改就可以了。我主要针对导航栏和右边栏小部件举例简单说明一下，后面你就知道如何配置了。</p>
+<h3 id="主题的配置"><a href="#主题的配置" class="headerlink" title="主题的配置"></a>主题的配置</h3><p>主题的配置当然就是在E:\Androidstudiochengxu\GitHubPage\hexo\themes\jacman_config.yml文件里面了。一般而言，主题的作者都会有对主题的相关介绍，看他介绍的修改就可以了。我主要针对导航栏和右边栏小部件举例简单说明一下，后面你就知道如何配置了。</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">menu:  <span class="comment">#导航栏</span></span><br><span class="line">  主页: /</span><br><span class="line">  归档: /archives</span><br><span class="line">  关于: /about  <span class="comment">#介绍自己</span></span><br><span class="line">  网络工具: /tools  <span class="comment">#自己添加</span></span><br><span class="line">  资源共享: /share  <span class="comment">#自己添加</span></span><br><span class="line"></span><br><span class="line">widgets:  <span class="comment">## 右边的零部件，jacman主题提供了7个：category、tag、rss、archive、tagcloud、links、weibo、douban，可以根据自己喜好增减</span></span><br><span class="line">- category  <span class="comment">#目录</span></span><br><span class="line">- tags      <span class="comment">#标签（标签上显示数量）</span></span><br><span class="line">- links  <span class="comment">#友情链接</span></span><br></pre></td></tr></table></figure>
 <p>注意，修改任何的配置内容，都需要生成之后才有效。</p>
 
@@ -249,6 +367,10 @@
 		
 			
 				<li><a href="/tags/hexo/" title="hexo">hexo<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Markdown/" title="Markdown">Markdown<sup>1</sup></a></li>
 			
 		
 		</ul>
