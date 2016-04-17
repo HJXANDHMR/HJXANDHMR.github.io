@@ -81,6 +81,74 @@
         <header class="article-info clearfix">
   <h1 itemprop="name">
     
+      <a href="/2016/04/17/Android-ListviewAndCheckButtonproblem/" title="ListView与CheckBox混合使用的常见问题" itemprop="url">ListView与CheckBox混合使用的常见问题</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="/about" title="何健雄" target="_blank" itemprop="author">何健雄</a>
+		
+  <p class="article-time">
+    <time datetime="2016-04-17T04:00:23.799Z" itemprop="datePublished"> 发表于 2016-04-17</time>
+    
+  </p>
+</header>
+    <div class="article-content">
+        
+        <p>在Android开发中我们接触比较多的控件就是ListViewl ,在使用ListView的时候也会遇到很多问题，今天我们就来聊聊，<br>当ListView中使用CheckBoxs时遇到的问题。</p>
+<h2 id="遇到的问题"><a href="#遇到的问题" class="headerlink" title="遇到的问题"></a>遇到的问题</h2><p>当我们要在ListView中用CheckBox来实现一个多选的功能，但遇到了一个问题，当选中item时，滑动页面的时候出现了假选的情况，本来没有选中的item，滑动页面的时候选中了。</p>
+<h2 id="解决问题的思路"><a href="#解决问题的思路" class="headerlink" title="解决问题的思路"></a>解决问题的思路</h2><p>用HashMap来记录一个CheckBox的勾选记录</p>
+<h2 id="实现代码"><a href="#实现代码" class="headerlink" title="实现代码"></a>实现代码</h2><p>由于ListView和CheckBox我们经常使用，布局代码和Activity的代码就不给出来了，只给出最关键的Adapter代码。<br>布局代码就是一个TextView用来显示名字，一个CheckBox用来勾选item.</p>
+<p>ListViewAdapter的实现代码如下：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br></pre></td><td class="code"><pre><span class="line">public class ListViewAdapter extends BaseAdapter &#123;  </span><br><span class="line">  </span><br><span class="line">    private Context context;  </span><br><span class="line">    private String[] beans;  </span><br><span class="line">  </span><br><span class="line">    // 用来控制CheckBox的选中状况  </span><br><span class="line">    private static HashMap&lt;Integer, Boolean&gt; isSelected;  </span><br><span class="line">  </span><br><span class="line">    class ViewHolder &#123;  </span><br><span class="line">        TextView tvName;  </span><br><span class="line">        CheckBox cb;  </span><br><span class="line">    &#125;  </span><br><span class="line">  </span><br><span class="line">    public ListViewAdapter(Context context, String[] beans) &#123;  </span><br><span class="line">        this.beans = beans;  </span><br><span class="line">        this.context = context;  </span><br><span class="line">        isSelected = new HashMap&lt;Integer, Boolean&gt;();  </span><br><span class="line">        // 初始化数据  </span><br><span class="line">        initDate();  </span><br><span class="line">    &#125;  </span><br><span class="line">  </span><br><span class="line">    // 初始化isSelected的数据  </span><br><span class="line">    private void <span class="function"><span class="title">initDate</span></span>() &#123;  </span><br><span class="line">        <span class="keyword">for</span> (int i = 0; i &lt; beans.length; i++) &#123;  </span><br><span class="line">        	//初始化时将所有的选中记录清空</span><br><span class="line">            getIsSelected().put(i, <span class="literal">false</span>);  </span><br><span class="line">        &#125;  </span><br><span class="line">    &#125;  </span><br><span class="line">  </span><br><span class="line">    @Override  </span><br><span class="line">    public int <span class="function"><span class="title">getCount</span></span>() &#123;  </span><br><span class="line">        <span class="built_in">return</span> beans.length;  </span><br><span class="line">    &#125;  </span><br><span class="line">  </span><br><span class="line">    @Override  </span><br><span class="line">    public Object getItem(int position) &#123;  </span><br><span class="line">        <span class="built_in">return</span> beans[position];  </span><br><span class="line">    &#125;  </span><br><span class="line">  </span><br><span class="line">    @Override  </span><br><span class="line">    public long getItemId(int position) &#123;  </span><br><span class="line">        <span class="built_in">return</span> position;  </span><br><span class="line">    &#125;  </span><br><span class="line">  </span><br><span class="line">    @Override  </span><br><span class="line">    public View getView(final int position, View convertView, ViewGroup parent) &#123;  </span><br><span class="line">        ViewHolder holder;  </span><br><span class="line">        String bean = beans[position];  </span><br><span class="line">        LayoutInflater inflater = LayoutInflater.from(context);  </span><br><span class="line">        <span class="keyword">if</span> (convertView == null) &#123;  </span><br><span class="line">            convertView = inflater.inflate(  </span><br><span class="line">                    R.layout.assist_device_binding_list_item, null);  </span><br><span class="line">            holder = new ViewHolder();  </span><br><span class="line">            holder.cb = (CheckBox) convertView.findViewById(R.id.checkBox1);  </span><br><span class="line">            holder.tvName = (TextView) convertView  </span><br><span class="line">                    .findViewById(R.id.tv_device_name);  </span><br><span class="line">            convertView.setTag(holder);  </span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;  </span><br><span class="line">            // 取出holder  </span><br><span class="line">            holder = (ViewHolder) convertView.getTag();  </span><br><span class="line">        &#125;  </span><br><span class="line">  </span><br><span class="line">        holder.tvName.setText(bean);  </span><br><span class="line">        // 监听checkBox并根据原来的状态来设置新的状态  </span><br><span class="line">        holder.cb.setOnClickListener(new View.<span class="function"><span class="title">OnClickListener</span></span>() &#123;  </span><br><span class="line">            public void onClick(View v) &#123;  </span><br><span class="line">                <span class="keyword">if</span> (isSelected.get(position)) &#123;  </span><br><span class="line">                    isSelected.put(position, <span class="literal">false</span>);  </span><br><span class="line">                    <span class="built_in">set</span>IsSelected(isSelected);  </span><br><span class="line">                &#125; <span class="keyword">else</span> &#123;  </span><br><span class="line">                    isSelected.put(position, <span class="literal">true</span>);  </span><br><span class="line">                    <span class="built_in">set</span>IsSelected(isSelected);  </span><br><span class="line">                &#125;  </span><br><span class="line">  </span><br><span class="line">            &#125;  </span><br><span class="line">        &#125;);  </span><br><span class="line">  </span><br><span class="line">        // 根据isSelected来设置checkbox的选中状况  </span><br><span class="line">        holder.cb.setChecked(getIsSelected().get(position));  </span><br><span class="line">        <span class="built_in">return</span> convertView;  </span><br><span class="line">    &#125;  </span><br><span class="line">  </span><br><span class="line">    public static HashMap&lt;Integer, Boolean&gt; <span class="function"><span class="title">getIsSelected</span></span>() &#123;  </span><br><span class="line">        <span class="built_in">return</span> isSelected;  </span><br><span class="line">    &#125;  </span><br><span class="line">  </span><br><span class="line">    public static void <span class="built_in">set</span>IsSelected(HashMap&lt;Integer, Boolean&gt; isSelected) &#123;  </span><br><span class="line">        ListViewAdapter.isSelected = isSelected;  </span><br><span class="line">    &#125;  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>用HashMap来记录一个CheckBox的勾选记录,每次滑动的时候CheckBox只需要读取HashMap里面的值，<br>再来进行显示，这样就不会出现假选的情况了。</p>
+<p><strong>欢迎大家关注我的微信公众号，我会不定期的分享些Android开发的技巧</strong></p>
+<p><img src="/images/weixing.jpg" alt=""></p>
+
+        
+        
+        <p class="article-more-link">
+          
+       </p>
+    </div>
+    <footer class="article-footer clearfix">
+<div class="article-catetags">
+
+<div class="article-categories">
+  <span></span>
+  <a class="article-category-link" href="/categories/ListView/">ListView</a>
+</div>
+
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/ListView/">ListView</a>
+  </div>
+
+</div>
+
+
+
+
+<div class="comments-count">
+	
+</div>
+
+</footer>
+
+
+    </article>
+
+
+
+
+
+
+   
+    
+    <article class="post-expand post" itemprop="articleBody"> 
+        <header class="article-info clearfix">
+  <h1 itemprop="name">
+    
       <a href="/2016/04/17/markdown-grammar/" title="Markdown基本语法" itemprop="url">Markdown基本语法</a>
   </h1>
   <p class="article-author">By
@@ -158,6 +226,8 @@
 </tbody>
 </table>
 <p>以上就是Markdown的基本语法了</p>
+<p><strong>欢迎大家关注我的微信公众号，我会不定期的分享些Android开发的技巧</strong></p>
+<p><img src="/images/weixing.jpg" alt=""></p>
 
         
         
@@ -222,6 +292,8 @@
 <h3 id="主题的配置"><a href="#主题的配置" class="headerlink" title="主题的配置"></a>主题的配置</h3><p>主题的配置当然就是在E:\Androidstudiochengxu\GitHubPage\hexo\themes\jacman_config.yml文件里面了。一般而言，主题的作者都会有对主题的相关介绍，看他介绍的修改就可以了。我主要针对导航栏和右边栏小部件举例简单说明一下，后面你就知道如何配置了。</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">menu:  <span class="comment">#导航栏</span></span><br><span class="line">  主页: /</span><br><span class="line">  归档: /archives</span><br><span class="line">  关于: /about  <span class="comment">#介绍自己</span></span><br><span class="line">  网络工具: /tools  <span class="comment">#自己添加</span></span><br><span class="line">  资源共享: /share  <span class="comment">#自己添加</span></span><br><span class="line"></span><br><span class="line">widgets:  <span class="comment">## 右边的零部件，jacman主题提供了7个：category、tag、rss、archive、tagcloud、links、weibo、douban，可以根据自己喜好增减</span></span><br><span class="line">- category  <span class="comment">#目录</span></span><br><span class="line">- tags      <span class="comment">#标签（标签上显示数量）</span></span><br><span class="line">- links  <span class="comment">#友情链接</span></span><br></pre></td></tr></table></figure>
 <p>注意，修改任何的配置内容，都需要生成之后才有效。</p>
+<p><strong>欢迎大家关注我的微信公众号，我会不定期的分享些Android开发的技巧</strong></p>
+<p><img src="/images/weixing.jpg" alt=""></p>
 
         
         
@@ -305,6 +377,8 @@
 <li>同步文件到GitHub上，访问HJXANDHMR.github.io就可以看的到你的博客了</li>
 </ul>
 <p>到这为止，在GitHub上搭建博客已经基本完成。</p>
+<p><strong>欢迎大家关注我的微信公众号，我会不定期的分享些Android开发的技巧</strong></p>
+<p><img src="/images/weixing.jpg" alt=""></p>
 
         
         
@@ -359,6 +433,10 @@
 		<ul>
 		
 		  
+			<li><a href="/categories/ListView/" title="ListView">ListView<sup>1</sup></a></li>
+		  
+		
+		  
 			<li><a href="/categories/hexo/" title="hexo">hexo<sup>1</sup></a></li>
 		  
 		
@@ -373,6 +451,10 @@
 		
 			
 				<li><a href="/tags/hexo/" title="hexo">hexo<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/ListView/" title="ListView">ListView<sup>1</sup></a></li>
 			
 		
 			
