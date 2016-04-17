@@ -134,7 +134,7 @@
     <link href="http://HJXANDHMR.github.io/2016/04/15/hello-hexo/"/>
     <id>http://HJXANDHMR.github.io/2016/04/15/hello-hexo/</id>
     <published>2016-04-15T12:26:43.840Z</published>
-    <updated>2016-04-16T13:48:27.109Z</updated>
+    <updated>2016-04-17T03:40:05.277Z</updated>
     
     <content type="html">&lt;p&gt;这是我第一次使用GitHub+hexo搭建博客，搭建的过程中也遇到了些问题，将怎样搭建博客的步骤记录下来。&lt;/p&gt;
 &lt;h2 id=&quot;准备环境&quot;&gt;&lt;a href=&quot;#准备环境&quot; class=&quot;headerlink&quot; title=&quot;准备环境&quot;&gt;&lt;/a&gt;准备环境&lt;/h2&gt;&lt;hr&gt;
@@ -172,6 +172,8 @@
       GitHub加hexo搭建博客教程
     
     </summary>
+    
+      <category term="hexo" scheme="http://HJXANDHMR.github.io/categories/hexo/"/>
     
     
       <category term="hexo" scheme="http://HJXANDHMR.github.io/tags/hexo/"/>
