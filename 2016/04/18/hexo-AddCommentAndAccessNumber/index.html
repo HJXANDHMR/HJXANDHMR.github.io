@@ -4,30 +4,25 @@
 <head>
   <meta charset="UTF-8">
   
-    <title>Android Studio中配置Genymotion | Android学习</title>
+    <title>Hexo 中添加访问数和增加评论 | Android学习</title>
     <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
     
     <meta name="author" content="何健雄">
     
 
     
-    <meta name="description" content="Android Studio,Genymotion,配置">
+    <meta name="description" content="hexo,jacman,评论,访问数,添加">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Android Studio中配置Genymotion">
-<meta property="og:url" content="http://HJXANDHMR.github.io/2016/04/18/AndroidStudio-配置Genymotion/index.html">
+<meta property="og:title" content="Hexo 中添加访问数和增加评论">
+<meta property="og:url" content="http://HJXANDHMR.github.io/2016/04/18/hexo-AddCommentAndAccessNumber/index.html">
 <meta property="og:site_name" content="Android学习">
-<meta property="og:description" content="Android Studio,Genymotion,配置">
-<meta property="og:image" content="http://HJXANDHMR.github.io/images/AndroidStudio/AndroidStudio_open_setting.png">
-<meta property="og:image" content="http://HJXANDHMR.github.io/images/AndroidStudio/AndroidStudio_anzhuang_genymotion.png">
-<meta property="og:image" content="http://HJXANDHMR.github.io/images/AndroidStudio/AndroidStudio_configure_genymotion.png">
-<meta property="og:image" content="http://HJXANDHMR.github.io/images/AndroidStudio/AndroidStudio_start_genymotion.png">
-<meta property="og:image" content="http://HJXANDHMR.github.io/images/AndroidStudio/AndroidStudio_start_genymotionSelect.png">
+<meta property="og:description" content="hexo,jacman,评论,访问数,添加">
 <meta property="og:image" content="http://HJXANDHMR.github.io/images/weixing.jpg">
-<meta property="og:updated_time" content="2016-04-18T07:56:33.122Z">
+<meta property="og:updated_time" content="2016-04-18T12:03:21.869Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Android Studio中配置Genymotion">
-<meta name="twitter:description" content="Android Studio,Genymotion,配置">
-<meta name="twitter:image" content="http://HJXANDHMR.github.io/images/AndroidStudio/AndroidStudio_open_setting.png">
+<meta name="twitter:title" content="Hexo 中添加访问数和增加评论">
+<meta name="twitter:description" content="hexo,jacman,评论,访问数,添加">
+<meta name="twitter:image" content="http://HJXANDHMR.github.io/images/weixing.jpg">
 
     
     <link rel="alternative" href="/atom.xml" title="Android学习" type="application/atom+xml">
@@ -87,14 +82,14 @@
 		<header class="article-info clearfix">
   <h1 itemprop="name">
     
-      <a href="/2016/04/18/AndroidStudio-配置Genymotion/" title="Android Studio中配置Genymotion" itemprop="url">Android Studio中配置Genymotion</a>
+      <a href="/2016/04/18/hexo-AddCommentAndAccessNumber/" title="Hexo 中添加访问数和增加评论" itemprop="url">Hexo 中添加访问数和增加评论</a>
   </h1>
   <p class="article-author">By
        
 		<a href="/about" title="何健雄" target="_blank" itemprop="author">何健雄</a>
 		
   <p class="article-time">
-    <time datetime="2016-04-18T06:01:08.912Z" itemprop="datePublished"> 发表于 2016-04-18</time>
+    <time datetime="2016-04-18T11:38:28.316Z" itemprop="datePublished"> 发表于 2016-04-18</time>
     
   </p>
 </header>
@@ -103,19 +98,21 @@
 		<div id="toc" class="toc-article">
 			<strong class="toc-title">文章目录</strong>
 		
-			<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#下载Genymotion插件"><span class="toc-number">1.</span> <span class="toc-text">下载Genymotion插件</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#配置Genymotion插件"><span class="toc-number">2.</span> <span class="toc-text">配置Genymotion插件</span></a></li></ol>
+			<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#统计网站的访问量"><span class="toc-number">1.</span> <span class="toc-text">统计网站的访问量</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#安装脚本（必选）"><span class="toc-number">1.1.</span> <span class="toc-text">安装脚本（必选）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#添加标签"><span class="toc-number">1.2.</span> <span class="toc-text">添加标签</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#添加评论功能"><span class="toc-number">2.</span> <span class="toc-text">添加评论功能</span></a></li></ol>
 		
 		</div>
 		
-		<p>Android Studio中是开发Android的必备神器，今天我们就来聊聊Android studio的插件Genymotion怎样在Android studio中配置</p>
-<h2 id="下载Genymotion插件"><a href="#下载Genymotion插件" class="headerlink" title="下载Genymotion插件"></a>下载Genymotion插件</h2><p>打开设置界面<br><img src="/images/AndroidStudio/AndroidStudio_open_setting.png" alt=""></p>
-<p>然后点击Plugins,在搜索框里输入Genymotion，在点击右边的Install，因为我已经安装好了，图上显示的是Uninstall<br><img src="/images/AndroidStudio/AndroidStudio_anzhuang_genymotion.png" alt=""></p>
-<h2 id="配置Genymotion插件"><a href="#配置Genymotion插件" class="headerlink" title="配置Genymotion插件"></a>配置Genymotion插件</h2><p>点击设置界面最下面的Other Setting,然后输入Genymotion的安装路径</p>
-<p><img src="/images/AndroidStudio/AndroidStudio_configure_genymotion.png" alt=""></p>
-<p>安装好了Genymotion,要重新启动AndroidStudio 才会生效，然后就会在工具栏多出一个图标，点击它：</p>
-<p><img src="/images/AndroidStudio/AndroidStudio_start_genymotion.png" alt=""></p>
-<p>然后选择启动模拟机就可以了<br><img src="/images/AndroidStudio/AndroidStudio_start_genymotionSelect.png" alt=""></p>
-<p>到了这一步，恭喜你，Genymotion插件就安装成功了，就不需要每次还要单独启动Genymotion了。</p>
+		<p>今天我们来学习怎样统计网站的访问量以及怎样添加评论功能</p>
+<h2 id="统计网站的访问量"><a href="#统计网站的访问量" class="headerlink" title="统计网站的访问量"></a>统计网站的访问量</h2><p>现在主流的统计网站的工具有谷歌统计，百度统计，但我们今天可以用<a href="http://ibruce.info/2015/04/04/busuanzi/" target="_blank" rel="external">不蒜子</a>来统计，这个工具只需要两行代码就可以完成统计。</p>
+<h3 id="安装脚本（必选）"><a href="#安装脚本（必选）" class="headerlink" title="安装脚本（必选）"></a>安装脚本（必选）</h3><p>不蒜子可以给任何类型的个人站点使用，如果你是用的hexo，打开themes/你的主题/layout/_partial/footer.ejs添加下述脚本即可。当然你可以添加当网页的任意位置。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&lt;script async src=<span class="string">"https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"</span>&gt;</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure>
+<h3 id="添加标签"><a href="#添加标签" class="headerlink" title="添加标签"></a>添加标签</h3><p>需要复制相应的html标签到你的网站要显示访问量的位置即可。您可以随意更改不蒜子标签为自己喜欢的显示效果。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">&lt;span id=<span class="string">"busuanzi_container_site_pv"</span>&gt;</span><br><span class="line">    本站总访问量&lt;span id=<span class="string">"busuanzi_value_site_pv"</span>&gt;&lt;/span&gt;次</span><br><span class="line">&lt;/span&gt;</span><br><span class="line"></span><br><span class="line">&lt;span id=<span class="string">"busuanzi_container_site_uv"</span>&gt;</span><br><span class="line">  本站访客数&lt;span id=<span class="string">"busuanzi_value_site_uv"</span>&gt;&lt;/span&gt;人次</span><br><span class="line">&lt;/span&gt;</span><br><span class="line"></span><br><span class="line">&lt;span id=<span class="string">"busuanzi_container_page_pv"</span>&gt;</span><br><span class="line">  本文总阅读量&lt;span id=<span class="string">"busuanzi_value_page_pv"</span>&gt;&lt;/span&gt;次</span><br><span class="line">&lt;/span&gt;</span><br></pre></td></tr></table></figure>
+<p>我是用hexo 的jacman主题的我是添加在themes/jacman/layout/_partial/footer.ejs下的，列如：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">&lt;p class=<span class="string">"copyright"</span>&gt;</span><br><span class="line">		Powered by &lt;a href=<span class="string">"http://hexo.io"</span> target=<span class="string">"_blank"</span> title=<span class="string">"hexo"</span>&gt;hexo&lt;/a&gt; and Theme by &lt;a href=<span class="string">"https://github.com/wuchong/jacman"</span> target=<span class="string">"_blank"</span> title=<span class="string">"Jacman"</span>&gt;Jacman&lt;/a&gt; © &lt;%= new Date().getFullYear() %&gt; </span><br><span class="line">		&lt;% <span class="keyword">if</span> (config.author) &#123; %&gt;</span><br><span class="line">		&lt;a href=<span class="string">"&lt;%= config.root %&gt;about"</span> target=<span class="string">"_blank"</span> title=<span class="string">"&lt;%= config.author %&gt;"</span>&gt;&lt;%= config.author %&gt;&lt;/a&gt;</span><br><span class="line">		&lt;% &#125; <span class="keyword">else</span> &#123;%&gt;</span><br><span class="line">		&lt;a href=<span class="string">"&lt;%= config.url %&gt;"</span> title=<span class="string">"&lt;%= config.title %&gt;"</span>&gt;&lt;%= config.title %&gt;&lt;/a&gt;</span><br><span class="line">		&lt;% &#125; %&gt;</span><br><span class="line">		</span><br><span class="line">		&lt;script async src=<span class="string">"https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"</span>&gt;</span><br><span class="line">		&lt;/script&gt;</span><br><span class="line">		&lt;/br&gt;本站总访问量&lt;span id=<span class="string">"busuanzi_value_site_pv"</span>&gt;&lt;/span&gt;次,本站访客数&lt;span id=<span class="string">"busuanzi_value_site_uv"</span>&gt;&lt;/span&gt;人次,本文总阅读量&lt;span id=<span class="string">"busuanzi_value_page_pv"</span>&gt;&lt;/span&gt;次</span><br><span class="line"></span><br><span class="line">		&lt;/p&gt;</span><br></pre></td></tr></table></figure>
+<p>是添加在版权信息下面，读者也可以添加其它地方。</p>
+<h2 id="添加评论功能"><a href="#添加评论功能" class="headerlink" title="添加评论功能"></a>添加评论功能</h2><p>评论功能大陆地区最好用的就是<a href="http://duoshuo.com/" target="_blank" rel="external">多说</a>,可以去注册个账号，jacman主题里面已经<br>实现了这个功能，你只需要注册个账号将用户名添加进去就可以了。<br>打开jacman主题文件下的_config.yml文件，找到多说设置的地方。<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#### Comment</span></span><br><span class="line">duoshuo_shortname: hjxandhmr   <span class="comment">## 在这里添加多说的域名,比如我的域名是这个hjxandhmr.duoshuo.com，只需要填hjxandhmr就可以了</span></span><br></pre></td></tr></table></figure></p>
+<p>到这为止，统计网站访问数和评论功能我们都已经实现了，赶快去试试吧。</p>
 <p><strong>欢迎大家关注我的微信公众号，我会不定期的分享些Android开发的技巧</strong></p>
 <p><img src="/images/weixing.jpg" alt=""></p>
   
@@ -125,13 +122,13 @@
 
 <div class="article-categories">
   <span></span>
-  <a class="article-category-link" href="/categories/AndroidStudio/">AndroidStudio</a>
+  <a class="article-category-link" href="/categories/hexo/">hexo</a>
 </div>
 
 
   <div class="article-tags">
   
-  <span></span> <a href="/tags/AndroidStudio/">AndroidStudio</a>
+  <span></span> <a href="/tags/hexo/">hexo</a>
   </div>
 
 </div>
@@ -140,7 +137,7 @@
 
 	<div class="article-share" id="share">
 	
-	  <div data-url="http://HJXANDHMR.github.io/2016/04/18/AndroidStudio-配置Genymotion/" data-title="Android Studio中配置Genymotion | Android学习" data-tsina="null" class="share clearfix">
+	  <div data-url="http://HJXANDHMR.github.io/2016/04/18/hexo-AddCommentAndAccessNumber/" data-title="Hexo 中添加访问数和增加评论 | Android学习" data-tsina="null" class="share clearfix">
 	  </div>
 	
 	</div>
@@ -155,9 +152,9 @@
  
 
 <div class="next">
-<a href="/2016/04/17/Android-WCFConnect/"  title="Android 调用WCF接口">
+<a href="/2016/04/18/AndroidStudio-ConfigureGenymotion/"  title="Android Studio中配置Genymotion">
  <strong>下一篇：</strong><br/> 
- <span>Android 调用WCF接口
+ <span>Android Studio中配置Genymotion
 </span>
 </a>
 </div>
@@ -166,7 +163,7 @@
 
 	
 <section id="comments" class="comment">
-	<div class="ds-thread" data-thread-key="2016/04/18/AndroidStudio-配置Genymotion/" data-title="Android Studio中配置Genymotion" data-url="http://HJXANDHMR.github.io/2016/04/18/AndroidStudio-配置Genymotion/"></div>
+	<div class="ds-thread" data-thread-key="2016/04/18/hexo-AddCommentAndAccessNumber/" data-title="Hexo 中添加访问数和增加评论" data-url="http://HJXANDHMR.github.io/2016/04/18/hexo-AddCommentAndAccessNumber/"></div>
 </section>
 
 
@@ -176,7 +173,7 @@
   <div id="toc" class="toc-aside">
   <strong class="toc-title">文章目录</strong>
  
- <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#下载Genymotion插件"><span class="toc-number">1.</span> <span class="toc-text">下载Genymotion插件</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#配置Genymotion插件"><span class="toc-number">2.</span> <span class="toc-text">配置Genymotion插件</span></a></li></ol>
+ <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#统计网站的访问量"><span class="toc-number">1.</span> <span class="toc-text">统计网站的访问量</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#安装脚本（必选）"><span class="toc-number">1.1.</span> <span class="toc-text">安装脚本（必选）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#添加标签"><span class="toc-number">1.2.</span> <span class="toc-text">添加标签</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#添加评论功能"><span class="toc-number">2.</span> <span class="toc-text">添加评论功能</span></a></li></ol>
  
   </div>
 
@@ -202,7 +199,7 @@
 		  
 		
 		  
-			<li><a href="/categories/hexo/" title="hexo">hexo<sup>1</sup></a></li>
+			<li><a href="/categories/hexo/" title="hexo">hexo<sup>3</sup></a></li>
 		  
 		
 		</ul>
@@ -215,11 +212,7 @@
 		<ul class="clearfix">
 		
 			
-				<li><a href="/tags/hexo/" title="hexo">hexo<sup>2</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/WCF/" title="WCF">WCF<sup>1</sup></a></li>
+				<li><a href="/tags/hexo/" title="hexo">hexo<sup>3</sup></a></li>
 			
 		
 			
@@ -227,11 +220,15 @@
 			
 		
 			
-				<li><a href="/tags/AndroidStudio/" title="AndroidStudio">AndroidStudio<sup>1</sup></a></li>
+				<li><a href="/tags/WCF/" title="WCF">WCF<sup>1</sup></a></li>
 			
 		
 			
 				<li><a href="/tags/Markdown/" title="Markdown">Markdown<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/AndroidStudio/" title="AndroidStudio">AndroidStudio<sup>1</sup></a></li>
 			
 		
 		</ul>

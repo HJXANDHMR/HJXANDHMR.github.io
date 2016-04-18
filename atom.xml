@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://HJXANDHMR.github.io/"/>
-  <updated>2016-04-18T07:56:33.122Z</updated>
+  <updated>2016-04-18T12:03:21.869Z</updated>
   <id>http://HJXANDHMR.github.io/</id>
   
   <author>
@@ -16,9 +16,44 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>Hexo 中添加访问数和增加评论</title>
+    <link href="http://HJXANDHMR.github.io/2016/04/18/hexo-AddCommentAndAccessNumber/"/>
+    <id>http://HJXANDHMR.github.io/2016/04/18/hexo-AddCommentAndAccessNumber/</id>
+    <published>2016-04-18T11:38:28.316Z</published>
+    <updated>2016-04-18T12:03:21.869Z</updated>
+    
+    <content type="html">&lt;p&gt;今天我们来学习怎样统计网站的访问量以及怎样添加评论功能&lt;/p&gt;
+&lt;h2 id=&quot;统计网站的访问量&quot;&gt;&lt;a href=&quot;#统计网站的访问量&quot; class=&quot;headerlink&quot; title=&quot;统计网站的访问量&quot;&gt;&lt;/a&gt;统计网站的访问量&lt;/h2&gt;&lt;p&gt;现在主流的统计网站的工具有谷歌统计，百度统计，但我们今天可以用&lt;a href=&quot;http://ibruce.info/2015/04/04/busuanzi/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;不蒜子&lt;/a&gt;来统计，这个工具只需要两行代码就可以完成统计。&lt;/p&gt;
+&lt;h3 id=&quot;安装脚本（必选）&quot;&gt;&lt;a href=&quot;#安装脚本（必选）&quot; class=&quot;headerlink&quot; title=&quot;安装脚本（必选）&quot;&gt;&lt;/a&gt;安装脚本（必选）&lt;/h3&gt;&lt;p&gt;不蒜子可以给任何类型的个人站点使用，如果你是用的hexo，打开themes/你的主题/layout/_partial/footer.ejs添加下述脚本即可。当然你可以添加当网页的任意位置。&lt;/p&gt;
+&lt;figure class=&quot;highlight bash&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&amp;lt;script async src=&lt;span class=&quot;string&quot;&gt;&quot;https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js&quot;&lt;/span&gt;&amp;gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;lt;/script&amp;gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;h3 id=&quot;添加标签&quot;&gt;&lt;a href=&quot;#添加标签&quot; class=&quot;headerlink&quot; title=&quot;添加标签&quot;&gt;&lt;/a&gt;添加标签&lt;/h3&gt;&lt;p&gt;需要复制相应的html标签到你的网站要显示访问量的位置即可。您可以随意更改不蒜子标签为自己喜欢的显示效果。&lt;/p&gt;
+&lt;figure class=&quot;highlight bash&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;10&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;11&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&amp;lt;span id=&lt;span class=&quot;string&quot;&gt;&quot;busuanzi_container_site_pv&quot;&lt;/span&gt;&amp;gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    本站总访问量&amp;lt;span id=&lt;span class=&quot;string&quot;&gt;&quot;busuanzi_value_site_pv&quot;&lt;/span&gt;&amp;gt;&amp;lt;/span&amp;gt;次&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;lt;/span&amp;gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;lt;span id=&lt;span class=&quot;string&quot;&gt;&quot;busuanzi_container_site_uv&quot;&lt;/span&gt;&amp;gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  本站访客数&amp;lt;span id=&lt;span class=&quot;string&quot;&gt;&quot;busuanzi_value_site_uv&quot;&lt;/span&gt;&amp;gt;&amp;lt;/span&amp;gt;人次&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;lt;/span&amp;gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;lt;span id=&lt;span class=&quot;string&quot;&gt;&quot;busuanzi_container_page_pv&quot;&lt;/span&gt;&amp;gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  本文总阅读量&amp;lt;span id=&lt;span class=&quot;string&quot;&gt;&quot;busuanzi_value_page_pv&quot;&lt;/span&gt;&amp;gt;&amp;lt;/span&amp;gt;次&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;lt;/span&amp;gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;我是用hexo 的jacman主题的我是添加在themes/jacman/layout/_partial/footer.ejs下的，列如：&lt;/p&gt;
+&lt;figure class=&quot;highlight bash&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;10&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;11&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;12&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;13&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&amp;lt;p class=&lt;span class=&quot;string&quot;&gt;&quot;copyright&quot;&lt;/span&gt;&amp;gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;		Powered by &amp;lt;a href=&lt;span class=&quot;string&quot;&gt;&quot;http://hexo.io&quot;&lt;/span&gt; target=&lt;span class=&quot;string&quot;&gt;&quot;_blank&quot;&lt;/span&gt; title=&lt;span class=&quot;string&quot;&gt;&quot;hexo&quot;&lt;/span&gt;&amp;gt;hexo&amp;lt;/a&amp;gt; and Theme by &amp;lt;a href=&lt;span class=&quot;string&quot;&gt;&quot;https://github.com/wuchong/jacman&quot;&lt;/span&gt; target=&lt;span class=&quot;string&quot;&gt;&quot;_blank&quot;&lt;/span&gt; title=&lt;span class=&quot;string&quot;&gt;&quot;Jacman&quot;&lt;/span&gt;&amp;gt;Jacman&amp;lt;/a&amp;gt; © &amp;lt;%= new Date().getFullYear() %&amp;gt; &lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;		&amp;lt;% &lt;span class=&quot;keyword&quot;&gt;if&lt;/span&gt; (config.author) &amp;#123; %&amp;gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;		&amp;lt;a href=&lt;span class=&quot;string&quot;&gt;&quot;&amp;lt;%= config.root %&amp;gt;about&quot;&lt;/span&gt; target=&lt;span class=&quot;string&quot;&gt;&quot;_blank&quot;&lt;/span&gt; title=&lt;span class=&quot;string&quot;&gt;&quot;&amp;lt;%= config.author %&amp;gt;&quot;&lt;/span&gt;&amp;gt;&amp;lt;%= config.author %&amp;gt;&amp;lt;/a&amp;gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;		&amp;lt;% &amp;#125; &lt;span class=&quot;keyword&quot;&gt;else&lt;/span&gt; &amp;#123;%&amp;gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;		&amp;lt;a href=&lt;span class=&quot;string&quot;&gt;&quot;&amp;lt;%= config.url %&amp;gt;&quot;&lt;/span&gt; title=&lt;span class=&quot;string&quot;&gt;&quot;&amp;lt;%= config.title %&amp;gt;&quot;&lt;/span&gt;&amp;gt;&amp;lt;%= config.title %&amp;gt;&amp;lt;/a&amp;gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;		&amp;lt;% &amp;#125; %&amp;gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;		&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;		&amp;lt;script async src=&lt;span class=&quot;string&quot;&gt;&quot;https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js&quot;&lt;/span&gt;&amp;gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;		&amp;lt;/script&amp;gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;		&amp;lt;/br&amp;gt;本站总访问量&amp;lt;span id=&lt;span class=&quot;string&quot;&gt;&quot;busuanzi_value_site_pv&quot;&lt;/span&gt;&amp;gt;&amp;lt;/span&amp;gt;次,本站访客数&amp;lt;span id=&lt;span class=&quot;string&quot;&gt;&quot;busuanzi_value_site_uv&quot;&lt;/span&gt;&amp;gt;&amp;lt;/span&amp;gt;人次,本文总阅读量&amp;lt;span id=&lt;span class=&quot;string&quot;&gt;&quot;busuanzi_value_page_pv&quot;&lt;/span&gt;&amp;gt;&amp;lt;/span&amp;gt;次&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;		&amp;lt;/p&amp;gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;是添加在版权信息下面，读者也可以添加其它地方。&lt;/p&gt;
+&lt;h2 id=&quot;添加评论功能&quot;&gt;&lt;a href=&quot;#添加评论功能&quot; class=&quot;headerlink&quot; title=&quot;添加评论功能&quot;&gt;&lt;/a&gt;添加评论功能&lt;/h2&gt;&lt;p&gt;评论功能大陆地区最好用的就是&lt;a href=&quot;http://duoshuo.com/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;多说&lt;/a&gt;,可以去注册个账号，jacman主题里面已经&lt;br&gt;实现了这个功能，你只需要注册个账号将用户名添加进去就可以了。&lt;br&gt;打开jacman主题文件下的_config.yml文件，找到多说设置的地方。&lt;br&gt;&lt;figure class=&quot;highlight bash&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;comment&quot;&gt;#### Comment&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;duoshuo_shortname: hjxandhmr   &lt;span class=&quot;comment&quot;&gt;## 在这里添加多说的域名,比如我的域名是这个hjxandhmr.duoshuo.com，只需要填hjxandhmr就可以了&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
+&lt;p&gt;到这为止，统计网站访问数和评论功能我们都已经实现了，赶快去试试吧。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;欢迎大家关注我的微信公众号，我会不定期的分享些Android开发的技巧&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/images/weixing.jpg&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+</content>
+    
+    <summary type="html">
+    
+      hexo,jacman,评论,访问数,添加
+    
+    </summary>
+    
+      <category term="hexo" scheme="http://HJXANDHMR.github.io/categories/hexo/"/>
+    
+    
+      <category term="hexo" scheme="http://HJXANDHMR.github.io/tags/hexo/"/>
+    
+  </entry>
+  
+  <entry>
     <title>Android Studio中配置Genymotion</title>
-    <link href="http://HJXANDHMR.github.io/2016/04/18/AndroidStudio-%E9%85%8D%E7%BD%AEGenymotion/"/>
-    <id>http://HJXANDHMR.github.io/2016/04/18/AndroidStudio-配置Genymotion/</id>
+    <link href="http://HJXANDHMR.github.io/2016/04/18/AndroidStudio-ConfigureGenymotion/"/>
+    <id>http://HJXANDHMR.github.io/2016/04/18/AndroidStudio-ConfigureGenymotion/</id>
     <published>2016-04-18T06:01:08.912Z</published>
     <updated>2016-04-18T07:56:33.122Z</updated>
     
@@ -203,7 +238,7 @@
     <link href="http://HJXANDHMR.github.io/2016/04/16/hexoCommand/"/>
     <id>http://HJXANDHMR.github.io/2016/04/16/hexoCommand/</id>
     <published>2016-04-16T13:36:08.038Z</published>
-    <updated>2016-04-17T04:30:10.916Z</updated>
+    <updated>2016-04-18T12:05:21.091Z</updated>
     
     <content type="html">&lt;p&gt; 上一篇博客我们已经学会如何在GitHub加hexo搭建博客&lt;a href=&quot;http://hjxandhmr.github.io/2016/04/15/hello-hexo/&quot;&gt;GitHub加hexo搭建博客教程&lt;/a&gt; 这篇博客就来学学常用的hexo命令和更换主题。&lt;/p&gt;
 &lt;h2 id=&quot;hexo命令&quot;&gt;&lt;a href=&quot;#hexo命令&quot; class=&quot;headerlink&quot; title=&quot;hexo命令&quot;&gt;&lt;/a&gt;hexo命令&lt;/h2&gt;&lt;p&gt; 本地查看博客内容&lt;br&gt; &lt;figure class=&quot;highlight bash&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;hexo s &lt;span class=&quot;comment&quot;&gt;#本地预览文章内容，登录 localhost:4000 查看效果&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
@@ -224,6 +259,8 @@
       hexo 常用命令
     
     </summary>
+    
+      <category term="hexo" scheme="http://HJXANDHMR.github.io/categories/hexo/"/>
     
     
       <category term="hexo" scheme="http://HJXANDHMR.github.io/tags/hexo/"/>
