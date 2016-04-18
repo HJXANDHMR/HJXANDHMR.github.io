@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://HJXANDHMR.github.io/"/>
-  <updated>2016-04-17T11:26:16.424Z</updated>
+  <updated>2016-04-18T06:43:04.793Z</updated>
   <id>http://HJXANDHMR.github.io/</id>
   
   <author>
@@ -14,6 +14,39 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Android Studio中配置Genymotion</title>
+    <link href="http://HJXANDHMR.github.io/2016/04/18/AndroidStudio-%E9%85%8D%E7%BD%AEGenymotion/"/>
+    <id>http://HJXANDHMR.github.io/2016/04/18/AndroidStudio-配置Genymotion/</id>
+    <published>2016-04-18T06:01:08.912Z</published>
+    <updated>2016-04-18T06:43:04.793Z</updated>
+    
+    <content type="html">&lt;p&gt;Android Studio中是开发Android的必备神器，今天我们就来聊聊Android studio的插件Genymotion怎样在Android studio中配置&lt;/p&gt;
+&lt;h2 id=&quot;下载Genymotion插件&quot;&gt;&lt;a href=&quot;#下载Genymotion插件&quot; class=&quot;headerlink&quot; title=&quot;下载Genymotion插件&quot;&gt;&lt;/a&gt;下载Genymotion插件&lt;/h2&gt;&lt;p&gt;打开设置界面&lt;br&gt;&lt;img src=&quot;images/AndroidStudio/AndroidStudio_open_setting.png&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;p&gt;然后点击Plugins,在搜索框里输入Genymotion，在点击右边的Install，因为我已经安装好了，图上显示的是Uninstall&lt;br&gt;&lt;img src=&quot;images/AndroidStudio/AndroidStudio_anzhuang_genymotion.png&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;h2 id=&quot;配置Genymotion插件&quot;&gt;&lt;a href=&quot;#配置Genymotion插件&quot; class=&quot;headerlink&quot; title=&quot;配置Genymotion插件&quot;&gt;&lt;/a&gt;配置Genymotion插件&lt;/h2&gt;&lt;p&gt;点击设置界面最下面的Other Setting,然后输入Genymotion的安装路径&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;images/AndroidStudio/AndroidStudio_configure_genymotion.png&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;p&gt;安装好了Genymotion,要重新启动AndroidStudio 才会生效，然后就会在工具栏多出一个图标，点击它：&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;images/AndroidStudio/AndroidStudio_start_genymotion.png&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;p&gt;然后选择启动模拟机就可以了&lt;br&gt;&lt;img src=&quot;images/AndroidStudio/AndroidStudio_start_genymotionSelect.png&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;p&gt;到了这一步，恭喜你，Genymotion插件就安装成功了，就不需要每次还要单独启动Genymotion了。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;欢迎大家关注我的微信公众号，我会不定期的分享些Android开发的技巧&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/images/weixing.jpg&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+</content>
+    
+    <summary type="html">
+    
+      Android Studio,Genymotion,配置
+    
+    </summary>
+    
+      <category term="AndroidStudio" scheme="http://HJXANDHMR.github.io/categories/AndroidStudio/"/>
+    
+    
+      <category term="AndroidStudio" scheme="http://HJXANDHMR.github.io/tags/AndroidStudio/"/>
+    
+  </entry>
   
   <entry>
     <title>Android 调用WCF接口</title>
