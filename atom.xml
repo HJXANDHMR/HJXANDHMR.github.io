@@ -86,9 +86,9 @@
     <link href="http://HJXANDHMR.github.io/2016/04/17/Android-ListviewAndCheckButtonproblem/"/>
     <id>http://HJXANDHMR.github.io/2016/04/17/Android-ListviewAndCheckButtonproblem/</id>
     <published>2016-04-17T04:00:23.799Z</published>
-    <updated>2016-04-17T04:29:46.764Z</updated>
+    <updated>2016-04-18T06:48:17.673Z</updated>
     
-    <content type="html">&lt;p&gt;在Android开发中我们接触比较多的控件就是ListViewl ,在使用ListView的时候也会遇到很多问题，今天我们就来聊聊，&lt;br&gt;当ListView中使用CheckBoxs时遇到的问题。&lt;/p&gt;
+    <content type="html">&lt;p&gt;在Android开发中我们接触比较多的控件就是ListView了 ,在使用ListView的时候也会遇到很多问题，今天我们就来聊聊，&lt;br&gt;当ListView中使用CheckBoxs时遇到的问题。&lt;/p&gt;
 &lt;h2 id=&quot;遇到的问题&quot;&gt;&lt;a href=&quot;#遇到的问题&quot; class=&quot;headerlink&quot; title=&quot;遇到的问题&quot;&gt;&lt;/a&gt;遇到的问题&lt;/h2&gt;&lt;p&gt;当我们要在ListView中用CheckBox来实现一个多选的功能，但遇到了一个问题，当选中item时，滑动页面的时候出现了假选的情况，本来没有选中的item，滑动页面的时候选中了。&lt;/p&gt;
 &lt;h2 id=&quot;解决问题的思路&quot;&gt;&lt;a href=&quot;#解决问题的思路&quot; class=&quot;headerlink&quot; title=&quot;解决问题的思路&quot;&gt;&lt;/a&gt;解决问题的思路&lt;/h2&gt;&lt;p&gt;用HashMap来记录一个CheckBox的勾选记录&lt;/p&gt;
 &lt;h2 id=&quot;实现代码&quot;&gt;&lt;a href=&quot;#实现代码&quot; class=&quot;headerlink&quot; title=&quot;实现代码&quot;&gt;&lt;/a&gt;实现代码&lt;/h2&gt;&lt;p&gt;由于ListView和CheckBox我们经常使用，布局代码和Activity的代码就不给出来了，只给出最关键的Adapter代码。&lt;br&gt;布局代码就是一个TextView用来显示名字，一个CheckBox用来勾选item.&lt;/p&gt;

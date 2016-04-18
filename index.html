@@ -234,7 +234,7 @@
 </header>
     <div class="article-content">
         
-        <p>在Android开发中我们接触比较多的控件就是ListViewl ,在使用ListView的时候也会遇到很多问题，今天我们就来聊聊，<br>当ListView中使用CheckBoxs时遇到的问题。</p>
+        <p>在Android开发中我们接触比较多的控件就是ListView了 ,在使用ListView的时候也会遇到很多问题，今天我们就来聊聊，<br>当ListView中使用CheckBoxs时遇到的问题。</p>
 <h2 id="遇到的问题"><a href="#遇到的问题" class="headerlink" title="遇到的问题"></a>遇到的问题</h2><p>当我们要在ListView中用CheckBox来实现一个多选的功能，但遇到了一个问题，当选中item时，滑动页面的时候出现了假选的情况，本来没有选中的item，滑动页面的时候选中了。</p>
 <h2 id="解决问题的思路"><a href="#解决问题的思路" class="headerlink" title="解决问题的思路"></a>解决问题的思路</h2><p>用HashMap来记录一个CheckBox的勾选记录</p>
 <h2 id="实现代码"><a href="#实现代码" class="headerlink" title="实现代码"></a>实现代码</h2><p>由于ListView和CheckBox我们经常使用，布局代码和Activity的代码就不给出来了，只给出最关键的Adapter代码。<br>布局代码就是一个TextView用来显示名字，一个CheckBox用来勾选item.</p>
