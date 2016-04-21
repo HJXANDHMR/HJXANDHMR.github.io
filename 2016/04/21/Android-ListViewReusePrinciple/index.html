@@ -4,30 +4,26 @@
 <head>
   <meta charset="UTF-8">
   
-    <title>Android Studio中配置Genymotion | Android学习</title>
+    <title>ListView复用原理和提升效率 | Android学习</title>
     <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
     
     <meta name="author" content="何健雄">
     
 
     
-    <meta name="description" content="Android Studio,Genymotion,配置">
+    <meta name="description" content="ListView复用原理">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Android Studio中配置Genymotion">
-<meta property="og:url" content="http://HJXANDHMR.github.io/2016/04/18/AndroidStudio-ConfigureGenymotion/index.html">
+<meta property="og:title" content="ListView复用原理和提升效率">
+<meta property="og:url" content="http://HJXANDHMR.github.io/2016/04/21/Android-ListViewReusePrinciple/index.html">
 <meta property="og:site_name" content="Android学习">
-<meta property="og:description" content="Android Studio,Genymotion,配置">
-<meta property="og:image" content="http://HJXANDHMR.github.io/images/AndroidStudio/AndroidStudio_open_setting.png">
-<meta property="og:image" content="http://HJXANDHMR.github.io/images/AndroidStudio/AndroidStudio_anzhuang_genymotion.png">
-<meta property="og:image" content="http://HJXANDHMR.github.io/images/AndroidStudio/AndroidStudio_configure_genymotion.png">
-<meta property="og:image" content="http://HJXANDHMR.github.io/images/AndroidStudio/AndroidStudio_start_genymotion.png">
-<meta property="og:image" content="http://HJXANDHMR.github.io/images/AndroidStudio/AndroidStudio_start_genymotionSelect.png">
+<meta property="og:description" content="ListView复用原理">
+<meta property="og:image" content="http://HJXANDHMR.github.io/images/ListView/ListView_yuanli.jpg">
 <meta property="og:image" content="http://HJXANDHMR.github.io/images/weixing.jpg">
-<meta property="og:updated_time" content="2016-04-18T07:56:33.122Z">
+<meta property="og:updated_time" content="2016-04-21T13:47:53.242Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Android Studio中配置Genymotion">
-<meta name="twitter:description" content="Android Studio,Genymotion,配置">
-<meta name="twitter:image" content="http://HJXANDHMR.github.io/images/AndroidStudio/AndroidStudio_open_setting.png">
+<meta name="twitter:title" content="ListView复用原理和提升效率">
+<meta name="twitter:description" content="ListView复用原理">
+<meta name="twitter:image" content="http://HJXANDHMR.github.io/images/ListView/ListView_yuanli.jpg">
 
     
     <link rel="alternative" href="/atom.xml" title="Android学习" type="application/atom+xml">
@@ -87,14 +83,14 @@
 		<header class="article-info clearfix">
   <h1 itemprop="name">
     
-      <a href="/2016/04/18/AndroidStudio-ConfigureGenymotion/" title="Android Studio中配置Genymotion" itemprop="url">Android Studio中配置Genymotion</a>
+      <a href="/2016/04/21/Android-ListViewReusePrinciple/" title="ListView复用原理和提升效率" itemprop="url">ListView复用原理和提升效率</a>
   </h1>
   <p class="article-author">By
        
 		<a href="/about" title="何健雄" target="_blank" itemprop="author">何健雄</a>
 		
   <p class="article-time">
-    <time datetime="2016-04-18T06:01:08.912Z" itemprop="datePublished"> 发表于 2016-04-18</time>
+    <time datetime="2016-04-21T12:59:40.408Z" itemprop="datePublished"> 发表于 2016-04-21</time>
     
   </p>
 </header>
@@ -103,19 +99,17 @@
 		<div id="toc" class="toc-article">
 			<strong class="toc-title">文章目录</strong>
 		
-			<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#下载Genymotion插件"><span class="toc-number">1.</span> <span class="toc-text">下载Genymotion插件</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#配置Genymotion插件"><span class="toc-number">2.</span> <span class="toc-text">配置Genymotion插件</span></a></li></ol>
+			<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#复用原理以及提升效率"><span class="toc-number">1.</span> <span class="toc-text">复用原理以及提升效率</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#复用item"><span class="toc-number">1.1.</span> <span class="toc-text">复用item</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#提高ListView的效率"><span class="toc-number">2.</span> <span class="toc-text">提高ListView的效率</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#最简单的使用ListView"><span class="toc-number">2.1.</span> <span class="toc-text">最简单的使用ListView</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#复用convertView"><span class="toc-number">2.2.</span> <span class="toc-text">复用convertView</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#使用ViewHolder"><span class="toc-number">2.3.</span> <span class="toc-text">使用ViewHolder</span></a></li></ol></li></ol>
 		
 		</div>
 		
-		<p>Android Studio中是开发Android的必备神器，今天我们就来聊聊Android studio的插件Genymotion怎样在Android studio中配置</p>
-<h2 id="下载Genymotion插件"><a href="#下载Genymotion插件" class="headerlink" title="下载Genymotion插件"></a>下载Genymotion插件</h2><p>打开设置界面<br><img src="/images/AndroidStudio/AndroidStudio_open_setting.png" alt=""></p>
-<p>然后点击Plugins,在搜索框里输入Genymotion，在点击右边的Install，因为我已经安装好了，图上显示的是Uninstall<br><img src="/images/AndroidStudio/AndroidStudio_anzhuang_genymotion.png" alt=""></p>
-<h2 id="配置Genymotion插件"><a href="#配置Genymotion插件" class="headerlink" title="配置Genymotion插件"></a>配置Genymotion插件</h2><p>点击设置界面最下面的Other Setting,然后输入Genymotion的安装路径</p>
-<p><img src="/images/AndroidStudio/AndroidStudio_configure_genymotion.png" alt=""></p>
-<p>安装好了Genymotion,要重新启动AndroidStudio 才会生效，然后就会在工具栏多出一个图标，点击它：</p>
-<p><img src="/images/AndroidStudio/AndroidStudio_start_genymotion.png" alt=""></p>
-<p>然后选择启动模拟机就可以了<br><img src="/images/AndroidStudio/AndroidStudio_start_genymotionSelect.png" alt=""></p>
-<p>到了这一步，恭喜你，Genymotion插件就安装成功了，就不需要每次还要单独启动Genymotion了。</p>
+		<h2 id="复用原理以及提升效率"><a href="#复用原理以及提升效率" class="headerlink" title="复用原理以及提升效率"></a>复用原理以及提升效率</h2><h3 id="复用item"><a href="#复用item" class="headerlink" title="复用item"></a>复用item</h3><p>ListView在加载数据的时候是会复用item的，即ListView是会缓存至少一屏幕的item.<br>如下图所示。<br><img src="/images/ListView/ListView_yuanli.jpg" alt=""></p>
+<p>从图上可以看出当item1滚出屏幕，并且一个新的项目从屏幕底端上来时，ListView再请求一个视图。convertView此时不是空值了，它的值是item1。你只需设定新的数据然后返回convertView，不必重新创建一个视图。</p>
+<h2 id="提高ListView的效率"><a href="#提高ListView的效率" class="headerlink" title="提高ListView的效率"></a>提高ListView的效率</h2><h3 id="最简单的使用ListView"><a href="#最简单的使用ListView" class="headerlink" title="最简单的使用ListView"></a>最简单的使用ListView</h3><p>没有复用convertView，每次都要重新创建,效率极其低下<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">public View getView(int position, View convertView, ViewGroup parent) &#123;</span><br><span class="line"></span><br><span class="line">           LayoutInflater layoutInflater = LayoutInflater.from(context);</span><br><span class="line">           convertView = layoutInflater.inflate(R.layout.listview_item, null);</span><br><span class="line">           TextView textView = (TextView) (convertView).findViewById(R.id.textview);</span><br><span class="line">           textView.setText(persons.get(position).getName());</span><br><span class="line">           <span class="built_in">return</span> convertView;</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure></p>
+<h3 id="复用convertView"><a href="#复用convertView" class="headerlink" title="复用convertView"></a>复用convertView</h3><p>利用 convertView 回收视图, 效率提高 200%<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">public View getView(int position, View convertView, ViewGroup parent) &#123;</span><br><span class="line"></span><br><span class="line"> 		LayoutInflater layoutInflater = LayoutInflater.from(context);</span><br><span class="line">        <span class="keyword">if</span> (convertView == null) &#123;</span><br><span class="line">			 convertView = layoutInflater.inflate(R.layout.listview_item, null);</span><br><span class="line">		&#125;</span><br><span class="line"></span><br><span class="line">		TextView textView = (TextView) (convertView).findViewById(R.id.textview);</span><br><span class="line">		textView.setText(persons.get(position).getName());</span><br><span class="line">		<span class="built_in">return</span> convertView;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure></p>
+<h3 id="使用ViewHolder"><a href="#使用ViewHolder" class="headerlink" title="使用ViewHolder"></a>使用ViewHolder</h3><p>使用ViewHolder模式效率再提高50%</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">public View getView(int position, View convertView, ViewGroup parent) &#123;</span><br><span class="line">       ViewHolder holder;</span><br><span class="line">       <span class="keyword">if</span> (convertView == null) &#123;</span><br><span class="line">           LayoutInflater layoutInflater = LayoutInflater.from(context);</span><br><span class="line">           convertView = layoutInflater.inflate(R.layout.listview_item, null);</span><br><span class="line">           holder =new ViewHolder();</span><br><span class="line">           holder.textView = (TextView) (convertView).findViewById(R.id.textview);</span><br><span class="line">           convertView.setTag(holder);</span><br><span class="line"></span><br><span class="line">       &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">           holder = (ViewHolder) convertView.getTag();</span><br><span class="line"></span><br><span class="line">       &#125;</span><br><span class="line">       holder.textView.setText(persons.get(position).getName());</span><br><span class="line">       <span class="built_in">return</span> convertView;</span><br><span class="line">   &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">   class ViewHolder &#123;</span><br><span class="line">       private TextView textView;</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
+<p>通过本篇博客应该明白了ListView是怎样复用，以及怎样提高ListView的工作效率了。</p>
 <p><strong>欢迎大家关注我的微信公众号，我会不定期的分享些Android开发的技巧</strong></p>
 <p><img src="/images/weixing.jpg" alt=""></p>
   
@@ -125,13 +119,13 @@
 
 <div class="article-categories">
   <span></span>
-  <a class="article-category-link" href="/categories/AndroidStudio/">AndroidStudio</a>
+  <a class="article-category-link" href="/categories/ListView/">ListView</a>
 </div>
 
 
   <div class="article-tags">
   
-  <span></span> <a href="/tags/AndroidStudio/">AndroidStudio</a>
+  <span></span> <a href="/tags/ListView/">ListView</a>
   </div>
 
 </div>
@@ -140,7 +134,7 @@
 
 	<div class="article-share" id="share">
 	
-	  <div data-url="http://HJXANDHMR.github.io/2016/04/18/AndroidStudio-ConfigureGenymotion/" data-title="Android Studio中配置Genymotion | Android学习" data-tsina="null" class="share clearfix">
+	  <div data-url="http://HJXANDHMR.github.io/2016/04/21/Android-ListViewReusePrinciple/" data-title="ListView复用原理和提升效率 | Android学习" data-tsina="null" class="share clearfix">
 	  </div>
 	
 	</div>
@@ -153,19 +147,11 @@
 	
 <nav class="article-nav clearfix">
  
- <div class="prev" >
- <a href="/2016/04/18/hexo-AddCommentAndAccessNumber/" title="Hexo 中添加访问数和增加评论">
-  <strong>上一篇：</strong><br/>
-  <span>
-  Hexo 中添加访问数和增加评论</span>
-</a>
-</div>
-
 
 <div class="next">
-<a href="/2016/04/17/Android-WCFConnect/"  title="Android 调用WCF接口">
+<a href="/2016/04/19/Android-Utils/"  title="Android 常用工具类">
  <strong>下一篇：</strong><br/> 
- <span>Android 调用WCF接口
+ <span>Android 常用工具类
 </span>
 </a>
 </div>
@@ -174,7 +160,7 @@
 
 	
 <section id="comments" class="comment">
-	<div class="ds-thread" data-thread-key="2016/04/18/AndroidStudio-ConfigureGenymotion/" data-title="Android Studio中配置Genymotion" data-url="http://HJXANDHMR.github.io/2016/04/18/AndroidStudio-ConfigureGenymotion/"></div>
+	<div class="ds-thread" data-thread-key="2016/04/21/Android-ListViewReusePrinciple/" data-title="ListView复用原理和提升效率" data-url="http://HJXANDHMR.github.io/2016/04/21/Android-ListViewReusePrinciple/"></div>
 </section>
 
 
@@ -184,7 +170,7 @@
   <div id="toc" class="toc-aside">
   <strong class="toc-title">文章目录</strong>
  
- <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#下载Genymotion插件"><span class="toc-number">1.</span> <span class="toc-text">下载Genymotion插件</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#配置Genymotion插件"><span class="toc-number">2.</span> <span class="toc-text">配置Genymotion插件</span></a></li></ol>
+ <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#复用原理以及提升效率"><span class="toc-number">1.</span> <span class="toc-text">复用原理以及提升效率</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#复用item"><span class="toc-number">1.1.</span> <span class="toc-text">复用item</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#提高ListView的效率"><span class="toc-number">2.</span> <span class="toc-text">提高ListView的效率</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#最简单的使用ListView"><span class="toc-number">2.1.</span> <span class="toc-text">最简单的使用ListView</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#复用convertView"><span class="toc-number">2.2.</span> <span class="toc-text">复用convertView</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#使用ViewHolder"><span class="toc-number">2.3.</span> <span class="toc-text">使用ViewHolder</span></a></li></ol></li></ol>
  
   </div>
 

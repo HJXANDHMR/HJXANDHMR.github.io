@@ -11,15 +11,15 @@
     
 
     
-    <meta name="description" content="Android 开发,java学习。">
+    <meta name="description" content="Android 开发,java学习,ListView,Android Studio,Hexo,MarkDown.">
 <meta property="og:type" content="website">
 <meta property="og:title" content="Android学习">
 <meta property="og:url" content="http://HJXANDHMR.github.io/index.html">
 <meta property="og:site_name" content="Android学习">
-<meta property="og:description" content="Android 开发,java学习。">
+<meta property="og:description" content="Android 开发,java学习,ListView,Android Studio,Hexo,MarkDown.">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Android学习">
-<meta name="twitter:description" content="Android 开发,java学习。">
+<meta name="twitter:description" content="Android 开发,java学习,ListView,Android Studio,Hexo,MarkDown.">
 
     
     <link rel="alternative" href="/atom.xml" title="Android学习" type="application/atom+xml">
@@ -74,6 +74,77 @@
     </header>
     <div id="container">
       <div id="main">
+
+   
+    
+    <article class="post-expand post" itemprop="articleBody"> 
+        <header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2016/04/21/Android-ListViewReusePrinciple/" title="ListView复用原理和提升效率" itemprop="url">ListView复用原理和提升效率</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="/about" title="何健雄" target="_blank" itemprop="author">何健雄</a>
+		
+  <p class="article-time">
+    <time datetime="2016-04-21T12:59:40.408Z" itemprop="datePublished"> 发表于 2016-04-21</time>
+    
+  </p>
+</header>
+    <div class="article-content">
+        
+        <h2 id="复用原理以及提升效率"><a href="#复用原理以及提升效率" class="headerlink" title="复用原理以及提升效率"></a>复用原理以及提升效率</h2><h3 id="复用item"><a href="#复用item" class="headerlink" title="复用item"></a>复用item</h3><p>ListView在加载数据的时候是会复用item的，即ListView是会缓存至少一屏幕的item.<br>如下图所示。<br><img src="/images/ListView/ListView_yuanli.jpg" alt=""></p>
+<p>从图上可以看出当item1滚出屏幕，并且一个新的项目从屏幕底端上来时，ListView再请求一个视图。convertView此时不是空值了，它的值是item1。你只需设定新的数据然后返回convertView，不必重新创建一个视图。</p>
+<h2 id="提高ListView的效率"><a href="#提高ListView的效率" class="headerlink" title="提高ListView的效率"></a>提高ListView的效率</h2><h3 id="最简单的使用ListView"><a href="#最简单的使用ListView" class="headerlink" title="最简单的使用ListView"></a>最简单的使用ListView</h3><p>没有复用convertView，每次都要重新创建,效率极其低下<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">public View getView(int position, View convertView, ViewGroup parent) &#123;</span><br><span class="line"></span><br><span class="line">           LayoutInflater layoutInflater = LayoutInflater.from(context);</span><br><span class="line">           convertView = layoutInflater.inflate(R.layout.listview_item, null);</span><br><span class="line">           TextView textView = (TextView) (convertView).findViewById(R.id.textview);</span><br><span class="line">           textView.setText(persons.get(position).getName());</span><br><span class="line">           <span class="built_in">return</span> convertView;</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure></p>
+<h3 id="复用convertView"><a href="#复用convertView" class="headerlink" title="复用convertView"></a>复用convertView</h3><p>利用 convertView 回收视图, 效率提高 200%<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">public View getView(int position, View convertView, ViewGroup parent) &#123;</span><br><span class="line"></span><br><span class="line"> 		LayoutInflater layoutInflater = LayoutInflater.from(context);</span><br><span class="line">        <span class="keyword">if</span> (convertView == null) &#123;</span><br><span class="line">			 convertView = layoutInflater.inflate(R.layout.listview_item, null);</span><br><span class="line">		&#125;</span><br><span class="line"></span><br><span class="line">		TextView textView = (TextView) (convertView).findViewById(R.id.textview);</span><br><span class="line">		textView.setText(persons.get(position).getName());</span><br><span class="line">		<span class="built_in">return</span> convertView;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure></p>
+<h3 id="使用ViewHolder"><a href="#使用ViewHolder" class="headerlink" title="使用ViewHolder"></a>使用ViewHolder</h3><p>使用ViewHolder模式效率再提高50%</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">public View getView(int position, View convertView, ViewGroup parent) &#123;</span><br><span class="line">       ViewHolder holder;</span><br><span class="line">       <span class="keyword">if</span> (convertView == null) &#123;</span><br><span class="line">           LayoutInflater layoutInflater = LayoutInflater.from(context);</span><br><span class="line">           convertView = layoutInflater.inflate(R.layout.listview_item, null);</span><br><span class="line">           holder =new ViewHolder();</span><br><span class="line">           holder.textView = (TextView) (convertView).findViewById(R.id.textview);</span><br><span class="line">           convertView.setTag(holder);</span><br><span class="line"></span><br><span class="line">       &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">           holder = (ViewHolder) convertView.getTag();</span><br><span class="line"></span><br><span class="line">       &#125;</span><br><span class="line">       holder.textView.setText(persons.get(position).getName());</span><br><span class="line">       <span class="built_in">return</span> convertView;</span><br><span class="line">   &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">   class ViewHolder &#123;</span><br><span class="line">       private TextView textView;</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
+<p>通过本篇博客应该明白了ListView是怎样复用，以及怎样提高ListView的工作效率了。</p>
+<p><strong>欢迎大家关注我的微信公众号，我会不定期的分享些Android开发的技巧</strong></p>
+<p><img src="/images/weixing.jpg" alt=""></p>
+
+        
+        
+        <p class="article-more-link">
+          
+       </p>
+    </div>
+    <footer class="article-footer clearfix">
+<div class="article-catetags">
+
+<div class="article-categories">
+  <span></span>
+  <a class="article-category-link" href="/categories/ListView/">ListView</a>
+</div>
+
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/ListView/">ListView</a>
+  </div>
+
+</div>
+
+
+
+
+<div class="comments-count">
+	
+	  	<span></span>
+		<a href="/2016/04/21/Android-ListViewReusePrinciple/#comments" class="ds-thread-count comments-count-link" data-thread-key="2016/04/21/Android-ListViewReusePrinciple/" data-count-type="comments">&nbsp;</a>
+	
+</div>
+
+</footer>
+
+
+    </article>
+
+
+
+
+
 
    
     
@@ -750,7 +821,7 @@
 		  
 		
 		  
-			<li><a href="/categories/ListView/" title="ListView">ListView<sup>1</sup></a></li>
+			<li><a href="/categories/ListView/" title="ListView">ListView<sup>2</sup></a></li>
 		  
 		
 		  
@@ -775,15 +846,11 @@
 			
 		
 			
-				<li><a href="/tags/ListView/" title="ListView">ListView<sup>1</sup></a></li>
+				<li><a href="/tags/ListView/" title="ListView">ListView<sup>2</sup></a></li>
 			
 		
 			
 				<li><a href="/tags/WCF/" title="WCF">WCF<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/Markdown/" title="Markdown">Markdown<sup>1</sup></a></li>
 			
 		
 			
@@ -792,6 +859,10 @@
 		
 			
 				<li><a href="/tags/Android工具类/" title="Android工具类">Android工具类<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Markdown/" title="Markdown">Markdown<sup>1</sup></a></li>
 			
 		
 		</ul>
