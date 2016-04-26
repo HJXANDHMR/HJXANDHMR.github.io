@@ -1,0 +1,539 @@
+
+ <!DOCTYPE HTML>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  
+    <title>Android shape | Android学习</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
+    
+    <meta name="author" content="何健雄">
+    
+
+    
+    <meta name="description" content="Android，style，shape,utils">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Android shape">
+<meta property="og:url" content="http://HJXANDHMR.github.io/2016/04/26/Android-style/index.html">
+<meta property="og:site_name" content="Android学习">
+<meta property="og:description" content="Android，style，shape,utils">
+<meta property="og:image" content="http://HJXANDHMR.github.io/images/weixing.jpg">
+<meta property="og:updated_time" content="2016-04-26T02:45:22.582Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Android shape">
+<meta name="twitter:description" content="Android，style，shape,utils">
+<meta name="twitter:image" content="http://HJXANDHMR.github.io/images/weixing.jpg">
+
+    
+    <link rel="alternative" href="/atom.xml" title="Android学习" type="application/atom+xml">
+    
+    
+    <link rel="icon" href="/img/favicon.ico">
+    
+    
+    <link rel="apple-touch-icon" href="/img/jacman.jpg">
+    <link rel="apple-touch-icon-precomposed" href="/img/jacman.jpg">
+    
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+
+  <body>
+    <header>
+      
+<div>
+		
+			<div id="imglogo">
+				<a href="/"><img src="/img/logo.png" alt="Android学习" title="Android学习"/></a>
+			</div>
+			
+			<div id="textlogo">
+				<h1 class="site-name"><a href="/" title="Android学习">Android学习</a></h1>
+				<h2 class="blog-motto">学有所思，思有所悟，悟有所行。</h2>
+			</div>
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="菜单">
+			</a></div>
+			<nav class="animated">
+				<ul>
+					<ul>
+					 
+						<li><a href="/">主页</a></li>
+					
+						<li><a href="/archives">归档</a></li>
+					
+						<li><a href="/">简介</a></li>
+					
+					<li>
+ 					
+					<form class="search" action="//google.com/search" method="get" accept-charset="utf-8">
+						<label>Search</label>
+						<input type="search" id="search" name="q" autocomplete="off" maxlength="20" placeholder="搜索" />
+						<input type="hidden" name="q" value="site:HJXANDHMR.github.io">
+					</form>
+					
+					</li>
+				</ul>
+			</nav>			
+</div>
+    </header>
+    <div id="container">
+      <div id="main" class="post" itemscope itemprop="blogPost">
+  
+	<article itemprop="articleBody"> 
+		<header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2016/04/26/Android-style/" title="Android shape" itemprop="url">Android shape</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="/about" title="何健雄" target="_blank" itemprop="author">何健雄</a>
+		
+  <p class="article-time">
+    <time datetime="2016-04-26T02:22:17.359Z" itemprop="datePublished"> 发表于 2016-04-26</time>
+    
+  </p>
+</header>
+	<div class="article-content">
+		
+		<div id="toc" class="toc-article">
+			<strong class="toc-title">文章目录</strong>
+		
+			<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Android-shape"><span class="toc-number">1.</span> <span class="toc-text">Android shape</span></a></li></ol>
+		
+		</div>
+		
+		<p>Android开发中我们经常会使用shape我总结了下它们地使用</p>
+<h2 id="Android-shape"><a href="#Android-shape" class="headerlink" title="Android shape"></a>Android shape</h2><p>使用shape可以自定义形状，可以定义下面四种类型的形状，通过android:shape属性指定：</p>
+<ul>
+<li>rectangle: 矩形，默认的形状，可以画出直角矩形、圆角矩形、弧形等</li>
+<li>oval: 椭圆形，用得比较多的是画正圆</li>
+<li>line: 线形，可以画实线和虚线</li>
+<li>ring: 环形，可以画环形进度条</li>
+</ul>
+<p>gradient代表渐变，可以按照如下的使用：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;gradient</span><br><span class="line">       android:angle=<span class="string">"0"</span></span><br><span class="line">       android:centerColor=<span class="string">"#ff0f00"</span></span><br><span class="line">       android:endColor=<span class="string">"#ff00ff"</span></span><br><span class="line">       android:startColor=<span class="string">"#00ff00"</span> /&gt;</span><br></pre></td></tr></table></figure>
+<p>solid代表实心，可以按照如下的使用：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;solid android:color=<span class="string">"#F0FFFF"</span> /&gt;</span><br></pre></td></tr></table></figure>
+<p>stroke代表描边，可以按照如下的使用：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;stroke</span><br><span class="line">       android:width=<span class="string">"10dp"</span></span><br><span class="line">       android:color=<span class="string">"#00FFFF"</span></span><br><span class="line">       android:dashGap=<span class="string">"5dp"</span></span><br><span class="line">       android:dashWidth=<span class="string">"5dp"</span> /&gt;</span><br></pre></td></tr></table></figure>
+<p>corners代表圆角，可以按照如下的使用：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;corners android:radius=<span class="string">"100dp"</span> /&gt;</span><br></pre></td></tr></table></figure>
+<p>这是完整的shape文件，定义在drawable目录下</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">&lt;?xml version=<span class="string">"1.0"</span> encoding=<span class="string">"utf-8"</span>?&gt;</span><br><span class="line">&lt;shape xmlns:android=<span class="string">"http://schemas.android.com/apk/res/android"</span></span><br><span class="line">    android:shape=<span class="string">"rectangle"</span>&gt;</span><br><span class="line">    &lt;!-- 渐变 --&gt;</span><br><span class="line">    &lt;gradient</span><br><span class="line">        android:angle=<span class="string">"0"</span></span><br><span class="line">        android:centerColor=<span class="string">"#ff0f00"</span></span><br><span class="line">        android:endColor=<span class="string">"#ff00ff"</span></span><br><span class="line">        android:startColor=<span class="string">"#00ff00"</span> /&gt;</span><br><span class="line"></span><br><span class="line">    &lt;!-- 实心 --&gt;</span><br><span class="line">    &lt;solid android:color=<span class="string">"#F0FFFF"</span> /&gt;</span><br><span class="line"></span><br><span class="line">    &lt;!-- 描边 --&gt;</span><br><span class="line">    &lt;stroke</span><br><span class="line">        android:width=<span class="string">"10dp"</span></span><br><span class="line">        android:color=<span class="string">"#00FFFF"</span></span><br><span class="line">        android:dashGap=<span class="string">"5dp"</span></span><br><span class="line">        android:dashWidth=<span class="string">"5dp"</span> /&gt;</span><br><span class="line"></span><br><span class="line">    &lt;!-- 圆角 --&gt;</span><br><span class="line">    &lt;corners android:radius=<span class="string">"100dp"</span> /&gt;</span><br><span class="line">&lt;/shape&gt;</span><br></pre></td></tr></table></figure>
+<p>以上都是比较简单的使用shape。</p>
+<p>这里推荐一个工具，可以可视化的生成shape，简直是开发神器 <a href="http://angrytools.com/android/button/" target="_blank" rel="external">自动生成shape</a></p>
+<p><strong>欢迎大家关注我的微信公众号，我会不定期的分享些Android开发的技巧</strong></p>
+<p><img src="/images/weixing.jpg" alt=""></p>
+  
+	</div>
+		<footer class="article-footer clearfix">
+<div class="article-catetags">
+
+<div class="article-categories">
+  <span></span>
+  <a class="article-category-link" href="/categories/Android/">Android</a>
+</div>
+
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/Android/">Android</a>
+  </div>
+
+</div>
+
+
+
+	<div class="article-share" id="share">
+	
+	  <div data-url="http://HJXANDHMR.github.io/2016/04/26/Android-style/" data-title="Android shape | Android学习" data-tsina="null" class="share clearfix">
+	  </div>
+	
+	</div>
+
+
+</footer>
+
+   	       
+	</article>
+	
+<nav class="article-nav clearfix">
+ 
+
+<div class="next">
+<a href="/2016/04/22/Android-MVPDetailed/"  title="Android MVP实例">
+ <strong>下一篇：</strong><br/> 
+ <span>Android MVP实例
+</span>
+</a>
+</div>
+
+</nav>
+
+	
+<section id="comments" class="comment">
+	<div class="ds-thread" data-thread-key="2016/04/26/Android-style/" data-title="Android shape" data-url="http://HJXANDHMR.github.io/2016/04/26/Android-style/"></div>
+</section>
+
+
+</div>  
+      <div class="openaside"><a class="navbutton" href="#" title="显示侧边栏"></a></div>
+
+  <div id="toc" class="toc-aside">
+  <strong class="toc-title">文章目录</strong>
+ 
+ <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Android-shape"><span class="toc-number">1.</span> <span class="toc-text">Android shape</span></a></li></ol>
+ 
+  </div>
+
+<div id="asidepart">
+<div class="closeaside"><a class="closebutton" href="#" title="隐藏侧边栏"></a></div>
+<aside class="clearfix">
+
+  
+<div class="categorieslist">
+	<p class="asidetitle">分类</p>
+		<ul>
+		
+		  
+			<li><a href="/categories/Android/" title="Android">Android<sup>2</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/AndroidStudio/" title="AndroidStudio">AndroidStudio<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Android工具类/" title="Android工具类">Android工具类<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/ListView/" title="ListView">ListView<sup>2</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/WCF/" title="WCF">WCF<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/hexo/" title="hexo">hexo<sup>3</sup></a></li>
+		  
+		
+		</ul>
+</div>
+
+
+  
+<div class="tagslist">
+	<p class="asidetitle">标签</p>
+		<ul class="clearfix">
+		
+			
+				<li><a href="/tags/hexo/" title="hexo">hexo<sup>3</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/ListView/" title="ListView">ListView<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Android/" title="Android">Android<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Android工具类/" title="Android工具类">Android工具类<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/WCF/" title="WCF">WCF<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/AndroidStudio/" title="AndroidStudio">AndroidStudio<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Markdown/" title="Markdown">Markdown<sup>1</sup></a></li>
+			
+		
+		</ul>
+</div>
+
+
+  
+
+
+  
+<div class="github-card">
+<p class="asidetitle">Github 名片</p>
+<div class="github-card" data-github="HJXANDHMR" data-width="220" data-height="119" data-theme="medium">
+<script type="text/javascript" src="//cdn.jsdelivr.net/github-cards/latest/widget.js" ></script>
+</div>
+  </div>
+
+
+
+  <div class="linkslist">
+  <p class="asidetitle">友情链接</p>
+    <ul>
+        
+          <li>
+            
+            	<a href="http://blog.csdn.net/qq_14906597" target="_blank" title="一个面向程序员交流分享的新一代社区">csdn博客</a>
+            
+          </li>
+        
+    </ul>
+</div>
+
+  <div class="weiboshow">
+  <p class="asidetitle">新浪微博</p>
+    <iframe width="100%" height="119" class="share_self"  frameborder="0" scrolling="no" src="http://widget.weibo.com/weiboshow/index.php?language=&width=0&height=119&fansRow=2&ptype=1&speed=0&skin=9&isTitle=1&noborder=1&isWeibo=0&isFans=0&uid=null&verifier=&dpc=1"></iframe>
+</div>
+
+
+</aside>
+</div>
+    </div>
+    <footer><div id="footer" >
+	
+	
+	<section class="info">
+		<p> Hello ,I&#39;m hjx  <br/>
+			This is my blog,believe it or not.</p>
+	</section>
+	 
+	<div class="social-font" class="clearfix">
+		
+		<a href="http://weibo.com/hjxandhmr" target="_blank" class="icon-weibo" title="微博"></a>
+		
+		
+		<a href="https://github.com/HJXANDHMR" target="_blank" class="icon-github" title="github"></a>
+		
+		
+		
+		
+		
+		
+		
+		
+		
+	</div>
+			
+		
+
+		<p class="copyright">
+		Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/wuchong/jacman" target="_blank" title="Jacman">Jacman</a> © 2016 
+		
+		<a href="/about" target="_blank" title="何健雄">何健雄</a>
+		
+		
+		<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+		</script>
+		</br>本站总访问量<span id="busuanzi_value_site_pv"></span>次,本站访客数<span id="busuanzi_value_site_uv"></span>人次,本文总阅读量<span id="busuanzi_value_page_pv"></span>次
+
+		</p>
+</div>
+
+
+</footer>
+    <script src="/js/jquery-2.0.3.min.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+<script src="/js/jquery.qrcode-0.12.0.min.js"></script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.navbar').click(function(){
+    $('header nav').toggleClass('shownav');
+  });
+  var myWidth = 0;
+  function getSize(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+  };
+  var m = $('#main'),
+      a = $('#asidepart'),
+      c = $('.closeaside'),
+      o = $('.openaside');
+  c.click(function(){
+    a.addClass('fadeOut').css('display', 'none');
+    o.css('display', 'block').addClass('fadeIn');
+    m.addClass('moveMain');
+  });
+  o.click(function(){
+    o.css('display', 'none').removeClass('beforeFadeIn');
+    a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');      
+    m.removeClass('moveMain');
+  });
+  $(window).scroll(function(){
+    o.css("top",Math.max(80,260-$(this).scrollTop()));
+  });
+  
+  $(window).resize(function(){
+    getSize(); 
+    if (myWidth >= 1024) {
+      $('header nav').removeClass('shownav');
+    }else{
+      m.removeClass('moveMain');
+      a.css('display', 'block').removeClass('fadeOut');
+      o.css('display', 'none');
+      
+      $('#toc.toc-aside').css('display', 'none');
+        
+    }
+  });
+});
+</script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var ai = $('.article-content>iframe'),
+      ae = $('.article-content>embed'),
+      t  = $('#toc'),
+      ta = $('#toc.toc-aside'),
+      o  = $('.openaside'),
+      c  = $('.closeaside');
+  if(ai.length>0){
+    ai.wrap('<div class="video-container" />');
+  };
+  if(ae.length>0){
+   ae.wrap('<div class="video-container" />');
+  };
+  c.click(function(){
+    ta.css('display', 'block').addClass('fadeIn');
+  });
+  o.click(function(){
+    ta.css('display', 'none');
+  });
+  $(window).scroll(function(){
+    ta.css("top",Math.max(140,320-$(this).scrollTop()));
+  });
+});
+</script>
+
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var $this = $('.share'),
+      url = $this.attr('data-url'),
+      encodedUrl = encodeURIComponent(url),
+      title = $this.attr('data-title'),
+      tsina = $this.attr('data-tsina'),
+      description = $this.attr('description');
+  var html = [
+  '<div class="hoverqrcode clearfix"></div>',
+  '<a class="overlay" id="qrcode"></a>',
+  '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+  '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+  '<a href="#qrcode" class="article-share-qrcode" title="微信"></a>',
+  '<a href="http://widget.renren.com/dialog/share?resourceUrl=' + encodedUrl + '&srcUrl=' + encodedUrl + '&title=' + title +'" class="article-share-renren" target="_blank" title="人人"></a>',
+  '<a href="http://service.weibo.com/share/share.php?title='+title+'&url='+encodedUrl +'&ralateUid='+ tsina +'&searchPic=true&style=number' +'" class="article-share-weibo" target="_blank" title="微博"></a>',
+  '<span title="Share to"></span>'
+  ].join('');
+  $this.append(html);
+
+  $('.hoverqrcode').hide();
+
+  var myWidth = 0;
+  function updatehoverqrcode(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+    var qrsize = myWidth > 1024 ? 200:100;
+    var options = {render: 'image', size: qrsize, fill: '#2ca6cb', text: url, radius: 0.5, quiet: 1};
+    var p = $('.article-share-qrcode').position();
+    $('.hoverqrcode').empty().css('width', qrsize).css('height', qrsize)
+                          .css('left', p.left-qrsize/2+20).css('top', p.top-qrsize-10)
+                          .qrcode(options);
+  };
+  $(window).resize(function(){
+    $('.hoverqrcode').hide();
+  });
+  $('.article-share-qrcode').click(function(){
+    updatehoverqrcode();
+    $('.hoverqrcode').toggle();
+  });
+  $('.article-share-qrcode').hover(function(){}, function(){
+      $('.hoverqrcode').hide();
+  });
+});   
+</script>
+
+
+
+<script type="text/javascript">
+  var duoshuoQuery = {short_name:"hjxandhmr"};
+  (function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';ds.async = true;
+    ds.src = '//static.duoshuo.com/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0] 
+    || document.getElementsByTagName('body')[0]).appendChild(ds);
+  })();
+</script> 
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.article-content').each(function(i){
+    $(this).find('img').each(function(){
+      if ($(this).parent().hasClass('fancybox')) return;
+      var alt = this.alt;
+      if (alt) $(this).after('<span class="caption">' + alt + '</span>');
+      $(this).wrap('<a href="' + this.src + '" title="' + alt + '" class="fancybox"></a>');
+    });
+    $(this).find('.fancybox').each(function(){
+      $(this).attr('rel', 'article' + i);
+    });
+  });
+  if($.fancybox){
+    $('.fancybox').fancybox();
+  }
+}); 
+</script>
+
+
+
+<!-- Analytics Begin -->
+
+
+
+
+
+<!-- Analytics End -->
+
+<!-- Totop Begin -->
+
+	<div id="totop">
+	<a title="返回顶部"><img src="/img/scrollup.png"/></a>
+	</div>
+	<script src="/js/totop.js"></script>
+
+<!-- Totop End -->
+
+<!-- MathJax Begin -->
+<!-- mathjax config similar to math.stackexchange -->
+
+
+<!-- MathJax End -->
+
+<!-- Tiny_search Begin -->
+
+<!-- Tiny_search End -->
+
+  </body>
+</html>

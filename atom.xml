@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://HJXANDHMR.github.io/"/>
-  <updated>2016-04-22T12:22:08.071Z</updated>
+  <updated>2016-04-26T02:45:22.582Z</updated>
   <id>http://HJXANDHMR.github.io/</id>
   
   <author>
@@ -14,6 +14,50 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Android shape</title>
+    <link href="http://HJXANDHMR.github.io/2016/04/26/Android-style/"/>
+    <id>http://HJXANDHMR.github.io/2016/04/26/Android-style/</id>
+    <published>2016-04-26T02:22:17.359Z</published>
+    <updated>2016-04-26T02:45:22.582Z</updated>
+    
+    <content type="html">&lt;p&gt;Android开发中我们经常会使用shape我总结了下它们地使用&lt;/p&gt;
+&lt;h2 id=&quot;Android-shape&quot;&gt;&lt;a href=&quot;#Android-shape&quot; class=&quot;headerlink&quot; title=&quot;Android shape&quot;&gt;&lt;/a&gt;Android shape&lt;/h2&gt;&lt;p&gt;使用shape可以自定义形状，可以定义下面四种类型的形状，通过android:shape属性指定：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;rectangle: 矩形，默认的形状，可以画出直角矩形、圆角矩形、弧形等&lt;/li&gt;
+&lt;li&gt;oval: 椭圆形，用得比较多的是画正圆&lt;/li&gt;
+&lt;li&gt;line: 线形，可以画实线和虚线&lt;/li&gt;
+&lt;li&gt;ring: 环形，可以画环形进度条&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;gradient代表渐变，可以按照如下的使用：&lt;/p&gt;
+&lt;figure class=&quot;highlight bash&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&amp;lt;gradient&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;       android:angle=&lt;span class=&quot;string&quot;&gt;&quot;0&quot;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;       android:centerColor=&lt;span class=&quot;string&quot;&gt;&quot;#ff0f00&quot;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;       android:endColor=&lt;span class=&quot;string&quot;&gt;&quot;#ff00ff&quot;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;       android:startColor=&lt;span class=&quot;string&quot;&gt;&quot;#00ff00&quot;&lt;/span&gt; /&amp;gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;solid代表实心，可以按照如下的使用：&lt;/p&gt;
+&lt;figure class=&quot;highlight bash&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&amp;lt;solid android:color=&lt;span class=&quot;string&quot;&gt;&quot;#F0FFFF&quot;&lt;/span&gt; /&amp;gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;stroke代表描边，可以按照如下的使用：&lt;/p&gt;
+&lt;figure class=&quot;highlight bash&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&amp;lt;stroke&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;       android:width=&lt;span class=&quot;string&quot;&gt;&quot;10dp&quot;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;       android:color=&lt;span class=&quot;string&quot;&gt;&quot;#00FFFF&quot;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;       android:dashGap=&lt;span class=&quot;string&quot;&gt;&quot;5dp&quot;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;       android:dashWidth=&lt;span class=&quot;string&quot;&gt;&quot;5dp&quot;&lt;/span&gt; /&amp;gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;corners代表圆角，可以按照如下的使用：&lt;/p&gt;
+&lt;figure class=&quot;highlight bash&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&amp;lt;corners android:radius=&lt;span class=&quot;string&quot;&gt;&quot;100dp&quot;&lt;/span&gt; /&amp;gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;这是完整的shape文件，定义在drawable目录下&lt;/p&gt;
+&lt;figure class=&quot;highlight bash&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;10&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;11&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;12&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;13&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;14&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;15&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;16&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;17&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;18&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;19&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;20&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;21&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;22&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;23&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&amp;lt;?xml version=&lt;span class=&quot;string&quot;&gt;&quot;1.0&quot;&lt;/span&gt; encoding=&lt;span class=&quot;string&quot;&gt;&quot;utf-8&quot;&lt;/span&gt;?&amp;gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;lt;shape xmlns:android=&lt;span class=&quot;string&quot;&gt;&quot;http://schemas.android.com/apk/res/android&quot;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    android:shape=&lt;span class=&quot;string&quot;&gt;&quot;rectangle&quot;&lt;/span&gt;&amp;gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &amp;lt;!-- 渐变 --&amp;gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &amp;lt;gradient&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        android:angle=&lt;span class=&quot;string&quot;&gt;&quot;0&quot;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        android:centerColor=&lt;span class=&quot;string&quot;&gt;&quot;#ff0f00&quot;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        android:endColor=&lt;span class=&quot;string&quot;&gt;&quot;#ff00ff&quot;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        android:startColor=&lt;span class=&quot;string&quot;&gt;&quot;#00ff00&quot;&lt;/span&gt; /&amp;gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &amp;lt;!-- 实心 --&amp;gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &amp;lt;solid android:color=&lt;span class=&quot;string&quot;&gt;&quot;#F0FFFF&quot;&lt;/span&gt; /&amp;gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &amp;lt;!-- 描边 --&amp;gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &amp;lt;stroke&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        android:width=&lt;span class=&quot;string&quot;&gt;&quot;10dp&quot;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        android:color=&lt;span class=&quot;string&quot;&gt;&quot;#00FFFF&quot;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        android:dashGap=&lt;span class=&quot;string&quot;&gt;&quot;5dp&quot;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        android:dashWidth=&lt;span class=&quot;string&quot;&gt;&quot;5dp&quot;&lt;/span&gt; /&amp;gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &amp;lt;!-- 圆角 --&amp;gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &amp;lt;corners android:radius=&lt;span class=&quot;string&quot;&gt;&quot;100dp&quot;&lt;/span&gt; /&amp;gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;lt;/shape&amp;gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;以上都是比较简单的使用shape。&lt;/p&gt;
+&lt;p&gt;这里推荐一个工具，可以可视化的生成shape，简直是开发神器 &lt;a href=&quot;http://angrytools.com/android/button/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;自动生成shape&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;欢迎大家关注我的微信公众号，我会不定期的分享些Android开发的技巧&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/images/weixing.jpg&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+</content>
+    
+    <summary type="html">
+    
+      Android，style，shape,utils
+    
+    </summary>
+    
+      <category term="Android" scheme="http://HJXANDHMR.github.io/categories/Android/"/>
+    
+    
+      <category term="Android" scheme="http://HJXANDHMR.github.io/tags/Android/"/>
+    
+  </entry>
   
   <entry>
     <title>Android MVP实例</title>
