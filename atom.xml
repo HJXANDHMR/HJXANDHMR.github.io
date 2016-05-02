@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://HJXANDHMR.github.io/"/>
-  <updated>2016-05-02T12:38:51.878Z</updated>
+  <updated>2016-05-02T12:45:47.614Z</updated>
   <id>http://HJXANDHMR.github.io/</id>
   
   <author>
@@ -20,7 +20,7 @@
     <link href="http://HJXANDHMR.github.io/2016/05/02/Android-NDK/"/>
     <id>http://HJXANDHMR.github.io/2016/05/02/Android-NDK/</id>
     <published>2016-05-02T12:16:55.644Z</published>
-    <updated>2016-05-02T12:38:51.878Z</updated>
+    <updated>2016-05-02T12:45:47.614Z</updated>
     
     <content type="html">&lt;p&gt;Android 开发中会用到NDK，今天我们来学习下载Android Studio中怎样安装NDK.&lt;/p&gt;
 &lt;h2 id=&quot;下载NDK&quot;&gt;&lt;a href=&quot;#下载NDK&quot; class=&quot;headerlink&quot; title=&quot;下载NDK&quot;&gt;&lt;/a&gt;下载NDK&lt;/h2&gt;&lt;ol&gt;
@@ -37,6 +37,8 @@
 &lt;/ol&gt;
 &lt;p&gt;&lt;img src=&quot;/images/AndroidNDK/Android_NDK2.png&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
 &lt;p&gt;到这为止，Android NDK已经安装完成了，快开始Android NDK 的学习之旅吧。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;欢迎大家关注我的微信公众号，我会不定期的分享些Android开发的技巧&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/images/weixing.jpg&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
 </content>
     
     <summary type="html">
