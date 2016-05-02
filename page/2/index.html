@@ -81,6 +81,80 @@
         <header class="article-info clearfix">
   <h1 itemprop="name">
     
+      <a href="/2016/04/16/hexo-Command/" title="hexo 常用命令和更换主题" itemprop="url">hexo 常用命令和更换主题</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="/about" title="何健雄" target="_blank" itemprop="author">何健雄</a>
+		
+  <p class="article-time">
+    <time datetime="2016-04-16T13:36:08.038Z" itemprop="datePublished"> 发表于 2016-04-16</time>
+    
+  </p>
+</header>
+    <div class="article-content">
+        
+        <p> 上一篇博客我们已经学会如何在GitHub加hexo搭建博客<a href="http://hjxandhmr.github.io/2016/04/15/hello-hexo/">GitHub加hexo搭建博客教程</a> 这篇博客就来学学常用的hexo命令和更换主题。</p>
+<h2 id="hexo命令"><a href="#hexo命令" class="headerlink" title="hexo命令"></a>hexo命令</h2><p> 本地查看博客内容<br> <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo s <span class="comment">#本地预览文章内容，登录 localhost:4000 查看效果</span></span><br></pre></td></tr></table></figure></p>
+<p>发布内容到 public 文件夹<br> <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">hexo clean  <span class="comment">#修改主题是必须要执行这个命令，否则会有问题</span></span><br><span class="line">hexo g      <span class="comment">#生成public文件，可以手动copy到github上去</span></span><br></pre></td></tr></table></figure></p>
+<p>新建一个文章<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo n     <span class="comment">#新建一个博客名，也可以手动在source\_posts新建</span></span><br></pre></td></tr></table></figure></p>
+<h2 id="更换主题"><a href="#更换主题" class="headerlink" title="更换主题"></a>更换主题</h2><h3 id="安装主题"><a href="#安装主题" class="headerlink" title="安装主题"></a>安装主题</h3><p>在博客目录如E:\Androidstudiochengxu\GitHubPage\hexo下右键点击Git Bash，输入以下命令。其他的主题也类似操作。<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git <span class="built_in">clone</span> https://github.com/wuchong/jacman.git themes/jacman</span><br></pre></td></tr></table></figure></p>
+<h3 id="启用主题"><a href="#启用主题" class="headerlink" title="启用主题"></a>启用主题</h3><p>修改博客目录E:\Androidstudiochengxu\GitHubPage\hexo_config.yml中的theme属性，将其设置为jacman。<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">theme: jacman</span><br></pre></td></tr></table></figure></p>
+<p>到这里主题的更换就好了，启动本地预览一下，可以的话就同步到Github上面吧。</p>
+<h3 id="主题的配置"><a href="#主题的配置" class="headerlink" title="主题的配置"></a>主题的配置</h3><p>主题的配置当然就是在E:\Androidstudiochengxu\GitHubPage\hexo\themes\jacman_config.yml文件里面了。一般而言，主题的作者都会有对主题的相关介绍，看他介绍的修改就可以了。我主要针对导航栏和右边栏小部件举例简单说明一下，后面你就知道如何配置了。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">menu:  <span class="comment">#导航栏</span></span><br><span class="line">  主页: /</span><br><span class="line">  归档: /archives</span><br><span class="line">  关于: /about  <span class="comment">#介绍自己</span></span><br><span class="line">  网络工具: /tools  <span class="comment">#自己添加</span></span><br><span class="line">  资源共享: /share  <span class="comment">#自己添加</span></span><br><span class="line"></span><br><span class="line">widgets:  <span class="comment">## 右边的零部件，jacman主题提供了7个：category、tag、rss、archive、tagcloud、links、weibo、douban，可以根据自己喜好增减</span></span><br><span class="line">- category  <span class="comment">#目录</span></span><br><span class="line">- tags      <span class="comment">#标签（标签上显示数量）</span></span><br><span class="line">- links  <span class="comment">#友情链接</span></span><br></pre></td></tr></table></figure>
+<p>注意，修改任何的配置内容，都需要生成之后才有效。</p>
+<p><strong>欢迎大家关注我的微信公众号，我会不定期的分享些Android开发的技巧</strong></p>
+<p><img src="/images/weixing.jpg" alt=""></p>
+
+        
+        
+        <p class="article-more-link">
+          
+       </p>
+    </div>
+    <footer class="article-footer clearfix">
+<div class="article-catetags">
+
+<div class="article-categories">
+  <span></span>
+  <a class="article-category-link" href="/categories/hexo/">hexo</a>
+</div>
+
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/hexo/">hexo</a>
+  </div>
+
+</div>
+
+
+
+
+<div class="comments-count">
+	
+	  	<span></span>
+		<a href="/2016/04/16/hexo-Command/#comments" class="ds-thread-count comments-count-link" data-thread-key="2016/04/16/hexo-Command/" data-count-type="comments">&nbsp;</a>
+	
+</div>
+
+</footer>
+
+
+    </article>
+
+
+
+
+
+
+   
+    
+    <article class="post-expand post" itemprop="articleBody"> 
+        <header class="article-info clearfix">
+  <h1 itemprop="name">
+    
       <a href="/2016/04/15/hello-hexo/" title="GitHub加hexo搭建博客教程" itemprop="url">GitHub加hexo搭建博客教程</a>
   </h1>
   <p class="article-author">By
@@ -190,6 +264,10 @@
 		  
 		
 		  
+			<li><a href="/categories/Android-NDK/" title="Android NDK">Android NDK<sup>1</sup></a></li>
+		  
+		
+		  
 			<li><a href="/categories/AndroidStudio/" title="AndroidStudio">AndroidStudio<sup>1</sup></a></li>
 		  
 		
@@ -231,6 +309,10 @@
 			
 		
 			
+				<li><a href="/tags/Android-NDK/" title="Android NDK">Android NDK<sup>1</sup></a></li>
+			
+		
+			
 				<li><a href="/tags/Android工具类/" title="Android工具类">Android工具类<sup>1</sup></a></li>
 			
 		
@@ -239,11 +321,11 @@
 			
 		
 			
-				<li><a href="/tags/Markdown/" title="Markdown">Markdown<sup>1</sup></a></li>
+				<li><a href="/tags/WCF/" title="WCF">WCF<sup>1</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/WCF/" title="WCF">WCF<sup>1</sup></a></li>
+				<li><a href="/tags/Markdown/" title="Markdown">Markdown<sup>1</sup></a></li>
 			
 		
 		</ul>

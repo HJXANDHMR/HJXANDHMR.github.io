@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://HJXANDHMR.github.io/"/>
-  <updated>2016-04-26T02:45:22.582Z</updated>
+  <updated>2016-05-02T12:38:51.878Z</updated>
   <id>http://HJXANDHMR.github.io/</id>
   
   <author>
@@ -14,6 +14,43 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Android Studio 安装NDK</title>
+    <link href="http://HJXANDHMR.github.io/2016/05/02/Android-NDK/"/>
+    <id>http://HJXANDHMR.github.io/2016/05/02/Android-NDK/</id>
+    <published>2016-05-02T12:16:55.644Z</published>
+    <updated>2016-05-02T12:38:51.878Z</updated>
+    
+    <content type="html">&lt;p&gt;Android 开发中会用到NDK，今天我们来学习下载Android Studio中怎样安装NDK.&lt;/p&gt;
+&lt;h2 id=&quot;下载NDK&quot;&gt;&lt;a href=&quot;#下载NDK&quot; class=&quot;headerlink&quot; title=&quot;下载NDK&quot;&gt;&lt;/a&gt;下载NDK&lt;/h2&gt;&lt;ol&gt;
+&lt;li&gt;打开Android Studio,选中model右键打开 Project Structure,然后点击Download Android NDK。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&lt;img src=&quot;/images/AndroidNDK/Android_NDK.png&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;p&gt;一般在谷歌下载很慢，可以复制下载地址，用迅雷下载。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;下载完成以后将压缩包复制到SDK 的安装目录下，解压后就文件重命名为 ndk-bundle。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;最后重新打开Project Structure，选择Android NDK 的目录。&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&lt;img src=&quot;/images/AndroidNDK/Android_NDK2.png&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;p&gt;到这为止，Android NDK已经安装完成了，快开始Android NDK 的学习之旅吧。&lt;/p&gt;
+</content>
+    
+    <summary type="html">
+    
+      Android ,Android studio,NDK
+    
+    </summary>
+    
+      <category term="Android NDK" scheme="http://HJXANDHMR.github.io/categories/Android-NDK/"/>
+    
+    
+      <category term="Android NDK" scheme="http://HJXANDHMR.github.io/tags/Android-NDK/"/>
+    
+  </entry>
   
   <entry>
     <title>Android shape</title>
