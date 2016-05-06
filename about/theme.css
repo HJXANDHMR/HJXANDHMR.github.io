@@ -1,0 +1,39 @@
+/*
+ * Globals
+ */
+
+body {
+    font-family: "Microsoft YaHei", "微 软 雅 黑", "Microsoft JhengHei", "Hiragino Sans GB", Verdana, Geneva, sans-serif;
+    background-repeat: no-repeat;
+    font-size: 14px;
+    background: #F7F6F2;
+}
+
+h1, .h1,
+h2, .h2,
+h3, .h3,
+h4, .h4,
+h5, .h5,
+h6, .h6 {
+    margin-top: 0;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-weight: normal;
+    color: #333;
+}
+
+.wrapper{
+    width: 800px;
+    margin: 0 auto;
+}
+
+.row{
+    margin-top: 20px;
+}
+
+.avatar{
+    text-align: center;
+    margin: 0 auto;
+}
+.signature{
+    color: #000000;
+}
