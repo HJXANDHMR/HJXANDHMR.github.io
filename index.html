@@ -81,6 +81,86 @@
         <header class="article-info clearfix">
   <h1 itemprop="name">
     
+      <a href="/2016/05/06/Linux-DirectoryProcessingCommand/" title="Linux文件目录处理命令" itemprop="url">Linux文件目录处理命令</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="/about" title="何健雄" target="_blank" itemprop="author">何健雄</a>
+		
+  <p class="article-time">
+    <time datetime="2016-05-06T04:59:53.715Z" itemprop="datePublished"> 发表于 2016-05-06</time>
+    
+  </p>
+</header>
+    <div class="article-content">
+        
+        <p>最近在学习Linux，在Linux下开发Android真是太爽啦，感兴趣的朋友也可以去试试，我是在虚拟机下装的Ubuntu 15.10，这个版本比较好用。今天我们就来学习下Linux的命令。</p>
+<h2 id="目录操作命令"><a href="#目录操作命令" class="headerlink" title="目录操作命令"></a>目录操作命令</h2><h3 id="创建目录"><a href="#创建目录" class="headerlink" title="创建目录"></a>创建目录</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mkdir 目录名  如  mkdir hjx</span><br></pre></td></tr></table></figure>
+<h3 id="创建子目录"><a href="#创建子目录" class="headerlink" title="创建子目录"></a>创建子目录</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mkdir -p  目录名/目录   如 mkdir -p hjx/hjx</span><br></pre></td></tr></table></figure>
+<h3 id="进入文件目录"><a href="#进入文件目录" class="headerlink" title="进入文件目录"></a>进入文件目录</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> 目录名    如 <span class="built_in">cd</span> hjx</span><br></pre></td></tr></table></figure>
+<h3 id="显示当前工作目录目录"><a href="#显示当前工作目录目录" class="headerlink" title="显示当前工作目录目录"></a>显示当前工作目录目录</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">pwd</span></span><br></pre></td></tr></table></figure>
+<h3 id="显示当前目录的子文件"><a href="#显示当前目录的子文件" class="headerlink" title="显示当前目录的子文件"></a>显示当前目录的子文件</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ls</span><br></pre></td></tr></table></figure>
+<h3 id="Linux命令提示键-和目录补全键"><a href="#Linux命令提示键-和目录补全键" class="headerlink" title="Linux命令提示键,和目录补全键"></a>Linux命令提示键,和目录补全键</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">按 <span class="string">"TAB"</span>键可以快速补全文件和命令。 (非常好用，强烈推荐)</span><br></pre></td></tr></table></figure>
+<h3 id="删除文件或文件目录"><a href="#删除文件或文件目录" class="headerlink" title="删除文件或文件目录"></a>删除文件或文件目录</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rm -rf  文件或目录名/   如 rm -rf hjx/</span><br></pre></td></tr></table></figure>
+<h3 id="复制文件"><a href="#复制文件" class="headerlink" title="复制文件"></a>复制文件</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cp  文件名  目录名/  如  cp hjx hjx/</span><br></pre></td></tr></table></figure>
+<h3 id="复制文件目录"><a href="#复制文件目录" class="headerlink" title="复制文件目录"></a>复制文件目录</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cp  -r 目录名  目录名/  如  cp hjx hjx/</span><br></pre></td></tr></table></figure>
+<h3 id="复制文件及其属性"><a href="#复制文件及其属性" class="headerlink" title="复制文件及其属性"></a>复制文件及其属性</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cp <span class="_">-a</span> 文件名  目录名/   如 cp <span class="_">-a</span>  hjx hjx/</span><br></pre></td></tr></table></figure>
+<h3 id="移动文件"><a href="#移动文件" class="headerlink" title="移动文件"></a>移动文件</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mv  文件  目录/   如 mv hjx hjx/</span><br></pre></td></tr></table></figure>
+<h3 id="改文件名"><a href="#改文件名" class="headerlink" title="改文件名"></a>改文件名</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mv 原文件名 改名后文件名  如 mv hjx hjx1</span><br></pre></td></tr></table></figure>
+<h2 id="Linux目录"><a href="#Linux目录" class="headerlink" title="Linux目录"></a>Linux目录</h2><p>Linux下默认有很多目录，我们来简单的学习下它。</p>
+<p>/ 根目录<br>/bin 存放必要的命令<br>/boot 存放内核以及启动所需的文件等<br>/dev 存放设备文件<br>/etc 存放系统的配置文件<br>/home 用户文件的主目录，用户数据存放在其主目录中<br>/lib 存放必要的运行库<br>/mnt 存放临时的映射文件系统，我们常把软驱和光驱挂装在这里的floppy和cdrom子目录下。<br>/proc 存放存储进程和系统信息<br>/root 超级用户的主目录<br>/sbin 存放系统管理程序<br>/tmp 存放临时文件的目录<br>/usr 包含了一般不需要修改的应用程序，命令程序文件、程序库、手册和其它文档。<br>/var 包含系统产生的经常变化的文件</p>
+<p>以上就是对文件目录操作的一些基本命令了。</p>
+<p><strong>欢迎大家关注我的微信公众号，我会不定期的分享些Android开发的技巧</strong></p>
+<p><img src="/images/weixing.jpg" alt=""></p>
+
+        
+        
+        <p class="article-more-link">
+          
+       </p>
+    </div>
+    <footer class="article-footer clearfix">
+<div class="article-catetags">
+
+<div class="article-categories">
+  <span></span>
+  <a class="article-category-link" href="/categories/Linux/">Linux</a>
+</div>
+
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/Linux/">Linux</a>
+  </div>
+
+</div>
+
+
+
+
+<div class="comments-count">
+	
+	  	<span></span>
+		<a href="/2016/05/06/Linux-DirectoryProcessingCommand/#comments" class="ds-thread-count comments-count-link" data-thread-key="2016/05/06/Linux-DirectoryProcessingCommand/" data-count-type="comments">&nbsp;</a>
+	
+</div>
+
+</footer>
+
+
+    </article>
+
+
+
+
+
+
+   
+    
+    <article class="post-expand post" itemprop="articleBody"> 
+        <header class="article-info clearfix">
+  <h1 itemprop="name">
+    
       <a href="/2016/05/02/Android-NDK/" title="Android Studio 安装NDK" itemprop="url">Android Studio 安装NDK</a>
   </h1>
   <p class="article-author">By
@@ -756,129 +836,6 @@
 
 
 
-   
-    
-    <article class="post-expand post" itemprop="articleBody"> 
-        <header class="article-info clearfix">
-  <h1 itemprop="name">
-    
-      <a href="/2016/04/17/markdown-grammar/" title="Markdown基本语法" itemprop="url">Markdown基本语法</a>
-  </h1>
-  <p class="article-author">By
-       
-		<a href="/about" title="何健雄" target="_blank" itemprop="author">何健雄</a>
-		
-  <p class="article-time">
-    <time datetime="2016-04-17T01:50:55.174Z" itemprop="datePublished"> 发表于 2016-04-17</time>
-    
-  </p>
-</header>
-    <div class="article-content">
-        
-        <p>前面我们已经学会了如何在<a href="http://hjxandhmr.github.io/2016/04/15/hello-hexo/">Github上搭建博客</a>以及<a href="http://hjxandhmr.github.io/2016/04/16/hexoCommand/">hexo常用的命令以及更换主题</a>，现在我们来学习下<br>Makrdown的基本语法。</p>
-<h2 id="标题"><a href="#标题" class="headerlink" title="标题"></a>标题</h2><p>在 Markdown 中，你只需要在文本前面加上#即可，同理、你还可以增加二级标题、三级标题、四级标题、五级标题和六级标题，总共六级，只需要增加  # 即可，标题字号相应降低。例如：                </p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 一级标题</span></span><br><span class="line"><span class="comment">## 二级标题</span></span><br><span class="line"><span class="comment">### 三级标题</span></span><br><span class="line"><span class="comment">#### 四级标题</span></span><br><span class="line"><span class="comment">##### 五级标题</span></span><br><span class="line"><span class="comment">###### 六级标题</span></span><br></pre></td></tr></table></figure>
-<p>效果图:</p>
-<h1 id="一级标题"><a href="#一级标题" class="headerlink" title="一级标题"></a>一级标题</h1><h2 id="二级标题"><a href="#二级标题" class="headerlink" title="二级标题"></a>二级标题</h2><h3 id="三级标题"><a href="#三级标题" class="headerlink" title="三级标题"></a>三级标题</h3><h4 id="四级标题"><a href="#四级标题" class="headerlink" title="四级标题"></a>四级标题</h4><h5 id="五级标题"><a href="#五级标题" class="headerlink" title="五级标题"></a>五级标题</h5><h6 id="六级标题"><a href="#六级标题" class="headerlink" title="六级标题"></a>六级标题</h6><p>注意 :# 和标题之间必须要隔开一个空格，否则Markdown识别不了这是个标题</p>
-<h2 id="列表"><a href="#列表" class="headerlink" title="列表"></a>列表</h2><h3 id="无序列表"><a href="#无序列表" class="headerlink" title="无序列表"></a>无序列表</h3><p>无序列表格式也很常用，在 Markdown 中，你只需要在文字前面加上 - 就可以了，例如：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">- 文本1</span><br><span class="line">- 文本2</span><br><span class="line">- 文本3</span><br></pre></td></tr></table></figure>
-<p>效果图:</p>
-<ul>
-<li>文本1</li>
-<li>文本2</li>
-<li>文本3</li>
-</ul>
-<h3 id="有序列表"><a href="#有序列表" class="headerlink" title="有序列表"></a>有序列表</h3><p>如果你希望有序列表，也可以在文字前面加上 1. 2. 3. 就可以了，例如：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">1. 文本1</span><br><span class="line">2. 文本2</span><br><span class="line">3. 文本3</span><br></pre></td></tr></table></figure></p>
-<p>效果图:</p>
-<ol>
-<li>文本1</li>
-<li>文本2</li>
-<li>文本3</li>
-</ol>
-<p>注意：Markdown中-，1. 和文本之间必须有个空格</p>
-<h2 id="插入链接和图片"><a href="#插入链接和图片" class="headerlink" title="插入链接和图片"></a>插入链接和图片</h2><h3 id="插入链接"><a href="#插入链接" class="headerlink" title="插入链接"></a>插入链接</h3><p>插入链接只要按照<a href=""></a>这个格式就可以了,列如：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[博客](http://hjxandhmr.github.io/)</span><br></pre></td></tr></table></figure></p>
-<p>效果图:<br><a href="http://hjxandhmr.github.io/">博客</a></p>
-<p>注意：标点符号必须是英文状态。</p>
-<h3 id="插入图片"><a href="#插入图片" class="headerlink" title="插入图片"></a>插入图片</h3><p>插入链接只要按照<img src="" alt="">这个格式就可以了,列如：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">![](https://raw.githubusercontent.com/HJXANDHMR/HJXANDHMR.github.io/master/img/logo.png) <span class="comment">#引用网络上的图片</span></span><br><span class="line">![](/images/logo.jpg) <span class="comment">#引用本地的图片</span></span><br></pre></td></tr></table></figure></p>
-<p>效果图:<br><img src="https://raw.githubusercontent.com/HJXANDHMR/HJXANDHMR.github.io/master/img/logo.png" alt=""><br><img src="/images/logo.jpg" alt=""> </p>
-<h2 id="引用"><a href="#引用" class="headerlink" title="引用"></a>引用</h2><p>在我们写作的时候经常需要引用他人的文字，这个时候引用这个格式就很有必要了，在 Markdown 中，你只需要在你希望引用的文字前面加上 &gt; 就好了，例如：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&gt; 床前明月光，</span><br><span class="line">&gt; 疑是地上霜。</span><br><span class="line">&gt; 举头望明月，</span><br><span class="line">&gt; 低头思故乡。</span><br></pre></td></tr></table></figure></p>
-<p>效果图:</p>
-<blockquote>
-<p>床前明月光，<br>疑是地上霜。<br>举头望明月，<br>低头思故乡。</p>
-</blockquote>
-<h2 id="粗体和斜体"><a href="#粗体和斜体" class="headerlink" title="粗体和斜体"></a>粗体和斜体</h2><p>Markdown 的粗体和斜体也非常简单，用两个 <em> 包含一段文本就是粗体的语法，用一个 </em> 包含一段文本就是斜体的语法。例如：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">**这是粗体**</span><br><span class="line">*这是斜体*</span><br></pre></td></tr></table></figure>
-<p>效果图:</p>
-<p><strong>这是粗体</strong><br><em>这是斜体</em></p>
-<h2 id="表格"><a href="#表格" class="headerlink" title="表格"></a>表格</h2><p>相关代码：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">dog | bird | cat</span><br><span class="line">----|------|----</span><br><span class="line">foo | foo  | foo</span><br><span class="line">bar | bar  | bar</span><br><span class="line">baz | baz  | baz</span><br></pre></td></tr></table></figure></p>
-<p>效果图:</p>
-<table>
-<thead>
-<tr>
-<th>dog</th>
-<th>bird</th>
-<th>cat</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>foo</td>
-<td>foo</td>
-<td>foo</td>
-</tr>
-<tr>
-<td>bar</td>
-<td>bar</td>
-<td>bar</td>
-</tr>
-<tr>
-<td>baz</td>
-<td>baz</td>
-<td>baz</td>
-</tr>
-</tbody>
-</table>
-<p>以上就是Markdown的基本语法了</p>
-<p><strong>欢迎大家关注我的微信公众号，我会不定期的分享些Android开发的技巧</strong></p>
-<p><img src="/images/weixing.jpg" alt=""></p>
-
-        
-        
-        <p class="article-more-link">
-          
-       </p>
-    </div>
-    <footer class="article-footer clearfix">
-<div class="article-catetags">
-
-
-  <div class="article-tags">
-  
-  <span></span> <a href="/tags/Markdown/">Markdown</a>
-  </div>
-
-</div>
-
-
-
-
-<div class="comments-count">
-	
-	  	<span></span>
-		<a href="/2016/04/17/markdown-grammar/#comments" class="ds-thread-count comments-count-link" data-thread-key="2016/04/17/markdown-grammar/" data-count-type="comments">&nbsp;</a>
-	
-</div>
-
-</footer>
-
-
-    </article>
-
-
-
-
-
-
 
   <nav id="page-nav" class="clearfix">
     <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/">Next<span></span></a>
@@ -910,6 +867,10 @@
 		
 		  
 			<li><a href="/categories/Android工具类/" title="Android工具类">Android工具类<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Linux/" title="Linux">Linux<sup>1</sup></a></li>
 		  
 		
 		  
@@ -954,11 +915,15 @@
 			
 		
 			
-				<li><a href="/tags/WCF/" title="WCF">WCF<sup>1</sup></a></li>
+				<li><a href="/tags/AndroidStudio/" title="AndroidStudio">AndroidStudio<sup>1</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/AndroidStudio/" title="AndroidStudio">AndroidStudio<sup>1</sup></a></li>
+				<li><a href="/tags/Linux/" title="Linux">Linux<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/WCF/" title="WCF">WCF<sup>1</sup></a></li>
 			
 		
 			

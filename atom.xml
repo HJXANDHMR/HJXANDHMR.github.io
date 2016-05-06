@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://HJXANDHMR.github.io/"/>
-  <updated>2016-05-02T12:45:47.614Z</updated>
+  <updated>2016-05-06T05:30:00.224Z</updated>
   <id>http://HJXANDHMR.github.io/</id>
   
   <author>
@@ -14,6 +14,46 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Linux文件目录处理命令</title>
+    <link href="http://HJXANDHMR.github.io/2016/05/06/Linux-DirectoryProcessingCommand/"/>
+    <id>http://HJXANDHMR.github.io/2016/05/06/Linux-DirectoryProcessingCommand/</id>
+    <published>2016-05-06T04:59:53.715Z</published>
+    <updated>2016-05-06T05:30:00.224Z</updated>
+    
+    <content type="html">&lt;p&gt;最近在学习Linux，在Linux下开发Android真是太爽啦，感兴趣的朋友也可以去试试，我是在虚拟机下装的Ubuntu 15.10，这个版本比较好用。今天我们就来学习下Linux的命令。&lt;/p&gt;
+&lt;h2 id=&quot;目录操作命令&quot;&gt;&lt;a href=&quot;#目录操作命令&quot; class=&quot;headerlink&quot; title=&quot;目录操作命令&quot;&gt;&lt;/a&gt;目录操作命令&lt;/h2&gt;&lt;h3 id=&quot;创建目录&quot;&gt;&lt;a href=&quot;#创建目录&quot; class=&quot;headerlink&quot; title=&quot;创建目录&quot;&gt;&lt;/a&gt;创建目录&lt;/h3&gt;&lt;figure class=&quot;highlight bash&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;mkdir 目录名  如  mkdir hjx&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;h3 id=&quot;创建子目录&quot;&gt;&lt;a href=&quot;#创建子目录&quot; class=&quot;headerlink&quot; title=&quot;创建子目录&quot;&gt;&lt;/a&gt;创建子目录&lt;/h3&gt;&lt;figure class=&quot;highlight bash&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;mkdir -p  目录名/目录   如 mkdir -p hjx/hjx&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;h3 id=&quot;进入文件目录&quot;&gt;&lt;a href=&quot;#进入文件目录&quot; class=&quot;headerlink&quot; title=&quot;进入文件目录&quot;&gt;&lt;/a&gt;进入文件目录&lt;/h3&gt;&lt;figure class=&quot;highlight bash&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;built_in&quot;&gt;cd&lt;/span&gt; 目录名    如 &lt;span class=&quot;built_in&quot;&gt;cd&lt;/span&gt; hjx&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;h3 id=&quot;显示当前工作目录目录&quot;&gt;&lt;a href=&quot;#显示当前工作目录目录&quot; class=&quot;headerlink&quot; title=&quot;显示当前工作目录目录&quot;&gt;&lt;/a&gt;显示当前工作目录目录&lt;/h3&gt;&lt;figure class=&quot;highlight bash&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;built_in&quot;&gt;pwd&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;h3 id=&quot;显示当前目录的子文件&quot;&gt;&lt;a href=&quot;#显示当前目录的子文件&quot; class=&quot;headerlink&quot; title=&quot;显示当前目录的子文件&quot;&gt;&lt;/a&gt;显示当前目录的子文件&lt;/h3&gt;&lt;figure class=&quot;highlight bash&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;ls&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;h3 id=&quot;Linux命令提示键-和目录补全键&quot;&gt;&lt;a href=&quot;#Linux命令提示键-和目录补全键&quot; class=&quot;headerlink&quot; title=&quot;Linux命令提示键,和目录补全键&quot;&gt;&lt;/a&gt;Linux命令提示键,和目录补全键&lt;/h3&gt;&lt;figure class=&quot;highlight bash&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;按 &lt;span class=&quot;string&quot;&gt;&quot;TAB&quot;&lt;/span&gt;键可以快速补全文件和命令。 (非常好用，强烈推荐)&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;h3 id=&quot;删除文件或文件目录&quot;&gt;&lt;a href=&quot;#删除文件或文件目录&quot; class=&quot;headerlink&quot; title=&quot;删除文件或文件目录&quot;&gt;&lt;/a&gt;删除文件或文件目录&lt;/h3&gt;&lt;figure class=&quot;highlight bash&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;rm -rf  文件或目录名/   如 rm -rf hjx/&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;h3 id=&quot;复制文件&quot;&gt;&lt;a href=&quot;#复制文件&quot; class=&quot;headerlink&quot; title=&quot;复制文件&quot;&gt;&lt;/a&gt;复制文件&lt;/h3&gt;&lt;figure class=&quot;highlight bash&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;cp  文件名  目录名/  如  cp hjx hjx/&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;h3 id=&quot;复制文件目录&quot;&gt;&lt;a href=&quot;#复制文件目录&quot; class=&quot;headerlink&quot; title=&quot;复制文件目录&quot;&gt;&lt;/a&gt;复制文件目录&lt;/h3&gt;&lt;figure class=&quot;highlight bash&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;cp  -r 目录名  目录名/  如  cp hjx hjx/&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;h3 id=&quot;复制文件及其属性&quot;&gt;&lt;a href=&quot;#复制文件及其属性&quot; class=&quot;headerlink&quot; title=&quot;复制文件及其属性&quot;&gt;&lt;/a&gt;复制文件及其属性&lt;/h3&gt;&lt;figure class=&quot;highlight bash&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;cp &lt;span class=&quot;_&quot;&gt;-a&lt;/span&gt; 文件名  目录名/   如 cp &lt;span class=&quot;_&quot;&gt;-a&lt;/span&gt;  hjx hjx/&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;h3 id=&quot;移动文件&quot;&gt;&lt;a href=&quot;#移动文件&quot; class=&quot;headerlink&quot; title=&quot;移动文件&quot;&gt;&lt;/a&gt;移动文件&lt;/h3&gt;&lt;figure class=&quot;highlight bash&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;mv  文件  目录/   如 mv hjx hjx/&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;h3 id=&quot;改文件名&quot;&gt;&lt;a href=&quot;#改文件名&quot; class=&quot;headerlink&quot; title=&quot;改文件名&quot;&gt;&lt;/a&gt;改文件名&lt;/h3&gt;&lt;figure class=&quot;highlight bash&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;mv 原文件名 改名后文件名  如 mv hjx hjx1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;h2 id=&quot;Linux目录&quot;&gt;&lt;a href=&quot;#Linux目录&quot; class=&quot;headerlink&quot; title=&quot;Linux目录&quot;&gt;&lt;/a&gt;Linux目录&lt;/h2&gt;&lt;p&gt;Linux下默认有很多目录，我们来简单的学习下它。&lt;/p&gt;
+&lt;p&gt;/ 根目录&lt;br&gt;/bin 存放必要的命令&lt;br&gt;/boot 存放内核以及启动所需的文件等&lt;br&gt;/dev 存放设备文件&lt;br&gt;/etc 存放系统的配置文件&lt;br&gt;/home 用户文件的主目录，用户数据存放在其主目录中&lt;br&gt;/lib 存放必要的运行库&lt;br&gt;/mnt 存放临时的映射文件系统，我们常把软驱和光驱挂装在这里的floppy和cdrom子目录下。&lt;br&gt;/proc 存放存储进程和系统信息&lt;br&gt;/root 超级用户的主目录&lt;br&gt;/sbin 存放系统管理程序&lt;br&gt;/tmp 存放临时文件的目录&lt;br&gt;/usr 包含了一般不需要修改的应用程序，命令程序文件、程序库、手册和其它文档。&lt;br&gt;/var 包含系统产生的经常变化的文件&lt;/p&gt;
+&lt;p&gt;以上就是对文件目录操作的一些基本命令了。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;欢迎大家关注我的微信公众号，我会不定期的分享些Android开发的技巧&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/images/weixing.jpg&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+</content>
+    
+    <summary type="html">
+    
+      Linux,文件目录,命令
+    
+    </summary>
+    
+      <category term="Linux" scheme="http://HJXANDHMR.github.io/categories/Linux/"/>
+    
+    
+      <category term="Linux" scheme="http://HJXANDHMR.github.io/tags/Linux/"/>
+    
+  </entry>
   
   <entry>
     <title>Android Studio 安装NDK</title>
