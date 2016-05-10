@@ -81,6 +81,80 @@
         <header class="article-info clearfix">
   <h1 itemprop="name">
     
+      <a href="/2016/05/10/Android-RobolectricDemo/" title="Android Robolectric 实例" itemprop="url">Android Robolectric 实例</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="/about" title="何健雄" target="_blank" itemprop="author">何健雄</a>
+		
+  <p class="article-time">
+    <time datetime="2016-05-10T07:52:27.399Z" itemprop="datePublished"> 发表于 2016-05-10</time>
+    
+  </p>
+</header>
+    <div class="article-content">
+        
+        <p>Android 开发过程中会到 <em>Junit</em>  来进行单元测试,那么Android中的界面应该用什么来测？<br>今天我们的主角就是 <em>Robolectric</em> ，Robolectric 可以用来在Android 上进行界面测试，下面我们就来学习下 Robolectric怎么使用。</p>
+<h2 id="环境搭建"><a href="#环境搭建" class="headerlink" title="环境搭建"></a>环境搭建</h2><h3 id="Gradle-配置"><a href="#Gradle-配置" class="headerlink" title="Gradle 配置"></a>Gradle 配置</h3><p>在Android Studio 下使用Robolectric 非常简单只需要一行代码就可以了。<br>在build.gradle 文件下配置如下依赖关系</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">test</span>Compile <span class="string">"org.robolectric:robolectric:3.0"</span></span><br></pre></td></tr></table></figure>
+<h3 id="通过注解配置测试类"><a href="#通过注解配置测试类" class="headerlink" title="通过注解配置测试类"></a>通过注解配置测试类</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">@RunWith(RobolectricGradleTestRunner.class)</span><br><span class="line">@Config(constants = BuildConfig.class, sdk = 21)</span><br><span class="line">public class MainActivityUITest &#123;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>完成以上两步就把 Robolectric的环境搭建好了，下面我们来学习下怎样测界面。</p>
+<h2 id="测试实例"><a href="#测试实例" class="headerlink" title="测试实例"></a>测试实例</h2><h3 id="源程序代码"><a href="#源程序代码" class="headerlink" title="源程序代码"></a>源程序代码</h3><p>MainActivity.java</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">public class MainActivity extends Activity &#123;</span><br><span class="line"></span><br><span class="line">    Button button;</span><br><span class="line">    TextView textView;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    protected void onCreate(Bundle savedInstanceState) &#123;</span><br><span class="line">        super.onCreate(savedInstanceState);</span><br><span class="line">        <span class="built_in">set</span>ContentView(R.layout.activity_main);</span><br><span class="line"></span><br><span class="line">        button = (Button) findViewById(R.id.button);</span><br><span class="line">        textView = (TextView) findViewById(R.id.textView);</span><br><span class="line"></span><br><span class="line">        button.setOnClickListener(new View.<span class="function"><span class="title">OnClickListener</span></span>() &#123;</span><br><span class="line">            @Override</span><br><span class="line">            public void onClick(View v) &#123;</span><br><span class="line">                textView.setText(<span class="string">"Text change"</span>);</span><br><span class="line">                startActivity(new Intent(MainActivity.this, NextActivity.class));</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>NextActivity.java</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br></pre></td><td class="code"><pre><span class="line">public class NextActivity extends Activity &#123;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    protected void onCreate(Bundle savedInstanceState) &#123;</span><br><span class="line">        super.onCreate(savedInstanceState);</span><br><span class="line">        <span class="built_in">set</span>ContentView(R.layout.activity_next_avtivity);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">``` </span><br><span class="line"></span><br><span class="line"><span class="comment">### 测试代码</span></span><br><span class="line"></span><br><span class="line">MainActivityUITest.java</span><br><span class="line"></span><br><span class="line">``` bash</span><br><span class="line">@RunWith(RobolectricGradleTestRunner.class)</span><br><span class="line">@Config(constants = BuildConfig.class, sdk = 21)</span><br><span class="line">public class MainActivityUITest &#123;</span><br><span class="line"></span><br><span class="line">    private Activity activity;</span><br><span class="line"></span><br><span class="line">    @Before</span><br><span class="line">    public void <span class="function"><span class="title">setup</span></span>() &#123;</span><br><span class="line">        activity = Robolectric.buildActivity(MainActivity.class).create().get();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    @Test</span><br><span class="line">    public void <span class="function"><span class="title">clickButton_shouldTextViewChange</span></span>() &#123;</span><br><span class="line"></span><br><span class="line">        Button button = (Button) activity.findViewById(R.id.button);</span><br><span class="line">        TextView textView = (TextView) activity.findViewById(R.id.textView);</span><br><span class="line"></span><br><span class="line">        String resultsText = textView.getText().toString();</span><br><span class="line">        assertThat(resultsText, equalTo(<span class="string">"Hello World!"</span>));</span><br><span class="line">        button.performClick();</span><br><span class="line">        resultsText = textView.getText().toString();</span><br><span class="line">        assertThat(resultsText, equalTo(<span class="string">"Text change"</span>));</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    @Test</span><br><span class="line">    public void <span class="function"><span class="title">clickButton_shouldStartNextActivity</span></span>() &#123;</span><br><span class="line">        activity.findViewById(R.id.button).performClick();</span><br><span class="line">        Intent expectedIntent = new Intent(activity, NextActivity.class);</span><br><span class="line">        Intent actualIntent = ShadowApplication.getInstance().getNextStartedActivity();</span><br><span class="line">        assertEquals(expectedIntent, actualIntent);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>以上就是Robolectric 框架的基本使用，完整代码我已经上传到<a href="https://github.com/HJXANDHMR/AndroidUiTestRobolectric" target="_blank" rel="external">Github</a>上了,想要更深入的学习以上就是Robolectric，可以去<a href="http://robolectric.org/" target="_blank" rel="external">官网</a>学习。</p>
+<p><strong>欢迎大家关注我的微信公众号，我会不定期的分享些Android开发的技巧</strong></p>
+<p><img src="/images/weixing.jpg" alt=""></p>
+
+        
+        
+        <p class="article-more-link">
+          
+       </p>
+    </div>
+    <footer class="article-footer clearfix">
+<div class="article-catetags">
+
+<div class="article-categories">
+  <span></span>
+  <a class="article-category-link" href="/categories/Android/">Android</a>
+</div>
+
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/Robolectric/">Robolectric</a>
+  </div>
+
+</div>
+
+
+
+
+<div class="comments-count">
+	
+	  	<span></span>
+		<a href="/2016/05/10/Android-RobolectricDemo/#comments" class="ds-thread-count comments-count-link" data-thread-key="2016/05/10/Android-RobolectricDemo/" data-count-type="comments">&nbsp;</a>
+	
+</div>
+
+</footer>
+
+
+    </article>
+
+
+
+
+
+
+   
+    
+    <article class="post-expand post" itemprop="articleBody"> 
+        <header class="article-info clearfix">
+  <h1 itemprop="name">
+    
       <a href="/2016/05/06/Linux-DirectoryProcessingCommand/" title="Linux文件目录处理命令" itemprop="url">Linux文件目录处理命令</a>
   </h1>
   <p class="article-author">By
@@ -765,77 +839,6 @@
 
 
 
-   
-    
-    <article class="post-expand post" itemprop="articleBody"> 
-        <header class="article-info clearfix">
-  <h1 itemprop="name">
-    
-      <a href="/2016/04/17/Android-ListviewAndCheckButtonproblem/" title="ListView与CheckBox混合使用的常见问题" itemprop="url">ListView与CheckBox混合使用的常见问题</a>
-  </h1>
-  <p class="article-author">By
-       
-		<a href="/about" title="何健雄" target="_blank" itemprop="author">何健雄</a>
-		
-  <p class="article-time">
-    <time datetime="2016-04-17T04:00:23.799Z" itemprop="datePublished"> 发表于 2016-04-17</time>
-    
-  </p>
-</header>
-    <div class="article-content">
-        
-        <p>在Android开发中我们接触比较多的控件就是ListView了 ,在使用ListView的时候也会遇到很多问题，今天我们就来聊聊，<br>当ListView中使用CheckBoxs时遇到的问题。</p>
-<h2 id="遇到的问题"><a href="#遇到的问题" class="headerlink" title="遇到的问题"></a>遇到的问题</h2><p>当我们要在ListView中用CheckBox来实现一个多选的功能，但遇到了一个问题，当选中item时，滑动页面的时候出现了假选的情况，本来没有选中的item，滑动页面的时候选中了。</p>
-<h2 id="解决问题的思路"><a href="#解决问题的思路" class="headerlink" title="解决问题的思路"></a>解决问题的思路</h2><p>用HashMap来记录一个CheckBox的勾选记录</p>
-<h2 id="实现代码"><a href="#实现代码" class="headerlink" title="实现代码"></a>实现代码</h2><p>由于ListView和CheckBox我们经常使用，布局代码和Activity的代码就不给出来了，只给出最关键的Adapter代码。<br>布局代码就是一个TextView用来显示名字，一个CheckBox用来勾选item.</p>
-<p>ListViewAdapter的实现代码如下：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br></pre></td><td class="code"><pre><span class="line">public class ListViewAdapter extends BaseAdapter &#123;  </span><br><span class="line">  </span><br><span class="line">    private Context context;  </span><br><span class="line">    private String[] beans;  </span><br><span class="line">  </span><br><span class="line">    // 用来控制CheckBox的选中状况  </span><br><span class="line">    private static HashMap&lt;Integer, Boolean&gt; isSelected;  </span><br><span class="line">  </span><br><span class="line">    class ViewHolder &#123;  </span><br><span class="line">        TextView tvName;  </span><br><span class="line">        CheckBox cb;  </span><br><span class="line">    &#125;  </span><br><span class="line">  </span><br><span class="line">    public ListViewAdapter(Context context, String[] beans) &#123;  </span><br><span class="line">        this.beans = beans;  </span><br><span class="line">        this.context = context;  </span><br><span class="line">        isSelected = new HashMap&lt;Integer, Boolean&gt;();  </span><br><span class="line">        // 初始化数据  </span><br><span class="line">        initDate();  </span><br><span class="line">    &#125;  </span><br><span class="line">  </span><br><span class="line">    // 初始化isSelected的数据  </span><br><span class="line">    private void <span class="function"><span class="title">initDate</span></span>() &#123;  </span><br><span class="line">        <span class="keyword">for</span> (int i = 0; i &lt; beans.length; i++) &#123;  </span><br><span class="line">        	//初始化时将所有的选中记录清空</span><br><span class="line">            getIsSelected().put(i, <span class="literal">false</span>);  </span><br><span class="line">        &#125;  </span><br><span class="line">    &#125;  </span><br><span class="line">  </span><br><span class="line">    @Override  </span><br><span class="line">    public int <span class="function"><span class="title">getCount</span></span>() &#123;  </span><br><span class="line">        <span class="built_in">return</span> beans.length;  </span><br><span class="line">    &#125;  </span><br><span class="line">  </span><br><span class="line">    @Override  </span><br><span class="line">    public Object getItem(int position) &#123;  </span><br><span class="line">        <span class="built_in">return</span> beans[position];  </span><br><span class="line">    &#125;  </span><br><span class="line">  </span><br><span class="line">    @Override  </span><br><span class="line">    public long getItemId(int position) &#123;  </span><br><span class="line">        <span class="built_in">return</span> position;  </span><br><span class="line">    &#125;  </span><br><span class="line">  </span><br><span class="line">    @Override  </span><br><span class="line">    public View getView(final int position, View convertView, ViewGroup parent) &#123;  </span><br><span class="line">        ViewHolder holder;  </span><br><span class="line">        String bean = beans[position];  </span><br><span class="line">        LayoutInflater inflater = LayoutInflater.from(context);  </span><br><span class="line">        <span class="keyword">if</span> (convertView == null) &#123;  </span><br><span class="line">            convertView = inflater.inflate(  </span><br><span class="line">                    R.layout.assist_device_binding_list_item, null);  </span><br><span class="line">            holder = new ViewHolder();  </span><br><span class="line">            holder.cb = (CheckBox) convertView.findViewById(R.id.checkBox1);  </span><br><span class="line">            holder.tvName = (TextView) convertView  </span><br><span class="line">                    .findViewById(R.id.tv_device_name);  </span><br><span class="line">            convertView.setTag(holder);  </span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;  </span><br><span class="line">            // 取出holder  </span><br><span class="line">            holder = (ViewHolder) convertView.getTag();  </span><br><span class="line">        &#125;  </span><br><span class="line">  </span><br><span class="line">        holder.tvName.setText(bean);  </span><br><span class="line">        // 监听checkBox并根据原来的状态来设置新的状态  </span><br><span class="line">        holder.cb.setOnClickListener(new View.<span class="function"><span class="title">OnClickListener</span></span>() &#123;  </span><br><span class="line">            public void onClick(View v) &#123;  </span><br><span class="line">                <span class="keyword">if</span> (isSelected.get(position)) &#123;  </span><br><span class="line">                    isSelected.put(position, <span class="literal">false</span>);  </span><br><span class="line">                    <span class="built_in">set</span>IsSelected(isSelected);  </span><br><span class="line">                &#125; <span class="keyword">else</span> &#123;  </span><br><span class="line">                    isSelected.put(position, <span class="literal">true</span>);  </span><br><span class="line">                    <span class="built_in">set</span>IsSelected(isSelected);  </span><br><span class="line">                &#125;  </span><br><span class="line">  </span><br><span class="line">            &#125;  </span><br><span class="line">        &#125;);  </span><br><span class="line">  </span><br><span class="line">        // 根据isSelected来设置checkbox的选中状况  </span><br><span class="line">        holder.cb.setChecked(getIsSelected().get(position));  </span><br><span class="line">        <span class="built_in">return</span> convertView;  </span><br><span class="line">    &#125;  </span><br><span class="line">  </span><br><span class="line">    public static HashMap&lt;Integer, Boolean&gt; <span class="function"><span class="title">getIsSelected</span></span>() &#123;  </span><br><span class="line">        <span class="built_in">return</span> isSelected;  </span><br><span class="line">    &#125;  </span><br><span class="line">  </span><br><span class="line">    public static void <span class="built_in">set</span>IsSelected(HashMap&lt;Integer, Boolean&gt; isSelected) &#123;  </span><br><span class="line">        ListViewAdapter.isSelected = isSelected;  </span><br><span class="line">    &#125;  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>用HashMap来记录一个CheckBox的勾选记录,每次滑动的时候CheckBox只需要读取HashMap里面的值，<br>再来进行显示，这样就不会出现假选的情况了。</p>
-<p><strong>欢迎大家关注我的微信公众号，我会不定期的分享些Android开发的技巧</strong></p>
-<p><img src="/images/weixing.jpg" alt=""></p>
-
-        
-        
-        <p class="article-more-link">
-          
-       </p>
-    </div>
-    <footer class="article-footer clearfix">
-<div class="article-catetags">
-
-<div class="article-categories">
-  <span></span>
-  <a class="article-category-link" href="/categories/ListView/">ListView</a>
-</div>
-
-
-  <div class="article-tags">
-  
-  <span></span> <a href="/tags/ListView/">ListView</a>
-  </div>
-
-</div>
-
-
-
-
-<div class="comments-count">
-	
-	  	<span></span>
-		<a href="/2016/04/17/Android-ListviewAndCheckButtonproblem/#comments" class="ds-thread-count comments-count-link" data-thread-key="2016/04/17/Android-ListviewAndCheckButtonproblem/" data-count-type="comments">&nbsp;</a>
-	
-</div>
-
-</footer>
-
-
-    </article>
-
-
-
-
-
-
 
   <nav id="page-nav" class="clearfix">
     <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/">Next<span></span></a>
@@ -854,7 +857,7 @@
 		<ul>
 		
 		  
-			<li><a href="/categories/Android/" title="Android">Android<sup>2</sup></a></li>
+			<li><a href="/categories/Android/" title="Android">Android<sup>3</sup></a></li>
 		  
 		
 		  
@@ -875,6 +878,10 @@
 		
 		  
 			<li><a href="/categories/ListView/" title="ListView">ListView<sup>2</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Markdown/" title="Markdown">Markdown<sup>1</sup></a></li>
 		  
 		
 		  
@@ -911,11 +918,11 @@
 			
 		
 			
-				<li><a href="/tags/Android工具类/" title="Android工具类">Android工具类<sup>1</sup></a></li>
+				<li><a href="/tags/WCF/" title="WCF">WCF<sup>1</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/WCF/" title="WCF">WCF<sup>1</sup></a></li>
+				<li><a href="/tags/Android工具类/" title="Android工具类">Android工具类<sup>1</sup></a></li>
 			
 		
 			
@@ -928,6 +935,10 @@
 		
 			
 				<li><a href="/tags/Markdown/" title="Markdown">Markdown<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Robolectric/" title="Robolectric">Robolectric<sup>1</sup></a></li>
 			
 		
 		</ul>
