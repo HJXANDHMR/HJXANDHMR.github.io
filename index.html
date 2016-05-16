@@ -81,6 +81,82 @@
         <header class="article-info clearfix">
   <h1 itemprop="name">
     
+      <a href="/2016/05/16/AndroidStudio-Source-Error/" title="Android Studio查看源代码报错" itemprop="url">Android Studio查看源代码报错</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="/about" title="何健雄" target="_blank" itemprop="author">何健雄</a>
+		
+  <p class="article-time">
+    <time datetime="2016-05-16T06:58:19.028Z" itemprop="datePublished"> 发表于 2016-05-16</time>
+    
+  </p>
+</header>
+    <div class="article-content">
+        
+        <p>我们经常用Android Studio 查看Android的源代码，今天我们就来学习查看源代码的正确姿势。</p>
+<h2 id="Android-Studio查看源代码"><a href="#Android-Studio查看源代码" class="headerlink" title="Android Studio查看源代码"></a>Android Studio查看源代码</h2><p>我们用Android Studio查看源代码会遇到下面的问题。<br><img src="/images/AndroidStudio/AndroidStudio-readSource.png" alt=""><br>这是由于Android SDK自带的Source源码包很小，并没有包括所有的Android Framework的源码，仅仅提供给应用开发参考用，一些比较少用的系统类的源码并没有给出。<br>“RuntimeException(“Stub!”)”表示实际运行时的逻辑会由Android ROM里面相同的类代替执行。</p>
+<p>此外，在IDE里看源码的时候，有时候一些方法或者类会出现报红（找不到）的情况，如下。</p>
+<p><img src="/images/AndroidStudio/AndroidStudio-source-error.png" alt=""></p>
+<p>这是因为这些方法或者类是被Android SDK隐藏的，出于安全或者某些原因，这些API不能暴露给应用层的开发者，所以编译完成的android.jar包里会把这些API隐藏掉，而我们的Android项目是依赖android.jar的，查看源码的时候，IDE会自动去android.jar找对应的API，自然会找不到。当然，这些API在ROM中是实际存在的，有些开发者发现了一些可以修改系统行为的隐藏API，在应用层通过反射的方式强行调用这些API执行系统功能，这种手段也是一种HACK。</p>
+<h2 id="Source-Insight"><a href="#Source-Insight" class="headerlink" title="Source Insight"></a>Source Insight</h2><p>基于以上两点Android Studio 不是很好的研究Android源码的工具，想要深入的研究Android源码，大家可以用 <a href="http://www.sourceinsight.com/down35.html" target="_blank" rel="external">Source Insight</a> 来研究Android源码。</p>
+<p>我们来看看在 ‘Source Insight’ 下查看源码的效果。</p>
+<p><img src="/images/AndroidStudio/SourceInsight-readSource.png" alt=""></p>
+<p>从图片可以看出RuntimeException(“Stub!”) 已经被具体的代码替代了。</p>
+<p><img src="/images/AndroidStudio/SourceInsight-normal.png" alt=""></p>
+<p>也没有出现一些方法或者类会出现报红（找不到）的情况。</p>
+<p>大家可以好好的研究Android 源码了。</p>
+<p><strong>欢迎大家关注我的微信公众号，我会不定期的分享些Android开发的技巧</strong></p>
+<p><img src="/images/weixing.jpg" alt=""></p>
+
+        
+        
+        <p class="article-more-link">
+          
+       </p>
+    </div>
+    <footer class="article-footer clearfix">
+<div class="article-catetags">
+
+<div class="article-categories">
+  <span></span>
+  <a class="article-category-link" href="/categories/AndroidStudio/">AndroidStudio</a>
+</div>
+
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/AndroidStudio/">AndroidStudio</a>
+  </div>
+
+</div>
+
+
+
+
+<div class="comments-count">
+	
+	  	<span></span>
+		<a href="/2016/05/16/AndroidStudio-Source-Error/#comments" class="ds-thread-count comments-count-link" data-thread-key="2016/05/16/AndroidStudio-Source-Error/" data-count-type="comments">&nbsp;</a>
+	
+</div>
+
+</footer>
+
+
+    </article>
+
+
+
+
+
+
+   
+    
+    <article class="post-expand post" itemprop="articleBody"> 
+        <header class="article-info clearfix">
+  <h1 itemprop="name">
+    
       <a href="/2016/05/10/Android-RobolectricDemo/" title="Android Robolectric 实例" itemprop="url">Android Robolectric 实例</a>
   </h1>
   <p class="article-author">By
@@ -768,79 +844,6 @@
 
 
 
-   
-    
-    <article class="post-expand post" itemprop="articleBody"> 
-        <header class="article-info clearfix">
-  <h1 itemprop="name">
-    
-      <a href="/2016/04/17/Android-WCFConnect/" title="Android 调用WCF接口" itemprop="url">Android 调用WCF接口</a>
-  </h1>
-  <p class="article-author">By
-       
-		<a href="/about" title="何健雄" target="_blank" itemprop="author">何健雄</a>
-		
-  <p class="article-time">
-    <time datetime="2016-04-17T10:20:03.177Z" itemprop="datePublished"> 发表于 2016-04-17</time>
-    
-  </p>
-</header>
-    <div class="article-content">
-        
-        <p>有些时候由于项目的需要客户端用Android实现，服务器用.NET来实现，那么Android客户端怎样连接服务器呢？<br>当然是通过WCF来连接，今天我们就来讲讲怎样连接WCF.</p>
-<h2 id="工具"><a href="#工具" class="headerlink" title="工具"></a>工具</h2><h3 id="WCF测试工具"><a href="#WCF测试工具" class="headerlink" title="WCF测试工具"></a>WCF测试工具</h3><p>在进行Android客户端开发的时候，每次调用接口需要WCF测试工具去测试，因为你不知道接口是不是正常的，<br>以及返回信息的格式，通过WCF测试工具就可以很轻松的测试接口以及知道返回结果信息，一般WCF返回的都是XML，<br>可以根据返回的XML去解析，取出你所需要的数据。</p>
-<p><strong>WCF测试工具的下载地址</strong><br><a href="http://download.csdn.net/detail/qq_14906597/9493881" target="_blank" rel="external">WCF测试工具</a></p>
-<h3 id="ksoap2jar包下载"><a href="#ksoap2jar包下载" class="headerlink" title="ksoap2jar包下载"></a>ksoap2jar包下载</h3><p>我们需要下载个jar包，里面封装了很多方法<br><a href="http://download.csdn.net/detail/leesmn/5162649" target="_blank" rel="external">ksoap2jar包</a></p>
-<h2 id="Android客户端调用WCF"><a href="#Android客户端调用WCF" class="headerlink" title="Android客户端调用WCF"></a>Android客户端调用WCF</h2><h3 id="封装工具类"><a href="#封装工具类" class="headerlink" title="封装工具类"></a>封装工具类</h3><p>我们可以把调用WCF接口封装成一个一个工具类，当需要你们需要调用WCF接口，可以直接拿来用。</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br></pre></td><td class="code"><pre><span class="line">package com.example.tomorrow.mobileoa.utils;</span><br><span class="line"></span><br><span class="line">import android.os.Handler;</span><br><span class="line">import android.os.Message;</span><br><span class="line">import android.util.Log;</span><br><span class="line"></span><br><span class="line">import org.apache.http.client.HttpResponseException;</span><br><span class="line">import org.ksoap2.SoapEnvelope;</span><br><span class="line">import org.ksoap2.serialization.SoapObject;</span><br><span class="line">import org.ksoap2.serialization.SoapSerializationEnvelope;</span><br><span class="line">import org.ksoap2.transport.HttpTransportSE;</span><br><span class="line">import org.xmlpull.v1.XmlPullParserException;</span><br><span class="line"></span><br><span class="line">import java.io.IOException;</span><br><span class="line">import java.util.Iterator;</span><br><span class="line">import java.util.Map;</span><br><span class="line">import java.util.concurrent.ExecutorService;</span><br><span class="line">import java.util.concurrent.Executors;</span><br><span class="line"></span><br><span class="line">public class WebServiceUtils &#123;</span><br><span class="line"></span><br><span class="line">    //服务器IP地址，也可以是域名</span><br><span class="line">    public static final String WEB_SERVER_IP = <span class="string">"218.75.131.83:8012"</span>;</span><br><span class="line">    public static final String WEB_SERVER_URL = <span class="string">"http://"</span> + WEB_SERVER_IP + <span class="string">"/SystemService.svc"</span>;</span><br><span class="line">    //命名空间</span><br><span class="line">    private static final String NAMESPACE = <span class="string">"http://www.mt178.com"</span>;</span><br><span class="line">    public static final String SOAP = <span class="string">"http://www.mt178.com/SystemService/"</span>;</span><br><span class="line">    // 含有5个线程的线程池  </span><br><span class="line">    private static final ExecutorService executorService = Executors</span><br><span class="line">            .newFixedThreadPool(5);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    /**</span><br><span class="line">     * @param url</span><br><span class="line">     * @param methodName</span><br><span class="line">     * @param properties</span><br><span class="line">     * @param webServiceCallBack</span><br><span class="line">     */</span><br><span class="line">    public static void callWebService(String url, final String methodName,</span><br><span class="line">                                      Map properties,</span><br><span class="line">                                      final WebServiceCallBack webServiceCallBack) &#123;</span><br><span class="line">        final HttpTransportSE httpTransportSE = new HttpTransportSE(url, 30 * 1000);</span><br><span class="line">        SoapObject soapObject = new SoapObject(NAMESPACE, methodName);</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> (properties != null) &#123;</span><br><span class="line">            <span class="keyword">for</span> (Iterator&lt;Map.Entry&lt;String, Object&gt;&gt; it = properties.entrySet()</span><br><span class="line">                    .iterator(); it.hasNext(); ) &#123;</span><br><span class="line">                Map.Entry&lt;String, Object&gt; entry = it.next();</span><br><span class="line">                soapObject.addProperty(entry.getKey(), entry.getValue());</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        final SoapSerializationEnvelope soapEnvelope = new SoapSerializationEnvelope(</span><br><span class="line">                SoapEnvelope.VER11);</span><br><span class="line">        soapEnvelope.setOutputSoapObject(soapObject);</span><br><span class="line">        soapEnvelope.dotNet = <span class="literal">true</span>;</span><br><span class="line">        httpTransportSE.debug = <span class="literal">true</span>;</span><br><span class="line">        final Handler mHandler = new <span class="function"><span class="title">Handler</span></span>() &#123;</span><br><span class="line">            @Override</span><br><span class="line">            public void handleMessage(Message msg) &#123;</span><br><span class="line">                super.handleMessage(msg);</span><br><span class="line">                webServiceCallBack.callBack((SoapObject) msg.obj);</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">        &#125;;</span><br><span class="line"></span><br><span class="line">		// 开启线程去访问WebService </span><br><span class="line">        executorService.submit(new <span class="function"><span class="title">Runnable</span></span>() &#123;</span><br><span class="line">            @Override</span><br><span class="line">            public void <span class="function"><span class="title">run</span></span>() &#123;</span><br><span class="line">                SoapObject resultSoapObject = null;</span><br><span class="line">                try &#123;</span><br><span class="line">                    httpTransportSE.call(SOAP + methodName, soapEnvelope);</span><br><span class="line">                    System.out.print(soapEnvelope.getResponse().toString());</span><br><span class="line">                    <span class="keyword">if</span> (soapEnvelope.getResponse() != null) &#123;</span><br><span class="line">                        resultSoapObject = (SoapObject) soapEnvelope.bodyIn;</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125; catch (HttpResponseException e) &#123;</span><br><span class="line">                    e.printStackTrace();</span><br><span class="line">                &#125; catch (IOException e) &#123;</span><br><span class="line">                    e.printStackTrace();</span><br><span class="line">                &#125; catch (XmlPullParserException e) &#123;</span><br><span class="line">                    e.printStackTrace();</span><br><span class="line">                &#125; finally &#123;</span><br><span class="line">                    mHandler.sendMessage(mHandler.obtainMessage(0,</span><br><span class="line">                            resultSoapObject));</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    public interface WebServiceCallBack &#123;</span><br><span class="line">        void callBack(SoapObject result);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="调用WCF"><a href="#调用WCF" class="headerlink" title="调用WCF"></a>调用WCF</h3><p>前面已经封装了访问WCF接口的工具类，现在就来写怎样调用工具类<br>这里是调用WCF服务器的LoginAccount()方法:</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">//map中存放的参数一定是序列化，否则调用WCF就回报错，我这里提供一种解决方法。</span><br><span class="line">Map map = Collections.synchronizedMap(new LinkedHashMap());</span><br><span class="line">//这里的key根据WCF测试工具测的参数名来填，又几个参数就添加几个</span><br><span class="line">map.put(key, value);</span><br><span class="line"></span><br><span class="line">WebServiceUtils.callWebService(WebServiceUtils.WEB_SERVER_URL, <span class="string">"LoginAccount"</span>,</span><br><span class="line">                map, new WebServiceUtils.<span class="function"><span class="title">WebServiceCallBack</span></span>() &#123;</span><br><span class="line">                    @Override</span><br><span class="line">                    public void callBack(SoapObject result) &#123;</span><br><span class="line">                    	//判断服务器返回的消息</span><br><span class="line">                        <span class="keyword">if</span> (result != null) &#123;</span><br><span class="line">                        	//这里是根据服务器返回的XML信息进行解析</span><br><span class="line">                           ........</span><br><span class="line">                        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                            Log.i(TAG,<span class="string">"服务器返回消息为空"</span>);</span><br><span class="line">                        &#125;</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;);</span><br></pre></td></tr></table></figure>
-<p>到这为此，已经基本学会Android怎样调用WCF方法，具体的代码实现还要根据服务器返回的结果来写。</p>
-<p><strong>欢迎大家关注我的微信公众号，我会不定期的分享些Android开发的技巧</strong></p>
-<p><img src="/images/weixing.jpg" alt=""></p>
-
-        
-        
-        <p class="article-more-link">
-          
-       </p>
-    </div>
-    <footer class="article-footer clearfix">
-<div class="article-catetags">
-
-<div class="article-categories">
-  <span></span>
-  <a class="article-category-link" href="/categories/WCF/">WCF</a>
-</div>
-
-
-  <div class="article-tags">
-  
-  <span></span> <a href="/tags/WCF/">WCF</a>
-  </div>
-
-</div>
-
-
-
-
-<div class="comments-count">
-	
-	  	<span></span>
-		<a href="/2016/04/17/Android-WCFConnect/#comments" class="ds-thread-count comments-count-link" data-thread-key="2016/04/17/Android-WCFConnect/" data-count-type="comments">&nbsp;</a>
-	
-</div>
-
-</footer>
-
-
-    </article>
-
-
-
-
-
-
 
   <nav id="page-nav" class="clearfix">
     <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/">Next<span></span></a>
@@ -867,7 +870,7 @@
 		  
 		
 		  
-			<li><a href="/categories/AndroidStudio/" title="AndroidStudio">AndroidStudio<sup>1</sup></a></li>
+			<li><a href="/categories/AndroidStudio/" title="AndroidStudio">AndroidStudio<sup>2</sup></a></li>
 		  
 		
 		  
@@ -916,6 +919,10 @@
 			
 		
 			
+				<li><a href="/tags/AndroidStudio/" title="AndroidStudio">AndroidStudio<sup>2</sup></a></li>
+			
+		
+			
 				<li><a href="/tags/Android-NDK/" title="Android NDK">Android NDK<sup>1</sup></a></li>
 			
 		
@@ -924,15 +931,11 @@
 			
 		
 			
-				<li><a href="/tags/AndroidStudio/" title="AndroidStudio">AndroidStudio<sup>1</sup></a></li>
+				<li><a href="/tags/Android工具类/" title="Android工具类">Android工具类<sup>1</sup></a></li>
 			
 		
 			
 				<li><a href="/tags/WCF/" title="WCF">WCF<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/Android工具类/" title="Android工具类">Android工具类<sup>1</sup></a></li>
 			
 		
 			
