@@ -81,6 +81,116 @@
         <header class="article-info clearfix">
   <h1 itemprop="name">
     
+      <a href="/2016/05/23/Android-Dagger2-DI/" title="Android中使用Dagger2进行依赖注入" itemprop="url">Android中使用Dagger2进行依赖注入</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="/about" title="何健雄" target="_blank" itemprop="author">何健雄</a>
+		
+  <p class="article-time">
+    <time datetime="2016-05-23T06:43:51.203Z" itemprop="datePublished"> 发表于 2016-05-23</time>
+    
+  </p>
+</header>
+    <div class="article-content">
+        
+        <p>Dagger2是首个使用生成代码实现完整依赖注入的框架，极大减少了使用者的编码负担，本文主要介绍如何使用Dagger2进行依赖注入。</p>
+<h2 id="Dagger2简单介绍"><a href="#Dagger2简单介绍" class="headerlink" title="Dagger2简单介绍"></a>Dagger2简单介绍</h2><p>Dagger2，起源于Square的Dagger，是一个完全在编译期间进行的依赖注入框架，完全去除了反射。Dagger2是通过依赖注入让你少写很多公式化代码，更容易测试，降低耦合，创建可复用可互换的模块。</p>
+<h2 id="Dagger2实例"><a href="#Dagger2实例" class="headerlink" title="Dagger2实例"></a>Dagger2实例</h2><h3 id="Dagger2环境搭建"><a href="#Dagger2环境搭建" class="headerlink" title="Dagger2环境搭建"></a>Dagger2环境搭建</h3><p>project的build.gradle添加</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br></pre></td><td class="code"><pre><span class="line"> dependencies &#123;</span><br><span class="line">     ... // 其他classpath</span><br><span class="line">     classpath <span class="string">'com.neenbedankt.gradle.plugins:android-apt:1.8'</span> //添加apt命令</span><br><span class="line"> &#125;</span><br><span class="line"></span><br><span class="line">``` </span><br><span class="line"></span><br><span class="line">module的build.gradle添加</span><br><span class="line"></span><br><span class="line">``` bash</span><br><span class="line">apply plugin: <span class="string">'com.neenbedankt.android-apt'</span>//添加apt命令</span><br><span class="line"></span><br><span class="line">dependencies &#123;</span><br><span class="line">    apt <span class="string">'com.google.dagger:dagger-compiler:2.0.2'</span> //指定注解处理器</span><br><span class="line">    compile <span class="string">'com.google.dagger:dagger:2.0.2'</span>  //dagger公用api</span><br><span class="line">    provided <span class="string">'org.glassfish:javax.annotation:10.0-b28'</span>  //添加android缺失的部分javax注解</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">``` </span><br><span class="line"></span><br><span class="line"><span class="comment">### 代码实现</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">Usermodele 是一些基本消息</span><br><span class="line"></span><br><span class="line">``` bash</span><br><span class="line">public class UserModel &#123;</span><br><span class="line"></span><br><span class="line">    private String id;</span><br><span class="line">    private String name;</span><br><span class="line">    private String gender;</span><br><span class="line"></span><br><span class="line">    public <span class="function"><span class="title">UserModel</span></span>() &#123;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public UserModel(String id, String name, String gender) &#123;</span><br><span class="line">        this.id = id;</span><br><span class="line">        this.name = name;</span><br><span class="line">        this.gender = gender;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public String <span class="function"><span class="title">getId</span></span>() &#123;</span><br><span class="line">        <span class="built_in">return</span> id;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public void <span class="built_in">set</span>Id(String id) &#123;</span><br><span class="line">        this.id = id;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public String <span class="function"><span class="title">getName</span></span>() &#123;</span><br><span class="line">        <span class="built_in">return</span> name;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public void <span class="built_in">set</span>Name(String name) &#123;</span><br><span class="line">        this.name = name;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public String <span class="function"><span class="title">getGender</span></span>() &#123;</span><br><span class="line">        <span class="built_in">return</span> gender;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public void <span class="built_in">set</span>Gender(String gender) &#123;</span><br><span class="line">        this.gender = gender;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>Module其实就是一个依赖的制造工厂。我们只需要为其添加制造依赖的方法即可。</p>
+<pre><code class="bash">@Module
+public class ActivityModule {
+
+    @Provides
+    public UserModel <span class="function"><span class="title">provideUserModel</span></span>() {
+        <span class="built_in">return</span> new UserModel(<span class="string">"1"</span>, <span class="string">"hjx"</span>, <span class="string">"man"</span>);
+    }
+}
+</code></pre>
+<p>注解@Module注明本类属于Module ，注解@Provides注明该方法是用来提供依赖对象的特殊方法 。<br>一个完整的Module必须拥有@Module与@Provides注解 。</p>
+<p>Component就是一个将Module生成的实例注入Container中的注入器</p>
+<pre><code class="bash">@Component(modules = ActivityModule.class)
+public interface ActivityComponent {
+    void inject(MainActivity mainActivity);
+}
+</code></pre>
+<p>@Component使用modules指向使用的Module的集合。 所有的Component都必须以接口形式定义。Dagger2框架将自动生成Component的实现类，对应的类名是Dagger×××××，这个例子中对应的实现类是DaggerActivityComponent,添加注入方法,一般使用inject做为方法名，方法参数为对应的Container。</p>
+<p>Container就是可以被注入依赖关系的容器,这里的容器为Activity。具体实现如下</p>
+<pre><code class="bash">public class MainActivity extends AppCompatActivity {
+
+    private ActivityComponent mActivityComponent;
+
+    @Inject
+    UserModel mUserModel;   //不能为private
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        <span class="built_in">set</span>ContentView(R.layout.activity_main);
+
+        mActivityComponent = DaggerActivityComponent.builder().
+                activityModule(new ActivityModule()).build();
+        mActivityComponent.inject(this);
+        ((TextView) findViewById(R.id.textView)).
+                <span class="built_in">set</span>Text(<span class="string">"ID:"</span> + mUserModel.getId() + <span class="string">" Name: "</span> + mUserModel.getName()
+                 + <span class="string">"  Gender: "</span> + mUserModel.getGender());
+    }
+}
+</code></pre>
+<p>Container中@Inject标记需要被注入的对象，mActivityComponent.inject(this)表示将调用Component的实现类将Module的生成的对象注入到mUserModel中。</p>
+<p>到这为止，怎样使用Dagger2进行依赖注入的小demo已经完成了，代码已经上传到<a href="https://github.com/HJXANDHMR/AndroidDagger2" target="_blank" rel="external">Github</a>。</p>
+<p><strong>欢迎大家关注我的微信公众号，我会不定期的分享些Android开发的技巧</strong></p>
+<p><img src="/images/weixing.jpg" alt=""></p>
+
+        
+        
+        <p class="article-more-link">
+          
+       </p>
+    </div>
+    <footer class="article-footer clearfix">
+<div class="article-catetags">
+
+<div class="article-categories">
+  <span></span>
+  <a class="article-category-link" href="/categories/Android/">Android</a>
+</div>
+
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/Android/">Android</a>
+  </div>
+
+</div>
+
+
+
+
+<div class="comments-count">
+	
+	  	<span></span>
+		<a href="/2016/05/23/Android-Dagger2-DI/#comments" class="ds-thread-count comments-count-link" data-thread-key="2016/05/23/Android-Dagger2-DI/" data-count-type="comments">&nbsp;</a>
+	
+</div>
+
+</footer>
+
+
+    </article>
+
+
+
+
+
+
+   
+    
+    <article class="post-expand post" itemprop="articleBody"> 
+        <header class="article-info clearfix">
+  <h1 itemprop="name">
+    
       <a href="/2016/05/16/AndroidStudio-Source-Error/" title="Android Studio查看源代码报错" itemprop="url">Android Studio查看源代码报错</a>
   </h1>
   <p class="article-author">By
@@ -771,79 +881,6 @@
 
 
 
-   
-    
-    <article class="post-expand post" itemprop="articleBody"> 
-        <header class="article-info clearfix">
-  <h1 itemprop="name">
-    
-      <a href="/2016/04/18/AndroidStudio-ConfigureGenymotion/" title="Android Studio中配置Genymotion" itemprop="url">Android Studio中配置Genymotion</a>
-  </h1>
-  <p class="article-author">By
-       
-		<a href="/about" title="何健雄" target="_blank" itemprop="author">何健雄</a>
-		
-  <p class="article-time">
-    <time datetime="2016-04-18T06:01:08.912Z" itemprop="datePublished"> 发表于 2016-04-18</time>
-    
-  </p>
-</header>
-    <div class="article-content">
-        
-        <p>Android Studio中是开发Android的必备神器，今天我们就来聊聊Android studio的插件Genymotion怎样在Android studio中配置</p>
-<h2 id="下载Genymotion插件"><a href="#下载Genymotion插件" class="headerlink" title="下载Genymotion插件"></a>下载Genymotion插件</h2><p>打开设置界面<br><img src="/images/AndroidStudio/AndroidStudio_open_setting.png" alt=""></p>
-<p>然后点击Plugins,在搜索框里输入Genymotion，在点击右边的Install，因为我已经安装好了，图上显示的是Uninstall<br><img src="/images/AndroidStudio/AndroidStudio_anzhuang_genymotion.png" alt=""></p>
-<h2 id="配置Genymotion插件"><a href="#配置Genymotion插件" class="headerlink" title="配置Genymotion插件"></a>配置Genymotion插件</h2><p>点击设置界面最下面的Other Setting,然后输入Genymotion的安装路径</p>
-<p><img src="/images/AndroidStudio/AndroidStudio_configure_genymotion.png" alt=""></p>
-<p>安装好了Genymotion,要重新启动AndroidStudio 才会生效，然后就会在工具栏多出一个图标，点击它：</p>
-<p><img src="/images/AndroidStudio/AndroidStudio_start_genymotion.png" alt=""></p>
-<p>然后选择启动模拟机就可以了<br><img src="/images/AndroidStudio/AndroidStudio_start_genymotionSelect.png" alt=""></p>
-<p>到了这一步，恭喜你，Genymotion插件就安装成功了，就不需要每次还要单独启动Genymotion了。</p>
-<p><strong>欢迎大家关注我的微信公众号，我会不定期的分享些Android开发的技巧</strong></p>
-<p><img src="/images/weixing.jpg" alt=""></p>
-
-        
-        
-        <p class="article-more-link">
-          
-       </p>
-    </div>
-    <footer class="article-footer clearfix">
-<div class="article-catetags">
-
-<div class="article-categories">
-  <span></span>
-  <a class="article-category-link" href="/categories/AndroidStudio/">AndroidStudio</a>
-</div>
-
-
-  <div class="article-tags">
-  
-  <span></span> <a href="/tags/AndroidStudio/">AndroidStudio</a>
-  </div>
-
-</div>
-
-
-
-
-<div class="comments-count">
-	
-	  	<span></span>
-		<a href="/2016/04/18/AndroidStudio-ConfigureGenymotion/#comments" class="ds-thread-count comments-count-link" data-thread-key="2016/04/18/AndroidStudio-ConfigureGenymotion/" data-count-type="comments">&nbsp;</a>
-	
-</div>
-
-</footer>
-
-
-    </article>
-
-
-
-
-
-
 
   <nav id="page-nav" class="clearfix">
     <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/">Next<span></span></a>
@@ -862,7 +899,7 @@
 		<ul>
 		
 		  
-			<li><a href="/categories/Android/" title="Android">Android<sup>3</sup></a></li>
+			<li><a href="/categories/Android/" title="Android">Android<sup>4</sup></a></li>
 		  
 		
 		  
@@ -907,6 +944,10 @@
 		<ul class="clearfix">
 		
 			
+				<li><a href="/tags/Android/" title="Android">Android<sup>3</sup></a></li>
+			
+		
+			
 				<li><a href="/tags/hexo/" title="hexo">hexo<sup>3</sup></a></li>
 			
 		
@@ -915,15 +956,7 @@
 			
 		
 			
-				<li><a href="/tags/Android/" title="Android">Android<sup>2</sup></a></li>
-			
-		
-			
 				<li><a href="/tags/AndroidStudio/" title="AndroidStudio">AndroidStudio<sup>2</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/Android-NDK/" title="Android NDK">Android NDK<sup>1</sup></a></li>
 			
 		
 			
@@ -944,6 +977,10 @@
 		
 			
 				<li><a href="/tags/Markdown/" title="Markdown">Markdown<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Android-NDK/" title="Android NDK">Android NDK<sup>1</sup></a></li>
 			
 		
 		</ul>
