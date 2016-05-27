@@ -81,6 +81,99 @@
         <header class="article-info clearfix">
   <h1 itemprop="name">
     
+      <a href="/2016/05/27/DesignPattern-SimpleFactory/" title="设计模式—简单工厂模式" itemprop="url">设计模式—简单工厂模式</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="/about" title="何健雄" target="_blank" itemprop="author">何健雄</a>
+		
+  <p class="article-time">
+    <time datetime="2016-05-27T12:11:45.975Z" itemprop="datePublished"> 发表于 2016-05-27</time>
+    
+  </p>
+</header>
+    <div class="article-content">
+        
+        <p>简单工厂模式在实际的开发应用比较多，今天我们来学习下设计模式中的简单工厂模式。<br>从设计模式的类型上来说，简单工厂模式是属于创建型模式，又叫做静态工厂方法（Static Factory Method）模式。</p>
+<h2 id="模式的定义"><a href="#模式的定义" class="headerlink" title="模式的定义"></a>模式的定义</h2><p>简单工厂模式的实质是由一个工厂类根据传入的参数，动态决定应该创建哪一个产品类（这些产品类继承自一个父类或接口）的实例。</p>
+<h2 id="模式的结构"><a href="#模式的结构" class="headerlink" title="模式的结构"></a>模式的结构</h2><p>简单工厂模式包含如下角色：</p>
+<p><strong>Factory:</strong> 工厂角色<br>工厂角色负责实现创建所有实例的内部逻辑</p>
+<p><strong>Product:</strong> 抽象产品角色<br>抽象产品角色是所创建的所有对象的父类，负责描述所有实例所共有的公共接口</p>
+<p><strong>ConcreteProduct:</strong> 具体产品角色<br>具体产品角色是创建目标，所有创建的对象都充当这个角色的某个具体类的实例。</p>
+<h2 id="UML图"><a href="#UML图" class="headerlink" title="UML图"></a>UML图</h2><p><img src="/images/DesignPattern/simpleFactoryUML.png" alt=""></p>
+<h2 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h2><h3 id="Factory-java"><a href="#Factory-java" class="headerlink" title="Factory.java"></a>Factory.java</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">public class Factory &#123;</span><br><span class="line"></span><br><span class="line">    public static Product createProduct(String s) &#123;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> (s == <span class="string">"A"</span>) &#123;</span><br><span class="line">            <span class="built_in">return</span> new ConcreteProductA();</span><br><span class="line">        &#125; <span class="keyword">else</span> <span class="keyword">if</span> (s == <span class="string">"B"</span>) &#123;</span><br><span class="line">            <span class="built_in">return</span> new ConcreteProductB();</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="built_in">return</span> null;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="Product-java"><a href="#Product-java" class="headerlink" title="Product.java"></a>Product.java</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">public interface Product &#123;</span><br><span class="line"></span><br><span class="line">    void use();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="ConcreteProductA-java"><a href="#ConcreteProductA-java" class="headerlink" title="ConcreteProductA.java"></a>ConcreteProductA.java</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">public class ConcreteProductA implements Product &#123;</span><br><span class="line"></span><br><span class="line">    public <span class="function"><span class="title">ConcreteProductA</span></span>() &#123;</span><br><span class="line">        System.out.println(<span class="string">"Create ConcreteProductA"</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    public void <span class="function"><span class="title">use</span></span>() &#123;</span><br><span class="line">        System.out.println(<span class="string">"ConcreteProductA Use"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="ConcreteProductB-java"><a href="#ConcreteProductB-java" class="headerlink" title="ConcreteProductB.java"></a>ConcreteProductB.java</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">public class ConcreteProductB implements Product &#123;</span><br><span class="line"></span><br><span class="line">    public <span class="function"><span class="title">ConcreteProductB</span></span>() &#123;</span><br><span class="line">        System.out.println(<span class="string">"Create ConcreteProductB"</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    public void <span class="function"><span class="title">use</span></span>() &#123;</span><br><span class="line">        System.out.println(<span class="string">"ConcreteProductB Use"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="测试类"><a href="#测试类" class="headerlink" title="测试类"></a>测试类</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"> public class MyClass &#123;</span><br><span class="line"></span><br><span class="line">    public static void main(String[] args) &#123;</span><br><span class="line"></span><br><span class="line">        Product product = Factory.createProduct(<span class="string">"A"</span>);</span><br><span class="line">        product.use();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>其实以上代码可以不给出，我相信大家也可以写的出，根据UML图来写代码是编码的基本能力。</p>
+<h2 id="模式分析"><a href="#模式分析" class="headerlink" title="模式分析"></a>模式分析</h2><ul>
+<li>将对象的创建和对象本身业务处理分离可以降低系统的耦合度，使得两者修改起来都相对容易</li>
+<li>在调用工厂类的工厂方法时，由于工厂方法是静态方法，使用起来很方便，可通过类名直接调用，而且只需要传入一个简单的参数即可</li>
+</ul>
+<h2 id="简单工厂模式的优点"><a href="#简单工厂模式的优点" class="headerlink" title="简单工厂模式的优点"></a>简单工厂模式的优点</h2><ul>
+<li><p>工厂类含有必要的判断逻辑，可以决定在什么时候创建哪一个产品类的实例，客户端可以免除直接创建产品对象的责任，而仅仅“消费”产品；简单工厂模式通过这种做法实现了对责任的分割，它提供了专门的工厂类用于创建对象</p>
+</li>
+<li><p>客户端无须知道所创建的具体产品类的类名，只需要知道具体产品类所对应的参数即可，对于一些复杂的类名，通过简单工厂模式可以减少使用者的记忆量。</p>
+</li>
+</ul>
+<h2 id="简单工厂模式的缺点"><a href="#简单工厂模式的缺点" class="headerlink" title="简单工厂模式的缺点"></a>简单工厂模式的缺点</h2><ul>
+<li>由于工厂类集中了所有产品创建逻辑，一旦不能正常工作，整个系统都要受到影响</li>
+<li>使用简单工厂模式将会增加系统中类的个数，在一定程序上增加了系统的复杂度和理解难度。</li>
+</ul>
+<p>以上就是简单工厂模式的基本内容了，我们不是为了用设计模式而用设计模式，而应该根据实际情况来使用设计模式。</p>
+<p>参考<br>    <a href="http://design-patterns.readthedocs.io/zh_CN/latest/creational_patterns/simple_factory.html" target="_blank" rel="external">http://design-patterns.readthedocs.io/zh_CN/latest/creational_patterns/simple_factory.html</a><br>    <a href="http://www.cnblogs.com/ytaozhao/p/3387540.html" target="_blank" rel="external">http://www.cnblogs.com/ytaozhao/p/3387540.html</a></p>
+<p><strong>欢迎大家关注我的微信公众号，我会不定期的分享些Android开发的技巧</strong></p>
+<p><img src="/images/weixing.jpg" alt=""></p>
+
+        
+        
+        <p class="article-more-link">
+          
+       </p>
+    </div>
+    <footer class="article-footer clearfix">
+<div class="article-catetags">
+
+<div class="article-categories">
+  <span></span>
+  <a class="article-category-link" href="/categories/Design-Pattern/">Design Pattern</a>
+</div>
+
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/Design-Pattern/">Design Pattern</a>
+  </div>
+
+</div>
+
+
+
+
+<div class="comments-count">
+	
+	  	<span></span>
+		<a href="/2016/05/27/DesignPattern-SimpleFactory/#comments" class="ds-thread-count comments-count-link" data-thread-key="2016/05/27/DesignPattern-SimpleFactory/" data-count-type="comments">&nbsp;</a>
+	
+</div>
+
+</footer>
+
+
+    </article>
+
+
+
+
+
+
+   
+    
+    <article class="post-expand post" itemprop="articleBody"> 
+        <header class="article-info clearfix">
+  <h1 itemprop="name">
+    
       <a href="/2016/05/23/Android-Dagger2-DI/" title="Android中使用Dagger2进行依赖注入" itemprop="url">Android中使用Dagger2进行依赖注入</a>
   </h1>
   <p class="article-author">By
@@ -806,81 +899,6 @@ public interface ActivityComponent {
 
 
 
-   
-    
-    <article class="post-expand post" itemprop="articleBody"> 
-        <header class="article-info clearfix">
-  <h1 itemprop="name">
-    
-      <a href="/2016/04/18/hexo-AddCommentAndAccessNumber/" title="Hexo 中添加访问数和增加评论" itemprop="url">Hexo 中添加访问数和增加评论</a>
-  </h1>
-  <p class="article-author">By
-       
-		<a href="/about" title="何健雄" target="_blank" itemprop="author">何健雄</a>
-		
-  <p class="article-time">
-    <time datetime="2016-04-18T11:38:28.316Z" itemprop="datePublished"> 发表于 2016-04-18</time>
-    
-  </p>
-</header>
-    <div class="article-content">
-        
-        <p>今天我们来学习怎样统计网站的访问量以及怎样添加评论功能</p>
-<h2 id="统计网站的访问量"><a href="#统计网站的访问量" class="headerlink" title="统计网站的访问量"></a>统计网站的访问量</h2><p>现在主流的统计网站的工具有谷歌统计，百度统计，但我们今天可以用<a href="http://ibruce.info/2015/04/04/busuanzi/" target="_blank" rel="external">不蒜子</a>来统计，这个工具只需要两行代码就可以完成统计。</p>
-<h3 id="安装脚本（必选）"><a href="#安装脚本（必选）" class="headerlink" title="安装脚本（必选）"></a>安装脚本（必选）</h3><p>不蒜子可以给任何类型的个人站点使用，如果你是用的hexo，打开themes/你的主题/layout/_partial/footer.ejs添加下述脚本即可。当然你可以添加当网页的任意位置。</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&lt;script async src=<span class="string">"https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"</span>&gt;</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure>
-<h3 id="添加标签"><a href="#添加标签" class="headerlink" title="添加标签"></a>添加标签</h3><p>需要复制相应的html标签到你的网站要显示访问量的位置即可。您可以随意更改不蒜子标签为自己喜欢的显示效果。</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">&lt;span id=<span class="string">"busuanzi_container_site_pv"</span>&gt;</span><br><span class="line">    本站总访问量&lt;span id=<span class="string">"busuanzi_value_site_pv"</span>&gt;&lt;/span&gt;次</span><br><span class="line">&lt;/span&gt;</span><br><span class="line"></span><br><span class="line">&lt;span id=<span class="string">"busuanzi_container_site_uv"</span>&gt;</span><br><span class="line">  本站访客数&lt;span id=<span class="string">"busuanzi_value_site_uv"</span>&gt;&lt;/span&gt;人次</span><br><span class="line">&lt;/span&gt;</span><br><span class="line"></span><br><span class="line">&lt;span id=<span class="string">"busuanzi_container_page_pv"</span>&gt;</span><br><span class="line">  本文总阅读量&lt;span id=<span class="string">"busuanzi_value_page_pv"</span>&gt;&lt;/span&gt;次</span><br><span class="line">&lt;/span&gt;</span><br></pre></td></tr></table></figure>
-<p>我是用hexo 的jacman主题的我是添加在themes/jacman/layout/_partial/footer.ejs下的，列如：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">&lt;p class=<span class="string">"copyright"</span>&gt;</span><br><span class="line">		Powered by &lt;a href=<span class="string">"http://hexo.io"</span> target=<span class="string">"_blank"</span> title=<span class="string">"hexo"</span>&gt;hexo&lt;/a&gt; and Theme by &lt;a href=<span class="string">"https://github.com/wuchong/jacman"</span> target=<span class="string">"_blank"</span> title=<span class="string">"Jacman"</span>&gt;Jacman&lt;/a&gt; © &lt;%= new Date().getFullYear() %&gt; </span><br><span class="line">		&lt;% <span class="keyword">if</span> (config.author) &#123; %&gt;</span><br><span class="line">		&lt;a href=<span class="string">"&lt;%= config.root %&gt;about"</span> target=<span class="string">"_blank"</span> title=<span class="string">"&lt;%= config.author %&gt;"</span>&gt;&lt;%= config.author %&gt;&lt;/a&gt;</span><br><span class="line">		&lt;% &#125; <span class="keyword">else</span> &#123;%&gt;</span><br><span class="line">		&lt;a href=<span class="string">"&lt;%= config.url %&gt;"</span> title=<span class="string">"&lt;%= config.title %&gt;"</span>&gt;&lt;%= config.title %&gt;&lt;/a&gt;</span><br><span class="line">		&lt;% &#125; %&gt;</span><br><span class="line">		</span><br><span class="line">		&lt;script async src=<span class="string">"https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"</span>&gt;</span><br><span class="line">		&lt;/script&gt;</span><br><span class="line">		&lt;/br&gt;本站总访问量&lt;span id=<span class="string">"busuanzi_value_site_pv"</span>&gt;&lt;/span&gt;次,本站访客数&lt;span id=<span class="string">"busuanzi_value_site_uv"</span>&gt;&lt;/span&gt;人次,本文总阅读量&lt;span id=<span class="string">"busuanzi_value_page_pv"</span>&gt;&lt;/span&gt;次</span><br><span class="line"></span><br><span class="line">		&lt;/p&gt;</span><br></pre></td></tr></table></figure>
-<p>是添加在版权信息下面，读者也可以添加其它地方。</p>
-<h2 id="添加评论功能"><a href="#添加评论功能" class="headerlink" title="添加评论功能"></a>添加评论功能</h2><p>评论功能大陆地区最好用的就是<a href="http://duoshuo.com/" target="_blank" rel="external">多说</a>,可以去注册个账号，jacman主题里面已经<br>实现了这个功能，你只需要注册个账号将用户名添加进去就可以了。<br>打开jacman主题文件下的_config.yml文件，找到多说设置的地方。<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#### Comment</span></span><br><span class="line">duoshuo_shortname: hjxandhmr   <span class="comment">## 在这里添加多说的域名,比如我的域名是这个hjxandhmr.duoshuo.com，只需要填hjxandhmr就可以了</span></span><br></pre></td></tr></table></figure></p>
-<p>到这为止，统计网站访问数和评论功能我们都已经实现了，赶快去试试吧。</p>
-<p><strong>欢迎大家关注我的微信公众号，我会不定期的分享些Android开发的技巧</strong></p>
-<p><img src="/images/weixing.jpg" alt=""></p>
-
-        
-        
-        <p class="article-more-link">
-          
-       </p>
-    </div>
-    <footer class="article-footer clearfix">
-<div class="article-catetags">
-
-<div class="article-categories">
-  <span></span>
-  <a class="article-category-link" href="/categories/hexo/">hexo</a>
-</div>
-
-
-  <div class="article-tags">
-  
-  <span></span> <a href="/tags/hexo/">hexo</a>
-  </div>
-
-</div>
-
-
-
-
-<div class="comments-count">
-	
-	  	<span></span>
-		<a href="/2016/04/18/hexo-AddCommentAndAccessNumber/#comments" class="ds-thread-count comments-count-link" data-thread-key="2016/04/18/hexo-AddCommentAndAccessNumber/" data-count-type="comments">&nbsp;</a>
-	
-</div>
-
-</footer>
-
-
-    </article>
-
-
-
-
-
-
 
   <nav id="page-nav" class="clearfix">
     <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/">Next<span></span></a>
@@ -912,6 +930,10 @@ public interface ActivityComponent {
 		
 		  
 			<li><a href="/categories/Android工具类/" title="Android工具类">Android工具类<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Design-Pattern/" title="Design Pattern">Design Pattern<sup>1</sup></a></li>
 		  
 		
 		  
@@ -952,15 +974,11 @@ public interface ActivityComponent {
 			
 		
 			
-				<li><a href="/tags/ListView/" title="ListView">ListView<sup>2</sup></a></li>
-			
-		
-			
 				<li><a href="/tags/AndroidStudio/" title="AndroidStudio">AndroidStudio<sup>2</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/Robolectric/" title="Robolectric">Robolectric<sup>1</sup></a></li>
+				<li><a href="/tags/ListView/" title="ListView">ListView<sup>2</sup></a></li>
 			
 		
 			
@@ -968,7 +986,11 @@ public interface ActivityComponent {
 			
 		
 			
-				<li><a href="/tags/WCF/" title="WCF">WCF<sup>1</sup></a></li>
+				<li><a href="/tags/Android-NDK/" title="Android NDK">Android NDK<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Design-Pattern/" title="Design Pattern">Design Pattern<sup>1</sup></a></li>
 			
 		
 			
@@ -976,11 +998,15 @@ public interface ActivityComponent {
 			
 		
 			
+				<li><a href="/tags/Robolectric/" title="Robolectric">Robolectric<sup>1</sup></a></li>
+			
+		
+			
 				<li><a href="/tags/Markdown/" title="Markdown">Markdown<sup>1</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/Android-NDK/" title="Android NDK">Android NDK<sup>1</sup></a></li>
+				<li><a href="/tags/WCF/" title="WCF">WCF<sup>1</sup></a></li>
 			
 		
 		</ul>

@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://HJXANDHMR.github.io/"/>
-  <updated>2016-05-23T07:17:09.113Z</updated>
+  <updated>2016-05-27T13:19:40.251Z</updated>
   <id>http://HJXANDHMR.github.io/</id>
   
   <author>
@@ -16,11 +16,64 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>设计模式—简单工厂模式</title>
+    <link href="http://HJXANDHMR.github.io/2016/05/27/DesignPattern-SimpleFactory/"/>
+    <id>http://HJXANDHMR.github.io/2016/05/27/DesignPattern-SimpleFactory/</id>
+    <published>2016-05-27T12:11:45.975Z</published>
+    <updated>2016-05-27T13:19:40.251Z</updated>
+    
+    <content type="html">&lt;p&gt;简单工厂模式在实际的开发应用比较多，今天我们来学习下设计模式中的简单工厂模式。&lt;br&gt;从设计模式的类型上来说，简单工厂模式是属于创建型模式，又叫做静态工厂方法（Static Factory Method）模式。&lt;/p&gt;
+&lt;h2 id=&quot;模式的定义&quot;&gt;&lt;a href=&quot;#模式的定义&quot; class=&quot;headerlink&quot; title=&quot;模式的定义&quot;&gt;&lt;/a&gt;模式的定义&lt;/h2&gt;&lt;p&gt;简单工厂模式的实质是由一个工厂类根据传入的参数，动态决定应该创建哪一个产品类（这些产品类继承自一个父类或接口）的实例。&lt;/p&gt;
+&lt;h2 id=&quot;模式的结构&quot;&gt;&lt;a href=&quot;#模式的结构&quot; class=&quot;headerlink&quot; title=&quot;模式的结构&quot;&gt;&lt;/a&gt;模式的结构&lt;/h2&gt;&lt;p&gt;简单工厂模式包含如下角色：&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Factory:&lt;/strong&gt; 工厂角色&lt;br&gt;工厂角色负责实现创建所有实例的内部逻辑&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Product:&lt;/strong&gt; 抽象产品角色&lt;br&gt;抽象产品角色是所创建的所有对象的父类，负责描述所有实例所共有的公共接口&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;ConcreteProduct:&lt;/strong&gt; 具体产品角色&lt;br&gt;具体产品角色是创建目标，所有创建的对象都充当这个角色的某个具体类的实例。&lt;/p&gt;
+&lt;h2 id=&quot;UML图&quot;&gt;&lt;a href=&quot;#UML图&quot; class=&quot;headerlink&quot; title=&quot;UML图&quot;&gt;&lt;/a&gt;UML图&lt;/h2&gt;&lt;p&gt;&lt;img src=&quot;/images/DesignPattern/simpleFactoryUML.png&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;h2 id=&quot;代码实现&quot;&gt;&lt;a href=&quot;#代码实现&quot; class=&quot;headerlink&quot; title=&quot;代码实现&quot;&gt;&lt;/a&gt;代码实现&lt;/h2&gt;&lt;h3 id=&quot;Factory-java&quot;&gt;&lt;a href=&quot;#Factory-java&quot; class=&quot;headerlink&quot; title=&quot;Factory.java&quot;&gt;&lt;/a&gt;Factory.java&lt;/h3&gt;&lt;figure class=&quot;highlight bash&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;10&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;11&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;12&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;public class Factory &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    public static Product createProduct(String s) &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        &lt;span class=&quot;keyword&quot;&gt;if&lt;/span&gt; (s == &lt;span class=&quot;string&quot;&gt;&quot;A&quot;&lt;/span&gt;) &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;            &lt;span class=&quot;built_in&quot;&gt;return&lt;/span&gt; new ConcreteProductA();&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        &amp;#125; &lt;span class=&quot;keyword&quot;&gt;else&lt;/span&gt; &lt;span class=&quot;keyword&quot;&gt;if&lt;/span&gt; (s == &lt;span class=&quot;string&quot;&gt;&quot;B&quot;&lt;/span&gt;) &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;            &lt;span class=&quot;built_in&quot;&gt;return&lt;/span&gt; new ConcreteProductB();&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        &lt;span class=&quot;built_in&quot;&gt;return&lt;/span&gt; null;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;h3 id=&quot;Product-java&quot;&gt;&lt;a href=&quot;#Product-java&quot; class=&quot;headerlink&quot; title=&quot;Product.java&quot;&gt;&lt;/a&gt;Product.java&lt;/h3&gt;&lt;figure class=&quot;highlight bash&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;public interface Product &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    void use();&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;h3 id=&quot;ConcreteProductA-java&quot;&gt;&lt;a href=&quot;#ConcreteProductA-java&quot; class=&quot;headerlink&quot; title=&quot;ConcreteProductA.java&quot;&gt;&lt;/a&gt;ConcreteProductA.java&lt;/h3&gt;&lt;figure class=&quot;highlight bash&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;10&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;11&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;public class ConcreteProductA implements Product &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    public &lt;span class=&quot;function&quot;&gt;&lt;span class=&quot;title&quot;&gt;ConcreteProductA&lt;/span&gt;&lt;/span&gt;() &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        System.out.println(&lt;span class=&quot;string&quot;&gt;&quot;Create ConcreteProductA&quot;&lt;/span&gt;);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    @Override&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    public void &lt;span class=&quot;function&quot;&gt;&lt;span class=&quot;title&quot;&gt;use&lt;/span&gt;&lt;/span&gt;() &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        System.out.println(&lt;span class=&quot;string&quot;&gt;&quot;ConcreteProductA Use&quot;&lt;/span&gt;);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;h3 id=&quot;ConcreteProductB-java&quot;&gt;&lt;a href=&quot;#ConcreteProductB-java&quot; class=&quot;headerlink&quot; title=&quot;ConcreteProductB.java&quot;&gt;&lt;/a&gt;ConcreteProductB.java&lt;/h3&gt;&lt;figure class=&quot;highlight bash&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;10&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;11&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;public class ConcreteProductB implements Product &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    public &lt;span class=&quot;function&quot;&gt;&lt;span class=&quot;title&quot;&gt;ConcreteProductB&lt;/span&gt;&lt;/span&gt;() &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        System.out.println(&lt;span class=&quot;string&quot;&gt;&quot;Create ConcreteProductB&quot;&lt;/span&gt;);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    @Override&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    public void &lt;span class=&quot;function&quot;&gt;&lt;span class=&quot;title&quot;&gt;use&lt;/span&gt;&lt;/span&gt;() &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        System.out.println(&lt;span class=&quot;string&quot;&gt;&quot;ConcreteProductB Use&quot;&lt;/span&gt;);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;h3 id=&quot;测试类&quot;&gt;&lt;a href=&quot;#测试类&quot; class=&quot;headerlink&quot; title=&quot;测试类&quot;&gt;&lt;/a&gt;测试类&lt;/h3&gt;&lt;figure class=&quot;highlight bash&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt; public class MyClass &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    public static void main(String[] args) &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        Product product = Factory.createProduct(&lt;span class=&quot;string&quot;&gt;&quot;A&quot;&lt;/span&gt;);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        product.use();&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;其实以上代码可以不给出，我相信大家也可以写的出，根据UML图来写代码是编码的基本能力。&lt;/p&gt;
+&lt;h2 id=&quot;模式分析&quot;&gt;&lt;a href=&quot;#模式分析&quot; class=&quot;headerlink&quot; title=&quot;模式分析&quot;&gt;&lt;/a&gt;模式分析&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;将对象的创建和对象本身业务处理分离可以降低系统的耦合度，使得两者修改起来都相对容易&lt;/li&gt;
+&lt;li&gt;在调用工厂类的工厂方法时，由于工厂方法是静态方法，使用起来很方便，可通过类名直接调用，而且只需要传入一个简单的参数即可&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&quot;简单工厂模式的优点&quot;&gt;&lt;a href=&quot;#简单工厂模式的优点&quot; class=&quot;headerlink&quot; title=&quot;简单工厂模式的优点&quot;&gt;&lt;/a&gt;简单工厂模式的优点&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;工厂类含有必要的判断逻辑，可以决定在什么时候创建哪一个产品类的实例，客户端可以免除直接创建产品对象的责任，而仅仅“消费”产品；简单工厂模式通过这种做法实现了对责任的分割，它提供了专门的工厂类用于创建对象&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;客户端无须知道所创建的具体产品类的类名，只需要知道具体产品类所对应的参数即可，对于一些复杂的类名，通过简单工厂模式可以减少使用者的记忆量。&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&quot;简单工厂模式的缺点&quot;&gt;&lt;a href=&quot;#简单工厂模式的缺点&quot; class=&quot;headerlink&quot; title=&quot;简单工厂模式的缺点&quot;&gt;&lt;/a&gt;简单工厂模式的缺点&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;由于工厂类集中了所有产品创建逻辑，一旦不能正常工作，整个系统都要受到影响&lt;/li&gt;
+&lt;li&gt;使用简单工厂模式将会增加系统中类的个数，在一定程序上增加了系统的复杂度和理解难度。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;以上就是简单工厂模式的基本内容了，我们不是为了用设计模式而用设计模式，而应该根据实际情况来使用设计模式。&lt;/p&gt;
+&lt;p&gt;参考&lt;br&gt;    &lt;a href=&quot;http://design-patterns.readthedocs.io/zh_CN/latest/creational_patterns/simple_factory.html&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;http://design-patterns.readthedocs.io/zh_CN/latest/creational_patterns/simple_factory.html&lt;/a&gt;&lt;br&gt;    &lt;a href=&quot;http://www.cnblogs.com/ytaozhao/p/3387540.html&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;http://www.cnblogs.com/ytaozhao/p/3387540.html&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;欢迎大家关注我的微信公众号，我会不定期的分享些Android开发的技巧&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/images/weixing.jpg&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+</content>
+    
+    <summary type="html">
+    
+      设计模式,简单工厂模式
+    
+    </summary>
+    
+      <category term="Design Pattern" scheme="http://HJXANDHMR.github.io/categories/Design-Pattern/"/>
+    
+    
+      <category term="Design Pattern" scheme="http://HJXANDHMR.github.io/tags/Design-Pattern/"/>
+    
+  </entry>
+  
+  <entry>
     <title>Android中使用Dagger2进行依赖注入</title>
     <link href="http://HJXANDHMR.github.io/2016/05/23/Android-Dagger2-DI/"/>
     <id>http://HJXANDHMR.github.io/2016/05/23/Android-Dagger2-DI/</id>
     <published>2016-05-23T06:43:51.203Z</published>
-    <updated>2016-05-23T07:17:09.113Z</updated>
+    <updated>2016-05-23T07:34:09.017Z</updated>
     
     <content type="html">&lt;p&gt;Dagger2是首个使用生成代码实现完整依赖注入的框架，极大减少了使用者的编码负担，本文主要介绍如何使用Dagger2进行依赖注入。&lt;/p&gt;
 &lt;h2 id=&quot;Dagger2简单介绍&quot;&gt;&lt;a href=&quot;#Dagger2简单介绍&quot; class=&quot;headerlink&quot; title=&quot;Dagger2简单介绍&quot;&gt;&lt;/a&gt;Dagger2简单介绍&lt;/h2&gt;&lt;p&gt;Dagger2，起源于Square的Dagger，是一个完全在编译期间进行的依赖注入框架，完全去除了反射。Dagger2是通过依赖注入让你少写很多公式化代码，更容易测试，降低耦合，创建可复用可互换的模块。&lt;/p&gt;

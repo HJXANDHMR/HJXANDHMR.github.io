@@ -2,9 +2,16 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://HJXANDHMR.github.io/2016/05/27/DesignPattern-SimpleFactory/</loc>
+    
+    <lastmod>2016-05-27T13:19:40.251Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://HJXANDHMR.github.io/2016/05/23/Android-Dagger2-DI/</loc>
     
-    <lastmod>2016-05-23T07:17:09.113Z</lastmod>
+    <lastmod>2016-05-23T07:34:09.017Z</lastmod>
     
   </url>
   
