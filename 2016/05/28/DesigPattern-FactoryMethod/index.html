@@ -1,0 +1,578 @@
+
+ <!DOCTYPE HTML>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  
+    <title>设计模式—工厂方法模式 | Android学习</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
+    
+    <meta name="author" content="何健雄">
+    
+
+    
+    <meta name="description" content="设计模式,简单工厂模式">
+<meta property="og:type" content="article">
+<meta property="og:title" content="设计模式—工厂方法模式">
+<meta property="og:url" content="http://HJXANDHMR.github.io/2016/05/28/DesigPattern-FactoryMethod/index.html">
+<meta property="og:site_name" content="Android学习">
+<meta property="og:description" content="设计模式,简单工厂模式">
+<meta property="og:image" content="http://HJXANDHMR.github.io/images/DesignPattern/FactoryMethodUML.png">
+<meta property="og:image" content="http://HJXANDHMR.github.io/images/weixing.jpg">
+<meta property="og:updated_time" content="2016-05-28T02:00:03.004Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="设计模式—工厂方法模式">
+<meta name="twitter:description" content="设计模式,简单工厂模式">
+<meta name="twitter:image" content="http://HJXANDHMR.github.io/images/DesignPattern/FactoryMethodUML.png">
+
+    
+    <link rel="alternative" href="/atom.xml" title="Android学习" type="application/atom+xml">
+    
+    
+    <link rel="icon" href="/img/favicon.ico">
+    
+    
+    <link rel="apple-touch-icon" href="/img/jacman.jpg">
+    <link rel="apple-touch-icon-precomposed" href="/img/jacman.jpg">
+    
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+
+  <body>
+    <header>
+      
+<div>
+		
+			<div id="imglogo">
+				<a href="/"><img src="/img/logo.png" alt="Android学习" title="Android学习"/></a>
+			</div>
+			
+			<div id="textlogo">
+				<h1 class="site-name"><a href="/" title="Android学习">Android学习</a></h1>
+				<h2 class="blog-motto">学有所思，思有所悟，悟有所行。</h2>
+			</div>
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="菜单">
+			</a></div>
+			<nav class="animated">
+				<ul>
+					<ul>
+					 
+						<li><a href="/">主页</a></li>
+					
+						<li><a href="/archives">归档</a></li>
+					
+						<li><a href="/about">简介</a></li>
+					
+					<li>
+ 					
+					<form class="search" action="//google.com/search" method="get" accept-charset="utf-8">
+						<label>Search</label>
+						<input type="search" id="search" name="q" autocomplete="off" maxlength="20" placeholder="搜索" />
+						<input type="hidden" name="q" value="site:HJXANDHMR.github.io">
+					</form>
+					
+					</li>
+				</ul>
+			</nav>			
+</div>
+    </header>
+    <div id="container">
+      <div id="main" class="post" itemscope itemprop="blogPost">
+  
+	<article itemprop="articleBody"> 
+		<header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2016/05/28/DesigPattern-FactoryMethod/" title="设计模式—工厂方法模式" itemprop="url">设计模式—工厂方法模式</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="/about" title="何健雄" target="_blank" itemprop="author">何健雄</a>
+		
+  <p class="article-time">
+    <time datetime="2016-05-28T01:50:14.762Z" itemprop="datePublished"> 发表于 2016-05-28</time>
+    
+  </p>
+</header>
+	<div class="article-content">
+		
+		<div id="toc" class="toc-article">
+			<strong class="toc-title">文章目录</strong>
+		
+			<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#模式定义"><span class="toc-number">1.</span> <span class="toc-text">模式定义</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#模式结构"><span class="toc-number">2.</span> <span class="toc-text">模式结构</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#UML图"><span class="toc-number">3.</span> <span class="toc-text">UML图</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#代码实现"><span class="toc-number">4.</span> <span class="toc-text">代码实现</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Factory-java"><span class="toc-number">4.1.</span> <span class="toc-text">Factory.java</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#ConcreteFactory-java"><span class="toc-number">4.2.</span> <span class="toc-text">ConcreteFactory.java</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Product-java"><span class="toc-number">4.3.</span> <span class="toc-text">Product.java</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#ConcreteProduct-java"><span class="toc-number">4.4.</span> <span class="toc-text">ConcreteProduct.java</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#测试类"><span class="toc-number">4.5.</span> <span class="toc-text">测试类</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#模式分析"><span class="toc-number">5.</span> <span class="toc-text">模式分析</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#工厂方法模式的优点"><span class="toc-number">6.</span> <span class="toc-text">工厂方法模式的优点</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#工厂方法模式的缺点"><span class="toc-number">7.</span> <span class="toc-text">工厂方法模式的缺点</span></a></li></ol>
+		
+		</div>
+		
+		<p>前面我们学习了<a href="http://hjxandhmr.github.io/2016/05/27/DesignPattern-SimpleFactory/">简单工厂模式</a>，今天我们来学习工厂方法模式（Factory Method）,工厂方法模式(Factory Method Pattern)又称为工厂模式，也叫多态工厂(Polymorphic Factory)模式，它属于类创建型模式。</p>
+<h2 id="模式定义"><a href="#模式定义" class="headerlink" title="模式定义"></a>模式定义</h2><p>在工厂方法模式中，工厂父类负责定义创建产品对象的公共接口，而工厂子类则负责生成具体的产品对象，这样做的目的是将产品类的实例化操作延迟到工厂子类中完成，即通过工厂子类来确定究竟应该实例化哪一个具体产品类。</p>
+<h2 id="模式结构"><a href="#模式结构" class="headerlink" title="模式结构"></a>模式结构</h2><p>工厂方法模式包含如下角色：</p>
+<p><strong>Product：</strong> 抽象产品<br><strong>ConcreteProduct：</strong> 具体产品<br><strong>Factory：</strong> 抽象工厂<br><strong>ConcreteFactory：</strong> 具体工厂</p>
+<h2 id="UML图"><a href="#UML图" class="headerlink" title="UML图"></a>UML图</h2><p><img src="/images/DesignPattern/FactoryMethodUML.png" alt=""></p>
+<h2 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h2><h3 id="Factory-java"><a href="#Factory-java" class="headerlink" title="Factory.java"></a>Factory.java</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">public interface Factory &#123;</span><br><span class="line">    Product factoryMethod();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="ConcreteFactory-java"><a href="#ConcreteFactory-java" class="headerlink" title="ConcreteFactory.java"></a>ConcreteFactory.java</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">public class ConcreteFactory implements Factory &#123;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    public Product <span class="function"><span class="title">factoryMethod</span></span>() &#123;</span><br><span class="line">        <span class="built_in">return</span> new ConcreteProduct();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="Product-java"><a href="#Product-java" class="headerlink" title="Product.java"></a>Product.java</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">public interface Product &#123;</span><br><span class="line">    void use();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="ConcreteProduct-java"><a href="#ConcreteProduct-java" class="headerlink" title="ConcreteProduct.java"></a>ConcreteProduct.java</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">public class ConcreteProduct implements Product &#123;</span><br><span class="line"></span><br><span class="line">    public <span class="function"><span class="title">ConcreteProduct</span></span>() &#123;</span><br><span class="line">        System.out.println(<span class="string">"ConcreteProduct Create"</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    public void <span class="function"><span class="title">use</span></span>() &#123;</span><br><span class="line">        System.out.println(<span class="string">"ConcreteProduct use"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="测试类"><a href="#测试类" class="headerlink" title="测试类"></a>测试类</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">public class MyClass &#123;</span><br><span class="line"></span><br><span class="line">    public static void main(String[] args) &#123;</span><br><span class="line">        Factory factory = new ConcreteFactory();</span><br><span class="line">        Product product = factory.factoryMethod();</span><br><span class="line">        product.use();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="模式分析"><a href="#模式分析" class="headerlink" title="模式分析"></a>模式分析</h2><p>工厂方法模式是简单工厂模式的进一步抽象和推广。由于使用了面向对象的多态性，工厂方法模式保持了简单工厂模式的优点，而且克服了它的缺点。在工厂方法模式中，核心的工厂类不再负责所有产品的创建，而是将具体创建工作交给子类去做。这个核心类仅仅负责给出具体工厂必须实现的接口，而不负责哪一个产品类被实例化这种细节，这使得工厂方法模式可以允许系统在不修改工厂角色的情况下引进新产品。</p>
+<h2 id="工厂方法模式的优点"><a href="#工厂方法模式的优点" class="headerlink" title="工厂方法模式的优点"></a>工厂方法模式的优点</h2><ul>
+<li><p>在工厂方法模式中，工厂方法用来创建客户所需要的产品，同时还向客户隐藏了哪种具体产品类将被实例化这一细节，用户只需要关心所需产品对应的工厂，无须关心创建细节，甚至无须知道具体产品类的类名。</p>
+</li>
+<li><p>基于工厂角色和产品角色的多态性设计是工厂方法模式的关键。它能够使工厂可以自主确定创建何种产品对象，而如何创建这个对象的细节则完全封装在具体工厂内部。工厂方法模式之所以又被称为多态工厂模式，是因为所有的具体工厂类都具有同一抽象父类。</p>
+</li>
+</ul>
+<p>+使用工厂方法模式的另一个优点是在系统中加入新产品时，无须修改抽象工厂和抽象产品提供的接口，无须修改客户端，也无须修改其他的具体工厂和具体产品，而只要添加一个具体工厂和具体产品就可以了。这样，系统的可扩展性也就变得非常好，完全符合“开闭原则”。</p>
+<h2 id="工厂方法模式的缺点"><a href="#工厂方法模式的缺点" class="headerlink" title="工厂方法模式的缺点"></a>工厂方法模式的缺点</h2><ul>
+<li><p>在添加新产品时，需要编写新的具体产品类，而且还要提供与之对应的具体工厂类，系统中类的个数将成对增加，在一定程度上增加了系统的复杂度，有更多的类需要编译和运行，会给系统带来一些额外的开销。</p>
+</li>
+<li><p>由于考虑到系统的可扩展性，需要引入抽象层，在客户端代码中均使用抽象层进行定义，增加了系统的抽象性和理解难度，且在实现时可能需要用到DOM、反射等技术，增加了系统的实现难度。</p>
+</li>
+</ul>
+<p>最后，工厂方法模式还满足了迪米特原则，依赖倒转原则，里氏替换原则，是典型的解耦框架。</p>
+<p>参考<br>    <a href="http://design-patterns.readthedocs.io/zh_CN/latest/creational_patterns/factory_method.html" target="_blank" rel="external">http://design-patterns.readthedocs.io/zh_CN/latest/creational_patterns/factory_method.html</a><br>    <a href="http://www.cnblogs.com/ytaozhao/p/3389883.html" target="_blank" rel="external">http://www.cnblogs.com/ytaozhao/p/3389883.html</a></p>
+<p><strong>欢迎大家关注我的微信公众号，我会不定期的分享些Android开发的技巧</strong></p>
+<p><img src="/images/weixing.jpg" alt=""></p>
+  
+	</div>
+		<footer class="article-footer clearfix">
+<div class="article-catetags">
+
+<div class="article-categories">
+  <span></span>
+  <a class="article-category-link" href="/categories/Design-Pattern/">Design Pattern</a>
+</div>
+
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/Design-Pattern/">Design Pattern</a>
+  </div>
+
+</div>
+
+
+
+	<div class="article-share" id="share">
+	
+	  <div data-url="http://HJXANDHMR.github.io/2016/05/28/DesigPattern-FactoryMethod/" data-title="设计模式—工厂方法模式 | Android学习" data-tsina="null" class="share clearfix">
+	  </div>
+	
+	</div>
+
+
+</footer>
+
+   	       
+	</article>
+	
+<nav class="article-nav clearfix">
+ 
+
+<div class="next">
+<a href="/2016/05/27/DesignPattern-SimpleFactory/"  title="设计模式—简单工厂模式">
+ <strong>下一篇：</strong><br/> 
+ <span>设计模式—简单工厂模式
+</span>
+</a>
+</div>
+
+</nav>
+
+	
+<section id="comments" class="comment">
+	<div class="ds-thread" data-thread-key="2016/05/28/DesigPattern-FactoryMethod/" data-title="设计模式—工厂方法模式" data-url="http://HJXANDHMR.github.io/2016/05/28/DesigPattern-FactoryMethod/"></div>
+</section>
+
+
+</div>  
+      <div class="openaside"><a class="navbutton" href="#" title="显示侧边栏"></a></div>
+
+  <div id="toc" class="toc-aside">
+  <strong class="toc-title">文章目录</strong>
+ 
+ <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#模式定义"><span class="toc-number">1.</span> <span class="toc-text">模式定义</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#模式结构"><span class="toc-number">2.</span> <span class="toc-text">模式结构</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#UML图"><span class="toc-number">3.</span> <span class="toc-text">UML图</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#代码实现"><span class="toc-number">4.</span> <span class="toc-text">代码实现</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Factory-java"><span class="toc-number">4.1.</span> <span class="toc-text">Factory.java</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#ConcreteFactory-java"><span class="toc-number">4.2.</span> <span class="toc-text">ConcreteFactory.java</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Product-java"><span class="toc-number">4.3.</span> <span class="toc-text">Product.java</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#ConcreteProduct-java"><span class="toc-number">4.4.</span> <span class="toc-text">ConcreteProduct.java</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#测试类"><span class="toc-number">4.5.</span> <span class="toc-text">测试类</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#模式分析"><span class="toc-number">5.</span> <span class="toc-text">模式分析</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#工厂方法模式的优点"><span class="toc-number">6.</span> <span class="toc-text">工厂方法模式的优点</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#工厂方法模式的缺点"><span class="toc-number">7.</span> <span class="toc-text">工厂方法模式的缺点</span></a></li></ol>
+ 
+  </div>
+
+<div id="asidepart">
+<div class="closeaside"><a class="closebutton" href="#" title="隐藏侧边栏"></a></div>
+<aside class="clearfix">
+
+  
+<div class="categorieslist">
+	<p class="asidetitle">分类</p>
+		<ul>
+		
+		  
+			<li><a href="/categories/Android/" title="Android">Android<sup>4</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Android-NDK/" title="Android NDK">Android NDK<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/AndroidStudio/" title="AndroidStudio">AndroidStudio<sup>2</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Android工具类/" title="Android工具类">Android工具类<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Design-Pattern/" title="Design Pattern">Design Pattern<sup>2</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Linux/" title="Linux">Linux<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/ListView/" title="ListView">ListView<sup>2</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Markdown/" title="Markdown">Markdown<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/WCF/" title="WCF">WCF<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/hexo/" title="hexo">hexo<sup>3</sup></a></li>
+		  
+		
+		</ul>
+</div>
+
+
+  
+<div class="tagslist">
+	<p class="asidetitle">标签</p>
+		<ul class="clearfix">
+		
+			
+				<li><a href="/tags/hexo/" title="hexo">hexo<sup>3</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Android/" title="Android">Android<sup>3</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/AndroidStudio/" title="AndroidStudio">AndroidStudio<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Design-Pattern/" title="Design Pattern">Design Pattern<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/ListView/" title="ListView">ListView<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/WCF/" title="WCF">WCF<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Robolectric/" title="Robolectric">Robolectric<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Linux/" title="Linux">Linux<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Android-NDK/" title="Android NDK">Android NDK<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Markdown/" title="Markdown">Markdown<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Android工具类/" title="Android工具类">Android工具类<sup>1</sup></a></li>
+			
+		
+		</ul>
+</div>
+
+
+  
+
+
+  
+<div class="github-card">
+<p class="asidetitle">Github 名片</p>
+<div class="github-card" data-github="HJXANDHMR" data-width="220" data-height="119" data-theme="medium">
+<script type="text/javascript" src="//cdn.jsdelivr.net/github-cards/latest/widget.js" ></script>
+</div>
+  </div>
+
+
+
+  <div class="linkslist">
+  <p class="asidetitle">友情链接</p>
+    <ul>
+        
+          <li>
+            
+            	<a href="http://blog.csdn.net/qq_14906597" target="_blank" title="一个面向程序员交流分享的新一代社区">csdn博客</a>
+            
+          </li>
+        
+    </ul>
+</div>
+
+  <div class="weiboshow">
+  <p class="asidetitle">新浪微博</p>
+    <iframe width="100%" height="119" class="share_self"  frameborder="0" scrolling="no" src="http://widget.weibo.com/weiboshow/index.php?language=&width=0&height=119&fansRow=2&ptype=1&speed=0&skin=9&isTitle=1&noborder=1&isWeibo=0&isFans=0&uid=null&verifier=&dpc=1"></iframe>
+</div>
+
+
+</aside>
+</div>
+    </div>
+    <footer><div id="footer" >
+	
+	
+	<section class="info">
+		<p> Hello ,I&#39;m hjx  <br/>
+			This is my blog,believe it or not.</p>
+	</section>
+	 
+	<div class="social-font" class="clearfix">
+		
+		<a href="http://weibo.com/hjxandhmr" target="_blank" class="icon-weibo" title="微博"></a>
+		
+		
+		<a href="https://github.com/HJXANDHMR" target="_blank" class="icon-github" title="github"></a>
+		
+		
+		
+		
+		
+		
+		
+		
+		
+	</div>
+			
+		
+
+		<p class="copyright">
+		Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/wuchong/jacman" target="_blank" title="Jacman">Jacman</a> © 2016 
+		
+		<a href="/about" target="_blank" title="何健雄">何健雄</a>
+		
+		
+		<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+		</script>
+		</br>本站总访问量<span id="busuanzi_value_site_pv"></span>次,本站访客数<span id="busuanzi_value_site_uv"></span>人次,本文总阅读量<span id="busuanzi_value_page_pv"></span>次
+
+		</p>
+</div>
+
+
+</footer>
+    <script src="/js/jquery-2.0.3.min.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+<script src="/js/jquery.qrcode-0.12.0.min.js"></script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.navbar').click(function(){
+    $('header nav').toggleClass('shownav');
+  });
+  var myWidth = 0;
+  function getSize(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+  };
+  var m = $('#main'),
+      a = $('#asidepart'),
+      c = $('.closeaside'),
+      o = $('.openaside');
+  c.click(function(){
+    a.addClass('fadeOut').css('display', 'none');
+    o.css('display', 'block').addClass('fadeIn');
+    m.addClass('moveMain');
+  });
+  o.click(function(){
+    o.css('display', 'none').removeClass('beforeFadeIn');
+    a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');      
+    m.removeClass('moveMain');
+  });
+  $(window).scroll(function(){
+    o.css("top",Math.max(80,260-$(this).scrollTop()));
+  });
+  
+  $(window).resize(function(){
+    getSize(); 
+    if (myWidth >= 1024) {
+      $('header nav').removeClass('shownav');
+    }else{
+      m.removeClass('moveMain');
+      a.css('display', 'block').removeClass('fadeOut');
+      o.css('display', 'none');
+      
+      $('#toc.toc-aside').css('display', 'none');
+        
+    }
+  });
+});
+</script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var ai = $('.article-content>iframe'),
+      ae = $('.article-content>embed'),
+      t  = $('#toc'),
+      ta = $('#toc.toc-aside'),
+      o  = $('.openaside'),
+      c  = $('.closeaside');
+  if(ai.length>0){
+    ai.wrap('<div class="video-container" />');
+  };
+  if(ae.length>0){
+   ae.wrap('<div class="video-container" />');
+  };
+  c.click(function(){
+    ta.css('display', 'block').addClass('fadeIn');
+  });
+  o.click(function(){
+    ta.css('display', 'none');
+  });
+  $(window).scroll(function(){
+    ta.css("top",Math.max(140,320-$(this).scrollTop()));
+  });
+});
+</script>
+
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var $this = $('.share'),
+      url = $this.attr('data-url'),
+      encodedUrl = encodeURIComponent(url),
+      title = $this.attr('data-title'),
+      tsina = $this.attr('data-tsina'),
+      description = $this.attr('description');
+  var html = [
+  '<div class="hoverqrcode clearfix"></div>',
+  '<a class="overlay" id="qrcode"></a>',
+  '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+  '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+  '<a href="#qrcode" class="article-share-qrcode" title="微信"></a>',
+  '<a href="http://widget.renren.com/dialog/share?resourceUrl=' + encodedUrl + '&srcUrl=' + encodedUrl + '&title=' + title +'" class="article-share-renren" target="_blank" title="人人"></a>',
+  '<a href="http://service.weibo.com/share/share.php?title='+title+'&url='+encodedUrl +'&ralateUid='+ tsina +'&searchPic=true&style=number' +'" class="article-share-weibo" target="_blank" title="微博"></a>',
+  '<span title="Share to"></span>'
+  ].join('');
+  $this.append(html);
+
+  $('.hoverqrcode').hide();
+
+  var myWidth = 0;
+  function updatehoverqrcode(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+    var qrsize = myWidth > 1024 ? 200:100;
+    var options = {render: 'image', size: qrsize, fill: '#2ca6cb', text: url, radius: 0.5, quiet: 1};
+    var p = $('.article-share-qrcode').position();
+    $('.hoverqrcode').empty().css('width', qrsize).css('height', qrsize)
+                          .css('left', p.left-qrsize/2+20).css('top', p.top-qrsize-10)
+                          .qrcode(options);
+  };
+  $(window).resize(function(){
+    $('.hoverqrcode').hide();
+  });
+  $('.article-share-qrcode').click(function(){
+    updatehoverqrcode();
+    $('.hoverqrcode').toggle();
+  });
+  $('.article-share-qrcode').hover(function(){}, function(){
+      $('.hoverqrcode').hide();
+  });
+});   
+</script>
+
+
+
+<script type="text/javascript">
+  var duoshuoQuery = {short_name:"hjxandhmr"};
+  (function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';ds.async = true;
+    ds.src = '//static.duoshuo.com/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0] 
+    || document.getElementsByTagName('body')[0]).appendChild(ds);
+  })();
+</script> 
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.article-content').each(function(i){
+    $(this).find('img').each(function(){
+      if ($(this).parent().hasClass('fancybox')) return;
+      var alt = this.alt;
+      if (alt) $(this).after('<span class="caption">' + alt + '</span>');
+      $(this).wrap('<a href="' + this.src + '" title="' + alt + '" class="fancybox"></a>');
+    });
+    $(this).find('.fancybox').each(function(){
+      $(this).attr('rel', 'article' + i);
+    });
+  });
+  if($.fancybox){
+    $('.fancybox').fancybox();
+  }
+}); 
+</script>
+
+
+
+<!-- Analytics Begin -->
+
+
+
+
+
+<!-- Analytics End -->
+
+<!-- Totop Begin -->
+
+	<div id="totop">
+	<a title="返回顶部"><img src="/img/scrollup.png"/></a>
+	</div>
+	<script src="/js/totop.js"></script>
+
+<!-- Totop End -->
+
+<!-- MathJax Begin -->
+<!-- mathjax config similar to math.stackexchange -->
+
+
+<!-- MathJax End -->
+
+<!-- Tiny_search Begin -->
+
+<!-- Tiny_search End -->
+
+  </body>
+</html>
