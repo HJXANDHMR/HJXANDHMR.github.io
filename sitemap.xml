@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://HJXANDHMR.github.io/2016/05/30/DesignPattern-AbstractFactory/</loc>
+    
+    <lastmod>2016-05-30T10:55:45.634Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://HJXANDHMR.github.io/2016/05/28/DesigPattern-FactoryMethod/</loc>
     
     <lastmod>2016-05-28T02:00:03.004Z</lastmod>

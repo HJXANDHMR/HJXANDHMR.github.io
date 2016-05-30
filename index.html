@@ -81,6 +81,101 @@
         <header class="article-info clearfix">
   <h1 itemprop="name">
     
+      <a href="/2016/05/30/DesignPattern-AbstractFactory/" title="设计模式—抽象工厂模式" itemprop="url">设计模式—抽象工厂模式</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="/about" title="何健雄" target="_blank" itemprop="author">何健雄</a>
+		
+  <p class="article-time">
+    <time datetime="2016-05-30T10:23:32.493Z" itemprop="datePublished"> 发表于 2016-05-30</time>
+    
+  </p>
+</header>
+    <div class="article-content">
+        
+        <p>前面我们学习了了<a href="http://hjxandhmr.github.io/2016/05/27/DesignPattern-SimpleFactory/">简单工厂模式</a>和<a href="http://hjxandhmr.github.io/2016/05/28/DesigPattern-FactoryMethod/">工厂方法模式</a>，今天我们来学习设计模式中最后的一种工厂模式——抽象工厂模式(Abstract Factory Pattern)，它属于类创建型模式。</p>
+<p>抽象工厂模式其实是工厂方法模式的一种扩展，应用抽象工厂模式可以创建一系列的产品（产品族），而不是像工厂方法模式中的只能创建一种产品。</p>
+<h2 id="模式定义"><a href="#模式定义" class="headerlink" title="模式定义"></a>模式定义</h2><p>为创建一组相关或相互依赖的对象提供一个接口，而且无需指定他们的具体类。</p>
+<h2 id="模式结构"><a href="#模式结构" class="headerlink" title="模式结构"></a>模式结构</h2><p>抽象工厂模式包含如下角色：</p>
+<p><strong>AbstractFactory：</strong> 抽象工厂<br><strong>ConcreteFactory：</strong> 具体工厂<br><strong>AbstractProduct：</strong> 抽象产品<br><strong>Product：</strong> 具体产品</p>
+<h2 id="UML图"><a href="#UML图" class="headerlink" title="UML图"></a>UML图</h2><p><img src="/images/DesignPattern/AbstractFactoryUML.png" alt=""></p>
+<h2 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h2><h3 id="AbstractFactory-java"><a href="#AbstractFactory-java" class="headerlink" title="AbstractFactory.java"></a>AbstractFactory.java</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">public interface AbstractFactory &#123;</span><br><span class="line"></span><br><span class="line">    Cpu createCpu();</span><br><span class="line"></span><br><span class="line">    Mainboard createMainboard();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="AmdFactory-java"><a href="#AmdFactory-java" class="headerlink" title="AmdFactory.java"></a>AmdFactory.java</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">public class AmdFactory implements AbstractFactory &#123;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    public Cpu <span class="function"><span class="title">createCpu</span></span>() &#123;</span><br><span class="line">        <span class="built_in">return</span> new AmdCpu();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    public Mainboard <span class="function"><span class="title">createMainboard</span></span>() &#123;</span><br><span class="line">        <span class="built_in">return</span> new AmdMainboard();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="IntelFactory-java"><a href="#IntelFactory-java" class="headerlink" title="IntelFactory.java"></a>IntelFactory.java</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">public class IntelFactory implements AbstractFactory &#123;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    public Cpu <span class="function"><span class="title">createCpu</span></span>() &#123;</span><br><span class="line">        <span class="built_in">return</span> new IntelCpu();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    public Mainboard <span class="function"><span class="title">createMainboard</span></span>() &#123;</span><br><span class="line">        <span class="built_in">return</span> new IntelMainboard();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="Mainboard-java"><a href="#Mainboard-java" class="headerlink" title="Mainboard.java"></a>Mainboard.java</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">public interface Mainboard &#123;</span><br><span class="line"></span><br><span class="line">    void installCpu();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="IntelMainboard-java"><a href="#IntelMainboard-java" class="headerlink" title="IntelMainboard.java"></a>IntelMainboard.java</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">public class IntelMainboard implements Mainboard &#123;</span><br><span class="line"></span><br><span class="line">    public <span class="function"><span class="title">IntelMainboard</span></span>() &#123;</span><br><span class="line">        System.out.println(<span class="string">"Create IntelMainboard"</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    public void <span class="function"><span class="title">installCpu</span></span>() &#123;</span><br><span class="line">        System.out.println(<span class="string">"IntelMainboard installCpu"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="AmdMainboard-java"><a href="#AmdMainboard-java" class="headerlink" title="AmdMainboard.java"></a>AmdMainboard.java</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">public class AmdMainboard implements Mainboard &#123;</span><br><span class="line"></span><br><span class="line">    public <span class="function"><span class="title">AmdMainboard</span></span>() &#123;</span><br><span class="line">        System.out.println(<span class="string">"Create AmdMainboard"</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    public void <span class="function"><span class="title">installCpu</span></span>() &#123;</span><br><span class="line">        System.out.println(<span class="string">" AmdMainboard installCpu"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="ComputerEngineer-java"><a href="#ComputerEngineer-java" class="headerlink" title="ComputerEngineer.java"></a>ComputerEngineer.java</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line">public class ComputerEngineer  &#123;</span><br><span class="line"></span><br><span class="line">    /**</span><br><span class="line">     * 定义组装机需要的CPU</span><br><span class="line">     */</span><br><span class="line">    private Cpu cpu = null;</span><br><span class="line">    /**</span><br><span class="line">     * 定义组装机需要的主板</span><br><span class="line">     */</span><br><span class="line">    private Mainboard mainboard = null;</span><br><span class="line"></span><br><span class="line">    public void makeComputer(AbstractFactory af)&#123;</span><br><span class="line">        /**</span><br><span class="line">         * 组装机器的基本步骤</span><br><span class="line">         */</span><br><span class="line">        //1:首先准备好装机所需要的配件</span><br><span class="line">        prepareHardwares(af);</span><br><span class="line">        //2:组装机器</span><br><span class="line">        //3:测试机器</span><br><span class="line">        //4：交付客户</span><br><span class="line">    &#125;</span><br><span class="line">    private void prepareHardwares(AbstractFactory af)&#123;</span><br><span class="line">        //这里要去准备CPU和主板的具体实现，为了示例简单，这里只准备这两个</span><br><span class="line">        //可是，装机工程师并不知道如何去创建，怎么办呢？</span><br><span class="line"></span><br><span class="line">        //直接找相应的工厂获取</span><br><span class="line">        cpu = af.createCpu();</span><br><span class="line">        mainboard = af.createMainboard();</span><br><span class="line"></span><br><span class="line">        //测试配件是否好用</span><br><span class="line">        cpu.calculate();</span><br><span class="line">        mainboard.installCpu();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="测试类"><a href="#测试类" class="headerlink" title="测试类"></a>测试类</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">public class MyClass &#123;</span><br><span class="line">    public static void main(String[]args)&#123;</span><br><span class="line">        //创建装机工程师对象</span><br><span class="line">        ComputerEngineer cf = new ComputerEngineer();</span><br><span class="line">        //客户选择并创建需要使用的产品对象</span><br><span class="line">        AbstractFactory af = new IntelFactory();</span><br><span class="line">        //告诉装机工程师自己选择的产品，让装机工程师组装电脑</span><br><span class="line">        cf.makeComputer(af);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="模式分析"><a href="#模式分析" class="headerlink" title="模式分析"></a>模式分析</h2><p>每一个模式都是针对一定问题的解决方案，工厂方法模式针对的是一个产品等级结构，而抽象工厂模式针对的是多个产品等级结构。有多少个产品等级结构，就会在工厂角色中发现多少个工厂方法。每一个产品等级结构中有多少个具体的产品，就有多少个产品族，也就会在工厂等级结构中发现多少个具体工厂。</p>
+<h2 id="抽象工厂模式的优点"><a href="#抽象工厂模式的优点" class="headerlink" title="抽象工厂模式的优点"></a>抽象工厂模式的优点</h2><ul>
+<li><p>抽象工厂模式隔离了具体类的生成，使得客户并不需要知道什么被创建。由于这种隔离，更换一个具体工厂就变得相对容易。所有的具体工厂都实现了抽象工厂中定义的那些公共接口，因此只需改变具体工厂的实例，就可以在某种程度上改变整个软件系统的行为。另外，应用抽象工厂模式可以实现高内聚低耦合的设计目的，因此抽象工厂模式得到了广泛的应用。</p>
+</li>
+<li><p>当一个产品族中的多个对象被设计成一起工作时，它能够保证客户端始终只使用同一个产品族中的对象。这对一些需要根据当前环境来决定其行为的软件系统来说，是一种非常实用的设计模式。</p>
+</li>
+<li><p>增加新的具体工厂和产品族很方便，无须修改已有系统，符合“开闭原则”。</p>
+</li>
+</ul>
+<h2 id="抽象工厂模式的缺点"><a href="#抽象工厂模式的缺点" class="headerlink" title="抽象工厂模式的缺点"></a>抽象工厂模式的缺点</h2><ul>
+<li><p>在添加新的产品对象时，难以扩展抽象工厂来生产新种类的产品，这是因为在抽象工厂角色中规定了所有可能被创建的产品集合，要支持新种类的产品就意味着要对该接口进行扩展，而这将涉及到对抽象工厂角色及其所有子类的修改，显然会带来较大的不便。</p>
+</li>
+<li><p>开闭原则的倾斜性（增加新的工厂和产品族容易，增加新的产品等级结构麻烦）。</p>
+</li>
+</ul>
+<p>到现在为止，设计模式中的所有工厂类的模式就都已经学习完了。</p>
+<p>参考<br>    <a href="http://design-patterns.readthedocs.io/zh_CN/latest/creational_patterns/abstract_factory.html" target="_blank" rel="external">http://design-patterns.readthedocs.io/zh_CN/latest/creational_patterns/abstract_factory.html</a><br>    <a href="http://www.cnblogs.com/ytaozhao/p/3392149.html" target="_blank" rel="external">http://www.cnblogs.com/ytaozhao/p/3392149.html</a></p>
+<p><strong>欢迎大家关注我的微信公众号，我会不定期的分享些Android开发的技巧</strong></p>
+<p><img src="/images/weixing.jpg" alt=""></p>
+
+        
+        
+        <p class="article-more-link">
+          
+       </p>
+    </div>
+    <footer class="article-footer clearfix">
+<div class="article-catetags">
+
+<div class="article-categories">
+  <span></span>
+  <a class="article-category-link" href="/categories/Design-Pattern/">Design Pattern</a>
+</div>
+
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/Design-Pattern/">Design Pattern</a>
+  </div>
+
+</div>
+
+
+
+
+<div class="comments-count">
+	
+	  	<span></span>
+		<a href="/2016/05/30/DesignPattern-AbstractFactory/#comments" class="ds-thread-count comments-count-link" data-thread-key="2016/05/30/DesignPattern-AbstractFactory/" data-count-type="comments">&nbsp;</a>
+	
+</div>
+
+</footer>
+
+
+    </article>
+
+
+
+
+
+
+   
+    
+    <article class="post-expand post" itemprop="articleBody"> 
+        <header class="article-info clearfix">
+  <h1 itemprop="name">
+    
       <a href="/2016/05/28/DesigPattern-FactoryMethod/" title="设计模式—工厂方法模式" itemprop="url">设计模式—工厂方法模式</a>
   </h1>
   <p class="article-author">By
@@ -847,77 +942,6 @@ public interface ActivityComponent {
 
 
 
-   
-    
-    <article class="post-expand post" itemprop="articleBody"> 
-        <header class="article-info clearfix">
-  <h1 itemprop="name">
-    
-      <a href="/2016/04/21/Android-ListViewReusePrinciple/" title="ListView复用原理和提升效率" itemprop="url">ListView复用原理和提升效率</a>
-  </h1>
-  <p class="article-author">By
-       
-		<a href="/about" title="何健雄" target="_blank" itemprop="author">何健雄</a>
-		
-  <p class="article-time">
-    <time datetime="2016-04-21T12:59:40.408Z" itemprop="datePublished"> 发表于 2016-04-21</time>
-    
-  </p>
-</header>
-    <div class="article-content">
-        
-        <h2 id="复用原理以及提升效率"><a href="#复用原理以及提升效率" class="headerlink" title="复用原理以及提升效率"></a>复用原理以及提升效率</h2><h3 id="复用item"><a href="#复用item" class="headerlink" title="复用item"></a>复用item</h3><p>ListView在加载数据的时候是会复用item的，即ListView是会缓存至少一屏幕的item.<br>如下图所示。<br><img src="/images/ListView/ListView_yuanli.jpg" alt=""></p>
-<p>从图上可以看出当item1滚出屏幕，并且一个新的项目从屏幕底端上来时，ListView再请求一个视图。convertView此时不是空值了，它的值是item1。你只需设定新的数据然后返回convertView，不必重新创建一个视图。</p>
-<h2 id="提高ListView的效率"><a href="#提高ListView的效率" class="headerlink" title="提高ListView的效率"></a>提高ListView的效率</h2><h3 id="最简单的使用ListView"><a href="#最简单的使用ListView" class="headerlink" title="最简单的使用ListView"></a>最简单的使用ListView</h3><p>没有复用convertView，每次都要重新创建,效率极其低下<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">public View getView(int position, View convertView, ViewGroup parent) &#123;</span><br><span class="line"></span><br><span class="line">           LayoutInflater layoutInflater = LayoutInflater.from(context);</span><br><span class="line">           convertView = layoutInflater.inflate(R.layout.listview_item, null);</span><br><span class="line">           TextView textView = (TextView) (convertView).findViewById(R.id.textview);</span><br><span class="line">           textView.setText(persons.get(position).getName());</span><br><span class="line">           <span class="built_in">return</span> convertView;</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure></p>
-<h3 id="复用convertView"><a href="#复用convertView" class="headerlink" title="复用convertView"></a>复用convertView</h3><p>利用 convertView 回收视图, 效率提高 200%<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">public View getView(int position, View convertView, ViewGroup parent) &#123;</span><br><span class="line"></span><br><span class="line"> 		LayoutInflater layoutInflater = LayoutInflater.from(context);</span><br><span class="line">        <span class="keyword">if</span> (convertView == null) &#123;</span><br><span class="line">			 convertView = layoutInflater.inflate(R.layout.listview_item, null);</span><br><span class="line">		&#125;</span><br><span class="line"></span><br><span class="line">		TextView textView = (TextView) (convertView).findViewById(R.id.textview);</span><br><span class="line">		textView.setText(persons.get(position).getName());</span><br><span class="line">		<span class="built_in">return</span> convertView;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure></p>
-<h3 id="使用ViewHolder"><a href="#使用ViewHolder" class="headerlink" title="使用ViewHolder"></a>使用ViewHolder</h3><p>使用ViewHolder模式效率再提高50%</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">public View getView(int position, View convertView, ViewGroup parent) &#123;</span><br><span class="line">       ViewHolder holder;</span><br><span class="line">       <span class="keyword">if</span> (convertView == null) &#123;</span><br><span class="line">           LayoutInflater layoutInflater = LayoutInflater.from(context);</span><br><span class="line">           convertView = layoutInflater.inflate(R.layout.listview_item, null);</span><br><span class="line">           holder =new ViewHolder();</span><br><span class="line">           holder.textView = (TextView) (convertView).findViewById(R.id.textview);</span><br><span class="line">           convertView.setTag(holder);</span><br><span class="line"></span><br><span class="line">       &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">           holder = (ViewHolder) convertView.getTag();</span><br><span class="line"></span><br><span class="line">       &#125;</span><br><span class="line">       holder.textView.setText(persons.get(position).getName());</span><br><span class="line">       <span class="built_in">return</span> convertView;</span><br><span class="line">   &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">   class ViewHolder &#123;</span><br><span class="line">       private TextView textView;</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
-<p>通过本篇博客应该明白了ListView是怎样复用，以及怎样提高ListView的工作效率了。</p>
-<p><strong>欢迎大家关注我的微信公众号，我会不定期的分享些Android开发的技巧</strong></p>
-<p><img src="/images/weixing.jpg" alt=""></p>
-
-        
-        
-        <p class="article-more-link">
-          
-       </p>
-    </div>
-    <footer class="article-footer clearfix">
-<div class="article-catetags">
-
-<div class="article-categories">
-  <span></span>
-  <a class="article-category-link" href="/categories/ListView/">ListView</a>
-</div>
-
-
-  <div class="article-tags">
-  
-  <span></span> <a href="/tags/ListView/">ListView</a>
-  </div>
-
-</div>
-
-
-
-
-<div class="comments-count">
-	
-	  	<span></span>
-		<a href="/2016/04/21/Android-ListViewReusePrinciple/#comments" class="ds-thread-count comments-count-link" data-thread-key="2016/04/21/Android-ListViewReusePrinciple/" data-count-type="comments">&nbsp;</a>
-	
-</div>
-
-</footer>
-
-
-    </article>
-
-
-
-
-
-
 
   <nav id="page-nav" class="clearfix">
     <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/">Next<span></span></a>
@@ -952,7 +976,7 @@ public interface ActivityComponent {
 		  
 		
 		  
-			<li><a href="/categories/Design-Pattern/" title="Design Pattern">Design Pattern<sup>2</sup></a></li>
+			<li><a href="/categories/Design-Pattern/" title="Design Pattern">Design Pattern<sup>3</sup></a></li>
 		  
 		
 		  
@@ -989,15 +1013,15 @@ public interface ActivityComponent {
 			
 		
 			
+				<li><a href="/tags/Design-Pattern/" title="Design Pattern">Design Pattern<sup>3</sup></a></li>
+			
+		
+			
 				<li><a href="/tags/Android/" title="Android">Android<sup>3</sup></a></li>
 			
 		
 			
 				<li><a href="/tags/AndroidStudio/" title="AndroidStudio">AndroidStudio<sup>2</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/Design-Pattern/" title="Design Pattern">Design Pattern<sup>2</sup></a></li>
 			
 		
 			
@@ -1017,15 +1041,15 @@ public interface ActivityComponent {
 			
 		
 			
+				<li><a href="/tags/Android工具类/" title="Android工具类">Android工具类<sup>1</sup></a></li>
+			
+		
+			
 				<li><a href="/tags/Android-NDK/" title="Android NDK">Android NDK<sup>1</sup></a></li>
 			
 		
 			
 				<li><a href="/tags/Markdown/" title="Markdown">Markdown<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/Android工具类/" title="Android工具类">Android工具类<sup>1</sup></a></li>
 			
 		
 		</ul>
