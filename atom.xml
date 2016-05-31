@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://HJXANDHMR.github.io/"/>
-  <updated>2016-05-30T10:55:45.634Z</updated>
+  <updated>2016-05-31T11:53:50.300Z</updated>
   <id>http://HJXANDHMR.github.io/</id>
   
   <author>
@@ -14,6 +14,62 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>设计模式—单例模式</title>
+    <link href="http://HJXANDHMR.github.io/2016/05/31/DesignPattern-Singleton/"/>
+    <id>http://HJXANDHMR.github.io/2016/05/31/DesignPattern-Singleton/</id>
+    <published>2016-05-31T11:31:21.504Z</published>
+    <updated>2016-05-31T11:53:50.300Z</updated>
+    
+    <content type="html">&lt;p&gt;我们前面已经学习了&lt;a href=&quot;&quot;&gt;简单工厂模式&lt;/a&gt;,&lt;a href=&quot;&quot;&gt;工厂方法模式&lt;/a&gt;,&lt;a href=&quot;&quot;&gt;抽象工厂模式&lt;/a&gt;，今天我们来学习下同样是创建型模式的 &lt;strong&gt;单例模式&lt;/strong&gt; (Singleton Pattern)。&lt;/p&gt;
+&lt;h2 id=&quot;模式定义&quot;&gt;&lt;a href=&quot;#模式定义&quot; class=&quot;headerlink&quot; title=&quot;模式定义&quot;&gt;&lt;/a&gt;模式定义&lt;/h2&gt;&lt;p&gt;单例模式确保某一个类只有一个实例，而且自行实例化并向整个系统提供这个实例，这个类称为单例类，它提供全局访问的方法。&lt;/p&gt;
+&lt;h2 id=&quot;模式结构&quot;&gt;&lt;a href=&quot;#模式结构&quot; class=&quot;headerlink&quot; title=&quot;模式结构&quot;&gt;&lt;/a&gt;模式结构&lt;/h2&gt;&lt;p&gt;单例模式包含如下角色：&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Singleton：&lt;/strong&gt; 单例&lt;/p&gt;
+&lt;h2 id=&quot;UML图&quot;&gt;&lt;a href=&quot;#UML图&quot; class=&quot;headerlink&quot; title=&quot;UML图&quot;&gt;&lt;/a&gt;UML图&lt;/h2&gt;&lt;p&gt;&lt;img src=&quot;/images/DesignPattern/SingletonUML.png&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;h2 id=&quot;代码实现&quot;&gt;&lt;a href=&quot;#代码实现&quot; class=&quot;headerlink&quot; title=&quot;代码实现&quot;&gt;&lt;/a&gt;代码实现&lt;/h2&gt;&lt;h3 id=&quot;Singleton-java&quot;&gt;&lt;a href=&quot;#Singleton-java&quot; class=&quot;headerlink&quot; title=&quot;Singleton.java&quot;&gt;&lt;/a&gt;Singleton.java&lt;/h3&gt;&lt;figure class=&quot;highlight bash&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;10&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;11&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;12&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;13&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;14&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;15&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;16&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;17&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;18&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;19&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;20&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;public class Singleton &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    private static Singleton sSingleton;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    //将构造函数私有化&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    private &lt;span class=&quot;function&quot;&gt;&lt;span class=&quot;title&quot;&gt;Singleton&lt;/span&gt;&lt;/span&gt;() &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    //提供一个全家的静态方法&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    public static Singleton &lt;span class=&quot;function&quot;&gt;&lt;span class=&quot;title&quot;&gt;getSingleton&lt;/span&gt;&lt;/span&gt;() &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        &lt;span class=&quot;keyword&quot;&gt;if&lt;/span&gt; (sSingleton == null) &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;            sSingleton = new Singleton();&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        &lt;span class=&quot;built_in&quot;&gt;return&lt;/span&gt; sSingleton;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    public void &lt;span class=&quot;function&quot;&gt;&lt;span class=&quot;title&quot;&gt;singletonOperation&lt;/span&gt;&lt;/span&gt;() &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        System.out.println(&lt;span class=&quot;string&quot;&gt;&quot;singletonOperation&quot;&lt;/span&gt;);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;h3 id=&quot;测试类&quot;&gt;&lt;a href=&quot;#测试类&quot; class=&quot;headerlink&quot; title=&quot;测试类&quot;&gt;&lt;/a&gt;测试类&lt;/h3&gt;&lt;figure class=&quot;highlight bash&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;public class MyClass &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    public static void main(String[] args) &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        Singleton singleton = Singleton.getSingleton();&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        singleton.singletonOperation();&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;h2 id=&quot;模式分析&quot;&gt;&lt;a href=&quot;#模式分析&quot; class=&quot;headerlink&quot; title=&quot;模式分析&quot;&gt;&lt;/a&gt;模式分析&lt;/h2&gt;&lt;p&gt;单例模式的目的是保证一个类仅有一个实例，并提供一个访问它的全局访问点。单例模式包含的角色只有一个，就是单例类——Singleton。单例类拥有一个私有构造函数，确保用户无法通过new关键字直接实例化它。除此之外，该模式中包含一个静态私有成员变量与静态公有的工厂方法，该工厂方法负责检验实例的存在性并实例化自己，然后存储在静态成员变量中，以确保只有一个实例被创建。&lt;/p&gt;
+&lt;p&gt;在单例模式的实现过程中，需要注意如下三点：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;单例类的构造函数为私有；&lt;/li&gt;
+&lt;li&gt;提供一个自身的静态私有成员变量；&lt;/li&gt;
+&lt;li&gt;提供一个公有的静态工厂方法。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&quot;单例模式的优点&quot;&gt;&lt;a href=&quot;#单例模式的优点&quot; class=&quot;headerlink&quot; title=&quot;单例模式的优点&quot;&gt;&lt;/a&gt;单例模式的优点&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;提供了对唯一实例的受控访问。因为单例类封装了它的唯一实例，所以它可以严格控制客户怎样以及何时访问它，并为设计及开发团队提供了共享的概念。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;由于在系统内存中只存在一个对象，因此可以节约系统资源，对于一些需要频繁创建和销毁的对象，单例模式无疑可以提高系统的性能。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;允许可变数目的实例。我们可以基于单例模式进行扩展，使用与单例控制相似的方法来获得指定个数的对象实例。&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&quot;单例模式的缺点&quot;&gt;&lt;a href=&quot;#单例模式的缺点&quot; class=&quot;headerlink&quot; title=&quot;单例模式的缺点&quot;&gt;&lt;/a&gt;单例模式的缺点&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;由于单例模式中没有抽象层，因此单例类的扩展有很大的困难。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;单例类的职责过重，在一定程度上违背了“单一职责原则”。因为单例类既充当了工厂角色，提供了工厂方法，同时又充当了产品角色，包含一些业务方法，将产品的创建和产品的本身的功能融合到一起。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;滥用单例将带来一些负面问题，如为了节省资源将数据库连接池对象设计为单例类，可能会导致共享连接池对象的程序过多而出现连接池溢出；现在很多面向对象语言(如Java、C#)的运行环境都提供了自动垃圾回收的技术，因此，如果实例化的对象长时间不被利用，系统会认为它是垃圾，会自动销毁并回收资源，下次利用时又将重新实例化，这将导致对象状态的丢失。&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;最后总结下，单例模式确保某一个类只有一个实例，而且自行实例化并向整个系统提供这个实例，这个类称为单例类，它提供全局访问的方法。单例模式的要点有三个：一是某个类只能有一个实例；二是它必须自行创建这个实例；三是它必须自行向整个系统提供这个实例。单例模式是一种对象创建型模式。&lt;/p&gt;
+&lt;p&gt;参考&lt;br&gt;    &lt;a href=&quot;http://design-patterns.readthedocs.io/zh_CN/latest/creational_patterns/singleton.html&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;http://design-patterns.readthedocs.io/zh_CN/latest/creational_patterns/singleton.html&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;欢迎大家关注我的微信公众号，我会不定期的分享些Android开发的技巧&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/images/weixing.jpg&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+</content>
+    
+    <summary type="html">
+    
+      设计模式,单例模式
+    
+    </summary>
+    
+      <category term="Design Pattern" scheme="http://HJXANDHMR.github.io/categories/Design-Pattern/"/>
+    
+    
+      <category term="Design Pattern" scheme="http://HJXANDHMR.github.io/tags/Design-Pattern/"/>
+    
+  </entry>
   
   <entry>
     <title>设计模式—抽象工厂模式</title>

@@ -81,6 +81,102 @@
         <header class="article-info clearfix">
   <h1 itemprop="name">
     
+      <a href="/2016/05/31/DesignPattern-Singleton/" title="设计模式—单例模式" itemprop="url">设计模式—单例模式</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="/about" title="何健雄" target="_blank" itemprop="author">何健雄</a>
+		
+  <p class="article-time">
+    <time datetime="2016-05-31T11:31:21.504Z" itemprop="datePublished"> 发表于 2016-05-31</time>
+    
+  </p>
+</header>
+    <div class="article-content">
+        
+        <p>我们前面已经学习了<a href="">简单工厂模式</a>,<a href="">工厂方法模式</a>,<a href="">抽象工厂模式</a>，今天我们来学习下同样是创建型模式的 <strong>单例模式</strong> (Singleton Pattern)。</p>
+<h2 id="模式定义"><a href="#模式定义" class="headerlink" title="模式定义"></a>模式定义</h2><p>单例模式确保某一个类只有一个实例，而且自行实例化并向整个系统提供这个实例，这个类称为单例类，它提供全局访问的方法。</p>
+<h2 id="模式结构"><a href="#模式结构" class="headerlink" title="模式结构"></a>模式结构</h2><p>单例模式包含如下角色：</p>
+<p><strong>Singleton：</strong> 单例</p>
+<h2 id="UML图"><a href="#UML图" class="headerlink" title="UML图"></a>UML图</h2><p><img src="/images/DesignPattern/SingletonUML.png" alt=""></p>
+<h2 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h2><h3 id="Singleton-java"><a href="#Singleton-java" class="headerlink" title="Singleton.java"></a>Singleton.java</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">public class Singleton &#123;</span><br><span class="line">    private static Singleton sSingleton;</span><br><span class="line"></span><br><span class="line">    //将构造函数私有化</span><br><span class="line">    private <span class="function"><span class="title">Singleton</span></span>() &#123;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    //提供一个全家的静态方法</span><br><span class="line">    public static Singleton <span class="function"><span class="title">getSingleton</span></span>() &#123;</span><br><span class="line">        <span class="keyword">if</span> (sSingleton == null) &#123;</span><br><span class="line">            sSingleton = new Singleton();</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="built_in">return</span> sSingleton;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public void <span class="function"><span class="title">singletonOperation</span></span>() &#123;</span><br><span class="line">        System.out.println(<span class="string">"singletonOperation"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="测试类"><a href="#测试类" class="headerlink" title="测试类"></a>测试类</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">public class MyClass &#123;</span><br><span class="line"></span><br><span class="line">    public static void main(String[] args) &#123;</span><br><span class="line">        Singleton singleton = Singleton.getSingleton();</span><br><span class="line">        singleton.singletonOperation();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="模式分析"><a href="#模式分析" class="headerlink" title="模式分析"></a>模式分析</h2><p>单例模式的目的是保证一个类仅有一个实例，并提供一个访问它的全局访问点。单例模式包含的角色只有一个，就是单例类——Singleton。单例类拥有一个私有构造函数，确保用户无法通过new关键字直接实例化它。除此之外，该模式中包含一个静态私有成员变量与静态公有的工厂方法，该工厂方法负责检验实例的存在性并实例化自己，然后存储在静态成员变量中，以确保只有一个实例被创建。</p>
+<p>在单例模式的实现过程中，需要注意如下三点：</p>
+<ul>
+<li>单例类的构造函数为私有；</li>
+<li>提供一个自身的静态私有成员变量；</li>
+<li>提供一个公有的静态工厂方法。</li>
+</ul>
+<h2 id="单例模式的优点"><a href="#单例模式的优点" class="headerlink" title="单例模式的优点"></a>单例模式的优点</h2><ul>
+<li><p>提供了对唯一实例的受控访问。因为单例类封装了它的唯一实例，所以它可以严格控制客户怎样以及何时访问它，并为设计及开发团队提供了共享的概念。</p>
+</li>
+<li><p>由于在系统内存中只存在一个对象，因此可以节约系统资源，对于一些需要频繁创建和销毁的对象，单例模式无疑可以提高系统的性能。</p>
+</li>
+<li><p>允许可变数目的实例。我们可以基于单例模式进行扩展，使用与单例控制相似的方法来获得指定个数的对象实例。</p>
+</li>
+</ul>
+<h2 id="单例模式的缺点"><a href="#单例模式的缺点" class="headerlink" title="单例模式的缺点"></a>单例模式的缺点</h2><ul>
+<li><p>由于单例模式中没有抽象层，因此单例类的扩展有很大的困难。</p>
+</li>
+<li><p>单例类的职责过重，在一定程度上违背了“单一职责原则”。因为单例类既充当了工厂角色，提供了工厂方法，同时又充当了产品角色，包含一些业务方法，将产品的创建和产品的本身的功能融合到一起。</p>
+</li>
+<li><p>滥用单例将带来一些负面问题，如为了节省资源将数据库连接池对象设计为单例类，可能会导致共享连接池对象的程序过多而出现连接池溢出；现在很多面向对象语言(如Java、C#)的运行环境都提供了自动垃圾回收的技术，因此，如果实例化的对象长时间不被利用，系统会认为它是垃圾，会自动销毁并回收资源，下次利用时又将重新实例化，这将导致对象状态的丢失。</p>
+</li>
+</ul>
+<p>最后总结下，单例模式确保某一个类只有一个实例，而且自行实例化并向整个系统提供这个实例，这个类称为单例类，它提供全局访问的方法。单例模式的要点有三个：一是某个类只能有一个实例；二是它必须自行创建这个实例；三是它必须自行向整个系统提供这个实例。单例模式是一种对象创建型模式。</p>
+<p>参考<br>    <a href="http://design-patterns.readthedocs.io/zh_CN/latest/creational_patterns/singleton.html" target="_blank" rel="external">http://design-patterns.readthedocs.io/zh_CN/latest/creational_patterns/singleton.html</a></p>
+<p><strong>欢迎大家关注我的微信公众号，我会不定期的分享些Android开发的技巧</strong></p>
+<p><img src="/images/weixing.jpg" alt=""></p>
+
+        
+        
+        <p class="article-more-link">
+          
+       </p>
+    </div>
+    <footer class="article-footer clearfix">
+<div class="article-catetags">
+
+<div class="article-categories">
+  <span></span>
+  <a class="article-category-link" href="/categories/Design-Pattern/">Design Pattern</a>
+</div>
+
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/Design-Pattern/">Design Pattern</a>
+  </div>
+
+</div>
+
+
+
+
+<div class="comments-count">
+	
+	  	<span></span>
+		<a href="/2016/05/31/DesignPattern-Singleton/#comments" class="ds-thread-count comments-count-link" data-thread-key="2016/05/31/DesignPattern-Singleton/" data-count-type="comments">&nbsp;</a>
+	
+</div>
+
+</footer>
+
+
+    </article>
+
+
+
+
+
+
+   
+    
+    <article class="post-expand post" itemprop="articleBody"> 
+        <header class="article-info clearfix">
+  <h1 itemprop="name">
+    
       <a href="/2016/05/30/DesignPattern-AbstractFactory/" title="设计模式—抽象工厂模式" itemprop="url">设计模式—抽象工厂模式</a>
   </h1>
   <p class="article-author">By
@@ -858,90 +954,6 @@ public interface ActivityComponent {
 
 
 
-   
-    
-    <article class="post-expand post" itemprop="articleBody"> 
-        <header class="article-info clearfix">
-  <h1 itemprop="name">
-    
-      <a href="/2016/04/22/Android-MVPDetailed/" title="Android MVP实例" itemprop="url">Android MVP实例</a>
-  </h1>
-  <p class="article-author">By
-       
-		<a href="/about" title="何健雄" target="_blank" itemprop="author">何健雄</a>
-		
-  <p class="article-time">
-    <time datetime="2016-04-22T11:26:04.003Z" itemprop="datePublished"> 发表于 2016-04-22</time>
-    
-  </p>
-</header>
-    <div class="article-content">
-        
-        <h2 id="Android-MVP-实例"><a href="#Android-MVP-实例" class="headerlink" title="Android MVP 实例"></a>Android MVP 实例</h2><h3 id="Android-MVP-实例演示"><a href="#Android-MVP-实例演示" class="headerlink" title="Android MVP 实例演示"></a>Android MVP 实例演示</h3><p>效果展示</p>
-<p><img src="/images/AndroidMVP/Android_MVP.gif" alt=""></p>
-<h2 id="Android-MVP详解"><a href="#Android-MVP详解" class="headerlink" title="Android MVP详解"></a>Android MVP详解</h2><p> MVP 流程图</p>
-<p><img src="/images/AndroidMVP/Android_MVP_structure.png" alt=""></p>
-<p>说明：<br>步骤1：View引用Presenter<br>步骤2：Presenter调用Model，走Model具体逻辑<br>步骤3：Model逻辑实现，回调Presenter方法<br>步骤4：Presenter回调View</p>
-<p>目录图</p>
-<p><img src="/images/AndroidMVP/Android_MVP_catalog.png" alt=""></p>
-<h3 id="MVP-model"><a href="#MVP-model" class="headerlink" title="MVP model"></a>MVP model</h3><p>IStudentModel.java</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">public interface IStudentModel &#123;</span><br><span class="line"></span><br><span class="line">    /**</span><br><span class="line">     * 保存学生信息</span><br><span class="line">     * @param id 学号</span><br><span class="line">     * @param name 姓名</span><br><span class="line">     * @param sex  性别</span><br><span class="line">     */</span><br><span class="line">    void save(int id,String name,String sex);</span><br><span class="line"></span><br><span class="line">    /**</span><br><span class="line">     * 读取学生信息</span><br><span class="line">     * @param id 学号</span><br><span class="line">     * @<span class="built_in">return</span></span><br><span class="line">     */</span><br><span class="line">    Student load(int id);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p> StudentModel.java</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">public class StudentModel implements IStudentModel &#123;</span><br><span class="line"></span><br><span class="line">    private int id;</span><br><span class="line">    private String name;</span><br><span class="line">    private String sex;</span><br><span class="line">    private SparseArray&lt;Student&gt; array = new SparseArray&lt;&gt;();</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    public void save(int id,String name,String sex) &#123;</span><br><span class="line">        Student student = new Student();</span><br><span class="line">        student.setId(id);</span><br><span class="line">        student.setName(name);</span><br><span class="line">        student.setSex(sex);</span><br><span class="line">        array.append(id, student);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    public Student load(int id) &#123;</span><br><span class="line">        Student notFound = new Student();</span><br><span class="line">        notFound.setName(<span class="string">"没有发现"</span>);</span><br><span class="line">        notFound.setSex(<span class="string">"没有发现"</span>);</span><br><span class="line">        Student student=array.get(id, notFound);</span><br><span class="line">        <span class="built_in">return</span> student;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="MVP-presenter"><a href="#MVP-presenter" class="headerlink" title="MVP presenter"></a>MVP presenter</h3><p>UserPresenter.java</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">public class UserPresenter &#123;</span><br><span class="line">    private IStudentModel iStudentModel;</span><br><span class="line">    private IMainView iMainView;</span><br><span class="line"></span><br><span class="line">    public UserPresenter(IMainView iMainView) &#123;</span><br><span class="line">        this.iMainView = iMainView;</span><br><span class="line">        iStudentModel = new StudentModel();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public void save(int id, String name, String sex) &#123;</span><br><span class="line">        iStudentModel.save(id,name,sex);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public void load(int id) &#123;</span><br><span class="line">        Student student=iStudentModel.load(id);</span><br><span class="line">        iMainView.setName(student.getName());</span><br><span class="line">        iMainView.setSex(student.getSex());</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="MVP-View"><a href="#MVP-View" class="headerlink" title="MVP View"></a>MVP View</h3><p>IMainView.java</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">public interface IMainView &#123;</span><br><span class="line"></span><br><span class="line">    void <span class="built_in">set</span>Name(String name);</span><br><span class="line"></span><br><span class="line">    void <span class="built_in">set</span>Sex(String sex);</span><br><span class="line"></span><br><span class="line">    int getId();</span><br><span class="line"></span><br><span class="line">    String getName();</span><br><span class="line"></span><br><span class="line">    String getSex();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>MainActivity.java</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br></pre></td><td class="code"><pre><span class="line">public class MainActivity extends Activity implements View.OnClickListener, IMainView &#123;</span><br><span class="line"></span><br><span class="line">    private EditText et_id;</span><br><span class="line">    private EditText et_name;</span><br><span class="line">    private EditText et_sex;</span><br><span class="line">    private Button bt_save;</span><br><span class="line">    private Button bt_load;</span><br><span class="line"></span><br><span class="line">    private UserPresenter userPresenter;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    protected void onCreate(Bundle savedInstanceState) &#123;</span><br><span class="line">        super.onCreate(savedInstanceState);</span><br><span class="line">        <span class="built_in">set</span>ContentView(R.layout.activity_login);</span><br><span class="line"></span><br><span class="line">        initView();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    private void <span class="function"><span class="title">initView</span></span>() &#123;</span><br><span class="line">        et_id = (EditText) findViewById(R.id.et_id);</span><br><span class="line">        et_name = (EditText) findViewById(R.id.et_name);</span><br><span class="line">        et_sex = (EditText) findViewById(R.id.et_sex);</span><br><span class="line">        bt_save = (Button) findViewById(R.id.bt_save);</span><br><span class="line">        bt_load = (Button) findViewById(R.id.bt_load);</span><br><span class="line"></span><br><span class="line">        bt_save.setOnClickListener(this);</span><br><span class="line">        bt_load.setOnClickListener(this);</span><br><span class="line"></span><br><span class="line">        userPresenter =new UserPresenter(this);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    public void onClick(View v) &#123;</span><br><span class="line"></span><br><span class="line">        switch (v.getId()) &#123;</span><br><span class="line">            <span class="keyword">case</span> R.id.bt_save:</span><br><span class="line">                userPresenter.save(getId(),getName(),getSex());</span><br><span class="line">                <span class="built_in">break</span>;</span><br><span class="line">            <span class="keyword">case</span> R.id.bt_load:</span><br><span class="line">                userPresenter.load(getId());</span><br><span class="line">                <span class="built_in">break</span>;</span><br><span class="line">            default:</span><br><span class="line">                <span class="built_in">break</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    public void <span class="built_in">set</span>Name(String name) &#123;</span><br><span class="line">        et_name.setText(name);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    public void <span class="built_in">set</span>Sex(String sex) &#123;</span><br><span class="line">        et_sex.setText(sex);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    public int <span class="function"><span class="title">getId</span></span>() &#123;</span><br><span class="line">        <span class="built_in">return</span> Integer.parseInt(et_id.getText().toString());</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    public String <span class="function"><span class="title">getName</span></span>() &#123;</span><br><span class="line">        <span class="built_in">return</span> et_name.getText().toString();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    public String <span class="function"><span class="title">getSex</span></span>() &#123;</span><br><span class="line">        <span class="built_in">return</span> et_sex.getText().toString();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="bean"><a href="#bean" class="headerlink" title="bean"></a>bean</h3><p>Student.java</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line">public class Student &#123;</span><br><span class="line"></span><br><span class="line">    private int id;</span><br><span class="line">    private String name;</span><br><span class="line">    private String sex;</span><br><span class="line"></span><br><span class="line">    public int <span class="function"><span class="title">getId</span></span>() &#123;</span><br><span class="line">        <span class="built_in">return</span> id;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public void <span class="built_in">set</span>Id(int id) &#123;</span><br><span class="line">        this.id = id;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public String <span class="function"><span class="title">getName</span></span>() &#123;</span><br><span class="line">        <span class="built_in">return</span> name;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public void <span class="built_in">set</span>Name(String name) &#123;</span><br><span class="line">        this.name = name;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public String <span class="function"><span class="title">getSex</span></span>() &#123;</span><br><span class="line">        <span class="built_in">return</span> sex;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public void <span class="built_in">set</span>Sex(String sex) &#123;</span><br><span class="line">        this.sex = sex;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>以上就是AndroidMVP的一个小demo，以上的源码我已经开源在Github,地址:<a href="https://github.com/HJXANDHMR/AndroidMVP" target="_blank" rel="external">AndroidMVP</a></p>
-<p><strong>欢迎大家关注我的微信公众号，我会不定期的分享些Android开发的技巧</strong></p>
-<p><img src="/images/weixing.jpg" alt=""></p>
-
-        
-        
-        <p class="article-more-link">
-          
-       </p>
-    </div>
-    <footer class="article-footer clearfix">
-<div class="article-catetags">
-
-<div class="article-categories">
-  <span></span>
-  <a class="article-category-link" href="/categories/Android/">Android</a>
-</div>
-
-
-  <div class="article-tags">
-  
-  <span></span> <a href="/tags/Android/">Android</a>
-  </div>
-
-</div>
-
-
-
-
-<div class="comments-count">
-	
-	  	<span></span>
-		<a href="/2016/04/22/Android-MVPDetailed/#comments" class="ds-thread-count comments-count-link" data-thread-key="2016/04/22/Android-MVPDetailed/" data-count-type="comments">&nbsp;</a>
-	
-</div>
-
-</footer>
-
-
-    </article>
-
-
-
-
-
-
 
   <nav id="page-nav" class="clearfix">
     <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/">Next<span></span></a>
@@ -976,7 +988,7 @@ public interface ActivityComponent {
 		  
 		
 		  
-			<li><a href="/categories/Design-Pattern/" title="Design Pattern">Design Pattern<sup>3</sup></a></li>
+			<li><a href="/categories/Design-Pattern/" title="Design Pattern">Design Pattern<sup>4</sup></a></li>
 		  
 		
 		  
@@ -1009,11 +1021,11 @@ public interface ActivityComponent {
 		<ul class="clearfix">
 		
 			
-				<li><a href="/tags/Android/" title="Android">Android<sup>3</sup></a></li>
+				<li><a href="/tags/Design-Pattern/" title="Design Pattern">Design Pattern<sup>4</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/Design-Pattern/" title="Design Pattern">Design Pattern<sup>3</sup></a></li>
+				<li><a href="/tags/Android/" title="Android">Android<sup>3</sup></a></li>
 			
 		
 			
@@ -1045,11 +1057,11 @@ public interface ActivityComponent {
 			
 		
 			
-				<li><a href="/tags/WCF/" title="WCF">WCF<sup>1</sup></a></li>
+				<li><a href="/tags/Android工具类/" title="Android工具类">Android工具类<sup>1</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/Android工具类/" title="Android工具类">Android工具类<sup>1</sup></a></li>
+				<li><a href="/tags/WCF/" title="WCF">WCF<sup>1</sup></a></li>
 			
 		
 		</ul>

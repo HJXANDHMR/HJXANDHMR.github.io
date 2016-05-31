@@ -4,25 +4,26 @@
 <head>
   <meta charset="UTF-8">
   
-    <title>Linux文件目录处理命令 | Android学习</title>
+    <title>设计模式—单例模式 | Android学习</title>
     <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
     
     <meta name="author" content="何健雄">
     
 
     
-    <meta name="description" content="Linux,文件目录,命令">
+    <meta name="description" content="设计模式,单例模式">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Linux文件目录处理命令">
-<meta property="og:url" content="http://HJXANDHMR.github.io/2016/05/06/Linux-DirectoryProcessingCommand/index.html">
+<meta property="og:title" content="设计模式—单例模式">
+<meta property="og:url" content="http://HJXANDHMR.github.io/2016/05/31/DesignPattern-Singleton/index.html">
 <meta property="og:site_name" content="Android学习">
-<meta property="og:description" content="Linux,文件目录,命令">
+<meta property="og:description" content="设计模式,单例模式">
+<meta property="og:image" content="http://HJXANDHMR.github.io/images/DesignPattern/SingletonUML.png">
 <meta property="og:image" content="http://HJXANDHMR.github.io/images/weixing.jpg">
-<meta property="og:updated_time" content="2016-05-06T05:30:00.224Z">
+<meta property="og:updated_time" content="2016-05-31T11:53:50.300Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Linux文件目录处理命令">
-<meta name="twitter:description" content="Linux,文件目录,命令">
-<meta name="twitter:image" content="http://HJXANDHMR.github.io/images/weixing.jpg">
+<meta name="twitter:title" content="设计模式—单例模式">
+<meta name="twitter:description" content="设计模式,单例模式">
+<meta name="twitter:image" content="http://HJXANDHMR.github.io/images/DesignPattern/SingletonUML.png">
 
     
     <link rel="alternative" href="/atom.xml" title="Android学习" type="application/atom+xml">
@@ -82,14 +83,14 @@
 		<header class="article-info clearfix">
   <h1 itemprop="name">
     
-      <a href="/2016/05/06/Linux-DirectoryProcessingCommand/" title="Linux文件目录处理命令" itemprop="url">Linux文件目录处理命令</a>
+      <a href="/2016/05/31/DesignPattern-Singleton/" title="设计模式—单例模式" itemprop="url">设计模式—单例模式</a>
   </h1>
   <p class="article-author">By
        
 		<a href="/about" title="何健雄" target="_blank" itemprop="author">何健雄</a>
 		
   <p class="article-time">
-    <time datetime="2016-05-06T04:59:53.715Z" itemprop="datePublished"> 发表于 2016-05-06</time>
+    <time datetime="2016-05-31T11:31:21.504Z" itemprop="datePublished"> 发表于 2016-05-31</time>
     
   </p>
 </header>
@@ -98,26 +99,42 @@
 		<div id="toc" class="toc-article">
 			<strong class="toc-title">文章目录</strong>
 		
-			<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#目录操作命令"><span class="toc-number">1.</span> <span class="toc-text">目录操作命令</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#创建目录"><span class="toc-number">1.1.</span> <span class="toc-text">创建目录</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#创建子目录"><span class="toc-number">1.2.</span> <span class="toc-text">创建子目录</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#进入文件目录"><span class="toc-number">1.3.</span> <span class="toc-text">进入文件目录</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#显示当前工作目录目录"><span class="toc-number">1.4.</span> <span class="toc-text">显示当前工作目录目录</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#显示当前目录的子文件"><span class="toc-number">1.5.</span> <span class="toc-text">显示当前目录的子文件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Linux命令提示键-和目录补全键"><span class="toc-number">1.6.</span> <span class="toc-text">Linux命令提示键,和目录补全键</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#删除文件或文件目录"><span class="toc-number">1.7.</span> <span class="toc-text">删除文件或文件目录</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#复制文件"><span class="toc-number">1.8.</span> <span class="toc-text">复制文件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#复制文件目录"><span class="toc-number">1.9.</span> <span class="toc-text">复制文件目录</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#复制文件及其属性"><span class="toc-number">1.10.</span> <span class="toc-text">复制文件及其属性</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#移动文件"><span class="toc-number">1.11.</span> <span class="toc-text">移动文件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#改文件名"><span class="toc-number">1.12.</span> <span class="toc-text">改文件名</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Linux目录"><span class="toc-number">2.</span> <span class="toc-text">Linux目录</span></a></li></ol>
+			<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#模式定义"><span class="toc-number">1.</span> <span class="toc-text">模式定义</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#模式结构"><span class="toc-number">2.</span> <span class="toc-text">模式结构</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#UML图"><span class="toc-number">3.</span> <span class="toc-text">UML图</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#代码实现"><span class="toc-number">4.</span> <span class="toc-text">代码实现</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Singleton-java"><span class="toc-number">4.1.</span> <span class="toc-text">Singleton.java</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#测试类"><span class="toc-number">4.2.</span> <span class="toc-text">测试类</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#模式分析"><span class="toc-number">5.</span> <span class="toc-text">模式分析</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#单例模式的优点"><span class="toc-number">6.</span> <span class="toc-text">单例模式的优点</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#单例模式的缺点"><span class="toc-number">7.</span> <span class="toc-text">单例模式的缺点</span></a></li></ol>
 		
 		</div>
 		
-		<p>最近在学习Linux，在Linux下开发Android真是太爽啦，感兴趣的朋友也可以去试试，我是在虚拟机下装的Ubuntu 15.10，这个版本比较好用。今天我们就来学习下Linux的命令。</p>
-<h2 id="目录操作命令"><a href="#目录操作命令" class="headerlink" title="目录操作命令"></a>目录操作命令</h2><h3 id="创建目录"><a href="#创建目录" class="headerlink" title="创建目录"></a>创建目录</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mkdir 目录名  如  mkdir hjx</span><br></pre></td></tr></table></figure>
-<h3 id="创建子目录"><a href="#创建子目录" class="headerlink" title="创建子目录"></a>创建子目录</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mkdir -p  目录名/目录   如 mkdir -p hjx/hjx</span><br></pre></td></tr></table></figure>
-<h3 id="进入文件目录"><a href="#进入文件目录" class="headerlink" title="进入文件目录"></a>进入文件目录</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> 目录名    如 <span class="built_in">cd</span> hjx</span><br></pre></td></tr></table></figure>
-<h3 id="显示当前工作目录目录"><a href="#显示当前工作目录目录" class="headerlink" title="显示当前工作目录目录"></a>显示当前工作目录目录</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">pwd</span></span><br></pre></td></tr></table></figure>
-<h3 id="显示当前目录的子文件"><a href="#显示当前目录的子文件" class="headerlink" title="显示当前目录的子文件"></a>显示当前目录的子文件</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ls</span><br></pre></td></tr></table></figure>
-<h3 id="Linux命令提示键-和目录补全键"><a href="#Linux命令提示键-和目录补全键" class="headerlink" title="Linux命令提示键,和目录补全键"></a>Linux命令提示键,和目录补全键</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">按 <span class="string">"TAB"</span>键可以快速补全文件和命令。 (非常好用，强烈推荐)</span><br></pre></td></tr></table></figure>
-<h3 id="删除文件或文件目录"><a href="#删除文件或文件目录" class="headerlink" title="删除文件或文件目录"></a>删除文件或文件目录</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rm -rf  文件或目录名/   如 rm -rf hjx/</span><br></pre></td></tr></table></figure>
-<h3 id="复制文件"><a href="#复制文件" class="headerlink" title="复制文件"></a>复制文件</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cp  文件名  目录名/  如  cp hjx hjx/</span><br></pre></td></tr></table></figure>
-<h3 id="复制文件目录"><a href="#复制文件目录" class="headerlink" title="复制文件目录"></a>复制文件目录</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cp  -r 目录名  目录名/  如  cp hjx hjx/</span><br></pre></td></tr></table></figure>
-<h3 id="复制文件及其属性"><a href="#复制文件及其属性" class="headerlink" title="复制文件及其属性"></a>复制文件及其属性</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cp <span class="_">-a</span> 文件名  目录名/   如 cp <span class="_">-a</span>  hjx hjx/</span><br></pre></td></tr></table></figure>
-<h3 id="移动文件"><a href="#移动文件" class="headerlink" title="移动文件"></a>移动文件</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mv  文件  目录/   如 mv hjx hjx/</span><br></pre></td></tr></table></figure>
-<h3 id="改文件名"><a href="#改文件名" class="headerlink" title="改文件名"></a>改文件名</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mv 原文件名 改名后文件名  如 mv hjx hjx1</span><br></pre></td></tr></table></figure>
-<h2 id="Linux目录"><a href="#Linux目录" class="headerlink" title="Linux目录"></a>Linux目录</h2><p>Linux下默认有很多目录，我们来简单的学习下它。</p>
-<p>/ 根目录<br>/bin 存放必要的命令<br>/boot 存放内核以及启动所需的文件等<br>/dev 存放设备文件<br>/etc 存放系统的配置文件<br>/home 用户文件的主目录，用户数据存放在其主目录中<br>/lib 存放必要的运行库<br>/mnt 存放临时的映射文件系统，我们常把软驱和光驱挂装在这里的floppy和cdrom子目录下。<br>/proc 存放存储进程和系统信息<br>/root 超级用户的主目录<br>/sbin 存放系统管理程序<br>/tmp 存放临时文件的目录<br>/usr 包含了一般不需要修改的应用程序，命令程序文件、程序库、手册和其它文档。<br>/var 包含系统产生的经常变化的文件</p>
-<p>以上就是对文件目录操作的一些基本命令了。</p>
+		<p>我们前面已经学习了<a href="">简单工厂模式</a>,<a href="">工厂方法模式</a>,<a href="">抽象工厂模式</a>，今天我们来学习下同样是创建型模式的 <strong>单例模式</strong> (Singleton Pattern)。</p>
+<h2 id="模式定义"><a href="#模式定义" class="headerlink" title="模式定义"></a>模式定义</h2><p>单例模式确保某一个类只有一个实例，而且自行实例化并向整个系统提供这个实例，这个类称为单例类，它提供全局访问的方法。</p>
+<h2 id="模式结构"><a href="#模式结构" class="headerlink" title="模式结构"></a>模式结构</h2><p>单例模式包含如下角色：</p>
+<p><strong>Singleton：</strong> 单例</p>
+<h2 id="UML图"><a href="#UML图" class="headerlink" title="UML图"></a>UML图</h2><p><img src="/images/DesignPattern/SingletonUML.png" alt=""></p>
+<h2 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h2><h3 id="Singleton-java"><a href="#Singleton-java" class="headerlink" title="Singleton.java"></a>Singleton.java</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">public class Singleton &#123;</span><br><span class="line">    private static Singleton sSingleton;</span><br><span class="line"></span><br><span class="line">    //将构造函数私有化</span><br><span class="line">    private <span class="function"><span class="title">Singleton</span></span>() &#123;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    //提供一个全家的静态方法</span><br><span class="line">    public static Singleton <span class="function"><span class="title">getSingleton</span></span>() &#123;</span><br><span class="line">        <span class="keyword">if</span> (sSingleton == null) &#123;</span><br><span class="line">            sSingleton = new Singleton();</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="built_in">return</span> sSingleton;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public void <span class="function"><span class="title">singletonOperation</span></span>() &#123;</span><br><span class="line">        System.out.println(<span class="string">"singletonOperation"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="测试类"><a href="#测试类" class="headerlink" title="测试类"></a>测试类</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">public class MyClass &#123;</span><br><span class="line"></span><br><span class="line">    public static void main(String[] args) &#123;</span><br><span class="line">        Singleton singleton = Singleton.getSingleton();</span><br><span class="line">        singleton.singletonOperation();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="模式分析"><a href="#模式分析" class="headerlink" title="模式分析"></a>模式分析</h2><p>单例模式的目的是保证一个类仅有一个实例，并提供一个访问它的全局访问点。单例模式包含的角色只有一个，就是单例类——Singleton。单例类拥有一个私有构造函数，确保用户无法通过new关键字直接实例化它。除此之外，该模式中包含一个静态私有成员变量与静态公有的工厂方法，该工厂方法负责检验实例的存在性并实例化自己，然后存储在静态成员变量中，以确保只有一个实例被创建。</p>
+<p>在单例模式的实现过程中，需要注意如下三点：</p>
+<ul>
+<li>单例类的构造函数为私有；</li>
+<li>提供一个自身的静态私有成员变量；</li>
+<li>提供一个公有的静态工厂方法。</li>
+</ul>
+<h2 id="单例模式的优点"><a href="#单例模式的优点" class="headerlink" title="单例模式的优点"></a>单例模式的优点</h2><ul>
+<li><p>提供了对唯一实例的受控访问。因为单例类封装了它的唯一实例，所以它可以严格控制客户怎样以及何时访问它，并为设计及开发团队提供了共享的概念。</p>
+</li>
+<li><p>由于在系统内存中只存在一个对象，因此可以节约系统资源，对于一些需要频繁创建和销毁的对象，单例模式无疑可以提高系统的性能。</p>
+</li>
+<li><p>允许可变数目的实例。我们可以基于单例模式进行扩展，使用与单例控制相似的方法来获得指定个数的对象实例。</p>
+</li>
+</ul>
+<h2 id="单例模式的缺点"><a href="#单例模式的缺点" class="headerlink" title="单例模式的缺点"></a>单例模式的缺点</h2><ul>
+<li><p>由于单例模式中没有抽象层，因此单例类的扩展有很大的困难。</p>
+</li>
+<li><p>单例类的职责过重，在一定程度上违背了“单一职责原则”。因为单例类既充当了工厂角色，提供了工厂方法，同时又充当了产品角色，包含一些业务方法，将产品的创建和产品的本身的功能融合到一起。</p>
+</li>
+<li><p>滥用单例将带来一些负面问题，如为了节省资源将数据库连接池对象设计为单例类，可能会导致共享连接池对象的程序过多而出现连接池溢出；现在很多面向对象语言(如Java、C#)的运行环境都提供了自动垃圾回收的技术，因此，如果实例化的对象长时间不被利用，系统会认为它是垃圾，会自动销毁并回收资源，下次利用时又将重新实例化，这将导致对象状态的丢失。</p>
+</li>
+</ul>
+<p>最后总结下，单例模式确保某一个类只有一个实例，而且自行实例化并向整个系统提供这个实例，这个类称为单例类，它提供全局访问的方法。单例模式的要点有三个：一是某个类只能有一个实例；二是它必须自行创建这个实例；三是它必须自行向整个系统提供这个实例。单例模式是一种对象创建型模式。</p>
+<p>参考<br>    <a href="http://design-patterns.readthedocs.io/zh_CN/latest/creational_patterns/singleton.html" target="_blank" rel="external">http://design-patterns.readthedocs.io/zh_CN/latest/creational_patterns/singleton.html</a></p>
 <p><strong>欢迎大家关注我的微信公众号，我会不定期的分享些Android开发的技巧</strong></p>
 <p><img src="/images/weixing.jpg" alt=""></p>
   
@@ -127,13 +144,13 @@
 
 <div class="article-categories">
   <span></span>
-  <a class="article-category-link" href="/categories/Linux/">Linux</a>
+  <a class="article-category-link" href="/categories/Design-Pattern/">Design Pattern</a>
 </div>
 
 
   <div class="article-tags">
   
-  <span></span> <a href="/tags/Linux/">Linux</a>
+  <span></span> <a href="/tags/Design-Pattern/">Design Pattern</a>
   </div>
 
 </div>
@@ -142,7 +159,7 @@
 
 	<div class="article-share" id="share">
 	
-	  <div data-url="http://HJXANDHMR.github.io/2016/05/06/Linux-DirectoryProcessingCommand/" data-title="Linux文件目录处理命令 | Android学习" data-tsina="null" class="share clearfix">
+	  <div data-url="http://HJXANDHMR.github.io/2016/05/31/DesignPattern-Singleton/" data-title="设计模式—单例模式 | Android学习" data-tsina="null" class="share clearfix">
 	  </div>
 	
 	</div>
@@ -155,19 +172,11 @@
 	
 <nav class="article-nav clearfix">
  
- <div class="prev" >
- <a href="/2016/05/10/Android-RobolectricDemo/" title="Android Robolectric 实例">
-  <strong>上一篇：</strong><br/>
-  <span>
-  Android Robolectric 实例</span>
-</a>
-</div>
-
 
 <div class="next">
-<a href="/2016/05/02/Android-NDK/"  title="Android Studio 安装NDK">
+<a href="/2016/05/30/DesignPattern-AbstractFactory/"  title="设计模式—抽象工厂模式">
  <strong>下一篇：</strong><br/> 
- <span>Android Studio 安装NDK
+ <span>设计模式—抽象工厂模式
 </span>
 </a>
 </div>
@@ -176,7 +185,7 @@
 
 	
 <section id="comments" class="comment">
-	<div class="ds-thread" data-thread-key="2016/05/06/Linux-DirectoryProcessingCommand/" data-title="Linux文件目录处理命令" data-url="http://HJXANDHMR.github.io/2016/05/06/Linux-DirectoryProcessingCommand/"></div>
+	<div class="ds-thread" data-thread-key="2016/05/31/DesignPattern-Singleton/" data-title="设计模式—单例模式" data-url="http://HJXANDHMR.github.io/2016/05/31/DesignPattern-Singleton/"></div>
 </section>
 
 
@@ -186,7 +195,7 @@
   <div id="toc" class="toc-aside">
   <strong class="toc-title">文章目录</strong>
  
- <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#目录操作命令"><span class="toc-number">1.</span> <span class="toc-text">目录操作命令</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#创建目录"><span class="toc-number">1.1.</span> <span class="toc-text">创建目录</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#创建子目录"><span class="toc-number">1.2.</span> <span class="toc-text">创建子目录</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#进入文件目录"><span class="toc-number">1.3.</span> <span class="toc-text">进入文件目录</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#显示当前工作目录目录"><span class="toc-number">1.4.</span> <span class="toc-text">显示当前工作目录目录</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#显示当前目录的子文件"><span class="toc-number">1.5.</span> <span class="toc-text">显示当前目录的子文件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Linux命令提示键-和目录补全键"><span class="toc-number">1.6.</span> <span class="toc-text">Linux命令提示键,和目录补全键</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#删除文件或文件目录"><span class="toc-number">1.7.</span> <span class="toc-text">删除文件或文件目录</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#复制文件"><span class="toc-number">1.8.</span> <span class="toc-text">复制文件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#复制文件目录"><span class="toc-number">1.9.</span> <span class="toc-text">复制文件目录</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#复制文件及其属性"><span class="toc-number">1.10.</span> <span class="toc-text">复制文件及其属性</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#移动文件"><span class="toc-number">1.11.</span> <span class="toc-text">移动文件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#改文件名"><span class="toc-number">1.12.</span> <span class="toc-text">改文件名</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Linux目录"><span class="toc-number">2.</span> <span class="toc-text">Linux目录</span></a></li></ol>
+ <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#模式定义"><span class="toc-number">1.</span> <span class="toc-text">模式定义</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#模式结构"><span class="toc-number">2.</span> <span class="toc-text">模式结构</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#UML图"><span class="toc-number">3.</span> <span class="toc-text">UML图</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#代码实现"><span class="toc-number">4.</span> <span class="toc-text">代码实现</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Singleton-java"><span class="toc-number">4.1.</span> <span class="toc-text">Singleton.java</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#测试类"><span class="toc-number">4.2.</span> <span class="toc-text">测试类</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#模式分析"><span class="toc-number">5.</span> <span class="toc-text">模式分析</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#单例模式的优点"><span class="toc-number">6.</span> <span class="toc-text">单例模式的优点</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#单例模式的缺点"><span class="toc-number">7.</span> <span class="toc-text">单例模式的缺点</span></a></li></ol>
  
   </div>
 
