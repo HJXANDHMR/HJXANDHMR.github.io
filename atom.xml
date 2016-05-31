@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://HJXANDHMR.github.io/"/>
-  <updated>2016-05-31T11:53:50.300Z</updated>
+  <updated>2016-05-31T12:00:38.844Z</updated>
   <id>http://HJXANDHMR.github.io/</id>
   
   <author>
@@ -20,9 +20,9 @@
     <link href="http://HJXANDHMR.github.io/2016/05/31/DesignPattern-Singleton/"/>
     <id>http://HJXANDHMR.github.io/2016/05/31/DesignPattern-Singleton/</id>
     <published>2016-05-31T11:31:21.504Z</published>
-    <updated>2016-05-31T11:53:50.300Z</updated>
+    <updated>2016-05-31T12:00:38.844Z</updated>
     
-    <content type="html">&lt;p&gt;我们前面已经学习了&lt;a href=&quot;&quot;&gt;简单工厂模式&lt;/a&gt;,&lt;a href=&quot;&quot;&gt;工厂方法模式&lt;/a&gt;,&lt;a href=&quot;&quot;&gt;抽象工厂模式&lt;/a&gt;，今天我们来学习下同样是创建型模式的 &lt;strong&gt;单例模式&lt;/strong&gt; (Singleton Pattern)。&lt;/p&gt;
+    <content type="html">&lt;p&gt;我们前面已经学习了&lt;a href=&quot;http://hjxandhmr.github.io/2016/05/27/DesignPattern-SimpleFactory/&quot;&gt;简单工厂模式&lt;/a&gt;,&lt;a href=&quot;http://hjxandhmr.github.io/2016/05/28/DesigPattern-FactoryMethod/&quot;&gt;工厂方法模式&lt;/a&gt;,&lt;a href=&quot;http://hjxandhmr.github.io/2016/05/30/DesignPattern-AbstractFactory/&quot;&gt;抽象工厂模式&lt;/a&gt;，今天我们来学习下同样是创建型模式的 &lt;strong&gt;单例模式&lt;/strong&gt; (Singleton Pattern)。&lt;/p&gt;
 &lt;h2 id=&quot;模式定义&quot;&gt;&lt;a href=&quot;#模式定义&quot; class=&quot;headerlink&quot; title=&quot;模式定义&quot;&gt;&lt;/a&gt;模式定义&lt;/h2&gt;&lt;p&gt;单例模式确保某一个类只有一个实例，而且自行实例化并向整个系统提供这个实例，这个类称为单例类，它提供全局访问的方法。&lt;/p&gt;
 &lt;h2 id=&quot;模式结构&quot;&gt;&lt;a href=&quot;#模式结构&quot; class=&quot;headerlink&quot; title=&quot;模式结构&quot;&gt;&lt;/a&gt;模式结构&lt;/h2&gt;&lt;p&gt;单例模式包含如下角色：&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;Singleton：&lt;/strong&gt; 单例&lt;/p&gt;
