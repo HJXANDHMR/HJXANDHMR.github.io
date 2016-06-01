@@ -75,899 +75,208 @@
     <div id="container">
       <div id="main">
 
-   
-    
-    <article class="post-expand post" itemprop="articleBody"> 
-        <header class="article-info clearfix">
-  <h1 itemprop="name">
-    
-      <a href="/2016/06/01/DesignPattern-BuilderPattern/" title="设计模式—建造者模式" itemprop="url">设计模式—建造者模式</a>
-  </h1>
-  <p class="article-author">By
-       
-		<a href="/about" title="何健雄" target="_blank" itemprop="author">何健雄</a>
-		
-  <p class="article-time">
-    <time datetime="2016-06-01T07:42:06.110Z" itemprop="datePublished"> 发表于 2016-06-01</time>
-    
-  </p>
-</header>
-    <div class="article-content">
-        
-        <p>今天我们再来学习一种创建型模式，它就是建造者模式(Builder Pattern).</p>
-<h2 id="模式定义"><a href="#模式定义" class="headerlink" title="模式定义"></a>模式定义</h2><p>将一个复杂对象的构建与它的表示分离，使得同样的构建过程可以创建不同的表示。</p>
-<p>建造者模式是一步一步创建一个复杂的对象，它允许用户只通过指定复杂对象的类型和内容就可以构建它们，用户不需要知道内部的具体构建细节。</p>
-<h2 id="模式结构"><a href="#模式结构" class="headerlink" title="模式结构"></a>模式结构</h2><p>建造者模式包含如下角色：</p>
-<p><strong>Builder：</strong> 抽象建造者<br><strong>ConcreteBuilder：</strong> 具体建造者<br><strong>Director：</strong> 指挥者<br><strong>Product：</strong> 产品角色</p>
-<h2 id="UML图"><a href="#UML图" class="headerlink" title="UML图"></a>UML图</h2><p><img src="/images/DesignPattern/BuilderUML.png" alt=""></p>
-<h2 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h2><h3 id="Builder-java"><a href="#Builder-java" class="headerlink" title="Builder.java"></a>Builder.java</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">public abstract class Builder &#123;</span><br><span class="line">    // 设置CPU核心数</span><br><span class="line">    public abstract void buildCPU(int core);</span><br><span class="line"></span><br><span class="line">    // 设置内存</span><br><span class="line">    public abstract void buildRAM(int gb);</span><br><span class="line"></span><br><span class="line">    // 设置操作系统</span><br><span class="line">    public abstract void buildOs(String os);</span><br><span class="line"></span><br><span class="line">    // 创建Computer</span><br><span class="line">    public abstract Computer create();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="ApplePCBuilder-java"><a href="#ApplePCBuilder-java" class="headerlink" title="ApplePCBuilder.java"></a>ApplePCBuilder.java</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">public class ApplePCBuilder extends Builder &#123;</span><br><span class="line"></span><br><span class="line">    private Computer mComputer = new AppleComputer();</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    public void buildCPU(int core) &#123;</span><br><span class="line">        mComputer.setCPU(core);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    public void buildRAM(int gb) &#123;</span><br><span class="line">        mComputer.setRAM(gb);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    public void buildOs(String os) &#123;</span><br><span class="line">        mComputer.setOs(os);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    public Computer <span class="function"><span class="title">create</span></span>() &#123;</span><br><span class="line">        <span class="built_in">return</span> mComputer;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="Computer-java"><a href="#Computer-java" class="headerlink" title="Computer.java"></a>Computer.java</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">public abstract class Computer &#123;</span><br><span class="line"></span><br><span class="line">    protected int mCpuCore = 1;</span><br><span class="line">    protected int mRamSize = 0;</span><br><span class="line">    protected String mOperationSystem = <span class="string">"Dos"</span>;</span><br><span class="line"></span><br><span class="line">    // 设置CPU核心数</span><br><span class="line">    public abstract void <span class="built_in">set</span>CPU(int core);</span><br><span class="line"></span><br><span class="line">    // 设置内存</span><br><span class="line">    public abstract void <span class="built_in">set</span>RAM(int gb);</span><br><span class="line"></span><br><span class="line">    // 设置操作系统</span><br><span class="line">    public abstract void <span class="built_in">set</span>Os(String os);</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    public String <span class="function"><span class="title">toString</span></span>() &#123;</span><br><span class="line">        <span class="built_in">return</span> <span class="string">"Computer&#123;"</span> +</span><br><span class="line">                <span class="string">"mCpuCore="</span> + mCpuCore +</span><br><span class="line">                <span class="string">", mRamSize="</span> + mRamSize +</span><br><span class="line">                <span class="string">", mOperationSystem='"</span> + mOperationSystem + <span class="string">'\'</span><span class="string">' +</span><br><span class="line">                '</span>&#125;<span class="string">';</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span></span><br></pre></td></tr></table></figure>
-<h3 id="AppleComputer-java"><a href="#AppleComputer-java" class="headerlink" title="AppleComputer.java"></a>AppleComputer.java</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">public class AppleComputer extends Computer &#123;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    public void <span class="built_in">set</span>CPU(int core) &#123;</span><br><span class="line">        mCpuCore = core;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    public void <span class="built_in">set</span>RAM(int gb) &#123;</span><br><span class="line">        mRamSize = gb;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    public void <span class="built_in">set</span>Os(String os) &#123;</span><br><span class="line">        mOperationSystem = os;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="Director-java"><a href="#Director-java" class="headerlink" title="Director.java"></a>Director.java</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">public class Director &#123;</span><br><span class="line">    public Builder mBuilder = null;</span><br><span class="line"></span><br><span class="line">    public Director(Builder builder) &#123;</span><br><span class="line">        mBuilder = builder;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public void construct(int cpu, int ram, String os) &#123;</span><br><span class="line">        mBuilder.buildCPU(cpu);</span><br><span class="line">        mBuilder.buildRAM(ram);</span><br><span class="line">        mBuilder.buildOs(os);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="测试类"><a href="#测试类" class="headerlink" title="测试类"></a>测试类</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">public class MyClass &#123;</span><br><span class="line"></span><br><span class="line">    public static void main(String[] args) &#123;</span><br><span class="line">        Builder builder = new ApplePCBuilder();</span><br><span class="line">        Director director =new Director(builder);</span><br><span class="line">        director.construct(4,8,<span class="string">"Window7"</span>);</span><br><span class="line">        System.out.println(builder.create().toString());</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="模式分析"><a href="#模式分析" class="headerlink" title="模式分析"></a>模式分析</h2><p>抽象建造者类中定义了产品的创建方法和返回方法;</p>
-<p>建造者模式的结构中还引入了一个指挥者类Director，该类的作用主要有两个：一方面它隔离了客户与生产过程；另一方面它负责控制产品的生成过程。指挥者针对抽象建造者编程，客户端只需要知道具体建造者的类型，即可通过指挥者类调用建造者的相关方法，返回一个完整的产品对象</p>
-<p>在客户端代码中，无须关心产品对象的具体组装过程，只需确定具体建造者的类型即可，建造者模式将复杂对象的构建与对象的表现分离开来，这样使得同样的构建过程可以创建出不同的表现。</p>
-<h2 id="建造者模式的优点"><a href="#建造者模式的优点" class="headerlink" title="建造者模式的优点"></a>建造者模式的优点</h2><ul>
-<li><p>在建造者模式中，客户端不必知道产品内部组成的细节，将产品本身与产品的创建过程解耦，使得相同的创建过程可以创建不同的产品对象。</p>
-</li>
-<li><p>每一个具体建造者都相对独立，而与其他的具体建造者无关，因此可以很方便地替换具体建造者或增加新的具体建造者， 用户使用不同的具体建造者即可得到不同的产品对象 。</p>
-</li>
-<li><p>可以更加精细地控制产品的创建过程 ，将复杂产品的创建步骤分解在不同的方法中，使得创建过程更加清晰，也更方便使用程序来控制创建过程。</p>
-</li>
-<li><p>增加新的具体建造者无须修改原有类库的代码，指挥者类针对抽象建造者类编程，系统扩展方便，符合“开闭原则”。</p>
-</li>
-</ul>
-<h2 id="建造者模式的缺点"><a href="#建造者模式的缺点" class="headerlink" title="建造者模式的缺点"></a>建造者模式的缺点</h2><ul>
-<li><p>建造者模式所创建的产品一般具有较多的共同点，其组成部分相似，如果产品之间的差异性很大，则不适合使用建造者模式，因此其使用范围受到一定的限制。</p>
-</li>
-<li><p>如果产品的内部变化复杂，可能会导致需要定义很多具体建造者类来实现这种变化，导致系统变得很庞大。</p>
-</li>
-</ul>
-<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>建造者模式将一个复杂对象的构建与它的表示分离，使得同样的构建过程可以创建不同的表示。建造者模式是一步一步创建一个复杂的对象，它允许用户只通过指定复杂对象的类型和内容就可以构建它们，用户不需要知道内部的具体构建细节。建造者模式属于对象创建型模式。</p>
-<p><strong>欢迎大家关注我的微信公众号，我会不定期的分享些Android开发的技巧</strong></p>
-<p><img src="/images/weixing.jpg" alt=""></p>
-
-        
-        
-        <p class="article-more-link">
-          
-       </p>
-    </div>
-    <footer class="article-footer clearfix">
-<div class="article-catetags">
-
-<div class="article-categories">
-  <span></span>
-  <a class="article-category-link" href="/categories/Design-Pattern/">Design Pattern</a>
-</div>
-
-
-  <div class="article-tags">
   
-  <span></span> <a href="/tags/Design-Pattern/">Design Pattern</a>
-  </div>
-
-</div>
-
-
-
-
-<div class="comments-count">
-	
-	  	<span></span>
-		<a href="/2016/06/01/DesignPattern-BuilderPattern/#comments" class="ds-thread-count comments-count-link" data-thread-key="2016/06/01/DesignPattern-BuilderPattern/" data-count-type="comments">&nbsp;</a>
-	
-</div>
-
-</footer>
-
-
-    </article>
-
-
-
-
-
-
-   
-    
-    <article class="post-expand post" itemprop="articleBody"> 
-        <header class="article-info clearfix">
-  <h1 itemprop="name">
-    
-      <a href="/2016/05/31/DesignPattern-Singleton/" title="设计模式—单例模式" itemprop="url">设计模式—单例模式</a>
-  </h1>
-  <p class="article-author">By
-       
-		<a href="/about" title="何健雄" target="_blank" itemprop="author">何健雄</a>
-		
-  <p class="article-time">
-    <time datetime="2016-05-31T11:31:21.504Z" itemprop="datePublished"> 发表于 2016-05-31</time>
-    
-  </p>
-</header>
-    <div class="article-content">
-        
-        <p>我们前面已经学习了<a href="http://hjxandhmr.github.io/2016/05/27/DesignPattern-SimpleFactory/">简单工厂模式</a>,<a href="http://hjxandhmr.github.io/2016/05/28/DesigPattern-FactoryMethod/">工厂方法模式</a>,<a href="http://hjxandhmr.github.io/2016/05/30/DesignPattern-AbstractFactory/">抽象工厂模式</a>，今天我们来学习下同样是创建型模式的 <strong>单例模式</strong> (Singleton Pattern)。</p>
-<h2 id="模式定义"><a href="#模式定义" class="headerlink" title="模式定义"></a>模式定义</h2><p>单例模式确保某一个类只有一个实例，而且自行实例化并向整个系统提供这个实例，这个类称为单例类，它提供全局访问的方法。</p>
-<h2 id="模式结构"><a href="#模式结构" class="headerlink" title="模式结构"></a>模式结构</h2><p>单例模式包含如下角色：</p>
-<p><strong>Singleton：</strong> 单例</p>
-<h2 id="UML图"><a href="#UML图" class="headerlink" title="UML图"></a>UML图</h2><p><img src="/images/DesignPattern/SingletonUML.png" alt=""></p>
-<h2 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h2><h3 id="Singleton-java"><a href="#Singleton-java" class="headerlink" title="Singleton.java"></a>Singleton.java</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">public class Singleton &#123;</span><br><span class="line">    private static Singleton sSingleton;</span><br><span class="line"></span><br><span class="line">    //将构造函数私有化</span><br><span class="line">    private <span class="function"><span class="title">Singleton</span></span>() &#123;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    //提供一个全家的静态方法</span><br><span class="line">    public static Singleton <span class="function"><span class="title">getSingleton</span></span>() &#123;</span><br><span class="line">        <span class="keyword">if</span> (sSingleton == null) &#123;</span><br><span class="line">            sSingleton = new Singleton();</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="built_in">return</span> sSingleton;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public void <span class="function"><span class="title">singletonOperation</span></span>() &#123;</span><br><span class="line">        System.out.println(<span class="string">"singletonOperation"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="测试类"><a href="#测试类" class="headerlink" title="测试类"></a>测试类</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">public class MyClass &#123;</span><br><span class="line"></span><br><span class="line">    public static void main(String[] args) &#123;</span><br><span class="line">        Singleton singleton = Singleton.getSingleton();</span><br><span class="line">        singleton.singletonOperation();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="模式分析"><a href="#模式分析" class="headerlink" title="模式分析"></a>模式分析</h2><p>单例模式的目的是保证一个类仅有一个实例，并提供一个访问它的全局访问点。单例模式包含的角色只有一个，就是单例类——Singleton。单例类拥有一个私有构造函数，确保用户无法通过new关键字直接实例化它。除此之外，该模式中包含一个静态私有成员变量与静态公有的工厂方法，该工厂方法负责检验实例的存在性并实例化自己，然后存储在静态成员变量中，以确保只有一个实例被创建。</p>
-<p>在单例模式的实现过程中，需要注意如下三点：</p>
-<ul>
-<li>单例类的构造函数为私有；</li>
-<li>提供一个自身的静态私有成员变量；</li>
-<li>提供一个公有的静态工厂方法。</li>
-</ul>
-<h2 id="单例模式的优点"><a href="#单例模式的优点" class="headerlink" title="单例模式的优点"></a>单例模式的优点</h2><ul>
-<li><p>提供了对唯一实例的受控访问。因为单例类封装了它的唯一实例，所以它可以严格控制客户怎样以及何时访问它，并为设计及开发团队提供了共享的概念。</p>
-</li>
-<li><p>由于在系统内存中只存在一个对象，因此可以节约系统资源，对于一些需要频繁创建和销毁的对象，单例模式无疑可以提高系统的性能。</p>
-</li>
-<li><p>允许可变数目的实例。我们可以基于单例模式进行扩展，使用与单例控制相似的方法来获得指定个数的对象实例。</p>
-</li>
-</ul>
-<h2 id="单例模式的缺点"><a href="#单例模式的缺点" class="headerlink" title="单例模式的缺点"></a>单例模式的缺点</h2><ul>
-<li><p>由于单例模式中没有抽象层，因此单例类的扩展有很大的困难。</p>
-</li>
-<li><p>单例类的职责过重，在一定程度上违背了“单一职责原则”。因为单例类既充当了工厂角色，提供了工厂方法，同时又充当了产品角色，包含一些业务方法，将产品的创建和产品的本身的功能融合到一起。</p>
-</li>
-<li><p>滥用单例将带来一些负面问题，如为了节省资源将数据库连接池对象设计为单例类，可能会导致共享连接池对象的程序过多而出现连接池溢出；现在很多面向对象语言(如Java、C#)的运行环境都提供了自动垃圾回收的技术，因此，如果实例化的对象长时间不被利用，系统会认为它是垃圾，会自动销毁并回收资源，下次利用时又将重新实例化，这将导致对象状态的丢失。</p>
-</li>
-</ul>
-<p>最后总结下，单例模式确保某一个类只有一个实例，而且自行实例化并向整个系统提供这个实例，这个类称为单例类，它提供全局访问的方法。单例模式的要点有三个：一是某个类只能有一个实例；二是它必须自行创建这个实例；三是它必须自行向整个系统提供这个实例。单例模式是一种对象创建型模式。</p>
-<p>参考<br>    <a href="http://design-patterns.readthedocs.io/zh_CN/latest/creational_patterns/singleton.html" target="_blank" rel="external">http://design-patterns.readthedocs.io/zh_CN/latest/creational_patterns/singleton.html</a></p>
-<p><strong>欢迎大家关注我的微信公众号，我会不定期的分享些Android开发的技巧</strong></p>
-<p><img src="/images/weixing.jpg" alt=""></p>
-
-        
-        
-        <p class="article-more-link">
-          
-       </p>
-    </div>
-    <footer class="article-footer clearfix">
-<div class="article-catetags">
-
-<div class="article-categories">
-  <span></span>
-  <a class="article-category-link" href="/categories/Design-Pattern/">Design Pattern</a>
-</div>
-
-
-  <div class="article-tags">
+<section class="post" itemscope itemprop="blogitem">
   
-  <span></span> <a href="/tags/Design-Pattern/">Design Pattern</a>
-  </div>
-
-</div>
-
-
-
-
-<div class="comments-count">
-	
-	  	<span></span>
-		<a href="/2016/05/31/DesignPattern-Singleton/#comments" class="ds-thread-count comments-count-link" data-thread-key="2016/05/31/DesignPattern-Singleton/" data-count-type="comments">&nbsp;</a>
-	
-</div>
-
-</footer>
-
-
-    </article>
-
-
-
-
-
-
-   
-    
-    <article class="post-expand post" itemprop="articleBody"> 
-        <header class="article-info clearfix">
-  <h1 itemprop="name">
-    
-      <a href="/2016/05/30/DesignPattern-AbstractFactory/" title="设计模式—抽象工厂模式" itemprop="url">设计模式—抽象工厂模式</a>
-  </h1>
-  <p class="article-author">By
-       
-		<a href="/about" title="何健雄" target="_blank" itemprop="author">何健雄</a>
-		
-  <p class="article-time">
-    <time datetime="2016-05-30T10:23:32.493Z" itemprop="datePublished"> 发表于 2016-05-30</time>
-    
-  </p>
-</header>
-    <div class="article-content">
-        
-        <p>前面我们学习了了<a href="http://hjxandhmr.github.io/2016/05/27/DesignPattern-SimpleFactory/">简单工厂模式</a>和<a href="http://hjxandhmr.github.io/2016/05/28/DesigPattern-FactoryMethod/">工厂方法模式</a>，今天我们来学习设计模式中最后的一种工厂模式——抽象工厂模式(Abstract Factory Pattern)，它属于类创建型模式。</p>
-<p>抽象工厂模式其实是工厂方法模式的一种扩展，应用抽象工厂模式可以创建一系列的产品（产品族），而不是像工厂方法模式中的只能创建一种产品。</p>
-<h2 id="模式定义"><a href="#模式定义" class="headerlink" title="模式定义"></a>模式定义</h2><p>为创建一组相关或相互依赖的对象提供一个接口，而且无需指定他们的具体类。</p>
-<h2 id="模式结构"><a href="#模式结构" class="headerlink" title="模式结构"></a>模式结构</h2><p>抽象工厂模式包含如下角色：</p>
-<p><strong>AbstractFactory：</strong> 抽象工厂<br><strong>ConcreteFactory：</strong> 具体工厂<br><strong>AbstractProduct：</strong> 抽象产品<br><strong>Product：</strong> 具体产品</p>
-<h2 id="UML图"><a href="#UML图" class="headerlink" title="UML图"></a>UML图</h2><p><img src="/images/DesignPattern/AbstractFactoryUML.png" alt=""></p>
-<h2 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h2><h3 id="AbstractFactory-java"><a href="#AbstractFactory-java" class="headerlink" title="AbstractFactory.java"></a>AbstractFactory.java</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">public interface AbstractFactory &#123;</span><br><span class="line"></span><br><span class="line">    Cpu createCpu();</span><br><span class="line"></span><br><span class="line">    Mainboard createMainboard();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="AmdFactory-java"><a href="#AmdFactory-java" class="headerlink" title="AmdFactory.java"></a>AmdFactory.java</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">public class AmdFactory implements AbstractFactory &#123;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    public Cpu <span class="function"><span class="title">createCpu</span></span>() &#123;</span><br><span class="line">        <span class="built_in">return</span> new AmdCpu();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    public Mainboard <span class="function"><span class="title">createMainboard</span></span>() &#123;</span><br><span class="line">        <span class="built_in">return</span> new AmdMainboard();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="IntelFactory-java"><a href="#IntelFactory-java" class="headerlink" title="IntelFactory.java"></a>IntelFactory.java</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">public class IntelFactory implements AbstractFactory &#123;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    public Cpu <span class="function"><span class="title">createCpu</span></span>() &#123;</span><br><span class="line">        <span class="built_in">return</span> new IntelCpu();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    public Mainboard <span class="function"><span class="title">createMainboard</span></span>() &#123;</span><br><span class="line">        <span class="built_in">return</span> new IntelMainboard();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="Mainboard-java"><a href="#Mainboard-java" class="headerlink" title="Mainboard.java"></a>Mainboard.java</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">public interface Mainboard &#123;</span><br><span class="line"></span><br><span class="line">    void installCpu();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="IntelMainboard-java"><a href="#IntelMainboard-java" class="headerlink" title="IntelMainboard.java"></a>IntelMainboard.java</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">public class IntelMainboard implements Mainboard &#123;</span><br><span class="line"></span><br><span class="line">    public <span class="function"><span class="title">IntelMainboard</span></span>() &#123;</span><br><span class="line">        System.out.println(<span class="string">"Create IntelMainboard"</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    public void <span class="function"><span class="title">installCpu</span></span>() &#123;</span><br><span class="line">        System.out.println(<span class="string">"IntelMainboard installCpu"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="AmdMainboard-java"><a href="#AmdMainboard-java" class="headerlink" title="AmdMainboard.java"></a>AmdMainboard.java</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">public class AmdMainboard implements Mainboard &#123;</span><br><span class="line"></span><br><span class="line">    public <span class="function"><span class="title">AmdMainboard</span></span>() &#123;</span><br><span class="line">        System.out.println(<span class="string">"Create AmdMainboard"</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    public void <span class="function"><span class="title">installCpu</span></span>() &#123;</span><br><span class="line">        System.out.println(<span class="string">" AmdMainboard installCpu"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="ComputerEngineer-java"><a href="#ComputerEngineer-java" class="headerlink" title="ComputerEngineer.java"></a>ComputerEngineer.java</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line">public class ComputerEngineer  &#123;</span><br><span class="line"></span><br><span class="line">    /**</span><br><span class="line">     * 定义组装机需要的CPU</span><br><span class="line">     */</span><br><span class="line">    private Cpu cpu = null;</span><br><span class="line">    /**</span><br><span class="line">     * 定义组装机需要的主板</span><br><span class="line">     */</span><br><span class="line">    private Mainboard mainboard = null;</span><br><span class="line"></span><br><span class="line">    public void makeComputer(AbstractFactory af)&#123;</span><br><span class="line">        /**</span><br><span class="line">         * 组装机器的基本步骤</span><br><span class="line">         */</span><br><span class="line">        //1:首先准备好装机所需要的配件</span><br><span class="line">        prepareHardwares(af);</span><br><span class="line">        //2:组装机器</span><br><span class="line">        //3:测试机器</span><br><span class="line">        //4：交付客户</span><br><span class="line">    &#125;</span><br><span class="line">    private void prepareHardwares(AbstractFactory af)&#123;</span><br><span class="line">        //这里要去准备CPU和主板的具体实现，为了示例简单，这里只准备这两个</span><br><span class="line">        //可是，装机工程师并不知道如何去创建，怎么办呢？</span><br><span class="line"></span><br><span class="line">        //直接找相应的工厂获取</span><br><span class="line">        cpu = af.createCpu();</span><br><span class="line">        mainboard = af.createMainboard();</span><br><span class="line"></span><br><span class="line">        //测试配件是否好用</span><br><span class="line">        cpu.calculate();</span><br><span class="line">        mainboard.installCpu();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="测试类"><a href="#测试类" class="headerlink" title="测试类"></a>测试类</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">public class MyClass &#123;</span><br><span class="line">    public static void main(String[]args)&#123;</span><br><span class="line">        //创建装机工程师对象</span><br><span class="line">        ComputerEngineer cf = new ComputerEngineer();</span><br><span class="line">        //客户选择并创建需要使用的产品对象</span><br><span class="line">        AbstractFactory af = new IntelFactory();</span><br><span class="line">        //告诉装机工程师自己选择的产品，让装机工程师组装电脑</span><br><span class="line">        cf.makeComputer(af);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="模式分析"><a href="#模式分析" class="headerlink" title="模式分析"></a>模式分析</h2><p>每一个模式都是针对一定问题的解决方案，工厂方法模式针对的是一个产品等级结构，而抽象工厂模式针对的是多个产品等级结构。有多少个产品等级结构，就会在工厂角色中发现多少个工厂方法。每一个产品等级结构中有多少个具体的产品，就有多少个产品族，也就会在工厂等级结构中发现多少个具体工厂。</p>
-<h2 id="抽象工厂模式的优点"><a href="#抽象工厂模式的优点" class="headerlink" title="抽象工厂模式的优点"></a>抽象工厂模式的优点</h2><ul>
-<li><p>抽象工厂模式隔离了具体类的生成，使得客户并不需要知道什么被创建。由于这种隔离，更换一个具体工厂就变得相对容易。所有的具体工厂都实现了抽象工厂中定义的那些公共接口，因此只需改变具体工厂的实例，就可以在某种程度上改变整个软件系统的行为。另外，应用抽象工厂模式可以实现高内聚低耦合的设计目的，因此抽象工厂模式得到了广泛的应用。</p>
-</li>
-<li><p>当一个产品族中的多个对象被设计成一起工作时，它能够保证客户端始终只使用同一个产品族中的对象。这对一些需要根据当前环境来决定其行为的软件系统来说，是一种非常实用的设计模式。</p>
-</li>
-<li><p>增加新的具体工厂和产品族很方便，无须修改已有系统，符合“开闭原则”。</p>
-</li>
-</ul>
-<h2 id="抽象工厂模式的缺点"><a href="#抽象工厂模式的缺点" class="headerlink" title="抽象工厂模式的缺点"></a>抽象工厂模式的缺点</h2><ul>
-<li><p>在添加新的产品对象时，难以扩展抽象工厂来生产新种类的产品，这是因为在抽象工厂角色中规定了所有可能被创建的产品集合，要支持新种类的产品就意味着要对该接口进行扩展，而这将涉及到对抽象工厂角色及其所有子类的修改，显然会带来较大的不便。</p>
-</li>
-<li><p>开闭原则的倾斜性（增加新的工厂和产品族容易，增加新的产品等级结构麻烦）。</p>
-</li>
-</ul>
-<p>到现在为止，设计模式中的所有工厂类的模式就都已经学习完了。</p>
-<p>参考<br>    <a href="http://design-patterns.readthedocs.io/zh_CN/latest/creational_patterns/abstract_factory.html" target="_blank" rel="external">http://design-patterns.readthedocs.io/zh_CN/latest/creational_patterns/abstract_factory.html</a><br>    <a href="http://www.cnblogs.com/ytaozhao/p/3392149.html" target="_blank" rel="external">http://www.cnblogs.com/ytaozhao/p/3392149.html</a></p>
-<p><strong>欢迎大家关注我的微信公众号，我会不定期的分享些Android开发的技巧</strong></p>
-<p><img src="/images/weixing.jpg" alt=""></p>
-
-        
-        
-        <p class="article-more-link">
-          
-       </p>
-    </div>
-    <footer class="article-footer clearfix">
-<div class="article-catetags">
-
-<div class="article-categories">
-  <span></span>
-  <a class="article-category-link" href="/categories/Design-Pattern/">Design Pattern</a>
-</div>
-
-
-  <div class="article-tags">
+    <a href="/2016/06/01/DesignPattern-BuilderPattern/" title="设计模式—建造者模式" itemprop="url">
   
-  <span></span> <a href="/tags/Design-Pattern/">Design Pattern</a>
-  </div>
-
-</div>
-
-
-
-
-<div class="comments-count">
-	
-	  	<span></span>
-		<a href="/2016/05/30/DesignPattern-AbstractFactory/#comments" class="ds-thread-count comments-count-link" data-thread-key="2016/05/30/DesignPattern-AbstractFactory/" data-count-type="comments">&nbsp;</a>
-	
-</div>
-
-</footer>
-
-
-    </article>
-
-
-
-
-
-
-   
+    <h1 itemprop="name">设计模式—建造者模式</h1>
     
-    <article class="post-expand post" itemprop="articleBody"> 
-        <header class="article-info clearfix">
-  <h1 itemprop="name">
+     
+      <p itemprop="description" >设计模式,建造者模式</p>
+      
     
-      <a href="/2016/05/28/DesigPattern-FactoryMethod/" title="设计模式—工厂方法模式" itemprop="url">设计模式—工厂方法模式</a>
-  </h1>
-  <p class="article-author">By
-       
-		<a href="/about" title="何健雄" target="_blank" itemprop="author">何健雄</a>
-		
-  <p class="article-time">
-    <time datetime="2016-05-28T01:50:14.762Z" itemprop="datePublished"> 发表于 2016-05-28</time>
-    
-  </p>
-</header>
-    <div class="article-content">
-        
-        <p>前面我们学习了<a href="http://hjxandhmr.github.io/2016/05/27/DesignPattern-SimpleFactory/">简单工厂模式</a>，今天我们来学习工厂方法模式（Factory Method）,工厂方法模式(Factory Method Pattern)又称为工厂模式，也叫多态工厂(Polymorphic Factory)模式，它属于类创建型模式。</p>
-<h2 id="模式定义"><a href="#模式定义" class="headerlink" title="模式定义"></a>模式定义</h2><p>在工厂方法模式中，工厂父类负责定义创建产品对象的公共接口，而工厂子类则负责生成具体的产品对象，这样做的目的是将产品类的实例化操作延迟到工厂子类中完成，即通过工厂子类来确定究竟应该实例化哪一个具体产品类。</p>
-<h2 id="模式结构"><a href="#模式结构" class="headerlink" title="模式结构"></a>模式结构</h2><p>工厂方法模式包含如下角色：</p>
-<p><strong>Product：</strong> 抽象产品<br><strong>ConcreteProduct：</strong> 具体产品<br><strong>Factory：</strong> 抽象工厂<br><strong>ConcreteFactory：</strong> 具体工厂</p>
-<h2 id="UML图"><a href="#UML图" class="headerlink" title="UML图"></a>UML图</h2><p><img src="/images/DesignPattern/FactoryMethodUML.png" alt=""></p>
-<h2 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h2><h3 id="Factory-java"><a href="#Factory-java" class="headerlink" title="Factory.java"></a>Factory.java</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">public interface Factory &#123;</span><br><span class="line">    Product factoryMethod();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="ConcreteFactory-java"><a href="#ConcreteFactory-java" class="headerlink" title="ConcreteFactory.java"></a>ConcreteFactory.java</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">public class ConcreteFactory implements Factory &#123;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    public Product <span class="function"><span class="title">factoryMethod</span></span>() &#123;</span><br><span class="line">        <span class="built_in">return</span> new ConcreteProduct();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="Product-java"><a href="#Product-java" class="headerlink" title="Product.java"></a>Product.java</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">public interface Product &#123;</span><br><span class="line">    void use();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="ConcreteProduct-java"><a href="#ConcreteProduct-java" class="headerlink" title="ConcreteProduct.java"></a>ConcreteProduct.java</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">public class ConcreteProduct implements Product &#123;</span><br><span class="line"></span><br><span class="line">    public <span class="function"><span class="title">ConcreteProduct</span></span>() &#123;</span><br><span class="line">        System.out.println(<span class="string">"ConcreteProduct Create"</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    public void <span class="function"><span class="title">use</span></span>() &#123;</span><br><span class="line">        System.out.println(<span class="string">"ConcreteProduct use"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="测试类"><a href="#测试类" class="headerlink" title="测试类"></a>测试类</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">public class MyClass &#123;</span><br><span class="line"></span><br><span class="line">    public static void main(String[] args) &#123;</span><br><span class="line">        Factory factory = new ConcreteFactory();</span><br><span class="line">        Product product = factory.factoryMethod();</span><br><span class="line">        product.use();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="模式分析"><a href="#模式分析" class="headerlink" title="模式分析"></a>模式分析</h2><p>工厂方法模式是简单工厂模式的进一步抽象和推广。由于使用了面向对象的多态性，工厂方法模式保持了简单工厂模式的优点，而且克服了它的缺点。在工厂方法模式中，核心的工厂类不再负责所有产品的创建，而是将具体创建工作交给子类去做。这个核心类仅仅负责给出具体工厂必须实现的接口，而不负责哪一个产品类被实例化这种细节，这使得工厂方法模式可以允许系统在不修改工厂角色的情况下引进新产品。</p>
-<h2 id="工厂方法模式的优点"><a href="#工厂方法模式的优点" class="headerlink" title="工厂方法模式的优点"></a>工厂方法模式的优点</h2><ul>
-<li><p>在工厂方法模式中，工厂方法用来创建客户所需要的产品，同时还向客户隐藏了哪种具体产品类将被实例化这一细节，用户只需要关心所需产品对应的工厂，无须关心创建细节，甚至无须知道具体产品类的类名。</p>
-</li>
-<li><p>基于工厂角色和产品角色的多态性设计是工厂方法模式的关键。它能够使工厂可以自主确定创建何种产品对象，而如何创建这个对象的细节则完全封装在具体工厂内部。工厂方法模式之所以又被称为多态工厂模式，是因为所有的具体工厂类都具有同一抽象父类。</p>
-</li>
-</ul>
-<p>+使用工厂方法模式的另一个优点是在系统中加入新产品时，无须修改抽象工厂和抽象产品提供的接口，无须修改客户端，也无须修改其他的具体工厂和具体产品，而只要添加一个具体工厂和具体产品就可以了。这样，系统的可扩展性也就变得非常好，完全符合“开闭原则”。</p>
-<h2 id="工厂方法模式的缺点"><a href="#工厂方法模式的缺点" class="headerlink" title="工厂方法模式的缺点"></a>工厂方法模式的缺点</h2><ul>
-<li><p>在添加新产品时，需要编写新的具体产品类，而且还要提供与之对应的具体工厂类，系统中类的个数将成对增加，在一定程度上增加了系统的复杂度，有更多的类需要编译和运行，会给系统带来一些额外的开销。</p>
-</li>
-<li><p>由于考虑到系统的可扩展性，需要引入抽象层，在客户端代码中均使用抽象层进行定义，增加了系统的抽象性和理解难度，且在实现时可能需要用到DOM、反射等技术，增加了系统的实现难度。</p>
-</li>
-</ul>
-<p>最后，工厂方法模式还满足了迪米特原则，依赖倒转原则，里氏替换原则，是典型的解耦框架。</p>
-<p>参考<br>    <a href="http://design-patterns.readthedocs.io/zh_CN/latest/creational_patterns/factory_method.html" target="_blank" rel="external">http://design-patterns.readthedocs.io/zh_CN/latest/creational_patterns/factory_method.html</a><br>    <a href="http://www.cnblogs.com/ytaozhao/p/3389883.html" target="_blank" rel="external">http://www.cnblogs.com/ytaozhao/p/3389883.html</a></p>
-<p><strong>欢迎大家关注我的微信公众号，我会不定期的分享些Android开发的技巧</strong></p>
-<p><img src="/images/weixing.jpg" alt=""></p>
-
-        
-        
-        <p class="article-more-link">
-          
-       </p>
-    </div>
-    <footer class="article-footer clearfix">
-<div class="article-catetags">
-
-<div class="article-categories">
-  <span></span>
-  <a class="article-category-link" href="/categories/Design-Pattern/">Design Pattern</a>
-</div>
+    <time datetime="2016-06-01T07:42:06.110Z" itemprop="datePublished">2016-06-01</time>
+  </a>
+</section>
 
 
-  <div class="article-tags">
+
+
+
+
   
-  <span></span> <a href="/tags/Design-Pattern/">Design Pattern</a>
-  </div>
-
-</div>
-
-
-
-
-<div class="comments-count">
-	
-	  	<span></span>
-		<a href="/2016/05/28/DesigPattern-FactoryMethod/#comments" class="ds-thread-count comments-count-link" data-thread-key="2016/05/28/DesigPattern-FactoryMethod/" data-count-type="comments">&nbsp;</a>
-	
-</div>
-
-</footer>
-
-
-    </article>
-
-
-
-
-
-
-   
-    
-    <article class="post-expand post" itemprop="articleBody"> 
-        <header class="article-info clearfix">
-  <h1 itemprop="name">
-    
-      <a href="/2016/05/27/DesignPattern-SimpleFactory/" title="设计模式—简单工厂模式" itemprop="url">设计模式—简单工厂模式</a>
-  </h1>
-  <p class="article-author">By
-       
-		<a href="/about" title="何健雄" target="_blank" itemprop="author">何健雄</a>
-		
-  <p class="article-time">
-    <time datetime="2016-05-27T12:11:45.975Z" itemprop="datePublished"> 发表于 2016-05-27</time>
-    
-  </p>
-</header>
-    <div class="article-content">
-        
-        <p>简单工厂模式在实际的开发应用比较多，今天我们来学习下设计模式中的简单工厂模式。<br>从设计模式的类型上来说，简单工厂模式是属于创建型模式，又叫做静态工厂方法（Static Factory Method）模式。</p>
-<h2 id="模式的定义"><a href="#模式的定义" class="headerlink" title="模式的定义"></a>模式的定义</h2><p>简单工厂模式的实质是由一个工厂类根据传入的参数，动态决定应该创建哪一个产品类（这些产品类继承自一个父类或接口）的实例。</p>
-<h2 id="模式的结构"><a href="#模式的结构" class="headerlink" title="模式的结构"></a>模式的结构</h2><p>简单工厂模式包含如下角色：</p>
-<p><strong>Factory:</strong> 工厂角色<br>工厂角色负责实现创建所有实例的内部逻辑</p>
-<p><strong>Product:</strong> 抽象产品角色<br>抽象产品角色是所创建的所有对象的父类，负责描述所有实例所共有的公共接口</p>
-<p><strong>ConcreteProduct:</strong> 具体产品角色<br>具体产品角色是创建目标，所有创建的对象都充当这个角色的某个具体类的实例。</p>
-<h2 id="UML图"><a href="#UML图" class="headerlink" title="UML图"></a>UML图</h2><p><img src="/images/DesignPattern/simpleFactoryUML.png" alt=""></p>
-<h2 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h2><h3 id="Factory-java"><a href="#Factory-java" class="headerlink" title="Factory.java"></a>Factory.java</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">public class Factory &#123;</span><br><span class="line"></span><br><span class="line">    public static Product createProduct(String s) &#123;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> (s == <span class="string">"A"</span>) &#123;</span><br><span class="line">            <span class="built_in">return</span> new ConcreteProductA();</span><br><span class="line">        &#125; <span class="keyword">else</span> <span class="keyword">if</span> (s == <span class="string">"B"</span>) &#123;</span><br><span class="line">            <span class="built_in">return</span> new ConcreteProductB();</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="built_in">return</span> null;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="Product-java"><a href="#Product-java" class="headerlink" title="Product.java"></a>Product.java</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">public interface Product &#123;</span><br><span class="line"></span><br><span class="line">    void use();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="ConcreteProductA-java"><a href="#ConcreteProductA-java" class="headerlink" title="ConcreteProductA.java"></a>ConcreteProductA.java</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">public class ConcreteProductA implements Product &#123;</span><br><span class="line"></span><br><span class="line">    public <span class="function"><span class="title">ConcreteProductA</span></span>() &#123;</span><br><span class="line">        System.out.println(<span class="string">"Create ConcreteProductA"</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    public void <span class="function"><span class="title">use</span></span>() &#123;</span><br><span class="line">        System.out.println(<span class="string">"ConcreteProductA Use"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="ConcreteProductB-java"><a href="#ConcreteProductB-java" class="headerlink" title="ConcreteProductB.java"></a>ConcreteProductB.java</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">public class ConcreteProductB implements Product &#123;</span><br><span class="line"></span><br><span class="line">    public <span class="function"><span class="title">ConcreteProductB</span></span>() &#123;</span><br><span class="line">        System.out.println(<span class="string">"Create ConcreteProductB"</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    public void <span class="function"><span class="title">use</span></span>() &#123;</span><br><span class="line">        System.out.println(<span class="string">"ConcreteProductB Use"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="测试类"><a href="#测试类" class="headerlink" title="测试类"></a>测试类</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"> public class MyClass &#123;</span><br><span class="line"></span><br><span class="line">    public static void main(String[] args) &#123;</span><br><span class="line"></span><br><span class="line">        Product product = Factory.createProduct(<span class="string">"A"</span>);</span><br><span class="line">        product.use();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>其实以上代码可以不给出，我相信大家也可以写的出，根据UML图来写代码是编码的基本能力。</p>
-<h2 id="模式分析"><a href="#模式分析" class="headerlink" title="模式分析"></a>模式分析</h2><ul>
-<li>将对象的创建和对象本身业务处理分离可以降低系统的耦合度，使得两者修改起来都相对容易</li>
-<li>在调用工厂类的工厂方法时，由于工厂方法是静态方法，使用起来很方便，可通过类名直接调用，而且只需要传入一个简单的参数即可</li>
-</ul>
-<h2 id="简单工厂模式的优点"><a href="#简单工厂模式的优点" class="headerlink" title="简单工厂模式的优点"></a>简单工厂模式的优点</h2><ul>
-<li><p>工厂类含有必要的判断逻辑，可以决定在什么时候创建哪一个产品类的实例，客户端可以免除直接创建产品对象的责任，而仅仅“消费”产品；简单工厂模式通过这种做法实现了对责任的分割，它提供了专门的工厂类用于创建对象</p>
-</li>
-<li><p>客户端无须知道所创建的具体产品类的类名，只需要知道具体产品类所对应的参数即可，对于一些复杂的类名，通过简单工厂模式可以减少使用者的记忆量。</p>
-</li>
-</ul>
-<h2 id="简单工厂模式的缺点"><a href="#简单工厂模式的缺点" class="headerlink" title="简单工厂模式的缺点"></a>简单工厂模式的缺点</h2><ul>
-<li>由于工厂类集中了所有产品创建逻辑，一旦不能正常工作，整个系统都要受到影响</li>
-<li>使用简单工厂模式将会增加系统中类的个数，在一定程序上增加了系统的复杂度和理解难度。</li>
-</ul>
-<p>以上就是简单工厂模式的基本内容了，我们不是为了用设计模式而用设计模式，而应该根据实际情况来使用设计模式。</p>
-<p>参考<br>    <a href="http://design-patterns.readthedocs.io/zh_CN/latest/creational_patterns/simple_factory.html" target="_blank" rel="external">http://design-patterns.readthedocs.io/zh_CN/latest/creational_patterns/simple_factory.html</a><br>    <a href="http://www.cnblogs.com/ytaozhao/p/3387540.html" target="_blank" rel="external">http://www.cnblogs.com/ytaozhao/p/3387540.html</a></p>
-<p><strong>欢迎大家关注我的微信公众号，我会不定期的分享些Android开发的技巧</strong></p>
-<p><img src="/images/weixing.jpg" alt=""></p>
-
-        
-        
-        <p class="article-more-link">
-          
-       </p>
-    </div>
-    <footer class="article-footer clearfix">
-<div class="article-catetags">
-
-<div class="article-categories">
-  <span></span>
-  <a class="article-category-link" href="/categories/Design-Pattern/">Design Pattern</a>
-</div>
-
-
-  <div class="article-tags">
+<section class="post" itemscope itemprop="blogitem">
   
-  <span></span> <a href="/tags/Design-Pattern/">Design Pattern</a>
-  </div>
-
-</div>
-
-
-
-
-<div class="comments-count">
-	
-	  	<span></span>
-		<a href="/2016/05/27/DesignPattern-SimpleFactory/#comments" class="ds-thread-count comments-count-link" data-thread-key="2016/05/27/DesignPattern-SimpleFactory/" data-count-type="comments">&nbsp;</a>
-	
-</div>
-
-</footer>
-
-
-    </article>
-
-
-
-
-
-
-   
-    
-    <article class="post-expand post" itemprop="articleBody"> 
-        <header class="article-info clearfix">
-  <h1 itemprop="name">
-    
-      <a href="/2016/05/23/Android-Dagger2-DI/" title="Android中使用Dagger2进行依赖注入" itemprop="url">Android中使用Dagger2进行依赖注入</a>
-  </h1>
-  <p class="article-author">By
-       
-		<a href="/about" title="何健雄" target="_blank" itemprop="author">何健雄</a>
-		
-  <p class="article-time">
-    <time datetime="2016-05-23T06:43:51.203Z" itemprop="datePublished"> 发表于 2016-05-23</time>
-    
-  </p>
-</header>
-    <div class="article-content">
-        
-        <p>Dagger2是首个使用生成代码实现完整依赖注入的框架，极大减少了使用者的编码负担，本文主要介绍如何使用Dagger2进行依赖注入。</p>
-<h2 id="Dagger2简单介绍"><a href="#Dagger2简单介绍" class="headerlink" title="Dagger2简单介绍"></a>Dagger2简单介绍</h2><p>Dagger2，起源于Square的Dagger，是一个完全在编译期间进行的依赖注入框架，完全去除了反射。Dagger2是通过依赖注入让你少写很多公式化代码，更容易测试，降低耦合，创建可复用可互换的模块。</p>
-<h2 id="Dagger2实例"><a href="#Dagger2实例" class="headerlink" title="Dagger2实例"></a>Dagger2实例</h2><h3 id="Dagger2环境搭建"><a href="#Dagger2环境搭建" class="headerlink" title="Dagger2环境搭建"></a>Dagger2环境搭建</h3><p>project的build.gradle添加</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br></pre></td><td class="code"><pre><span class="line"> dependencies &#123;</span><br><span class="line">     ... // 其他classpath</span><br><span class="line">     classpath <span class="string">'com.neenbedankt.gradle.plugins:android-apt:1.8'</span> //添加apt命令</span><br><span class="line"> &#125;</span><br><span class="line"></span><br><span class="line">``` </span><br><span class="line"></span><br><span class="line">module的build.gradle添加</span><br><span class="line"></span><br><span class="line">``` bash</span><br><span class="line">apply plugin: <span class="string">'com.neenbedankt.android-apt'</span>//添加apt命令</span><br><span class="line"></span><br><span class="line">dependencies &#123;</span><br><span class="line">    apt <span class="string">'com.google.dagger:dagger-compiler:2.0.2'</span> //指定注解处理器</span><br><span class="line">    compile <span class="string">'com.google.dagger:dagger:2.0.2'</span>  //dagger公用api</span><br><span class="line">    provided <span class="string">'org.glassfish:javax.annotation:10.0-b28'</span>  //添加android缺失的部分javax注解</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">``` </span><br><span class="line"></span><br><span class="line"><span class="comment">### 代码实现</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">Usermodele 是一些基本消息</span><br><span class="line"></span><br><span class="line">``` bash</span><br><span class="line">public class UserModel &#123;</span><br><span class="line"></span><br><span class="line">    private String id;</span><br><span class="line">    private String name;</span><br><span class="line">    private String gender;</span><br><span class="line"></span><br><span class="line">    public <span class="function"><span class="title">UserModel</span></span>() &#123;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public UserModel(String id, String name, String gender) &#123;</span><br><span class="line">        this.id = id;</span><br><span class="line">        this.name = name;</span><br><span class="line">        this.gender = gender;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public String <span class="function"><span class="title">getId</span></span>() &#123;</span><br><span class="line">        <span class="built_in">return</span> id;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public void <span class="built_in">set</span>Id(String id) &#123;</span><br><span class="line">        this.id = id;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public String <span class="function"><span class="title">getName</span></span>() &#123;</span><br><span class="line">        <span class="built_in">return</span> name;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public void <span class="built_in">set</span>Name(String name) &#123;</span><br><span class="line">        this.name = name;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public String <span class="function"><span class="title">getGender</span></span>() &#123;</span><br><span class="line">        <span class="built_in">return</span> gender;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public void <span class="built_in">set</span>Gender(String gender) &#123;</span><br><span class="line">        this.gender = gender;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>Module其实就是一个依赖的制造工厂。我们只需要为其添加制造依赖的方法即可。</p>
-<pre><code class="bash">@Module
-public class ActivityModule {
-
-    @Provides
-    public UserModel <span class="function"><span class="title">provideUserModel</span></span>() {
-        <span class="built_in">return</span> new UserModel(<span class="string">"1"</span>, <span class="string">"hjx"</span>, <span class="string">"man"</span>);
-    }
-}
-</code></pre>
-<p>注解@Module注明本类属于Module ，注解@Provides注明该方法是用来提供依赖对象的特殊方法 。<br>一个完整的Module必须拥有@Module与@Provides注解 。</p>
-<p>Component就是一个将Module生成的实例注入Container中的注入器</p>
-<pre><code class="bash">@Component(modules = ActivityModule.class)
-public interface ActivityComponent {
-    void inject(MainActivity mainActivity);
-}
-</code></pre>
-<p>@Component使用modules指向使用的Module的集合。 所有的Component都必须以接口形式定义。Dagger2框架将自动生成Component的实现类，对应的类名是Dagger×××××，这个例子中对应的实现类是DaggerActivityComponent,添加注入方法,一般使用inject做为方法名，方法参数为对应的Container。</p>
-<p>Container就是可以被注入依赖关系的容器,这里的容器为Activity。具体实现如下</p>
-<pre><code class="bash">public class MainActivity extends AppCompatActivity {
-
-    private ActivityComponent mActivityComponent;
-
-    @Inject
-    UserModel mUserModel;   //不能为private
-
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        <span class="built_in">set</span>ContentView(R.layout.activity_main);
-
-        mActivityComponent = DaggerActivityComponent.builder().
-                activityModule(new ActivityModule()).build();
-        mActivityComponent.inject(this);
-        ((TextView) findViewById(R.id.textView)).
-                <span class="built_in">set</span>Text(<span class="string">"ID:"</span> + mUserModel.getId() + <span class="string">" Name: "</span> + mUserModel.getName()
-                 + <span class="string">"  Gender: "</span> + mUserModel.getGender());
-    }
-}
-</code></pre>
-<p>Container中@Inject标记需要被注入的对象，mActivityComponent.inject(this)表示将调用Component的实现类将Module的生成的对象注入到mUserModel中。</p>
-<p>到这为止，怎样使用Dagger2进行依赖注入的小demo已经完成了，代码已经上传到<a href="https://github.com/HJXANDHMR/AndroidDagger2" target="_blank" rel="external">Github</a>。</p>
-<p><strong>欢迎大家关注我的微信公众号，我会不定期的分享些Android开发的技巧</strong></p>
-<p><img src="/images/weixing.jpg" alt=""></p>
-
-        
-        
-        <p class="article-more-link">
-          
-       </p>
-    </div>
-    <footer class="article-footer clearfix">
-<div class="article-catetags">
-
-<div class="article-categories">
-  <span></span>
-  <a class="article-category-link" href="/categories/Android/">Android</a>
-</div>
-
-
-  <div class="article-tags">
+    <a href="/2016/05/31/DesignPattern-Singleton/" title="设计模式—单例模式" itemprop="url">
   
-  <span></span> <a href="/tags/Android/">Android</a>
-  </div>
-
-</div>
-
-
-
-
-<div class="comments-count">
-	
-	  	<span></span>
-		<a href="/2016/05/23/Android-Dagger2-DI/#comments" class="ds-thread-count comments-count-link" data-thread-key="2016/05/23/Android-Dagger2-DI/" data-count-type="comments">&nbsp;</a>
-	
-</div>
-
-</footer>
-
-
-    </article>
-
-
-
-
-
-
-   
+    <h1 itemprop="name">设计模式—单例模式</h1>
     
-    <article class="post-expand post" itemprop="articleBody"> 
-        <header class="article-info clearfix">
-  <h1 itemprop="name">
+     
+      <p itemprop="description" >设计模式,单例模式</p>
+      
     
-      <a href="/2016/05/16/AndroidStudio-Source-Error/" title="Android Studio查看源代码报错" itemprop="url">Android Studio查看源代码报错</a>
-  </h1>
-  <p class="article-author">By
-       
-		<a href="/about" title="何健雄" target="_blank" itemprop="author">何健雄</a>
-		
-  <p class="article-time">
-    <time datetime="2016-05-16T06:58:19.028Z" itemprop="datePublished"> 发表于 2016-05-16</time>
-    
-  </p>
-</header>
-    <div class="article-content">
-        
-        <p>我们经常用Android Studio 查看Android的源代码，今天我们就来学习查看源代码的正确姿势。</p>
-<h2 id="Android-Studio查看源代码"><a href="#Android-Studio查看源代码" class="headerlink" title="Android Studio查看源代码"></a>Android Studio查看源代码</h2><p>我们用Android Studio查看源代码会遇到下面的问题。<br><img src="/images/AndroidStudio/AndroidStudio-readSource.png" alt=""><br>这是由于Android SDK自带的Source源码包很小，并没有包括所有的Android Framework的源码，仅仅提供给应用开发参考用，一些比较少用的系统类的源码并没有给出。<br>“RuntimeException(“Stub!”)”表示实际运行时的逻辑会由Android ROM里面相同的类代替执行。</p>
-<p>此外，在IDE里看源码的时候，有时候一些方法或者类会出现报红（找不到）的情况，如下。</p>
-<p><img src="/images/AndroidStudio/AndroidStudio-source-error.png" alt=""></p>
-<p>这是因为这些方法或者类是被Android SDK隐藏的，出于安全或者某些原因，这些API不能暴露给应用层的开发者，所以编译完成的android.jar包里会把这些API隐藏掉，而我们的Android项目是依赖android.jar的，查看源码的时候，IDE会自动去android.jar找对应的API，自然会找不到。当然，这些API在ROM中是实际存在的，有些开发者发现了一些可以修改系统行为的隐藏API，在应用层通过反射的方式强行调用这些API执行系统功能，这种手段也是一种HACK。</p>
-<h2 id="Source-Insight"><a href="#Source-Insight" class="headerlink" title="Source Insight"></a>Source Insight</h2><p>基于以上两点Android Studio 不是很好的研究Android源码的工具，想要深入的研究Android源码，大家可以用 <a href="http://www.sourceinsight.com/down35.html" target="_blank" rel="external">Source Insight</a> 来研究Android源码。</p>
-<p>我们来看看在 ‘Source Insight’ 下查看源码的效果。</p>
-<p><img src="/images/AndroidStudio/SourceInsight-readSource.png" alt=""></p>
-<p>从图片可以看出RuntimeException(“Stub!”) 已经被具体的代码替代了。</p>
-<p><img src="/images/AndroidStudio/SourceInsight-normal.png" alt=""></p>
-<p>也没有出现一些方法或者类会出现报红（找不到）的情况。</p>
-<p>大家可以好好的研究Android 源码了。</p>
-<p><strong>欢迎大家关注我的微信公众号，我会不定期的分享些Android开发的技巧</strong></p>
-<p><img src="/images/weixing.jpg" alt=""></p>
-
-        
-        
-        <p class="article-more-link">
-          
-       </p>
-    </div>
-    <footer class="article-footer clearfix">
-<div class="article-catetags">
-
-<div class="article-categories">
-  <span></span>
-  <a class="article-category-link" href="/categories/AndroidStudio/">AndroidStudio</a>
-</div>
+    <time datetime="2016-05-31T11:31:21.504Z" itemprop="datePublished">2016-05-31</time>
+  </a>
+</section>
 
 
-  <div class="article-tags">
+
+
+
+
   
-  <span></span> <a href="/tags/AndroidStudio/">AndroidStudio</a>
-  </div>
-
-</div>
-
-
-
-
-<div class="comments-count">
-	
-	  	<span></span>
-		<a href="/2016/05/16/AndroidStudio-Source-Error/#comments" class="ds-thread-count comments-count-link" data-thread-key="2016/05/16/AndroidStudio-Source-Error/" data-count-type="comments">&nbsp;</a>
-	
-</div>
-
-</footer>
-
-
-    </article>
-
-
-
-
-
-
-   
-    
-    <article class="post-expand post" itemprop="articleBody"> 
-        <header class="article-info clearfix">
-  <h1 itemprop="name">
-    
-      <a href="/2016/05/10/Android-RobolectricDemo/" title="Android Robolectric 实例" itemprop="url">Android Robolectric 实例</a>
-  </h1>
-  <p class="article-author">By
-       
-		<a href="/about" title="何健雄" target="_blank" itemprop="author">何健雄</a>
-		
-  <p class="article-time">
-    <time datetime="2016-05-10T07:52:27.399Z" itemprop="datePublished"> 发表于 2016-05-10</time>
-    
-  </p>
-</header>
-    <div class="article-content">
-        
-        <p>Android 开发过程中会到 <em>Junit</em>  来进行单元测试,那么Android中的界面应该用什么来测？<br>今天我们的主角就是 <em>Robolectric</em> ，Robolectric 可以用来在Android 上进行界面测试，下面我们就来学习下 Robolectric怎么使用。</p>
-<h2 id="环境搭建"><a href="#环境搭建" class="headerlink" title="环境搭建"></a>环境搭建</h2><h3 id="Gradle-配置"><a href="#Gradle-配置" class="headerlink" title="Gradle 配置"></a>Gradle 配置</h3><p>在Android Studio 下使用Robolectric 非常简单只需要一行代码就可以了。<br>在build.gradle 文件下配置如下依赖关系</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">test</span>Compile <span class="string">"org.robolectric:robolectric:3.0"</span></span><br></pre></td></tr></table></figure>
-<h3 id="通过注解配置测试类"><a href="#通过注解配置测试类" class="headerlink" title="通过注解配置测试类"></a>通过注解配置测试类</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">@RunWith(RobolectricGradleTestRunner.class)</span><br><span class="line">@Config(constants = BuildConfig.class, sdk = 21)</span><br><span class="line">public class MainActivityUITest &#123;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>完成以上两步就把 Robolectric的环境搭建好了，下面我们来学习下怎样测界面。</p>
-<h2 id="测试实例"><a href="#测试实例" class="headerlink" title="测试实例"></a>测试实例</h2><h3 id="源程序代码"><a href="#源程序代码" class="headerlink" title="源程序代码"></a>源程序代码</h3><p>MainActivity.java 代码</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">public class MainActivity extends Activity &#123;</span><br><span class="line"></span><br><span class="line">    Button button;</span><br><span class="line">    TextView textView;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    protected void onCreate(Bundle savedInstanceState) &#123;</span><br><span class="line">        super.onCreate(savedInstanceState);</span><br><span class="line">        <span class="built_in">set</span>ContentView(R.layout.activity_main);</span><br><span class="line"></span><br><span class="line">        button = (Button) findViewById(R.id.button);</span><br><span class="line">        textView = (TextView) findViewById(R.id.textView);</span><br><span class="line"></span><br><span class="line">        button.setOnClickListener(new View.<span class="function"><span class="title">OnClickListener</span></span>() &#123;</span><br><span class="line">            @Override</span><br><span class="line">            public void onClick(View v) &#123;</span><br><span class="line">                textView.setText(<span class="string">"Text change"</span>);</span><br><span class="line">                startActivity(new Intent(MainActivity.this, NextActivity.class));</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>NextActivity.java 代码</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">public class NextActivity extends Activity &#123;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    protected void onCreate(Bundle savedInstanceState) &#123;</span><br><span class="line">        super.onCreate(savedInstanceState);</span><br><span class="line">        <span class="built_in">set</span>ContentView(R.layout.activity_next_avtivity);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="测试代码"><a href="#测试代码" class="headerlink" title="测试代码"></a>测试代码</h3><p>MainActivityUITest.java</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">@RunWith(RobolectricGradleTestRunner.class)</span><br><span class="line">@Config(constants = BuildConfig.class, sdk = 21)</span><br><span class="line">public class MainActivityUITest &#123;</span><br><span class="line"></span><br><span class="line">    private Activity activity;</span><br><span class="line"></span><br><span class="line">    @Before</span><br><span class="line">    public void <span class="function"><span class="title">setup</span></span>() &#123;</span><br><span class="line">        activity = Robolectric.buildActivity(MainActivity.class).create().get();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    @Test</span><br><span class="line">    public void <span class="function"><span class="title">clickButton_shouldTextViewChange</span></span>() &#123;</span><br><span class="line"></span><br><span class="line">        Button button = (Button) activity.findViewById(R.id.button);</span><br><span class="line">        TextView textView = (TextView) activity.findViewById(R.id.textView);</span><br><span class="line"></span><br><span class="line">        String resultsText = textView.getText().toString();</span><br><span class="line">        assertThat(resultsText, equalTo(<span class="string">"Hello World!"</span>));</span><br><span class="line">        button.performClick();</span><br><span class="line">        resultsText = textView.getText().toString();</span><br><span class="line">        assertThat(resultsText, equalTo(<span class="string">"Text change"</span>));</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    @Test</span><br><span class="line">    public void <span class="function"><span class="title">clickButton_shouldStartNextActivity</span></span>() &#123;</span><br><span class="line">        activity.findViewById(R.id.button).performClick();</span><br><span class="line">        Intent expectedIntent = new Intent(activity, NextActivity.class);</span><br><span class="line">        Intent actualIntent = ShadowApplication.getInstance().getNextStartedActivity();</span><br><span class="line">        assertEquals(expectedIntent, actualIntent);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>以上就是Robolectric 框架的基本使用，完整代码我已经上传到<a href="https://github.com/HJXANDHMR/AndroidUiTestRobolectric" target="_blank" rel="external">Github</a>上了,想要更深入的学习以上就是Robolectric，可以去<a href="http://robolectric.org/" target="_blank" rel="external">官网</a>学习。</p>
-<p><strong>欢迎大家关注我的微信公众号，我会不定期的分享些Android开发的技巧</strong></p>
-<p><img src="/images/weixing.jpg" alt=""></p>
-
-        
-        
-        <p class="article-more-link">
-          
-       </p>
-    </div>
-    <footer class="article-footer clearfix">
-<div class="article-catetags">
-
-<div class="article-categories">
-  <span></span>
-  <a class="article-category-link" href="/categories/Android/">Android</a>
-</div>
-
-
-  <div class="article-tags">
+<section class="post" itemscope itemprop="blogitem">
   
-  <span></span> <a href="/tags/Robolectric/">Robolectric</a>
-  </div>
-
-</div>
-
-
-
-
-<div class="comments-count">
-	
-	  	<span></span>
-		<a href="/2016/05/10/Android-RobolectricDemo/#comments" class="ds-thread-count comments-count-link" data-thread-key="2016/05/10/Android-RobolectricDemo/" data-count-type="comments">&nbsp;</a>
-	
-</div>
-
-</footer>
-
-
-    </article>
-
-
-
-
-
-
-   
-    
-    <article class="post-expand post" itemprop="articleBody"> 
-        <header class="article-info clearfix">
-  <h1 itemprop="name">
-    
-      <a href="/2016/05/06/Linux-DirectoryProcessingCommand/" title="Linux文件目录处理命令" itemprop="url">Linux文件目录处理命令</a>
-  </h1>
-  <p class="article-author">By
-       
-		<a href="/about" title="何健雄" target="_blank" itemprop="author">何健雄</a>
-		
-  <p class="article-time">
-    <time datetime="2016-05-06T04:59:53.715Z" itemprop="datePublished"> 发表于 2016-05-06</time>
-    
-  </p>
-</header>
-    <div class="article-content">
-        
-        <p>最近在学习Linux，在Linux下开发Android真是太爽啦，感兴趣的朋友也可以去试试，我是在虚拟机下装的Ubuntu 15.10，这个版本比较好用。今天我们就来学习下Linux的命令。</p>
-<h2 id="目录操作命令"><a href="#目录操作命令" class="headerlink" title="目录操作命令"></a>目录操作命令</h2><h3 id="创建目录"><a href="#创建目录" class="headerlink" title="创建目录"></a>创建目录</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mkdir 目录名  如  mkdir hjx</span><br></pre></td></tr></table></figure>
-<h3 id="创建子目录"><a href="#创建子目录" class="headerlink" title="创建子目录"></a>创建子目录</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mkdir -p  目录名/目录   如 mkdir -p hjx/hjx</span><br></pre></td></tr></table></figure>
-<h3 id="进入文件目录"><a href="#进入文件目录" class="headerlink" title="进入文件目录"></a>进入文件目录</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> 目录名    如 <span class="built_in">cd</span> hjx</span><br></pre></td></tr></table></figure>
-<h3 id="显示当前工作目录目录"><a href="#显示当前工作目录目录" class="headerlink" title="显示当前工作目录目录"></a>显示当前工作目录目录</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">pwd</span></span><br></pre></td></tr></table></figure>
-<h3 id="显示当前目录的子文件"><a href="#显示当前目录的子文件" class="headerlink" title="显示当前目录的子文件"></a>显示当前目录的子文件</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ls</span><br></pre></td></tr></table></figure>
-<h3 id="Linux命令提示键-和目录补全键"><a href="#Linux命令提示键-和目录补全键" class="headerlink" title="Linux命令提示键,和目录补全键"></a>Linux命令提示键,和目录补全键</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">按 <span class="string">"TAB"</span>键可以快速补全文件和命令。 (非常好用，强烈推荐)</span><br></pre></td></tr></table></figure>
-<h3 id="删除文件或文件目录"><a href="#删除文件或文件目录" class="headerlink" title="删除文件或文件目录"></a>删除文件或文件目录</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rm -rf  文件或目录名/   如 rm -rf hjx/</span><br></pre></td></tr></table></figure>
-<h3 id="复制文件"><a href="#复制文件" class="headerlink" title="复制文件"></a>复制文件</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cp  文件名  目录名/  如  cp hjx hjx/</span><br></pre></td></tr></table></figure>
-<h3 id="复制文件目录"><a href="#复制文件目录" class="headerlink" title="复制文件目录"></a>复制文件目录</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cp  -r 目录名  目录名/  如  cp hjx hjx/</span><br></pre></td></tr></table></figure>
-<h3 id="复制文件及其属性"><a href="#复制文件及其属性" class="headerlink" title="复制文件及其属性"></a>复制文件及其属性</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cp <span class="_">-a</span> 文件名  目录名/   如 cp <span class="_">-a</span>  hjx hjx/</span><br></pre></td></tr></table></figure>
-<h3 id="移动文件"><a href="#移动文件" class="headerlink" title="移动文件"></a>移动文件</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mv  文件  目录/   如 mv hjx hjx/</span><br></pre></td></tr></table></figure>
-<h3 id="改文件名"><a href="#改文件名" class="headerlink" title="改文件名"></a>改文件名</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mv 原文件名 改名后文件名  如 mv hjx hjx1</span><br></pre></td></tr></table></figure>
-<h2 id="Linux目录"><a href="#Linux目录" class="headerlink" title="Linux目录"></a>Linux目录</h2><p>Linux下默认有很多目录，我们来简单的学习下它。</p>
-<p>/ 根目录<br>/bin 存放必要的命令<br>/boot 存放内核以及启动所需的文件等<br>/dev 存放设备文件<br>/etc 存放系统的配置文件<br>/home 用户文件的主目录，用户数据存放在其主目录中<br>/lib 存放必要的运行库<br>/mnt 存放临时的映射文件系统，我们常把软驱和光驱挂装在这里的floppy和cdrom子目录下。<br>/proc 存放存储进程和系统信息<br>/root 超级用户的主目录<br>/sbin 存放系统管理程序<br>/tmp 存放临时文件的目录<br>/usr 包含了一般不需要修改的应用程序，命令程序文件、程序库、手册和其它文档。<br>/var 包含系统产生的经常变化的文件</p>
-<p>以上就是对文件目录操作的一些基本命令了。</p>
-<p><strong>欢迎大家关注我的微信公众号，我会不定期的分享些Android开发的技巧</strong></p>
-<p><img src="/images/weixing.jpg" alt=""></p>
-
-        
-        
-        <p class="article-more-link">
-          
-       </p>
-    </div>
-    <footer class="article-footer clearfix">
-<div class="article-catetags">
-
-<div class="article-categories">
-  <span></span>
-  <a class="article-category-link" href="/categories/Linux/">Linux</a>
-</div>
-
-
-  <div class="article-tags">
+    <a href="/2016/05/30/DesignPattern-AbstractFactory/" title="设计模式—抽象工厂模式" itemprop="url">
   
-  <span></span> <a href="/tags/Linux/">Linux</a>
-  </div>
-
-</div>
-
-
-
-
-<div class="comments-count">
-	
-	  	<span></span>
-		<a href="/2016/05/06/Linux-DirectoryProcessingCommand/#comments" class="ds-thread-count comments-count-link" data-thread-key="2016/05/06/Linux-DirectoryProcessingCommand/" data-count-type="comments">&nbsp;</a>
-	
-</div>
-
-</footer>
-
-
-    </article>
-
-
-
-
-
-
-   
+    <h1 itemprop="name">设计模式—抽象工厂模式</h1>
     
-    <article class="post-expand post" itemprop="articleBody"> 
-        <header class="article-info clearfix">
-  <h1 itemprop="name">
+     
+      <p itemprop="description" >设计模式,简单工厂模式</p>
+      
     
-      <a href="/2016/05/02/Android-NDK/" title="Android Studio 安装NDK" itemprop="url">Android Studio 安装NDK</a>
-  </h1>
-  <p class="article-author">By
-       
-		<a href="/about" title="何健雄" target="_blank" itemprop="author">何健雄</a>
-		
-  <p class="article-time">
-    <time datetime="2016-05-02T12:16:55.644Z" itemprop="datePublished"> 发表于 2016-05-02</time>
-    
-  </p>
-</header>
-    <div class="article-content">
-        
-        <p>Android 开发中会用到NDK，今天我们来学习下载Android Studio中怎样安装NDK.</p>
-<h2 id="下载NDK"><a href="#下载NDK" class="headerlink" title="下载NDK"></a>下载NDK</h2><ol>
-<li>打开Android Studio,选中model右键打开 Project Structure,然后点击Download Android NDK。</li>
-</ol>
-<p><img src="/images/AndroidNDK/Android_NDK.png" alt=""></p>
-<ol>
-<li><p>一般在谷歌下载很慢，可以复制下载地址，用迅雷下载。</p>
-</li>
-<li><p>下载完成以后将压缩包复制到SDK 的安装目录下，解压后就文件重命名为 ndk-bundle。</p>
-</li>
-<li><p>最后重新打开Project Structure，选择Android NDK 的目录。</p>
-</li>
-</ol>
-<p><img src="/images/AndroidNDK/Android_NDK2.png" alt=""></p>
-<p>到这为止，Android NDK已经安装完成了，快开始Android NDK 的学习之旅吧。</p>
-<p><strong>欢迎大家关注我的微信公众号，我会不定期的分享些Android开发的技巧</strong></p>
-<p><img src="/images/weixing.jpg" alt=""></p>
-
-        
-        
-        <p class="article-more-link">
-          
-       </p>
-    </div>
-    <footer class="article-footer clearfix">
-<div class="article-catetags">
-
-<div class="article-categories">
-  <span></span>
-  <a class="article-category-link" href="/categories/Android-NDK/">Android NDK</a>
-</div>
+    <time datetime="2016-05-30T10:23:32.493Z" itemprop="datePublished">2016-05-30</time>
+  </a>
+</section>
 
 
-  <div class="article-tags">
+
+
+
+
   
-  <span></span> <a href="/tags/Android-NDK/">Android NDK</a>
-  </div>
-
-</div>
-
-
-
-
-<div class="comments-count">
-	
-	  	<span></span>
-		<a href="/2016/05/02/Android-NDK/#comments" class="ds-thread-count comments-count-link" data-thread-key="2016/05/02/Android-NDK/" data-count-type="comments">&nbsp;</a>
-	
-</div>
-
-</footer>
-
-
-    </article>
+<section class="post" itemscope itemprop="blogitem">
+  
+    <a href="/2016/05/28/DesigPattern-FactoryMethod/" title="设计模式—工厂方法模式" itemprop="url">
+  
+    <h1 itemprop="name">设计模式—工厂方法模式</h1>
+    
+     
+      <p itemprop="description" >设计模式,简单工厂模式</p>
+      
+    
+    <time datetime="2016-05-28T01:50:14.762Z" itemprop="datePublished">2016-05-28</time>
+  </a>
+</section>
 
 
 
 
 
 
+  
+<section class="post" itemscope itemprop="blogitem">
+  
+    <a href="/2016/05/27/DesignPattern-SimpleFactory/" title="设计模式—简单工厂模式" itemprop="url">
+  
+    <h1 itemprop="name">设计模式—简单工厂模式</h1>
+    
+     
+      <p itemprop="description" >设计模式,简单工厂模式</p>
+      
+    
+    <time datetime="2016-05-27T12:11:45.975Z" itemprop="datePublished">2016-05-27</time>
+  </a>
+</section>
 
-  <nav id="page-nav" class="clearfix">
+
+
+
+
+
+  
+<section class="post" itemscope itemprop="blogitem">
+  
+    <a href="/2016/05/23/Android-Dagger2-DI/" title="Android中使用Dagger2进行依赖注入" itemprop="url">
+  
+    <h1 itemprop="name">Android中使用Dagger2进行依赖注入</h1>
+    
+     
+      <p itemprop="description" >Dagger2,依赖注入</p>
+      
+    
+    <time datetime="2016-05-23T06:43:51.203Z" itemprop="datePublished">2016-05-23</time>
+  </a>
+</section>
+
+
+
+
+
+
+  
+<section class="post" itemscope itemprop="blogitem">
+  
+    <a href="/2016/05/16/AndroidStudio-Source-Error/" title="Android Studio查看源代码报错" itemprop="url">
+  
+    <h1 itemprop="name">Android Studio查看源代码报错</h1>
+    
+     
+      <p itemprop="description" >Android Studio,Source,Source Insight</p>
+      
+    
+    <time datetime="2016-05-16T06:58:19.028Z" itemprop="datePublished">2016-05-16</time>
+  </a>
+</section>
+
+
+
+
+
+
+  
+<section class="post" itemscope itemprop="blogitem">
+  
+    <a href="/2016/05/10/Android-RobolectricDemo/" title="Android Robolectric 实例" itemprop="url">
+  
+    <h1 itemprop="name">Android Robolectric 实例</h1>
+    
+     
+      <p itemprop="description" >Android ,单元测试,Robolectric</p>
+      
+    
+    <time datetime="2016-05-10T07:52:27.399Z" itemprop="datePublished">2016-05-10</time>
+  </a>
+</section>
+
+
+
+
+
+
+  
+<section class="post" itemscope itemprop="blogitem">
+  
+    <a href="/2016/05/06/Linux-DirectoryProcessingCommand/" title="Linux文件目录处理命令" itemprop="url">
+  
+    <h1 itemprop="name">Linux文件目录处理命令</h1>
+    
+     
+      <p itemprop="description" >Linux,文件目录,命令</p>
+      
+    
+    <time datetime="2016-05-06T04:59:53.715Z" itemprop="datePublished">2016-05-06</time>
+  </a>
+</section>
+
+
+
+
+
+
+  
+<section class="post" itemscope itemprop="blogitem">
+  
+    <a href="/2016/05/02/Android-NDK/" title="Android Studio 安装NDK" itemprop="url">
+  
+    <h1 itemprop="name">Android Studio 安装NDK</h1>
+    
+     
+      <p itemprop="description" >Android ,Android studio,NDK</p>
+      
+    
+    <time datetime="2016-05-02T12:16:55.644Z" itemprop="datePublished">2016-05-02</time>
+  </a>
+</section>
+
+
+
+
+
+
+
+  <nav id="page-nav" class="clearfix unexpand">
     <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/2/">Next<span></span></a>
   </nav>
 
@@ -1045,19 +354,23 @@ public interface ActivityComponent {
 			
 		
 			
-				<li><a href="/tags/ListView/" title="ListView">ListView<sup>2</sup></a></li>
-			
-		
-			
 				<li><a href="/tags/AndroidStudio/" title="AndroidStudio">AndroidStudio<sup>2</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/Markdown/" title="Markdown">Markdown<sup>1</sup></a></li>
+				<li><a href="/tags/ListView/" title="ListView">ListView<sup>2</sup></a></li>
 			
 		
 			
 				<li><a href="/tags/Android工具类/" title="Android工具类">Android工具类<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Robolectric/" title="Robolectric">Robolectric<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/WCF/" title="WCF">WCF<sup>1</sup></a></li>
 			
 		
 			
@@ -1069,11 +382,7 @@ public interface ActivityComponent {
 			
 		
 			
-				<li><a href="/tags/WCF/" title="WCF">WCF<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/Robolectric/" title="Robolectric">Robolectric<sup>1</sup></a></li>
+				<li><a href="/tags/Markdown/" title="Markdown">Markdown<sup>1</sup></a></li>
 			
 		
 		</ul>
