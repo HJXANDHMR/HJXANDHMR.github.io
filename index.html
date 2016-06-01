@@ -81,6 +81,102 @@
         <header class="article-info clearfix">
   <h1 itemprop="name">
     
+      <a href="/2016/06/01/DesignPattern-BuilderPattern/" title="设计模式—建造者模式" itemprop="url">设计模式—建造者模式</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="/about" title="何健雄" target="_blank" itemprop="author">何健雄</a>
+		
+  <p class="article-time">
+    <time datetime="2016-06-01T07:42:06.110Z" itemprop="datePublished"> 发表于 2016-06-01</time>
+    
+  </p>
+</header>
+    <div class="article-content">
+        
+        <p>今天我们再来学习一种创建型模式，它就是建造者模式(Builder Pattern).</p>
+<h2 id="模式定义"><a href="#模式定义" class="headerlink" title="模式定义"></a>模式定义</h2><p>将一个复杂对象的构建与它的表示分离，使得同样的构建过程可以创建不同的表示。</p>
+<p>建造者模式是一步一步创建一个复杂的对象，它允许用户只通过指定复杂对象的类型和内容就可以构建它们，用户不需要知道内部的具体构建细节。</p>
+<h2 id="模式结构"><a href="#模式结构" class="headerlink" title="模式结构"></a>模式结构</h2><p>建造者模式包含如下角色：</p>
+<p><strong>Builder：</strong> 抽象建造者<br><strong>ConcreteBuilder：</strong> 具体建造者<br><strong>Director：</strong> 指挥者<br><strong>Product：</strong> 产品角色</p>
+<h2 id="UML图"><a href="#UML图" class="headerlink" title="UML图"></a>UML图</h2><p><img src="/images/DesignPattern/BuilderUML.png" alt=""></p>
+<h2 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h2><h3 id="Builder-java"><a href="#Builder-java" class="headerlink" title="Builder.java"></a>Builder.java</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">public abstract class Builder &#123;</span><br><span class="line">    // 设置CPU核心数</span><br><span class="line">    public abstract void buildCPU(int core);</span><br><span class="line"></span><br><span class="line">    // 设置内存</span><br><span class="line">    public abstract void buildRAM(int gb);</span><br><span class="line"></span><br><span class="line">    // 设置操作系统</span><br><span class="line">    public abstract void buildOs(String os);</span><br><span class="line"></span><br><span class="line">    // 创建Computer</span><br><span class="line">    public abstract Computer create();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="ApplePCBuilder-java"><a href="#ApplePCBuilder-java" class="headerlink" title="ApplePCBuilder.java"></a>ApplePCBuilder.java</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">public class ApplePCBuilder extends Builder &#123;</span><br><span class="line"></span><br><span class="line">    private Computer mComputer = new AppleComputer();</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    public void buildCPU(int core) &#123;</span><br><span class="line">        mComputer.setCPU(core);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    public void buildRAM(int gb) &#123;</span><br><span class="line">        mComputer.setRAM(gb);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    public void buildOs(String os) &#123;</span><br><span class="line">        mComputer.setOs(os);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    public Computer <span class="function"><span class="title">create</span></span>() &#123;</span><br><span class="line">        <span class="built_in">return</span> mComputer;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="Computer-java"><a href="#Computer-java" class="headerlink" title="Computer.java"></a>Computer.java</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">public abstract class Computer &#123;</span><br><span class="line"></span><br><span class="line">    protected int mCpuCore = 1;</span><br><span class="line">    protected int mRamSize = 0;</span><br><span class="line">    protected String mOperationSystem = <span class="string">"Dos"</span>;</span><br><span class="line"></span><br><span class="line">    // 设置CPU核心数</span><br><span class="line">    public abstract void <span class="built_in">set</span>CPU(int core);</span><br><span class="line"></span><br><span class="line">    // 设置内存</span><br><span class="line">    public abstract void <span class="built_in">set</span>RAM(int gb);</span><br><span class="line"></span><br><span class="line">    // 设置操作系统</span><br><span class="line">    public abstract void <span class="built_in">set</span>Os(String os);</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    public String <span class="function"><span class="title">toString</span></span>() &#123;</span><br><span class="line">        <span class="built_in">return</span> <span class="string">"Computer&#123;"</span> +</span><br><span class="line">                <span class="string">"mCpuCore="</span> + mCpuCore +</span><br><span class="line">                <span class="string">", mRamSize="</span> + mRamSize +</span><br><span class="line">                <span class="string">", mOperationSystem='"</span> + mOperationSystem + <span class="string">'\'</span><span class="string">' +</span><br><span class="line">                '</span>&#125;<span class="string">';</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span></span><br></pre></td></tr></table></figure>
+<h3 id="AppleComputer-java"><a href="#AppleComputer-java" class="headerlink" title="AppleComputer.java"></a>AppleComputer.java</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">public class AppleComputer extends Computer &#123;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    public void <span class="built_in">set</span>CPU(int core) &#123;</span><br><span class="line">        mCpuCore = core;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    public void <span class="built_in">set</span>RAM(int gb) &#123;</span><br><span class="line">        mRamSize = gb;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    public void <span class="built_in">set</span>Os(String os) &#123;</span><br><span class="line">        mOperationSystem = os;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="Director-java"><a href="#Director-java" class="headerlink" title="Director.java"></a>Director.java</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">public class Director &#123;</span><br><span class="line">    public Builder mBuilder = null;</span><br><span class="line"></span><br><span class="line">    public Director(Builder builder) &#123;</span><br><span class="line">        mBuilder = builder;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public void construct(int cpu, int ram, String os) &#123;</span><br><span class="line">        mBuilder.buildCPU(cpu);</span><br><span class="line">        mBuilder.buildRAM(ram);</span><br><span class="line">        mBuilder.buildOs(os);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="测试类"><a href="#测试类" class="headerlink" title="测试类"></a>测试类</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">public class MyClass &#123;</span><br><span class="line"></span><br><span class="line">    public static void main(String[] args) &#123;</span><br><span class="line">        Builder builder = new ApplePCBuilder();</span><br><span class="line">        Director director =new Director(builder);</span><br><span class="line">        director.construct(4,8,<span class="string">"Window7"</span>);</span><br><span class="line">        System.out.println(builder.create().toString());</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="模式分析"><a href="#模式分析" class="headerlink" title="模式分析"></a>模式分析</h2><p>抽象建造者类中定义了产品的创建方法和返回方法;</p>
+<p>建造者模式的结构中还引入了一个指挥者类Director，该类的作用主要有两个：一方面它隔离了客户与生产过程；另一方面它负责控制产品的生成过程。指挥者针对抽象建造者编程，客户端只需要知道具体建造者的类型，即可通过指挥者类调用建造者的相关方法，返回一个完整的产品对象</p>
+<p>在客户端代码中，无须关心产品对象的具体组装过程，只需确定具体建造者的类型即可，建造者模式将复杂对象的构建与对象的表现分离开来，这样使得同样的构建过程可以创建出不同的表现。</p>
+<h2 id="建造者模式的优点"><a href="#建造者模式的优点" class="headerlink" title="建造者模式的优点"></a>建造者模式的优点</h2><ul>
+<li><p>在建造者模式中，客户端不必知道产品内部组成的细节，将产品本身与产品的创建过程解耦，使得相同的创建过程可以创建不同的产品对象。</p>
+</li>
+<li><p>每一个具体建造者都相对独立，而与其他的具体建造者无关，因此可以很方便地替换具体建造者或增加新的具体建造者， 用户使用不同的具体建造者即可得到不同的产品对象 。</p>
+</li>
+<li><p>可以更加精细地控制产品的创建过程 ，将复杂产品的创建步骤分解在不同的方法中，使得创建过程更加清晰，也更方便使用程序来控制创建过程。</p>
+</li>
+<li><p>增加新的具体建造者无须修改原有类库的代码，指挥者类针对抽象建造者类编程，系统扩展方便，符合“开闭原则”。</p>
+</li>
+</ul>
+<h2 id="建造者模式的缺点"><a href="#建造者模式的缺点" class="headerlink" title="建造者模式的缺点"></a>建造者模式的缺点</h2><ul>
+<li><p>建造者模式所创建的产品一般具有较多的共同点，其组成部分相似，如果产品之间的差异性很大，则不适合使用建造者模式，因此其使用范围受到一定的限制。</p>
+</li>
+<li><p>如果产品的内部变化复杂，可能会导致需要定义很多具体建造者类来实现这种变化，导致系统变得很庞大。</p>
+</li>
+</ul>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>建造者模式将一个复杂对象的构建与它的表示分离，使得同样的构建过程可以创建不同的表示。建造者模式是一步一步创建一个复杂的对象，它允许用户只通过指定复杂对象的类型和内容就可以构建它们，用户不需要知道内部的具体构建细节。建造者模式属于对象创建型模式。</p>
+<p><strong>欢迎大家关注我的微信公众号，我会不定期的分享些Android开发的技巧</strong></p>
+<p><img src="/images/weixing.jpg" alt=""></p>
+
+        
+        
+        <p class="article-more-link">
+          
+       </p>
+    </div>
+    <footer class="article-footer clearfix">
+<div class="article-catetags">
+
+<div class="article-categories">
+  <span></span>
+  <a class="article-category-link" href="/categories/Design-Pattern/">Design Pattern</a>
+</div>
+
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/Design-Pattern/">Design Pattern</a>
+  </div>
+
+</div>
+
+
+
+
+<div class="comments-count">
+	
+	  	<span></span>
+		<a href="/2016/06/01/DesignPattern-BuilderPattern/#comments" class="ds-thread-count comments-count-link" data-thread-key="2016/06/01/DesignPattern-BuilderPattern/" data-count-type="comments">&nbsp;</a>
+	
+</div>
+
+</footer>
+
+
+    </article>
+
+
+
+
+
+
+   
+    
+    <article class="post-expand post" itemprop="articleBody"> 
+        <header class="article-info clearfix">
+  <h1 itemprop="name">
+    
       <a href="/2016/05/31/DesignPattern-Singleton/" title="设计模式—单例模式" itemprop="url">设计模式—单例模式</a>
   </h1>
   <p class="article-author">By
@@ -870,93 +966,9 @@ public interface ActivityComponent {
 
 
 
-   
-    
-    <article class="post-expand post" itemprop="articleBody"> 
-        <header class="article-info clearfix">
-  <h1 itemprop="name">
-    
-      <a href="/2016/04/26/Android-style/" title="Android shape" itemprop="url">Android shape</a>
-  </h1>
-  <p class="article-author">By
-       
-		<a href="/about" title="何健雄" target="_blank" itemprop="author">何健雄</a>
-		
-  <p class="article-time">
-    <time datetime="2016-04-26T02:22:17.359Z" itemprop="datePublished"> 发表于 2016-04-26</time>
-    
-  </p>
-</header>
-    <div class="article-content">
-        
-        <p>Android开发中我们经常会使用shape我总结了下它们地使用</p>
-<h2 id="Android-shape"><a href="#Android-shape" class="headerlink" title="Android shape"></a>Android shape</h2><p>使用shape可以自定义形状，可以定义下面四种类型的形状，通过android:shape属性指定：</p>
-<ul>
-<li>rectangle: 矩形，默认的形状，可以画出直角矩形、圆角矩形、弧形等</li>
-<li>oval: 椭圆形，用得比较多的是画正圆</li>
-<li>line: 线形，可以画实线和虚线</li>
-<li>ring: 环形，可以画环形进度条</li>
-</ul>
-<p>gradient代表渐变，可以按照如下的使用：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;gradient</span><br><span class="line">       android:angle=<span class="string">"0"</span></span><br><span class="line">       android:centerColor=<span class="string">"#ff0f00"</span></span><br><span class="line">       android:endColor=<span class="string">"#ff00ff"</span></span><br><span class="line">       android:startColor=<span class="string">"#00ff00"</span> /&gt;</span><br></pre></td></tr></table></figure>
-<p>solid代表实心，可以按照如下的使用：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;solid android:color=<span class="string">"#F0FFFF"</span> /&gt;</span><br></pre></td></tr></table></figure>
-<p>stroke代表描边，可以按照如下的使用：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;stroke</span><br><span class="line">       android:width=<span class="string">"10dp"</span></span><br><span class="line">       android:color=<span class="string">"#00FFFF"</span></span><br><span class="line">       android:dashGap=<span class="string">"5dp"</span></span><br><span class="line">       android:dashWidth=<span class="string">"5dp"</span> /&gt;</span><br></pre></td></tr></table></figure>
-<p>corners代表圆角，可以按照如下的使用：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;corners android:radius=<span class="string">"100dp"</span> /&gt;</span><br></pre></td></tr></table></figure>
-<p>这是完整的shape文件，定义在drawable目录下</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">&lt;?xml version=<span class="string">"1.0"</span> encoding=<span class="string">"utf-8"</span>?&gt;</span><br><span class="line">&lt;shape xmlns:android=<span class="string">"http://schemas.android.com/apk/res/android"</span></span><br><span class="line">    android:shape=<span class="string">"rectangle"</span>&gt;</span><br><span class="line">    &lt;!-- 渐变 --&gt;</span><br><span class="line">    &lt;gradient</span><br><span class="line">        android:angle=<span class="string">"0"</span></span><br><span class="line">        android:centerColor=<span class="string">"#ff0f00"</span></span><br><span class="line">        android:endColor=<span class="string">"#ff00ff"</span></span><br><span class="line">        android:startColor=<span class="string">"#00ff00"</span> /&gt;</span><br><span class="line"></span><br><span class="line">    &lt;!-- 实心 --&gt;</span><br><span class="line">    &lt;solid android:color=<span class="string">"#F0FFFF"</span> /&gt;</span><br><span class="line"></span><br><span class="line">    &lt;!-- 描边 --&gt;</span><br><span class="line">    &lt;stroke</span><br><span class="line">        android:width=<span class="string">"10dp"</span></span><br><span class="line">        android:color=<span class="string">"#00FFFF"</span></span><br><span class="line">        android:dashGap=<span class="string">"5dp"</span></span><br><span class="line">        android:dashWidth=<span class="string">"5dp"</span> /&gt;</span><br><span class="line"></span><br><span class="line">    &lt;!-- 圆角 --&gt;</span><br><span class="line">    &lt;corners android:radius=<span class="string">"100dp"</span> /&gt;</span><br><span class="line">&lt;/shape&gt;</span><br></pre></td></tr></table></figure>
-<p>以上都是比较简单的使用shape。</p>
-<p>这里推荐一个工具，可以可视化的生成shape，简直是开发神器 <a href="http://angrytools.com/android/button/" target="_blank" rel="external">自动生成shape</a></p>
-<p><strong>欢迎大家关注我的微信公众号，我会不定期的分享些Android开发的技巧</strong></p>
-<p><img src="/images/weixing.jpg" alt=""></p>
-
-        
-        
-        <p class="article-more-link">
-          
-       </p>
-    </div>
-    <footer class="article-footer clearfix">
-<div class="article-catetags">
-
-<div class="article-categories">
-  <span></span>
-  <a class="article-category-link" href="/categories/Android/">Android</a>
-</div>
-
-
-  <div class="article-tags">
-  
-  <span></span> <a href="/tags/Android/">Android</a>
-  </div>
-
-</div>
-
-
-
-
-<div class="comments-count">
-	
-	  	<span></span>
-		<a href="/2016/04/26/Android-style/#comments" class="ds-thread-count comments-count-link" data-thread-key="2016/04/26/Android-style/" data-count-type="comments">&nbsp;</a>
-	
-</div>
-
-</footer>
-
-
-    </article>
-
-
-
-
-
-
 
   <nav id="page-nav" class="clearfix">
-    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/">Next<span></span></a>
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/2/">Next<span></span></a>
   </nav>
 
 </div>
@@ -988,7 +1000,7 @@ public interface ActivityComponent {
 		  
 		
 		  
-			<li><a href="/categories/Design-Pattern/" title="Design Pattern">Design Pattern<sup>4</sup></a></li>
+			<li><a href="/categories/Design-Pattern/" title="Design Pattern">Design Pattern<sup>5</sup></a></li>
 		  
 		
 		  
@@ -1021,7 +1033,7 @@ public interface ActivityComponent {
 		<ul class="clearfix">
 		
 			
-				<li><a href="/tags/Design-Pattern/" title="Design Pattern">Design Pattern<sup>4</sup></a></li>
+				<li><a href="/tags/Design-Pattern/" title="Design Pattern">Design Pattern<sup>5</sup></a></li>
 			
 		
 			
@@ -1033,23 +1045,15 @@ public interface ActivityComponent {
 			
 		
 			
-				<li><a href="/tags/AndroidStudio/" title="AndroidStudio">AndroidStudio<sup>2</sup></a></li>
-			
-		
-			
 				<li><a href="/tags/ListView/" title="ListView">ListView<sup>2</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/Android-NDK/" title="Android NDK">Android NDK<sup>1</sup></a></li>
+				<li><a href="/tags/AndroidStudio/" title="AndroidStudio">AndroidStudio<sup>2</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/WCF/" title="WCF">WCF<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/Linux/" title="Linux">Linux<sup>1</sup></a></li>
+				<li><a href="/tags/Markdown/" title="Markdown">Markdown<sup>1</sup></a></li>
 			
 		
 			
@@ -1057,11 +1061,19 @@ public interface ActivityComponent {
 			
 		
 			
-				<li><a href="/tags/Robolectric/" title="Robolectric">Robolectric<sup>1</sup></a></li>
+				<li><a href="/tags/Android-NDK/" title="Android NDK">Android NDK<sup>1</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/Markdown/" title="Markdown">Markdown<sup>1</sup></a></li>
+				<li><a href="/tags/Linux/" title="Linux">Linux<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/WCF/" title="WCF">WCF<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Robolectric/" title="Robolectric">Robolectric<sup>1</sup></a></li>
 			
 		
 		</ul>
