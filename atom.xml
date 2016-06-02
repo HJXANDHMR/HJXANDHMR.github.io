@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://HJXANDHMR.github.io/"/>
-  <updated>2016-06-01T08:04:35.305Z</updated>
+  <updated>2016-06-02T07:48:26.912Z</updated>
   <id>http://HJXANDHMR.github.io/</id>
   
   <author>
@@ -14,6 +14,89 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>设计模式—适配器模式</title>
+    <link href="http://HJXANDHMR.github.io/2016/06/02/DesignPattern-Adapter/"/>
+    <id>http://HJXANDHMR.github.io/2016/06/02/DesignPattern-Adapter/</id>
+    <published>2016-06-02T07:15:16.962Z</published>
+    <updated>2016-06-02T07:48:26.912Z</updated>
+    
+    <content type="html">&lt;p&gt;今天我们来学习一种结构型模式，适配器模式(Adapter Pattern)。&lt;/p&gt;
+&lt;h2 id=&quot;模式定义&quot;&gt;&lt;a href=&quot;#模式定义&quot; class=&quot;headerlink&quot; title=&quot;模式定义&quot;&gt;&lt;/a&gt;模式定义&lt;/h2&gt;&lt;p&gt;将一个接口转换成客户希望的另一个接口，适配器模式使接口不兼容的那些类可以一起工作，其别名为包装器(Wrapper)。适配器模式有两种，一种是对象适配器，一种是类适配器。&lt;/p&gt;
+&lt;h2 id=&quot;模式结构&quot;&gt;&lt;a href=&quot;#模式结构&quot; class=&quot;headerlink&quot; title=&quot;模式结构&quot;&gt;&lt;/a&gt;模式结构&lt;/h2&gt;&lt;p&gt;适配器模式包含如下角色：&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Target：&lt;/strong&gt; 目标抽象类&lt;br&gt;&lt;strong&gt;Adapter：&lt;/strong&gt; 适配器类&lt;br&gt;&lt;strong&gt;Adaptee：&lt;/strong&gt; 适配者类&lt;br&gt;&lt;strong&gt;Client：&lt;/strong&gt; 客户类&lt;/p&gt;
+&lt;h2 id=&quot;UML图&quot;&gt;&lt;a href=&quot;#UML图&quot; class=&quot;headerlink&quot; title=&quot;UML图&quot;&gt;&lt;/a&gt;UML图&lt;/h2&gt;&lt;h3 id=&quot;类适配器UML图&quot;&gt;&lt;a href=&quot;#类适配器UML图&quot; class=&quot;headerlink&quot; title=&quot;类适配器UML图&quot;&gt;&lt;/a&gt;类适配器UML图&lt;/h3&gt;&lt;p&gt;&lt;img src=&quot;/images/DesignPattern/ClassAdapterUML.png&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;h3 id=&quot;对象适配器UML图&quot;&gt;&lt;a href=&quot;#对象适配器UML图&quot; class=&quot;headerlink&quot; title=&quot;对象适配器UML图&quot;&gt;&lt;/a&gt;对象适配器UML图&lt;/h3&gt;&lt;p&gt;&lt;img src=&quot;/images/DesignPattern/ObjectAdapterUML.png&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;h2 id=&quot;类适配器模式代码实现&quot;&gt;&lt;a href=&quot;#类适配器模式代码实现&quot; class=&quot;headerlink&quot; title=&quot;类适配器模式代码实现&quot;&gt;&lt;/a&gt;类适配器模式代码实现&lt;/h2&gt;&lt;h3 id=&quot;Target-java&quot;&gt;&lt;a href=&quot;#Target-java&quot; class=&quot;headerlink&quot; title=&quot;Target.java&quot;&gt;&lt;/a&gt;Target.java&lt;/h3&gt;&lt;figure class=&quot;highlight bash&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;public interface Target &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    void sampleOperation1();&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    void sampleOperation2();&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;h3 id=&quot;Adaptee-java&quot;&gt;&lt;a href=&quot;#Adaptee-java&quot; class=&quot;headerlink&quot; title=&quot;Adaptee.java&quot;&gt;&lt;/a&gt;Adaptee.java&lt;/h3&gt;&lt;figure class=&quot;highlight bash&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;public class Adaptee &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    public void &lt;span class=&quot;function&quot;&gt;&lt;span class=&quot;title&quot;&gt;sampleOperation1&lt;/span&gt;&lt;/span&gt;() &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        System.out.println(&lt;span class=&quot;string&quot;&gt;&quot;sampleOperation1&quot;&lt;/span&gt;);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;h3 id=&quot;Adapter-java&quot;&gt;&lt;a href=&quot;#Adapter-java&quot; class=&quot;headerlink&quot; title=&quot;Adapter.java&quot;&gt;&lt;/a&gt;Adapter.java&lt;/h3&gt;&lt;figure class=&quot;highlight bash&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;9&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;public class Adapter extends Adaptee implements Target &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    @Override&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    public void &lt;span class=&quot;function&quot;&gt;&lt;span class=&quot;title&quot;&gt;sampleOperation2&lt;/span&gt;&lt;/span&gt;() &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        System.out.println(&lt;span class=&quot;string&quot;&gt;&quot;sampleOperation2&quot;&lt;/span&gt;);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;h3 id=&quot;测试类&quot;&gt;&lt;a href=&quot;#测试类&quot; class=&quot;headerlink&quot; title=&quot;测试类&quot;&gt;&lt;/a&gt;测试类&lt;/h3&gt;&lt;figure class=&quot;highlight bash&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;9&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;public class MyClass &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    public static void main(String[] args) &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        Adapter adapter = new Adapter();&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        adapter.sampleOperation1();&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        adapter.sampleOperation2();&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;h3 id=&quot;运行结果&quot;&gt;&lt;a href=&quot;#运行结果&quot; class=&quot;headerlink&quot; title=&quot;运行结果&quot;&gt;&lt;/a&gt;运行结果&lt;/h3&gt;&lt;p&gt;&lt;img src=&quot;/images/DesignPattern/ClassAdapterResult.png&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;h2 id=&quot;对象适配器代码实现&quot;&gt;&lt;a href=&quot;#对象适配器代码实现&quot; class=&quot;headerlink&quot; title=&quot;对象适配器代码实现&quot;&gt;&lt;/a&gt;对象适配器代码实现&lt;/h2&gt;&lt;h3 id=&quot;Target-java-1&quot;&gt;&lt;a href=&quot;#Target-java-1&quot; class=&quot;headerlink&quot; title=&quot;Target.java&quot;&gt;&lt;/a&gt;Target.java&lt;/h3&gt;&lt;figure class=&quot;highlight bash&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;public interface Target &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    void sampleOperation1();&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    void sampleOperation2();&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;h3 id=&quot;Adaptee-java-1&quot;&gt;&lt;a href=&quot;#Adaptee-java-1&quot; class=&quot;headerlink&quot; title=&quot;Adaptee.java&quot;&gt;&lt;/a&gt;Adaptee.java&lt;/h3&gt;&lt;figure class=&quot;highlight bash&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;public class Adaptee &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    public void &lt;span class=&quot;function&quot;&gt;&lt;span class=&quot;title&quot;&gt;sampleOperation1&lt;/span&gt;&lt;/span&gt;() &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        System.out.println(&lt;span class=&quot;string&quot;&gt;&quot;sampleOperation1&quot;&lt;/span&gt;);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;h3 id=&quot;Adapter-java-1&quot;&gt;&lt;a href=&quot;#Adapter-java-1&quot; class=&quot;headerlink&quot; title=&quot;Adapter.java&quot;&gt;&lt;/a&gt;Adapter.java&lt;/h3&gt;&lt;figure class=&quot;highlight bash&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;10&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;11&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;12&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;13&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;14&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;15&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;16&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;17&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;18&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;19&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;20&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;public class Adapter implements Target &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    private Adaptee mAdaptee;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    public Adapter(Adaptee adaptee) &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        mAdaptee = adaptee;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    @Override&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    public void &lt;span class=&quot;function&quot;&gt;&lt;span class=&quot;title&quot;&gt;sampleOperation1&lt;/span&gt;&lt;/span&gt;() &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        mAdaptee.sampleOperation1();&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    @Override&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    public void &lt;span class=&quot;function&quot;&gt;&lt;span class=&quot;title&quot;&gt;sampleOperation2&lt;/span&gt;&lt;/span&gt;() &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        System.out.println(&lt;span class=&quot;string&quot;&gt;&quot;sampleOperation2&quot;&lt;/span&gt;);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;h3 id=&quot;测试类-1&quot;&gt;&lt;a href=&quot;#测试类-1&quot; class=&quot;headerlink&quot; title=&quot;测试类&quot;&gt;&lt;/a&gt;测试类&lt;/h3&gt;&lt;figure class=&quot;highlight bash&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;9&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;public class MyClass &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    public static void main(String[] args) &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        Adapter adapter =new Adapter(new Adaptee());&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        adapter.sampleOperation1();&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        adapter.sampleOperation2();&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;h3 id=&quot;运行结果-1&quot;&gt;&lt;a href=&quot;#运行结果-1&quot; class=&quot;headerlink&quot; title=&quot;运行结果&quot;&gt;&lt;/a&gt;运行结果&lt;/h3&gt;&lt;p&gt;&lt;img src=&quot;/images/DesignPattern/ObjectAdapterResult.png&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;h2 id=&quot;模式分析&quot;&gt;&lt;a href=&quot;#模式分析&quot; class=&quot;headerlink&quot; title=&quot;模式分析&quot;&gt;&lt;/a&gt;模式分析&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;类适配器使用对象继承的方式，是静态的定义方式；而对象适配器使用对象组合的方式，是动态组合的方式。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;对于类适配器，由于适配器直接继承了Adaptee，使得适配器不能和Adaptee的子类一起工作，因为继承是静态的关系，当适配器继承了Adaptee后，就不可能再去处理 Adaptee的子类了。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;对于对象适配器，一个适配器可以把多种不同的源适配到同一个目标。换言之，同一个适配器可以把源类和它的子类都适配到目标接口。因为对象适配器采用的是对象组合的关系，只要对象类型正确，是不是子类都无所谓。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;对于类适配器，适配器可以重定义Adaptee的部分行为，相当于子类覆盖父类的部分实现方法。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;对于对象适配器，要重定义Adaptee的行为比较困难，这种情况下，需要定义Adaptee的子类来实现重定义，然后让适配器组合子类。虽然重定义Adaptee的行为比较困难，但是想要增加一些新的行为则方便的很，而且新增加的行为可同时适用于所有的源。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;对于类适配器，仅仅引入了一个对象，并不需要额外的引用来间接得到Adaptee。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;对于对象适配器，需要额外的引用来间接得到Adaptee。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;建议尽量使用对象适配器的实现方式，多用合成/聚合、少用继承。当然，具体问题具体分析，根据需要来选用实现方式，最适合的才是最好的。&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&quot;适配器模式的优点&quot;&gt;&lt;a href=&quot;#适配器模式的优点&quot; class=&quot;headerlink&quot; title=&quot;适配器模式的优点&quot;&gt;&lt;/a&gt;适配器模式的优点&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;将目标类和适配者类解耦，通过引入一个适配器类来重用现有的适配者类，而无须修改原有代码。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;增加了类的透明性和复用性，将具体的实现封装在适配者类中，对于客户端类来说是透明的，而且提高了适配者的复用性。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;灵活性和扩展性都非常好，通过使用配置文件，可以很方便地更换适配器，也可以在不修改原有代码的基础上增加新的适配器类，完全符合“开闭原则”。&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;类适配器模式还具有如下优点：&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;由于适配器类是适配者类的子类，因此可以在适配器类中置换一些适配者的方法，使得适配器的灵活性更强。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;对象适配器模式还具有如下优点：&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;一个对象适配器可以把多个不同的适配者适配到同一个目标，也就是说，同一个适配器可以把适配者类和它的子类都适配到目标接口。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&quot;适配器模式的缺点&quot;&gt;&lt;a href=&quot;#适配器模式的缺点&quot; class=&quot;headerlink&quot; title=&quot;适配器模式的缺点&quot;&gt;&lt;/a&gt;适配器模式的缺点&lt;/h2&gt;&lt;p&gt;&lt;strong&gt;类适配器模式的缺点如下：&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;对于Java、C#等不支持多重继承的语言，一次最多只能适配一个适配者类，而且目标抽象类只能为抽象类，不能为具体类，其使用有一定的局限性，不能将一个适配者类和它的子类都适配到目标接口。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;对象适配器模式的缺点如下：&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;与类适配器模式相比，要想置换适配者类的方法就不容易。如果一定要置换掉适配者类的一个或多个方法，就只好先做一个适配者类的子类，将适配者类的方法置换掉，然后再把适配者类的子类当做真正的适配者进行适配，实现过程较为复杂。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;参考&lt;br&gt;    &lt;a href=&quot;http://design-patterns.readthedocs.io/zh_CN/latest/structural_patterns/adapter.html&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;http://design-patterns.readthedocs.io/zh_CN/latest/structural_patterns/adapter.html&lt;/a&gt;&lt;br&gt;    &lt;a href=&quot;http://www.cnblogs.com/java-my-life/archive/2012/04/13/2442795.html&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;http://www.cnblogs.com/java-my-life/archive/2012/04/13/2442795.html&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;欢迎大家关注我的微信公众号，我会不定期的分享些Android开发的技巧&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/images/weixing.jpg&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+</content>
+    
+    <summary type="html">
+    
+      设计模式,适配器模式
+    
+    </summary>
+    
+      <category term="Design Pattern" scheme="http://HJXANDHMR.github.io/categories/Design-Pattern/"/>
+    
+    
+      <category term="Design Pattern" scheme="http://HJXANDHMR.github.io/tags/Design-Pattern/"/>
+    
+  </entry>
   
   <entry>
     <title>设计模式—建造者模式</title>
@@ -873,40 +956,6 @@ public interface ActivityComponent {
     
     
       <category term="Markdown" scheme="http://HJXANDHMR.github.io/tags/Markdown/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>hexo 常用命令和更换主题</title>
-    <link href="http://HJXANDHMR.github.io/2016/04/16/hexo-Command/"/>
-    <id>http://HJXANDHMR.github.io/2016/04/16/hexo-Command/</id>
-    <published>2016-04-16T13:36:08.038Z</published>
-    <updated>2016-04-18T12:05:21.091Z</updated>
-    
-    <content type="html">&lt;p&gt; 上一篇博客我们已经学会如何在GitHub加hexo搭建博客&lt;a href=&quot;http://hjxandhmr.github.io/2016/04/15/hello-hexo/&quot;&gt;GitHub加hexo搭建博客教程&lt;/a&gt; 这篇博客就来学学常用的hexo命令和更换主题。&lt;/p&gt;
-&lt;h2 id=&quot;hexo命令&quot;&gt;&lt;a href=&quot;#hexo命令&quot; class=&quot;headerlink&quot; title=&quot;hexo命令&quot;&gt;&lt;/a&gt;hexo命令&lt;/h2&gt;&lt;p&gt; 本地查看博客内容&lt;br&gt; &lt;figure class=&quot;highlight bash&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;hexo s &lt;span class=&quot;comment&quot;&gt;#本地预览文章内容，登录 localhost:4000 查看效果&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
-&lt;p&gt;发布内容到 public 文件夹&lt;br&gt; &lt;figure class=&quot;highlight bash&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;hexo clean  &lt;span class=&quot;comment&quot;&gt;#修改主题是必须要执行这个命令，否则会有问题&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;hexo g      &lt;span class=&quot;comment&quot;&gt;#生成public文件，可以手动copy到github上去&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
-&lt;p&gt;新建一个文章&lt;br&gt;&lt;figure class=&quot;highlight bash&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;hexo n     &lt;span class=&quot;comment&quot;&gt;#新建一个博客名，也可以手动在source\_posts新建&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
-&lt;h2 id=&quot;更换主题&quot;&gt;&lt;a href=&quot;#更换主题&quot; class=&quot;headerlink&quot; title=&quot;更换主题&quot;&gt;&lt;/a&gt;更换主题&lt;/h2&gt;&lt;h3 id=&quot;安装主题&quot;&gt;&lt;a href=&quot;#安装主题&quot; class=&quot;headerlink&quot; title=&quot;安装主题&quot;&gt;&lt;/a&gt;安装主题&lt;/h3&gt;&lt;p&gt;在博客目录如E:\Androidstudiochengxu\GitHubPage\hexo下右键点击Git Bash，输入以下命令。其他的主题也类似操作。&lt;br&gt;&lt;figure class=&quot;highlight bash&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;git &lt;span class=&quot;built_in&quot;&gt;clone&lt;/span&gt; https://github.com/wuchong/jacman.git themes/jacman&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
-&lt;h3 id=&quot;启用主题&quot;&gt;&lt;a href=&quot;#启用主题&quot; class=&quot;headerlink&quot; title=&quot;启用主题&quot;&gt;&lt;/a&gt;启用主题&lt;/h3&gt;&lt;p&gt;修改博客目录E:\Androidstudiochengxu\GitHubPage\hexo_config.yml中的theme属性，将其设置为jacman。&lt;br&gt;&lt;figure class=&quot;highlight bash&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;theme: jacman&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
-&lt;p&gt;到这里主题的更换就好了，启动本地预览一下，可以的话就同步到Github上面吧。&lt;/p&gt;
-&lt;h3 id=&quot;主题的配置&quot;&gt;&lt;a href=&quot;#主题的配置&quot; class=&quot;headerlink&quot; title=&quot;主题的配置&quot;&gt;&lt;/a&gt;主题的配置&lt;/h3&gt;&lt;p&gt;主题的配置当然就是在E:\Androidstudiochengxu\GitHubPage\hexo\themes\jacman_config.yml文件里面了。一般而言，主题的作者都会有对主题的相关介绍，看他介绍的修改就可以了。我主要针对导航栏和右边栏小部件举例简单说明一下，后面你就知道如何配置了。&lt;/p&gt;
-&lt;figure class=&quot;highlight bash&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;10&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;11&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;menu:  &lt;span class=&quot;comment&quot;&gt;#导航栏&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  主页: /&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  归档: /archives&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  关于: /about  &lt;span class=&quot;comment&quot;&gt;#介绍自己&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  网络工具: /tools  &lt;span class=&quot;comment&quot;&gt;#自己添加&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  资源共享: /share  &lt;span class=&quot;comment&quot;&gt;#自己添加&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;widgets:  &lt;span class=&quot;comment&quot;&gt;## 右边的零部件，jacman主题提供了7个：category、tag、rss、archive、tagcloud、links、weibo、douban，可以根据自己喜好增减&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;- category  &lt;span class=&quot;comment&quot;&gt;#目录&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;- tags      &lt;span class=&quot;comment&quot;&gt;#标签（标签上显示数量）&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;- links  &lt;span class=&quot;comment&quot;&gt;#友情链接&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-&lt;p&gt;注意，修改任何的配置内容，都需要生成之后才有效。&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;欢迎大家关注我的微信公众号，我会不定期的分享些Android开发的技巧&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;&lt;img src=&quot;/images/weixing.jpg&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
-</content>
-    
-    <summary type="html">
-    
-      hexo 常用命令
-    
-    </summary>
-    
-      <category term="hexo" scheme="http://HJXANDHMR.github.io/categories/hexo/"/>
-    
-    
-      <category term="hexo" scheme="http://HJXANDHMR.github.io/tags/hexo/"/>
     
   </entry>
   
