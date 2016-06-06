@@ -2,6 +2,20 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://HJXANDHMR.github.io/2016/05/27/DesignPattern-SimpleFactory/</loc>
+    
+    <lastmod>2016-06-06T10:05:32.701Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://HJXANDHMR.github.io/2016/06/06/DesignPattern-Proxy/</loc>
+    
+    <lastmod>2016-06-06T10:05:08.366Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://HJXANDHMR.github.io/2016/06/05/DesignPattern-Facade/</loc>
     
     <lastmod>2016-06-05T09:22:50.787Z</lastmod>
@@ -61,13 +75,6 @@
     <loc>http://HJXANDHMR.github.io/2016/05/28/DesigPattern-FactoryMethod/</loc>
     
     <lastmod>2016-05-28T02:00:03.004Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://HJXANDHMR.github.io/2016/05/27/DesignPattern-SimpleFactory/</loc>
-    
-    <lastmod>2016-05-27T13:19:40.251Z</lastmod>
     
   </url>
   

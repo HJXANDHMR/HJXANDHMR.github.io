@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://HJXANDHMR.github.io/"/>
-  <updated>2016-06-05T09:22:50.787Z</updated>
+  <updated>2016-06-06T10:05:08.366Z</updated>
   <id>http://HJXANDHMR.github.io/</id>
   
   <author>
@@ -14,6 +14,57 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>设计模式—代理模式</title>
+    <link href="http://HJXANDHMR.github.io/2016/06/06/DesignPattern-Proxy/"/>
+    <id>http://HJXANDHMR.github.io/2016/06/06/DesignPattern-Proxy/</id>
+    <published>2016-06-06T09:49:07.412Z</published>
+    <updated>2016-06-06T10:05:08.366Z</updated>
+    
+    <content type="html">&lt;p&gt;今天我们来学习一种结构型模式，代理模式(Proxy Pattern)。&lt;/p&gt;
+&lt;h2 id=&quot;模式定义&quot;&gt;&lt;a href=&quot;#模式定义&quot; class=&quot;headerlink&quot; title=&quot;模式定义&quot;&gt;&lt;/a&gt;模式定义&lt;/h2&gt;&lt;p&gt;给某一个对象提供一个代理，并由代理对象控制对原对象的引用。&lt;/p&gt;
+&lt;h2 id=&quot;模式结构&quot;&gt;&lt;a href=&quot;#模式结构&quot; class=&quot;headerlink&quot; title=&quot;模式结构&quot;&gt;&lt;/a&gt;模式结构&lt;/h2&gt;&lt;p&gt;代理模式包含如下角色：&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;AbstractObject: &lt;/strong&gt; 抽象角色&lt;br&gt;&lt;strong&gt;ProxyObject: &lt;/strong&gt; 代理角色&lt;br&gt;&lt;strong&gt;RealObject: &lt;/strong&gt; 真实角色&lt;/p&gt;
+&lt;h2 id=&quot;UML图&quot;&gt;&lt;a href=&quot;#UML图&quot; class=&quot;headerlink&quot; title=&quot;UML图&quot;&gt;&lt;/a&gt;UML图&lt;/h2&gt;&lt;p&gt;&lt;img src=&quot;/images/DesignPattern/ProxyUML.png&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;h2 id=&quot;代码实现&quot;&gt;&lt;a href=&quot;#代码实现&quot; class=&quot;headerlink&quot; title=&quot;代码实现&quot;&gt;&lt;/a&gt;代码实现&lt;/h2&gt;&lt;h3 id=&quot;AbstractObject-java&quot;&gt;&lt;a href=&quot;#AbstractObject-java&quot; class=&quot;headerlink&quot; title=&quot;AbstractObject.java&quot;&gt;&lt;/a&gt;AbstractObject.java&lt;/h3&gt;&lt;p&gt;·&lt;figure class=&quot;highlight bash&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;/**&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt; * 抽象角色&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt; */&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;public interface AbstractObject &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    void operation();&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
+&lt;h3 id=&quot;RealObject-java&quot;&gt;&lt;a href=&quot;#RealObject-java&quot; class=&quot;headerlink&quot; title=&quot;RealObject.java&quot;&gt;&lt;/a&gt;RealObject.java&lt;/h3&gt;&lt;figure class=&quot;highlight bash&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;10&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;/**&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt; * 真实角色&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt; */&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;public class RealObject implements AbstractObject&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    @Override&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    public void &lt;span class=&quot;function&quot;&gt;&lt;span class=&quot;title&quot;&gt;operation&lt;/span&gt;&lt;/span&gt;() &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        System.out.println(&lt;span class=&quot;string&quot;&gt;&quot;RealObject do SomeThing&quot;&lt;/span&gt;);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;h3 id=&quot;ProxyObject-java&quot;&gt;&lt;a href=&quot;#ProxyObject-java&quot; class=&quot;headerlink&quot; title=&quot;ProxyObject.java&quot;&gt;&lt;/a&gt;ProxyObject.java&lt;/h3&gt;&lt;figure class=&quot;highlight bash&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;10&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;11&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;12&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;13&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;14&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;/**&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt; * 代理角色&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt; */&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;public class ProxyObject implements AbstractObject &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    private RealObject mRealObject =new RealObject();&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    @Override&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    public void &lt;span class=&quot;function&quot;&gt;&lt;span class=&quot;title&quot;&gt;operation&lt;/span&gt;&lt;/span&gt;() &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        System.out.println(&lt;span class=&quot;string&quot;&gt;&quot;Before operation&quot;&lt;/span&gt;);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        mRealObject.operation();&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        System.out.println(&lt;span class=&quot;string&quot;&gt;&quot;After operation&quot;&lt;/span&gt;);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;h3 id=&quot;测试类&quot;&gt;&lt;a href=&quot;#测试类&quot; class=&quot;headerlink&quot; title=&quot;测试类&quot;&gt;&lt;/a&gt;测试类&lt;/h3&gt;&lt;figure class=&quot;highlight bash&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;public class MyClass &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    public static void main(String[] args) &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        AbstractObject abstractObject = new ProxyObject();&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        abstractObject.operation();&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;h3 id=&quot;运行结果&quot;&gt;&lt;a href=&quot;#运行结果&quot; class=&quot;headerlink&quot; title=&quot;运行结果&quot;&gt;&lt;/a&gt;运行结果&lt;/h3&gt;&lt;p&gt;&lt;img src=&quot;/images/DesignPattern/ProxyResult.png&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;h2 id=&quot;代理模式的优点&quot;&gt;&lt;a href=&quot;#代理模式的优点&quot; class=&quot;headerlink&quot; title=&quot;代理模式的优点&quot;&gt;&lt;/a&gt;代理模式的优点&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;代理模式能够协调调用者和被调用者，在一定程度上降低了系 统的耦合度。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;远程代理使得客户端可以访问在远程机器上的对象，远程机器 可能具有更好的计算性能与处理速度，可以快速响应并处理客户端请求。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;虚拟代理通过使用一个小对象来代表一个大对象，可以减少系 统资源的消耗，对系统进行优化并提高运行速度。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;保护代理可以控制对真实对象的使用权限。 &lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&quot;代理模式的缺点&quot;&gt;&lt;a href=&quot;#代理模式的缺点&quot; class=&quot;headerlink&quot; title=&quot;代理模式的缺点&quot;&gt;&lt;/a&gt;代理模式的缺点&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;由于在客户端和真实主题之间增加了代理对象，因此 有些类型的代理模式可能会造成请求的处理速度变慢。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;实现代理模式需要额外的工作，有些代理模式的实现 非常复杂。&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;参考&lt;br&gt;    &lt;a href=&quot;http://design-patterns.readthedocs.io/zh_CN/latest/structural_patterns/proxy.html&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;http://design-patterns.readthedocs.io/zh_CN/latest/structural_patterns/proxy.html&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;欢迎大家关注我的微信公众号，我会不定期的分享些Android开发的技巧&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/images/weixing.jpg&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+</content>
+    
+    <summary type="html">
+    
+      设计模式,代理模式
+    
+    </summary>
+    
+      <category term="Design Pattern" scheme="http://HJXANDHMR.github.io/categories/Design-Pattern/"/>
+    
+    
+      <category term="Design Pattern" scheme="http://HJXANDHMR.github.io/tags/Design-Pattern/"/>
+    
+  </entry>
   
   <entry>
     <title>设计模式—外观模式</title>
@@ -496,7 +547,7 @@
     <link href="http://HJXANDHMR.github.io/2016/05/27/DesignPattern-SimpleFactory/"/>
     <id>http://HJXANDHMR.github.io/2016/05/27/DesignPattern-SimpleFactory/</id>
     <published>2016-05-27T12:11:45.975Z</published>
-    <updated>2016-05-27T13:19:40.251Z</updated>
+    <updated>2016-06-06T10:05:32.701Z</updated>
     
     <content type="html">&lt;p&gt;简单工厂模式在实际的开发应用比较多，今天我们来学习下设计模式中的简单工厂模式。&lt;br&gt;从设计模式的类型上来说，简单工厂模式是属于创建型模式，又叫做静态工厂方法（Static Factory Method）模式。&lt;/p&gt;
 &lt;h2 id=&quot;模式的定义&quot;&gt;&lt;a href=&quot;#模式的定义&quot; class=&quot;headerlink&quot; title=&quot;模式的定义&quot;&gt;&lt;/a&gt;模式的定义&lt;/h2&gt;&lt;p&gt;简单工厂模式的实质是由一个工厂类根据传入的参数，动态决定应该创建哪一个产品类（这些产品类继承自一个父类或接口）的实例。&lt;/p&gt;
@@ -947,39 +998,6 @@ public interface ActivityComponent {
     
     
       <category term="hexo" scheme="http://HJXANDHMR.github.io/tags/hexo/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Android Studio中配置Genymotion</title>
-    <link href="http://HJXANDHMR.github.io/2016/04/18/AndroidStudio-ConfigureGenymotion/"/>
-    <id>http://HJXANDHMR.github.io/2016/04/18/AndroidStudio-ConfigureGenymotion/</id>
-    <published>2016-04-18T06:01:08.912Z</published>
-    <updated>2016-04-18T07:56:33.122Z</updated>
-    
-    <content type="html">&lt;p&gt;Android Studio中是开发Android的必备神器，今天我们就来聊聊Android studio的插件Genymotion怎样在Android studio中配置&lt;/p&gt;
-&lt;h2 id=&quot;下载Genymotion插件&quot;&gt;&lt;a href=&quot;#下载Genymotion插件&quot; class=&quot;headerlink&quot; title=&quot;下载Genymotion插件&quot;&gt;&lt;/a&gt;下载Genymotion插件&lt;/h2&gt;&lt;p&gt;打开设置界面&lt;br&gt;&lt;img src=&quot;/images/AndroidStudio/AndroidStudio_open_setting.png&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
-&lt;p&gt;然后点击Plugins,在搜索框里输入Genymotion，在点击右边的Install，因为我已经安装好了，图上显示的是Uninstall&lt;br&gt;&lt;img src=&quot;/images/AndroidStudio/AndroidStudio_anzhuang_genymotion.png&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
-&lt;h2 id=&quot;配置Genymotion插件&quot;&gt;&lt;a href=&quot;#配置Genymotion插件&quot; class=&quot;headerlink&quot; title=&quot;配置Genymotion插件&quot;&gt;&lt;/a&gt;配置Genymotion插件&lt;/h2&gt;&lt;p&gt;点击设置界面最下面的Other Setting,然后输入Genymotion的安装路径&lt;/p&gt;
-&lt;p&gt;&lt;img src=&quot;/images/AndroidStudio/AndroidStudio_configure_genymotion.png&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
-&lt;p&gt;安装好了Genymotion,要重新启动AndroidStudio 才会生效，然后就会在工具栏多出一个图标，点击它：&lt;/p&gt;
-&lt;p&gt;&lt;img src=&quot;/images/AndroidStudio/AndroidStudio_start_genymotion.png&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
-&lt;p&gt;然后选择启动模拟机就可以了&lt;br&gt;&lt;img src=&quot;/images/AndroidStudio/AndroidStudio_start_genymotionSelect.png&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
-&lt;p&gt;到了这一步，恭喜你，Genymotion插件就安装成功了，就不需要每次还要单独启动Genymotion了。&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;欢迎大家关注我的微信公众号，我会不定期的分享些Android开发的技巧&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;&lt;img src=&quot;/images/weixing.jpg&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
-</content>
-    
-    <summary type="html">
-    
-      Android Studio,Genymotion,配置
-    
-    </summary>
-    
-      <category term="AndroidStudio" scheme="http://HJXANDHMR.github.io/categories/AndroidStudio/"/>
-    
-    
-      <category term="AndroidStudio" scheme="http://HJXANDHMR.github.io/tags/AndroidStudio/"/>
     
   </entry>
   

@@ -4,26 +4,27 @@
 <head>
   <meta charset="UTF-8">
   
-    <title>ListView复用原理和提升效率 | Android学习</title>
+    <title>设计模式—代理模式 | Android学习</title>
     <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
     
     <meta name="author" content="何健雄">
     
 
     
-    <meta name="description" content="ListView复用原理">
+    <meta name="description" content="设计模式,代理模式">
 <meta property="og:type" content="article">
-<meta property="og:title" content="ListView复用原理和提升效率">
-<meta property="og:url" content="http://HJXANDHMR.github.io/2016/04/21/Android-ListViewReusePrinciple/index.html">
+<meta property="og:title" content="设计模式—代理模式">
+<meta property="og:url" content="http://HJXANDHMR.github.io/2016/06/06/DesignPattern-Proxy/index.html">
 <meta property="og:site_name" content="Android学习">
-<meta property="og:description" content="ListView复用原理">
-<meta property="og:image" content="http://HJXANDHMR.github.io/images/ListView/ListView_yuanli.jpg">
+<meta property="og:description" content="设计模式,代理模式">
+<meta property="og:image" content="http://HJXANDHMR.github.io/images/DesignPattern/ProxyUML.png">
+<meta property="og:image" content="http://HJXANDHMR.github.io/images/DesignPattern/ProxyResult.png">
 <meta property="og:image" content="http://HJXANDHMR.github.io/images/weixing.jpg">
-<meta property="og:updated_time" content="2016-04-21T13:47:53.242Z">
+<meta property="og:updated_time" content="2016-06-06T10:05:08.366Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="ListView复用原理和提升效率">
-<meta name="twitter:description" content="ListView复用原理">
-<meta name="twitter:image" content="http://HJXANDHMR.github.io/images/ListView/ListView_yuanli.jpg">
+<meta name="twitter:title" content="设计模式—代理模式">
+<meta name="twitter:description" content="设计模式,代理模式">
+<meta name="twitter:image" content="http://HJXANDHMR.github.io/images/DesignPattern/ProxyUML.png">
 
     
     <link rel="alternative" href="/atom.xml" title="Android学习" type="application/atom+xml">
@@ -83,14 +84,14 @@
 		<header class="article-info clearfix">
   <h1 itemprop="name">
     
-      <a href="/2016/04/21/Android-ListViewReusePrinciple/" title="ListView复用原理和提升效率" itemprop="url">ListView复用原理和提升效率</a>
+      <a href="/2016/06/06/DesignPattern-Proxy/" title="设计模式—代理模式" itemprop="url">设计模式—代理模式</a>
   </h1>
   <p class="article-author">By
        
 		<a href="/about" title="何健雄" target="_blank" itemprop="author">何健雄</a>
 		
   <p class="article-time">
-    <time datetime="2016-04-21T12:59:40.408Z" itemprop="datePublished"> 发表于 2016-04-21</time>
+    <time datetime="2016-06-06T09:49:07.412Z" itemprop="datePublished"> 发表于 2016-06-06</time>
     
   </p>
 </header>
@@ -99,17 +100,37 @@
 		<div id="toc" class="toc-article">
 			<strong class="toc-title">文章目录</strong>
 		
-			<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#复用原理以及提升效率"><span class="toc-number">1.</span> <span class="toc-text">复用原理以及提升效率</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#复用item"><span class="toc-number">1.1.</span> <span class="toc-text">复用item</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#提高ListView的效率"><span class="toc-number">2.</span> <span class="toc-text">提高ListView的效率</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#最简单的使用ListView"><span class="toc-number">2.1.</span> <span class="toc-text">最简单的使用ListView</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#复用convertView"><span class="toc-number">2.2.</span> <span class="toc-text">复用convertView</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#使用ViewHolder"><span class="toc-number">2.3.</span> <span class="toc-text">使用ViewHolder</span></a></li></ol></li></ol>
+			<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#模式定义"><span class="toc-number">1.</span> <span class="toc-text">模式定义</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#模式结构"><span class="toc-number">2.</span> <span class="toc-text">模式结构</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#UML图"><span class="toc-number">3.</span> <span class="toc-text">UML图</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#代码实现"><span class="toc-number">4.</span> <span class="toc-text">代码实现</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#AbstractObject-java"><span class="toc-number">4.1.</span> <span class="toc-text">AbstractObject.java</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#RealObject-java"><span class="toc-number">4.2.</span> <span class="toc-text">RealObject.java</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#ProxyObject-java"><span class="toc-number">4.3.</span> <span class="toc-text">ProxyObject.java</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#测试类"><span class="toc-number">4.4.</span> <span class="toc-text">测试类</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#运行结果"><span class="toc-number">4.5.</span> <span class="toc-text">运行结果</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#代理模式的优点"><span class="toc-number">5.</span> <span class="toc-text">代理模式的优点</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#代理模式的缺点"><span class="toc-number">6.</span> <span class="toc-text">代理模式的缺点</span></a></li></ol>
 		
 		</div>
 		
-		<h2 id="复用原理以及提升效率"><a href="#复用原理以及提升效率" class="headerlink" title="复用原理以及提升效率"></a>复用原理以及提升效率</h2><h3 id="复用item"><a href="#复用item" class="headerlink" title="复用item"></a>复用item</h3><p>ListView在加载数据的时候是会复用item的，即ListView是会缓存至少一屏幕的item.<br>如下图所示。<br><img src="/images/ListView/ListView_yuanli.jpg" alt=""></p>
-<p>从图上可以看出当item1滚出屏幕，并且一个新的项目从屏幕底端上来时，ListView再请求一个视图。convertView此时不是空值了，它的值是item1。你只需设定新的数据然后返回convertView，不必重新创建一个视图。</p>
-<h2 id="提高ListView的效率"><a href="#提高ListView的效率" class="headerlink" title="提高ListView的效率"></a>提高ListView的效率</h2><h3 id="最简单的使用ListView"><a href="#最简单的使用ListView" class="headerlink" title="最简单的使用ListView"></a>最简单的使用ListView</h3><p>没有复用convertView，每次都要重新创建,效率极其低下<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">public View getView(int position, View convertView, ViewGroup parent) &#123;</span><br><span class="line"></span><br><span class="line">           LayoutInflater layoutInflater = LayoutInflater.from(context);</span><br><span class="line">           convertView = layoutInflater.inflate(R.layout.listview_item, null);</span><br><span class="line">           TextView textView = (TextView) (convertView).findViewById(R.id.textview);</span><br><span class="line">           textView.setText(persons.get(position).getName());</span><br><span class="line">           <span class="built_in">return</span> convertView;</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure></p>
-<h3 id="复用convertView"><a href="#复用convertView" class="headerlink" title="复用convertView"></a>复用convertView</h3><p>利用 convertView 回收视图, 效率提高 200%<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">public View getView(int position, View convertView, ViewGroup parent) &#123;</span><br><span class="line"></span><br><span class="line"> 		LayoutInflater layoutInflater = LayoutInflater.from(context);</span><br><span class="line">        <span class="keyword">if</span> (convertView == null) &#123;</span><br><span class="line">			 convertView = layoutInflater.inflate(R.layout.listview_item, null);</span><br><span class="line">		&#125;</span><br><span class="line"></span><br><span class="line">		TextView textView = (TextView) (convertView).findViewById(R.id.textview);</span><br><span class="line">		textView.setText(persons.get(position).getName());</span><br><span class="line">		<span class="built_in">return</span> convertView;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure></p>
-<h3 id="使用ViewHolder"><a href="#使用ViewHolder" class="headerlink" title="使用ViewHolder"></a>使用ViewHolder</h3><p>使用ViewHolder模式效率再提高50%</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">public View getView(int position, View convertView, ViewGroup parent) &#123;</span><br><span class="line">       ViewHolder holder;</span><br><span class="line">       <span class="keyword">if</span> (convertView == null) &#123;</span><br><span class="line">           LayoutInflater layoutInflater = LayoutInflater.from(context);</span><br><span class="line">           convertView = layoutInflater.inflate(R.layout.listview_item, null);</span><br><span class="line">           holder =new ViewHolder();</span><br><span class="line">           holder.textView = (TextView) (convertView).findViewById(R.id.textview);</span><br><span class="line">           convertView.setTag(holder);</span><br><span class="line"></span><br><span class="line">       &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">           holder = (ViewHolder) convertView.getTag();</span><br><span class="line"></span><br><span class="line">       &#125;</span><br><span class="line">       holder.textView.setText(persons.get(position).getName());</span><br><span class="line">       <span class="built_in">return</span> convertView;</span><br><span class="line">   &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">   class ViewHolder &#123;</span><br><span class="line">       private TextView textView;</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
-<p>通过本篇博客应该明白了ListView是怎样复用，以及怎样提高ListView的工作效率了。</p>
+		<p>今天我们来学习一种结构型模式，代理模式(Proxy Pattern)。</p>
+<h2 id="模式定义"><a href="#模式定义" class="headerlink" title="模式定义"></a>模式定义</h2><p>给某一个对象提供一个代理，并由代理对象控制对原对象的引用。</p>
+<h2 id="模式结构"><a href="#模式结构" class="headerlink" title="模式结构"></a>模式结构</h2><p>代理模式包含如下角色：</p>
+<p><strong>AbstractObject: </strong> 抽象角色<br><strong>ProxyObject: </strong> 代理角色<br><strong>RealObject: </strong> 真实角色</p>
+<h2 id="UML图"><a href="#UML图" class="headerlink" title="UML图"></a>UML图</h2><p><img src="/images/DesignPattern/ProxyUML.png" alt=""></p>
+<h2 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h2><h3 id="AbstractObject-java"><a href="#AbstractObject-java" class="headerlink" title="AbstractObject.java"></a>AbstractObject.java</h3><p>·<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">/**</span><br><span class="line"> * 抽象角色</span><br><span class="line"> */</span><br><span class="line">public interface AbstractObject &#123;</span><br><span class="line"></span><br><span class="line">    void operation();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h3 id="RealObject-java"><a href="#RealObject-java" class="headerlink" title="RealObject.java"></a>RealObject.java</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">/**</span><br><span class="line"> * 真实角色</span><br><span class="line"> */</span><br><span class="line">public class RealObject implements AbstractObject&#123;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    public void <span class="function"><span class="title">operation</span></span>() &#123;</span><br><span class="line">        System.out.println(<span class="string">"RealObject do SomeThing"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="ProxyObject-java"><a href="#ProxyObject-java" class="headerlink" title="ProxyObject.java"></a>ProxyObject.java</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">/**</span><br><span class="line"> * 代理角色</span><br><span class="line"> */</span><br><span class="line">public class ProxyObject implements AbstractObject &#123;</span><br><span class="line"></span><br><span class="line">    private RealObject mRealObject =new RealObject();</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    public void <span class="function"><span class="title">operation</span></span>() &#123;</span><br><span class="line">        System.out.println(<span class="string">"Before operation"</span>);</span><br><span class="line">        mRealObject.operation();</span><br><span class="line">        System.out.println(<span class="string">"After operation"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="测试类"><a href="#测试类" class="headerlink" title="测试类"></a>测试类</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">public class MyClass &#123;</span><br><span class="line"></span><br><span class="line">    public static void main(String[] args) &#123;</span><br><span class="line">        AbstractObject abstractObject = new ProxyObject();</span><br><span class="line">        abstractObject.operation();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="运行结果"><a href="#运行结果" class="headerlink" title="运行结果"></a>运行结果</h3><p><img src="/images/DesignPattern/ProxyResult.png" alt=""></p>
+<h2 id="代理模式的优点"><a href="#代理模式的优点" class="headerlink" title="代理模式的优点"></a>代理模式的优点</h2><ul>
+<li><p>代理模式能够协调调用者和被调用者，在一定程度上降低了系 统的耦合度。</p>
+</li>
+<li><p>远程代理使得客户端可以访问在远程机器上的对象，远程机器 可能具有更好的计算性能与处理速度，可以快速响应并处理客户端请求。</p>
+</li>
+<li><p>虚拟代理通过使用一个小对象来代表一个大对象，可以减少系 统资源的消耗，对系统进行优化并提高运行速度。</p>
+</li>
+<li><p>保护代理可以控制对真实对象的使用权限。 </p>
+</li>
+</ul>
+<h2 id="代理模式的缺点"><a href="#代理模式的缺点" class="headerlink" title="代理模式的缺点"></a>代理模式的缺点</h2><ul>
+<li><p>由于在客户端和真实主题之间增加了代理对象，因此 有些类型的代理模式可能会造成请求的处理速度变慢。</p>
+</li>
+<li><p>实现代理模式需要额外的工作，有些代理模式的实现 非常复杂。</p>
+</li>
+</ul>
+<p>参考<br>    <a href="http://design-patterns.readthedocs.io/zh_CN/latest/structural_patterns/proxy.html" target="_blank" rel="external">http://design-patterns.readthedocs.io/zh_CN/latest/structural_patterns/proxy.html</a></p>
 <p><strong>欢迎大家关注我的微信公众号，我会不定期的分享些Android开发的技巧</strong></p>
 <p><img src="/images/weixing.jpg" alt=""></p>
   
@@ -119,13 +140,13 @@
 
 <div class="article-categories">
   <span></span>
-  <a class="article-category-link" href="/categories/ListView/">ListView</a>
+  <a class="article-category-link" href="/categories/Design-Pattern/">Design Pattern</a>
 </div>
 
 
   <div class="article-tags">
   
-  <span></span> <a href="/tags/ListView/">ListView</a>
+  <span></span> <a href="/tags/Design-Pattern/">Design Pattern</a>
   </div>
 
 </div>
@@ -134,7 +155,7 @@
 
 	<div class="article-share" id="share">
 	
-	  <div data-url="http://HJXANDHMR.github.io/2016/04/21/Android-ListViewReusePrinciple/" data-title="ListView复用原理和提升效率 | Android学习" data-tsina="null" class="share clearfix">
+	  <div data-url="http://HJXANDHMR.github.io/2016/06/06/DesignPattern-Proxy/" data-title="设计模式—代理模式 | Android学习" data-tsina="null" class="share clearfix">
 	  </div>
 	
 	</div>
@@ -147,19 +168,11 @@
 	
 <nav class="article-nav clearfix">
  
- <div class="prev" >
- <a href="/2016/04/22/Android-MVPDetailed/" title="Android MVP实例">
-  <strong>上一篇：</strong><br/>
-  <span>
-  Android MVP实例</span>
-</a>
-</div>
-
 
 <div class="next">
-<a href="/2016/04/19/Android-Utils/"  title="Android 常用工具类">
+<a href="/2016/06/05/DesignPattern-Facade/"  title="设计模式—外观模式">
  <strong>下一篇：</strong><br/> 
- <span>Android 常用工具类
+ <span>设计模式—外观模式
 </span>
 </a>
 </div>
@@ -168,7 +181,7 @@
 
 	
 <section id="comments" class="comment">
-	<div class="ds-thread" data-thread-key="2016/04/21/Android-ListViewReusePrinciple/" data-title="ListView复用原理和提升效率" data-url="http://HJXANDHMR.github.io/2016/04/21/Android-ListViewReusePrinciple/"></div>
+	<div class="ds-thread" data-thread-key="2016/06/06/DesignPattern-Proxy/" data-title="设计模式—代理模式" data-url="http://HJXANDHMR.github.io/2016/06/06/DesignPattern-Proxy/"></div>
 </section>
 
 
@@ -178,7 +191,7 @@
   <div id="toc" class="toc-aside">
   <strong class="toc-title">文章目录</strong>
  
- <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#复用原理以及提升效率"><span class="toc-number">1.</span> <span class="toc-text">复用原理以及提升效率</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#复用item"><span class="toc-number">1.1.</span> <span class="toc-text">复用item</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#提高ListView的效率"><span class="toc-number">2.</span> <span class="toc-text">提高ListView的效率</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#最简单的使用ListView"><span class="toc-number">2.1.</span> <span class="toc-text">最简单的使用ListView</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#复用convertView"><span class="toc-number">2.2.</span> <span class="toc-text">复用convertView</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#使用ViewHolder"><span class="toc-number">2.3.</span> <span class="toc-text">使用ViewHolder</span></a></li></ol></li></ol>
+ <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#模式定义"><span class="toc-number">1.</span> <span class="toc-text">模式定义</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#模式结构"><span class="toc-number">2.</span> <span class="toc-text">模式结构</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#UML图"><span class="toc-number">3.</span> <span class="toc-text">UML图</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#代码实现"><span class="toc-number">4.</span> <span class="toc-text">代码实现</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#AbstractObject-java"><span class="toc-number">4.1.</span> <span class="toc-text">AbstractObject.java</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#RealObject-java"><span class="toc-number">4.2.</span> <span class="toc-text">RealObject.java</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#ProxyObject-java"><span class="toc-number">4.3.</span> <span class="toc-text">ProxyObject.java</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#测试类"><span class="toc-number">4.4.</span> <span class="toc-text">测试类</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#运行结果"><span class="toc-number">4.5.</span> <span class="toc-text">运行结果</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#代理模式的优点"><span class="toc-number">5.</span> <span class="toc-text">代理模式的优点</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#代理模式的缺点"><span class="toc-number">6.</span> <span class="toc-text">代理模式的缺点</span></a></li></ol>
  
   </div>
 
