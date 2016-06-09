@@ -4,23 +4,32 @@
 <head>
   <meta charset="UTF-8">
   
-    <title>Android中个推集成 | Android学习</title>
+    <title>程序员提高效率的必备工具 | Android学习</title>
     <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
     
     <meta name="author" content="何健雄">
     
 
     
-    <meta name="description" content="Android,个推推送，个推集成">
+    <meta name="description" content="程序员，提高效率工具">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Android中个推集成">
-<meta property="og:url" content="http://HJXANDHMR.github.io/2016/06/08/Android-GeTui/index.html">
+<meta property="og:title" content="程序员提高效率的必备工具">
+<meta property="og:url" content="http://HJXANDHMR.github.io/2016/06/09/Programmer-Tools/index.html">
 <meta property="og:site_name" content="Android学习">
-<meta property="og:description" content="Android,个推推送，个推集成">
-<meta property="og:updated_time" content="2016-06-08T13:29:29.377Z">
+<meta property="og:description" content="程序员，提高效率工具">
+<meta property="og:image" content="http://HJXANDHMR.github.io/images/ProgramTools/Clover.png">
+<meta property="og:image" content="http://HJXANDHMR.github.io/images/ProgramTools/Everything.png">
+<meta property="og:image" content="http://HJXANDHMR.github.io/images/ProgramTools/SublimeText.png">
+<meta property="og:image" content="http://HJXANDHMR.github.io/images/ProgramTools/Genymotion.png">
+<meta property="og:image" content="http://HJXANDHMR.github.io/images/ProgramTools/Vysor.png">
+<meta property="og:image" content="http://HJXANDHMR.github.io/images/ProgramTools/Flux.png">
+<meta property="og:image" content="http://HJXANDHMR.github.io/images/ProgramTools/Infinity.png">
+<meta property="og:image" content="http://HJXANDHMR.github.io/images/ProgramTools/ECTranslation.png">
+<meta property="og:updated_time" content="2016-06-09T11:55:23.295Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Android中个推集成">
-<meta name="twitter:description" content="Android,个推推送，个推集成">
+<meta name="twitter:title" content="程序员提高效率的必备工具">
+<meta name="twitter:description" content="程序员，提高效率工具">
+<meta name="twitter:image" content="http://HJXANDHMR.github.io/images/ProgramTools/Clover.png">
 
     
     <link rel="alternative" href="/atom.xml" title="Android学习" type="application/atom+xml">
@@ -80,14 +89,14 @@
 		<header class="article-info clearfix">
   <h1 itemprop="name">
     
-      <a href="/2016/06/08/Android-GeTui/" title="Android中个推集成" itemprop="url">Android中个推集成</a>
+      <a href="/2016/06/09/Programmer-Tools/" title="程序员提高效率的必备工具" itemprop="url">程序员提高效率的必备工具</a>
   </h1>
   <p class="article-author">By
        
 		<a href="/about" title="何健雄" target="_blank" itemprop="author">何健雄</a>
 		
   <p class="article-time">
-    <time datetime="2016-06-08T13:14:39.541Z" itemprop="datePublished"> 发表于 2016-06-08</time>
+    <time datetime="2016-06-09T11:54:40.263Z" itemprop="datePublished"> 发表于 2016-06-09</time>
     
   </p>
 </header>
@@ -96,13 +105,28 @@
 		<div id="toc" class="toc-article">
 			<strong class="toc-title">文章目录</strong>
 		
-			<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#个推账号注册"><span class="toc-number">1.</span> <span class="toc-text">个推账号注册</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#将个推集成到-Android-Studio"><span class="toc-number">2.</span> <span class="toc-text">将个推集成到 Android Studio</span></a></li></ol>
+			<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Clover"><span class="toc-number">1.</span> <span class="toc-text">Clover</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Everything"><span class="toc-number">2.</span> <span class="toc-text">Everything</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Sublime-Text"><span class="toc-number">3.</span> <span class="toc-text">Sublime Text</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Genymotion"><span class="toc-number">4.</span> <span class="toc-text">Genymotion</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Vysor"><span class="toc-number">5.</span> <span class="toc-text">Vysor</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Flux"><span class="toc-number">6.</span> <span class="toc-text">Flux</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Infinity"><span class="toc-number">7.</span> <span class="toc-text">Infinity</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#ECTranslation"><span class="toc-number">8.</span> <span class="toc-text">ECTranslation</span></a></li></ol>
 		
 		</div>
 		
-		<p>前段时间项目中用到了推送，当时去网上了解了很多推送，比如百度云推送，极光推送，最后还是选择了个推。废话不多说了，直接上代码。</p>
-<h2 id="个推账号注册"><a href="#个推账号注册" class="headerlink" title="个推账号注册"></a>个推账号注册</h2><p>首先打开个推的官网<a href="https://dev.getui.com/dos4.0/index.html#login" target="_blank" rel="external">https://dev.getui.com/dos4.0/index.html#login</a>，填写一些必要的信息，步骤很简单，就不一一演示了。</p>
-<h2 id="将个推集成到-Android-Studio"><a href="#将个推集成到-Android-Studio" class="headerlink" title="将个推集成到 Android Studio"></a>将个推集成到 Android Studio</h2>  
+		<h2 id="Clover"><a href="#Clover" class="headerlink" title="Clover"></a>Clover</h2><p>Clover 是 Windows Explorer 资源管理器的一个扩展，为其增加类似谷歌 Chrome 浏览器的多标签页功能。</p>
+<p><img src="/images/ProgramTools/Clover.png" alt=""></p>
+<h2 id="Everything"><a href="#Everything" class="headerlink" title="Everything"></a>Everything</h2><p>Everything是一个快速查询你电脑上的文件，比Window下的查询快百倍。</p>
+<p><img src="/images/ProgramTools/Everything.png" alt=""></p>
+<h2 id="Sublime-Text"><a href="#Sublime-Text" class="headerlink" title="Sublime Text"></a>Sublime Text</h2><p>Sublime Text 是一个代码编辑器,具有漂亮的用户界面和强大的功能，例如代码缩略图。</p>
+<p><img src="/images/ProgramTools/SublimeText.png" alt=""></p>
+<h2 id="Genymotion"><a href="#Genymotion" class="headerlink" title="Genymotion"></a>Genymotion</h2><p>开发Android必备的模拟器。</p>
+<p><img src="/images/ProgramTools/Genymotion.png" alt=""></p>
+<h2 id="Vysor"><a href="#Vysor" class="headerlink" title="Vysor"></a>Vysor</h2><p>Vysor是Chrome 的一个扩展程序，Vysor可以将手机投影到电脑上。</p>
+<p><img src="/images/ProgramTools/Vysor.png" alt=""></p>
+<h2 id="Flux"><a href="#Flux" class="headerlink" title="Flux"></a>Flux</h2><p>Flux 是一款可以根据时间来调节屏幕亮度和色彩的软件。</p>
+<p><img src="/images/ProgramTools/Flux.png" alt=""></p>
+<h2 id="Infinity"><a href="#Infinity" class="headerlink" title="Infinity"></a>Infinity</h2><p>Infinity 是Chrome 下的一个扩展程序,每天都可以随时更换壁纸。</p>
+<p><img src="/images/ProgramTools/Infinity.png" alt=""></p>
+<h2 id="ECTranslation"><a href="#ECTranslation" class="headerlink" title="ECTranslation"></a>ECTranslation</h2><p>ECTranslation是Android Studio的一个插件，可以将英文翻译成中文。</p>
+<p><img src="/images/ProgramTools/ECTranslation.png" alt=""></p>
+<p>以上都是我比较常用的工具。</p>
+  
 	</div>
 		<footer class="article-footer clearfix">
 <div class="article-catetags">
@@ -124,7 +148,7 @@
 
 	<div class="article-share" id="share">
 	
-	  <div data-url="http://HJXANDHMR.github.io/2016/06/08/Android-GeTui/" data-title="Android中个推集成 | Android学习" data-tsina="null" class="share clearfix">
+	  <div data-url="http://HJXANDHMR.github.io/2016/06/09/Programmer-Tools/" data-title="程序员提高效率的必备工具 | Android学习" data-tsina="null" class="share clearfix">
 	  </div>
 	
 	</div>
@@ -137,14 +161,6 @@
 	
 <nav class="article-nav clearfix">
  
- <div class="prev" >
- <a href="/2016/06/08/Programmer-Tools/" title="程序员提高效率的必备工具">
-  <strong>上一篇：</strong><br/>
-  <span>
-  程序员提高效率的必备工具</span>
-</a>
-</div>
-
 
 <div class="next">
 <a href="/2016/06/08/DesignPattern-Observer/"  title="设计模式—观察者模式">
@@ -158,7 +174,7 @@
 
 	
 <section id="comments" class="comment">
-	<div class="ds-thread" data-thread-key="2016/06/08/Android-GeTui/" data-title="Android中个推集成" data-url="http://HJXANDHMR.github.io/2016/06/08/Android-GeTui/"></div>
+	<div class="ds-thread" data-thread-key="2016/06/09/Programmer-Tools/" data-title="程序员提高效率的必备工具" data-url="http://HJXANDHMR.github.io/2016/06/09/Programmer-Tools/"></div>
 </section>
 
 
@@ -168,7 +184,7 @@
   <div id="toc" class="toc-aside">
   <strong class="toc-title">文章目录</strong>
  
- <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#个推账号注册"><span class="toc-number">1.</span> <span class="toc-text">个推账号注册</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#将个推集成到-Android-Studio"><span class="toc-number">2.</span> <span class="toc-text">将个推集成到 Android Studio</span></a></li></ol>
+ <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Clover"><span class="toc-number">1.</span> <span class="toc-text">Clover</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Everything"><span class="toc-number">2.</span> <span class="toc-text">Everything</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Sublime-Text"><span class="toc-number">3.</span> <span class="toc-text">Sublime Text</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Genymotion"><span class="toc-number">4.</span> <span class="toc-text">Genymotion</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Vysor"><span class="toc-number">5.</span> <span class="toc-text">Vysor</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Flux"><span class="toc-number">6.</span> <span class="toc-text">Flux</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Infinity"><span class="toc-number">7.</span> <span class="toc-text">Infinity</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#ECTranslation"><span class="toc-number">8.</span> <span class="toc-text">ECTranslation</span></a></li></ol>
  
   </div>
 
@@ -182,7 +198,7 @@
 		<ul>
 		
 		  
-			<li><a href="/categories/Android/" title="Android">Android<sup>6</sup></a></li>
+			<li><a href="/categories/Android/" title="Android">Android<sup>5</sup></a></li>
 		  
 		
 		  
@@ -235,7 +251,7 @@
 			
 		
 			
-				<li><a href="/tags/Android/" title="Android">Android<sup>5</sup></a></li>
+				<li><a href="/tags/Android/" title="Android">Android<sup>4</sup></a></li>
 			
 		
 			
@@ -255,10 +271,6 @@
 			
 		
 			
-				<li><a href="/tags/Robolectric/" title="Robolectric">Robolectric<sup>1</sup></a></li>
-			
-		
-			
 				<li><a href="/tags/WCF/" title="WCF">WCF<sup>1</sup></a></li>
 			
 		
@@ -272,6 +284,10 @@
 		
 			
 				<li><a href="/tags/Markdown/" title="Markdown">Markdown<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Robolectric/" title="Robolectric">Robolectric<sup>1</sup></a></li>
 			
 		
 		</ul>
