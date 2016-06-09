@@ -4,25 +4,32 @@
 <head>
   <meta charset="UTF-8">
   
-    <title>Android Robolectric 实例 | Android学习</title>
+    <title>程序员提高效率的必备工具 | Android学习</title>
     <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
     
     <meta name="author" content="何健雄">
     
 
     
-    <meta name="description" content="Android ,单元测试,Robolectric">
+    <meta name="description" content="程序员，提高效率工具">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Android Robolectric 实例">
-<meta property="og:url" content="http://HJXANDHMR.github.io/2016/05/10/Android-RobolectricDemo/index.html">
+<meta property="og:title" content="程序员提高效率的必备工具">
+<meta property="og:url" content="http://HJXANDHMR.github.io/2016/06/08/Programmer-Tools/index.html">
 <meta property="og:site_name" content="Android学习">
-<meta property="og:description" content="Android ,单元测试,Robolectric">
-<meta property="og:image" content="http://HJXANDHMR.github.io/images/weixing.jpg">
-<meta property="og:updated_time" content="2016-05-11T07:07:34.760Z">
+<meta property="og:description" content="程序员，提高效率工具">
+<meta property="og:image" content="http://HJXANDHMR.github.io/images/ProgramTools/Clover.png">
+<meta property="og:image" content="http://HJXANDHMR.github.io/images/ProgramTools/Everything.png">
+<meta property="og:image" content="http://HJXANDHMR.github.io/images/ProgramTools/SublimeText.png">
+<meta property="og:image" content="http://HJXANDHMR.github.io/images/ProgramTools/Genymotion.png">
+<meta property="og:image" content="http://HJXANDHMR.github.io/images/ProgramTools/Vysor.png">
+<meta property="og:image" content="http://HJXANDHMR.github.io/images/ProgramTools/Flux.png">
+<meta property="og:image" content="http://HJXANDHMR.github.io/images/ProgramTools/Infinity.png">
+<meta property="og:image" content="http://HJXANDHMR.github.io/images/ProgramTools/ECTranslation.png">
+<meta property="og:updated_time" content="2016-06-09T11:38:51.317Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Android Robolectric 实例">
-<meta name="twitter:description" content="Android ,单元测试,Robolectric">
-<meta name="twitter:image" content="http://HJXANDHMR.github.io/images/weixing.jpg">
+<meta name="twitter:title" content="程序员提高效率的必备工具">
+<meta name="twitter:description" content="程序员，提高效率工具">
+<meta name="twitter:image" content="http://HJXANDHMR.github.io/images/ProgramTools/Clover.png">
 
     
     <link rel="alternative" href="/atom.xml" title="Android学习" type="application/atom+xml">
@@ -82,14 +89,14 @@
 		<header class="article-info clearfix">
   <h1 itemprop="name">
     
-      <a href="/2016/05/10/Android-RobolectricDemo/" title="Android Robolectric 实例" itemprop="url">Android Robolectric 实例</a>
+      <a href="/2016/06/08/Programmer-Tools/" title="程序员提高效率的必备工具" itemprop="url">程序员提高效率的必备工具</a>
   </h1>
   <p class="article-author">By
        
 		<a href="/about" title="何健雄" target="_blank" itemprop="author">何健雄</a>
 		
   <p class="article-time">
-    <time datetime="2016-05-10T07:52:27.399Z" itemprop="datePublished"> 发表于 2016-05-10</time>
+    <time datetime="2016-06-08T13:31:01.812Z" itemprop="datePublished"> 发表于 2016-06-08</time>
     
   </p>
 </header>
@@ -98,24 +105,27 @@
 		<div id="toc" class="toc-article">
 			<strong class="toc-title">文章目录</strong>
 		
-			<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#环境搭建"><span class="toc-number">1.</span> <span class="toc-text">环境搭建</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Gradle-配置"><span class="toc-number">1.1.</span> <span class="toc-text">Gradle 配置</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#通过注解配置测试类"><span class="toc-number">1.2.</span> <span class="toc-text">通过注解配置测试类</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#测试实例"><span class="toc-number">2.</span> <span class="toc-text">测试实例</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#源程序代码"><span class="toc-number">2.1.</span> <span class="toc-text">源程序代码</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#测试代码"><span class="toc-number">2.2.</span> <span class="toc-text">测试代码</span></a></li></ol></li></ol>
+			<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Clover"><span class="toc-number">1.</span> <span class="toc-text">Clover</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Everything"><span class="toc-number">2.</span> <span class="toc-text">Everything</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Sublime-Text"><span class="toc-number">3.</span> <span class="toc-text">Sublime Text</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Genymotion"><span class="toc-number">4.</span> <span class="toc-text">Genymotion</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Vysor"><span class="toc-number">5.</span> <span class="toc-text">Vysor</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Flux"><span class="toc-number">6.</span> <span class="toc-text">Flux</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Infinity"><span class="toc-number">7.</span> <span class="toc-text">Infinity</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#ECTranslation"><span class="toc-number">8.</span> <span class="toc-text">ECTranslation</span></a></li></ol>
 		
 		</div>
 		
-		<p>Android 开发过程中会到 <em>Junit</em>  来进行单元测试,那么Android中的界面应该用什么来测？<br>今天我们的主角就是 <em>Robolectric</em> ，Robolectric 可以用来在Android 上进行界面测试，下面我们就来学习下 Robolectric怎么使用。</p>
-<h2 id="环境搭建"><a href="#环境搭建" class="headerlink" title="环境搭建"></a>环境搭建</h2><h3 id="Gradle-配置"><a href="#Gradle-配置" class="headerlink" title="Gradle 配置"></a>Gradle 配置</h3><p>在Android Studio 下使用Robolectric 非常简单只需要一行代码就可以了。<br>在build.gradle 文件下配置如下依赖关系</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">test</span>Compile <span class="string">"org.robolectric:robolectric:3.0"</span></span><br></pre></td></tr></table></figure>
-<h3 id="通过注解配置测试类"><a href="#通过注解配置测试类" class="headerlink" title="通过注解配置测试类"></a>通过注解配置测试类</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">@RunWith(RobolectricGradleTestRunner.class)</span><br><span class="line">@Config(constants = BuildConfig.class, sdk = 21)</span><br><span class="line">public class MainActivityUITest &#123;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>完成以上两步就把 Robolectric的环境搭建好了，下面我们来学习下怎样测界面。</p>
-<h2 id="测试实例"><a href="#测试实例" class="headerlink" title="测试实例"></a>测试实例</h2><h3 id="源程序代码"><a href="#源程序代码" class="headerlink" title="源程序代码"></a>源程序代码</h3><p>MainActivity.java 代码</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">public class MainActivity extends Activity &#123;</span><br><span class="line"></span><br><span class="line">    Button button;</span><br><span class="line">    TextView textView;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    protected void onCreate(Bundle savedInstanceState) &#123;</span><br><span class="line">        super.onCreate(savedInstanceState);</span><br><span class="line">        <span class="built_in">set</span>ContentView(R.layout.activity_main);</span><br><span class="line"></span><br><span class="line">        button = (Button) findViewById(R.id.button);</span><br><span class="line">        textView = (TextView) findViewById(R.id.textView);</span><br><span class="line"></span><br><span class="line">        button.setOnClickListener(new View.<span class="function"><span class="title">OnClickListener</span></span>() &#123;</span><br><span class="line">            @Override</span><br><span class="line">            public void onClick(View v) &#123;</span><br><span class="line">                textView.setText(<span class="string">"Text change"</span>);</span><br><span class="line">                startActivity(new Intent(MainActivity.this, NextActivity.class));</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>NextActivity.java 代码</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">public class NextActivity extends Activity &#123;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    protected void onCreate(Bundle savedInstanceState) &#123;</span><br><span class="line">        super.onCreate(savedInstanceState);</span><br><span class="line">        <span class="built_in">set</span>ContentView(R.layout.activity_next_avtivity);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="测试代码"><a href="#测试代码" class="headerlink" title="测试代码"></a>测试代码</h3><p>MainActivityUITest.java</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">@RunWith(RobolectricGradleTestRunner.class)</span><br><span class="line">@Config(constants = BuildConfig.class, sdk = 21)</span><br><span class="line">public class MainActivityUITest &#123;</span><br><span class="line"></span><br><span class="line">    private Activity activity;</span><br><span class="line"></span><br><span class="line">    @Before</span><br><span class="line">    public void <span class="function"><span class="title">setup</span></span>() &#123;</span><br><span class="line">        activity = Robolectric.buildActivity(MainActivity.class).create().get();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    @Test</span><br><span class="line">    public void <span class="function"><span class="title">clickButton_shouldTextViewChange</span></span>() &#123;</span><br><span class="line"></span><br><span class="line">        Button button = (Button) activity.findViewById(R.id.button);</span><br><span class="line">        TextView textView = (TextView) activity.findViewById(R.id.textView);</span><br><span class="line"></span><br><span class="line">        String resultsText = textView.getText().toString();</span><br><span class="line">        assertThat(resultsText, equalTo(<span class="string">"Hello World!"</span>));</span><br><span class="line">        button.performClick();</span><br><span class="line">        resultsText = textView.getText().toString();</span><br><span class="line">        assertThat(resultsText, equalTo(<span class="string">"Text change"</span>));</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    @Test</span><br><span class="line">    public void <span class="function"><span class="title">clickButton_shouldStartNextActivity</span></span>() &#123;</span><br><span class="line">        activity.findViewById(R.id.button).performClick();</span><br><span class="line">        Intent expectedIntent = new Intent(activity, NextActivity.class);</span><br><span class="line">        Intent actualIntent = ShadowApplication.getInstance().getNextStartedActivity();</span><br><span class="line">        assertEquals(expectedIntent, actualIntent);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>以上就是Robolectric 框架的基本使用，完整代码我已经上传到<a href="https://github.com/HJXANDHMR/AndroidUiTestRobolectric" target="_blank" rel="external">Github</a>上了,想要更深入的学习以上就是Robolectric，可以去<a href="http://robolectric.org/" target="_blank" rel="external">官网</a>学习。</p>
-<p><strong>欢迎大家关注我的微信公众号，我会不定期的分享些Android开发的技巧</strong></p>
-<p><img src="/images/weixing.jpg" alt=""></p>
+		<h2 id="Clover"><a href="#Clover" class="headerlink" title="Clover"></a>Clover</h2><p>Clover 是 Windows Explorer 资源管理器的一个扩展，为其增加类似谷歌 Chrome 浏览器的多标签页功能。</p>
+<p><img src="/images/ProgramTools/Clover.png" alt=""></p>
+<h2 id="Everything"><a href="#Everything" class="headerlink" title="Everything"></a>Everything</h2><p>Everything是一个快速查询你电脑上的文件，比Window下的查询快百倍。</p>
+<p><img src="/images/ProgramTools/Everything.png" alt=""></p>
+<h2 id="Sublime-Text"><a href="#Sublime-Text" class="headerlink" title="Sublime Text"></a>Sublime Text</h2><p>Sublime Text 是一个代码编辑器,具有漂亮的用户界面和强大的功能，例如代码缩略图。</p>
+<p><img src="/images/ProgramTools/SublimeText.png" alt=""></p>
+<h2 id="Genymotion"><a href="#Genymotion" class="headerlink" title="Genymotion"></a>Genymotion</h2><p>开发Android必备的模拟器。</p>
+<p><img src="/images/ProgramTools/Genymotion.png" alt=""></p>
+<h2 id="Vysor"><a href="#Vysor" class="headerlink" title="Vysor"></a>Vysor</h2><p>Vysor是Chrome 的一个扩展程序，Vysor可以将手机投影到电脑上。</p>
+<p><img src="/images/ProgramTools/Vysor.png" alt=""></p>
+<h2 id="Flux"><a href="#Flux" class="headerlink" title="Flux"></a>Flux</h2><p>Flux 是一款可以根据时间来调节屏幕亮度和色彩的软件。</p>
+<p><img src="/images/ProgramTools/Flux.png" alt=""></p>
+<h2 id="Infinity"><a href="#Infinity" class="headerlink" title="Infinity"></a>Infinity</h2><p>Infinity 是Chrome 下的一个扩展程序,每天都可以随时更换壁纸。</p>
+<p><img src="/images/ProgramTools/Infinity.png" alt=""></p>
+<h2 id="ECTranslation"><a href="#ECTranslation" class="headerlink" title="ECTranslation"></a>ECTranslation</h2><p>ECTranslation是Android Studio的一个插件，可以将英文翻译成中文。</p>
+<p><img src="/images/ProgramTools/ECTranslation.png" alt=""></p>
+<p>以上都是我比较常用的工具。</p>
   
 	</div>
 		<footer class="article-footer clearfix">
@@ -129,7 +139,7 @@
 
   <div class="article-tags">
   
-  <span></span> <a href="/tags/Robolectric/">Robolectric</a>
+  <span></span> <a href="/tags/Android/">Android</a>
   </div>
 
 </div>
@@ -138,7 +148,7 @@
 
 	<div class="article-share" id="share">
 	
-	  <div data-url="http://HJXANDHMR.github.io/2016/05/10/Android-RobolectricDemo/" data-title="Android Robolectric 实例 | Android学习" data-tsina="null" class="share clearfix">
+	  <div data-url="http://HJXANDHMR.github.io/2016/06/08/Programmer-Tools/" data-title="程序员提高效率的必备工具 | Android学习" data-tsina="null" class="share clearfix">
 	  </div>
 	
 	</div>
@@ -151,19 +161,11 @@
 	
 <nav class="article-nav clearfix">
  
- <div class="prev" >
- <a href="/2016/05/16/AndroidStudio-Source-Error/" title="Android Studio查看源代码报错">
-  <strong>上一篇：</strong><br/>
-  <span>
-  Android Studio查看源代码报错</span>
-</a>
-</div>
-
 
 <div class="next">
-<a href="/2016/05/06/Linux-DirectoryProcessingCommand/"  title="Linux文件目录处理命令">
+<a href="/2016/06/08/Android-GeTui/"  title="Android中个推集成">
  <strong>下一篇：</strong><br/> 
- <span>Linux文件目录处理命令
+ <span>Android中个推集成
 </span>
 </a>
 </div>
@@ -172,7 +174,7 @@
 
 	
 <section id="comments" class="comment">
-	<div class="ds-thread" data-thread-key="2016/05/10/Android-RobolectricDemo/" data-title="Android Robolectric 实例" data-url="http://HJXANDHMR.github.io/2016/05/10/Android-RobolectricDemo/"></div>
+	<div class="ds-thread" data-thread-key="2016/06/08/Programmer-Tools/" data-title="程序员提高效率的必备工具" data-url="http://HJXANDHMR.github.io/2016/06/08/Programmer-Tools/"></div>
 </section>
 
 
@@ -182,7 +184,7 @@
   <div id="toc" class="toc-aside">
   <strong class="toc-title">文章目录</strong>
  
- <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#环境搭建"><span class="toc-number">1.</span> <span class="toc-text">环境搭建</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Gradle-配置"><span class="toc-number">1.1.</span> <span class="toc-text">Gradle 配置</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#通过注解配置测试类"><span class="toc-number">1.2.</span> <span class="toc-text">通过注解配置测试类</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#测试实例"><span class="toc-number">2.</span> <span class="toc-text">测试实例</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#源程序代码"><span class="toc-number">2.1.</span> <span class="toc-text">源程序代码</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#测试代码"><span class="toc-number">2.2.</span> <span class="toc-text">测试代码</span></a></li></ol></li></ol>
+ <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Clover"><span class="toc-number">1.</span> <span class="toc-text">Clover</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Everything"><span class="toc-number">2.</span> <span class="toc-text">Everything</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Sublime-Text"><span class="toc-number">3.</span> <span class="toc-text">Sublime Text</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Genymotion"><span class="toc-number">4.</span> <span class="toc-text">Genymotion</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Vysor"><span class="toc-number">5.</span> <span class="toc-text">Vysor</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Flux"><span class="toc-number">6.</span> <span class="toc-text">Flux</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Infinity"><span class="toc-number">7.</span> <span class="toc-text">Infinity</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#ECTranslation"><span class="toc-number">8.</span> <span class="toc-text">ECTranslation</span></a></li></ol>
  
   </div>
 
