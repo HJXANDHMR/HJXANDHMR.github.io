@@ -20,7 +20,7 @@
 <meta property="og:image" content="http://HJXANDHMR.github.io/images/DesignPattern/ObserverUML.png">
 <meta property="og:image" content="http://HJXANDHMR.github.io/images/DesignPattern/ObserverResult.png">
 <meta property="og:image" content="http://HJXANDHMR.github.io/images/weixing.jpg">
-<meta property="og:updated_time" content="2016-06-08T07:24:20.879Z">
+<meta property="og:updated_time" content="2016-06-20T14:16:21.606Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="设计模式—观察者模式">
 <meta name="twitter:description" content="设计模式,观察者模式">
@@ -100,7 +100,7 @@
 		<div id="toc" class="toc-article">
 			<strong class="toc-title">文章目录</strong>
 		
-			<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#模式定义"><span class="toc-number">1.</span> <span class="toc-text">模式定义</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#模式结构"><span class="toc-number">2.</span> <span class="toc-text">模式结构</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#UML图"><span class="toc-number">3.</span> <span class="toc-text">UML图</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#代码实现"><span class="toc-number">4.</span> <span class="toc-text">代码实现</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Subject-java"><span class="toc-number">4.1.</span> <span class="toc-text">Subject.java</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#ConcreteSubject-java"><span class="toc-number">4.2.</span> <span class="toc-text">ConcreteSubject.java</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Observer-java"><span class="toc-number">4.3.</span> <span class="toc-text">Observer.java</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#ConcreteObserver-java"><span class="toc-number">4.4.</span> <span class="toc-text">ConcreteObserver.java</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#运行结果"><span class="toc-number">4.5.</span> <span class="toc-text">运行结果</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#模式分析"><span class="toc-number">5.</span> <span class="toc-text">模式分析</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#观察模式的优点"><span class="toc-number">6.</span> <span class="toc-text">观察模式的优点</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#观察模式的缺点"><span class="toc-number">7.</span> <span class="toc-text">观察模式的缺点</span></a></li></ol>
+			<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#模式定义"><span class="toc-number">1.</span> <span class="toc-text">模式定义</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#模式结构"><span class="toc-number">2.</span> <span class="toc-text">模式结构</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#UML图"><span class="toc-number">3.</span> <span class="toc-text">UML图</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#代码实现"><span class="toc-number">4.</span> <span class="toc-text">代码实现</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Subject-java"><span class="toc-number">4.1.</span> <span class="toc-text">Subject.java</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#ConcreteSubject-java"><span class="toc-number">4.2.</span> <span class="toc-text">ConcreteSubject.java</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Observer-java"><span class="toc-number">4.3.</span> <span class="toc-text">Observer.java</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#ConcreteObserver-java"><span class="toc-number">4.4.</span> <span class="toc-text">ConcreteObserver.java</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#测试类"><span class="toc-number">4.5.</span> <span class="toc-text">测试类</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#运行结果"><span class="toc-number">4.6.</span> <span class="toc-text">运行结果</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#模式分析"><span class="toc-number">5.</span> <span class="toc-text">模式分析</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#观察模式的优点"><span class="toc-number">6.</span> <span class="toc-text">观察模式的优点</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#观察模式的缺点"><span class="toc-number">7.</span> <span class="toc-text">观察模式的缺点</span></a></li></ol>
 		
 		</div>
 		
@@ -113,6 +113,7 @@
 <h3 id="ConcreteSubject-java"><a href="#ConcreteSubject-java" class="headerlink" title="ConcreteSubject.java"></a>ConcreteSubject.java</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">/**</span><br><span class="line"> * 具体目标者</span><br><span class="line"> */</span><br><span class="line">public class ConcreteSubject extends Subject &#123;</span><br><span class="line"></span><br><span class="line">    private String state;</span><br><span class="line"></span><br><span class="line">    public String <span class="function"><span class="title">getState</span></span>() &#123;</span><br><span class="line">        <span class="built_in">return</span> state;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public void change(String newState) &#123;</span><br><span class="line">        state = newState;</span><br><span class="line">        System.out.println(<span class="string">"ConcreteSubject State:"</span> + state);</span><br><span class="line"></span><br><span class="line">        //状态发生改变，通知观察者</span><br><span class="line">        nodifyObservers(state);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <h3 id="Observer-java"><a href="#Observer-java" class="headerlink" title="Observer.java"></a>Observer.java</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">/**</span><br><span class="line"> * 观察者</span><br><span class="line"> */</span><br><span class="line">public interface Observer &#123;</span><br><span class="line"></span><br><span class="line">    void update(String state);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <h3 id="ConcreteObserver-java"><a href="#ConcreteObserver-java" class="headerlink" title="ConcreteObserver.java"></a>ConcreteObserver.java</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">/**</span><br><span class="line"> *具体观察者</span><br><span class="line"> */</span><br><span class="line">public class ConcreteObserver implements Observer &#123;</span><br><span class="line"></span><br><span class="line">    // 观察者状态</span><br><span class="line">    private String observerState;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    public void update(String state) &#123;</span><br><span class="line">        // 更新观察者状态，让它与目标状态一致</span><br><span class="line">        observerState = state;</span><br><span class="line">        System.out.println(<span class="string">"ConcreteObserver State :"</span> + observerState);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="测试类"><a href="#测试类" class="headerlink" title="测试类"></a>测试类</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">public class MyClass &#123;</span><br><span class="line"></span><br><span class="line">    public static void main(String[] args) &#123;</span><br><span class="line">        // 创建目标对象</span><br><span class="line">        ConcreteSubject concreteSubject = new ConcreteSubject();</span><br><span class="line">        // 创建观察者对象</span><br><span class="line">        Observer observer = new ConcreteObserver();</span><br><span class="line">        // 将观察者对象注册到目标对象上</span><br><span class="line">        concreteSubject.attach(observer);</span><br><span class="line">        // 改变目标对象的状态</span><br><span class="line">        concreteSubject.change(<span class="string">"I change"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <h3 id="运行结果"><a href="#运行结果" class="headerlink" title="运行结果"></a>运行结果</h3><p><img src="/images/DesignPattern/ObserverResult.png" alt=""></p>
 <h2 id="模式分析"><a href="#模式分析" class="headerlink" title="模式分析"></a>模式分析</h2><ul>
 <li><p>观察者模式描述了如何建立对象与对象之间的依赖关系，如何构造满足这种需求的系统。</p>
@@ -209,7 +210,7 @@
   <div id="toc" class="toc-aside">
   <strong class="toc-title">文章目录</strong>
  
- <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#模式定义"><span class="toc-number">1.</span> <span class="toc-text">模式定义</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#模式结构"><span class="toc-number">2.</span> <span class="toc-text">模式结构</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#UML图"><span class="toc-number">3.</span> <span class="toc-text">UML图</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#代码实现"><span class="toc-number">4.</span> <span class="toc-text">代码实现</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Subject-java"><span class="toc-number">4.1.</span> <span class="toc-text">Subject.java</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#ConcreteSubject-java"><span class="toc-number">4.2.</span> <span class="toc-text">ConcreteSubject.java</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Observer-java"><span class="toc-number">4.3.</span> <span class="toc-text">Observer.java</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#ConcreteObserver-java"><span class="toc-number">4.4.</span> <span class="toc-text">ConcreteObserver.java</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#运行结果"><span class="toc-number">4.5.</span> <span class="toc-text">运行结果</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#模式分析"><span class="toc-number">5.</span> <span class="toc-text">模式分析</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#观察模式的优点"><span class="toc-number">6.</span> <span class="toc-text">观察模式的优点</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#观察模式的缺点"><span class="toc-number">7.</span> <span class="toc-text">观察模式的缺点</span></a></li></ol>
+ <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#模式定义"><span class="toc-number">1.</span> <span class="toc-text">模式定义</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#模式结构"><span class="toc-number">2.</span> <span class="toc-text">模式结构</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#UML图"><span class="toc-number">3.</span> <span class="toc-text">UML图</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#代码实现"><span class="toc-number">4.</span> <span class="toc-text">代码实现</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Subject-java"><span class="toc-number">4.1.</span> <span class="toc-text">Subject.java</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#ConcreteSubject-java"><span class="toc-number">4.2.</span> <span class="toc-text">ConcreteSubject.java</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Observer-java"><span class="toc-number">4.3.</span> <span class="toc-text">Observer.java</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#ConcreteObserver-java"><span class="toc-number">4.4.</span> <span class="toc-text">ConcreteObserver.java</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#测试类"><span class="toc-number">4.5.</span> <span class="toc-text">测试类</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#运行结果"><span class="toc-number">4.6.</span> <span class="toc-text">运行结果</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#模式分析"><span class="toc-number">5.</span> <span class="toc-text">模式分析</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#观察模式的优点"><span class="toc-number">6.</span> <span class="toc-text">观察模式的优点</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#观察模式的缺点"><span class="toc-number">7.</span> <span class="toc-text">观察模式的缺点</span></a></li></ol>
  
   </div>
 
@@ -284,11 +285,19 @@
 			
 		
 			
+				<li><a href="/tags/ListView/" title="ListView">ListView<sup>2</sup></a></li>
+			
+		
+			
 				<li><a href="/tags/AndroidStudio/" title="AndroidStudio">AndroidStudio<sup>2</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/ListView/" title="ListView">ListView<sup>2</sup></a></li>
+				<li><a href="/tags/Markdown/" title="Markdown">Markdown<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Robolectric/" title="Robolectric">Robolectric<sup>1</sup></a></li>
 			
 		
 			
@@ -296,7 +305,7 @@
 			
 		
 			
-				<li><a href="/tags/Robolectric/" title="Robolectric">Robolectric<sup>1</sup></a></li>
+				<li><a href="/tags/Linux/" title="Linux">Linux<sup>1</sup></a></li>
 			
 		
 			
@@ -305,14 +314,6 @@
 		
 			
 				<li><a href="/tags/WCF/" title="WCF">WCF<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/Linux/" title="Linux">Linux<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/Markdown/" title="Markdown">Markdown<sup>1</sup></a></li>
 			
 		
 		</ul>
