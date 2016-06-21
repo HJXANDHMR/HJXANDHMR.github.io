@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://HJXANDHMR.github.io/"/>
-  <updated>2016-06-20T14:31:13.287Z</updated>
+  <updated>2016-06-21T09:53:41.860Z</updated>
   <id>http://HJXANDHMR.github.io/</id>
   
   <author>
@@ -16,11 +16,52 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>Android Studion必备插件</title>
+    <link href="http://HJXANDHMR.github.io/2016/06/21/AndroidStudio-Plug/"/>
+    <id>http://HJXANDHMR.github.io/2016/06/21/AndroidStudio-Plug/</id>
+    <published>2016-06-21T09:06:09.028Z</published>
+    <updated>2016-06-21T09:53:41.860Z</updated>
+    
+    <content type="html">&lt;p&gt;在Android Studio开发过程中经常会用到插件，我这里总结了一些常用的插件。&lt;/p&gt;
+&lt;h2 id=&quot;Android-ButterKnife-Zelezny&quot;&gt;&lt;a href=&quot;#Android-ButterKnife-Zelezny&quot; class=&quot;headerlink&quot; title=&quot;Android ButterKnife Zelezny&quot;&gt;&lt;/a&gt;Android ButterKnife Zelezny&lt;/h2&gt;&lt;p&gt;Android ButterKnife Zelezny是一个注入框架，效果图如下：&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://github.com/avast/android-butterknife-zelezny/raw/master/img/zelezny_animated.gif&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;p&gt;Github项目地址 &lt;a href=&quot;https://github.com/avast/android-butterknife-zelezny&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;https://github.com/avast/android-butterknife-zelezny&lt;/a&gt;&lt;/p&gt;
+&lt;h2 id=&quot;Android-Material-Design-Icon-Generator&quot;&gt;&lt;a href=&quot;#Android-Material-Design-Icon-Generator&quot; class=&quot;headerlink&quot; title=&quot;Android Material Design Icon Generator&quot;&gt;&lt;/a&gt;Android Material Design Icon Generator&lt;/h2&gt;&lt;p&gt;Android Material Design Icon Generator是一个可以生成Material Design图标的插件，效果图如下：&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://raw.githubusercontent.com/konifar/android-material-design-icon-generator-plugin/master/docs/capture.gif&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;p&gt;Github项目地址 &lt;a href=&quot;https://github.com/konifar/android-material-design-icon-generator-plugin&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;https://github.com/konifar/android-material-design-icon-generator-plugin&lt;/a&gt;&lt;/p&gt;
+&lt;h2 id=&quot;GsonFormat&quot;&gt;&lt;a href=&quot;#GsonFormat&quot; class=&quot;headerlink&quot; title=&quot;GsonFormat&quot;&gt;&lt;/a&gt;GsonFormat&lt;/h2&gt;&lt;p&gt;GsonFormat 是可以将Json自动转化成类，效果图如下：&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://camo.githubusercontent.com/0d45c79c54ab57f6efe31e9019b11d93974fa039/687474703a2f2f75706c6f61642d696d616765732e6a69616e7368752e696f2f75706c6f61645f696d616765732f3136363836362d666639646333333661663732643764372e6769663f696d6167654d6f6772322f6175746f2d6f7269656e742f7374726970&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;p&gt;Github项目地址 &lt;a href=&quot;https://github.com/zzz40500/GsonFormat&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;https://github.com/zzz40500/GsonFormat&lt;/a&gt;&lt;/p&gt;
+&lt;h2 id=&quot;ECtranslation&quot;&gt;&lt;a href=&quot;#ECtranslation&quot; class=&quot;headerlink&quot; title=&quot;ECtranslation&quot;&gt;&lt;/a&gt;ECtranslation&lt;/h2&gt;&lt;p&gt;ECtranslation可以在Android Studio IDE 内直接将英文翻译成中文，效果图如下：&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;http://hjxandhmr.github.io/images/ProgramTools/ECTranslation.png&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;p&gt;Github项目地址 &lt;a href=&quot;https://github.com/Skykai521/ECTranslation&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;https://github.com/Skykai521/ECTranslation&lt;/a&gt;&lt;/p&gt;
+&lt;h2 id=&quot;Genymotion&quot;&gt;&lt;a href=&quot;#Genymotion&quot; class=&quot;headerlink&quot; title=&quot;Genymotion&quot;&gt;&lt;/a&gt;Genymotion&lt;/h2&gt;&lt;p&gt;Genymotion可以在Android Studio中配置。这是配置完成后的效果图：&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;http://hjxandhmr.github.io/images/AndroidStudio/AndroidStudio_start_genymotionSelect.png&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;p&gt;如何配置Genymotion地址：&lt;a href=&quot;http://hjxandhmr.github.io/2016/04/18/AndroidStudio-ConfigureGenymotion/&quot;&gt;Android Studio中配置Genymotion&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;以上这五个插件是我现在正在使用的，欢迎大家推荐更好的插件给我。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;欢迎大家关注我的微信公众号，我会不定期的分享些Android开发的技巧&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/images/weixing.jpg&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+</content>
+    
+    <summary type="html">
+    
+      Android Studio ,必备插件
+    
+    </summary>
+    
+      <category term="Android Studio" scheme="http://HJXANDHMR.github.io/categories/Android-Studio/"/>
+    
+    
+      <category term="Android Studion" scheme="http://HJXANDHMR.github.io/tags/Android-Studion/"/>
+    
+  </entry>
+  
+  <entry>
     <title>Android序列化的两种方式</title>
     <link href="http://HJXANDHMR.github.io/2016/06/19/Android-SerializeMethod/"/>
     <id>http://HJXANDHMR.github.io/2016/06/19/Android-SerializeMethod/</id>
     <published>2016-06-19T13:13:34.090Z</published>
-    <updated>2016-06-20T14:31:13.287Z</updated>
+    <updated>2016-06-21T09:10:39.038Z</updated>
     
     <content type="html">&lt;p&gt;在Android中经常会在两个Activity之间传输数据，又很多种方法可以实现，比如写在文件中，用SharedPreferences等等都可以实现，现在来介绍的是使用序列化的方式来传输数据。Android序列化一共有两种方式，一种是实现Serializable接口，另一种就是实现Parcelable接口。&lt;/p&gt;
 &lt;h2 id=&quot;实现Serializable接口&quot;&gt;&lt;a href=&quot;#实现Serializable接口&quot; class=&quot;headerlink&quot; title=&quot;实现Serializable接口&quot;&gt;&lt;/a&gt;实现Serializable接口&lt;/h2&gt;&lt;p&gt;实现Serializable非常简单，只需要实现这个接口就可以了，没有实现Parcelable接口那么复杂。&lt;/p&gt;
@@ -1005,7 +1046,7 @@ public interface ActivityComponent {
     <link href="http://HJXANDHMR.github.io/2016/05/16/AndroidStudio-Source-Error/"/>
     <id>http://HJXANDHMR.github.io/2016/05/16/AndroidStudio-Source-Error/</id>
     <published>2016-05-16T06:58:19.028Z</published>
-    <updated>2016-05-16T07:52:06.959Z</updated>
+    <updated>2016-06-21T09:10:37.478Z</updated>
     
     <content type="html">&lt;p&gt;我们经常用Android Studio 查看Android的源代码，今天我们就来学习查看源代码的正确姿势。&lt;/p&gt;
 &lt;h2 id=&quot;Android-Studio查看源代码&quot;&gt;&lt;a href=&quot;#Android-Studio查看源代码&quot; class=&quot;headerlink&quot; title=&quot;Android Studio查看源代码&quot;&gt;&lt;/a&gt;Android Studio查看源代码&lt;/h2&gt;&lt;p&gt;我们用Android Studio查看源代码会遇到下面的问题。&lt;br&gt;&lt;img src=&quot;/images/AndroidStudio/AndroidStudio-readSource.png&quot; alt=&quot;&quot;&gt;&lt;br&gt;这是由于Android SDK自带的Source源码包很小，并没有包括所有的Android Framework的源码，仅仅提供给应用开发参考用，一些比较少用的系统类的源码并没有给出。&lt;br&gt;“RuntimeException(“Stub!”)”表示实际运行时的逻辑会由Android ROM里面相同的类代替执行。&lt;/p&gt;
@@ -1029,10 +1070,10 @@ public interface ActivityComponent {
     
     </summary>
     
-      <category term="AndroidStudio" scheme="http://HJXANDHMR.github.io/categories/AndroidStudio/"/>
+      <category term="Android Studio" scheme="http://HJXANDHMR.github.io/categories/Android-Studio/"/>
     
     
-      <category term="AndroidStudio" scheme="http://HJXANDHMR.github.io/tags/AndroidStudio/"/>
+      <category term="Android Studio" scheme="http://HJXANDHMR.github.io/tags/Android-Studio/"/>
     
   </entry>
   
@@ -1069,46 +1110,6 @@ public interface ActivityComponent {
     
     
       <category term="Robolectric" scheme="http://HJXANDHMR.github.io/tags/Robolectric/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Linux文件目录处理命令</title>
-    <link href="http://HJXANDHMR.github.io/2016/05/06/Linux-DirectoryProcessingCommand/"/>
-    <id>http://HJXANDHMR.github.io/2016/05/06/Linux-DirectoryProcessingCommand/</id>
-    <published>2016-05-06T04:59:53.715Z</published>
-    <updated>2016-05-06T05:30:00.224Z</updated>
-    
-    <content type="html">&lt;p&gt;最近在学习Linux，在Linux下开发Android真是太爽啦，感兴趣的朋友也可以去试试，我是在虚拟机下装的Ubuntu 15.10，这个版本比较好用。今天我们就来学习下Linux的命令。&lt;/p&gt;
-&lt;h2 id=&quot;目录操作命令&quot;&gt;&lt;a href=&quot;#目录操作命令&quot; class=&quot;headerlink&quot; title=&quot;目录操作命令&quot;&gt;&lt;/a&gt;目录操作命令&lt;/h2&gt;&lt;h3 id=&quot;创建目录&quot;&gt;&lt;a href=&quot;#创建目录&quot; class=&quot;headerlink&quot; title=&quot;创建目录&quot;&gt;&lt;/a&gt;创建目录&lt;/h3&gt;&lt;figure class=&quot;highlight bash&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;mkdir 目录名  如  mkdir hjx&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-&lt;h3 id=&quot;创建子目录&quot;&gt;&lt;a href=&quot;#创建子目录&quot; class=&quot;headerlink&quot; title=&quot;创建子目录&quot;&gt;&lt;/a&gt;创建子目录&lt;/h3&gt;&lt;figure class=&quot;highlight bash&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;mkdir -p  目录名/目录   如 mkdir -p hjx/hjx&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-&lt;h3 id=&quot;进入文件目录&quot;&gt;&lt;a href=&quot;#进入文件目录&quot; class=&quot;headerlink&quot; title=&quot;进入文件目录&quot;&gt;&lt;/a&gt;进入文件目录&lt;/h3&gt;&lt;figure class=&quot;highlight bash&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;built_in&quot;&gt;cd&lt;/span&gt; 目录名    如 &lt;span class=&quot;built_in&quot;&gt;cd&lt;/span&gt; hjx&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-&lt;h3 id=&quot;显示当前工作目录目录&quot;&gt;&lt;a href=&quot;#显示当前工作目录目录&quot; class=&quot;headerlink&quot; title=&quot;显示当前工作目录目录&quot;&gt;&lt;/a&gt;显示当前工作目录目录&lt;/h3&gt;&lt;figure class=&quot;highlight bash&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;built_in&quot;&gt;pwd&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-&lt;h3 id=&quot;显示当前目录的子文件&quot;&gt;&lt;a href=&quot;#显示当前目录的子文件&quot; class=&quot;headerlink&quot; title=&quot;显示当前目录的子文件&quot;&gt;&lt;/a&gt;显示当前目录的子文件&lt;/h3&gt;&lt;figure class=&quot;highlight bash&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;ls&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-&lt;h3 id=&quot;Linux命令提示键-和目录补全键&quot;&gt;&lt;a href=&quot;#Linux命令提示键-和目录补全键&quot; class=&quot;headerlink&quot; title=&quot;Linux命令提示键,和目录补全键&quot;&gt;&lt;/a&gt;Linux命令提示键,和目录补全键&lt;/h3&gt;&lt;figure class=&quot;highlight bash&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;按 &lt;span class=&quot;string&quot;&gt;&quot;TAB&quot;&lt;/span&gt;键可以快速补全文件和命令。 (非常好用，强烈推荐)&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-&lt;h3 id=&quot;删除文件或文件目录&quot;&gt;&lt;a href=&quot;#删除文件或文件目录&quot; class=&quot;headerlink&quot; title=&quot;删除文件或文件目录&quot;&gt;&lt;/a&gt;删除文件或文件目录&lt;/h3&gt;&lt;figure class=&quot;highlight bash&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;rm -rf  文件或目录名/   如 rm -rf hjx/&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-&lt;h3 id=&quot;复制文件&quot;&gt;&lt;a href=&quot;#复制文件&quot; class=&quot;headerlink&quot; title=&quot;复制文件&quot;&gt;&lt;/a&gt;复制文件&lt;/h3&gt;&lt;figure class=&quot;highlight bash&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;cp  文件名  目录名/  如  cp hjx hjx/&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-&lt;h3 id=&quot;复制文件目录&quot;&gt;&lt;a href=&quot;#复制文件目录&quot; class=&quot;headerlink&quot; title=&quot;复制文件目录&quot;&gt;&lt;/a&gt;复制文件目录&lt;/h3&gt;&lt;figure class=&quot;highlight bash&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;cp  -r 目录名  目录名/  如  cp hjx hjx/&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-&lt;h3 id=&quot;复制文件及其属性&quot;&gt;&lt;a href=&quot;#复制文件及其属性&quot; class=&quot;headerlink&quot; title=&quot;复制文件及其属性&quot;&gt;&lt;/a&gt;复制文件及其属性&lt;/h3&gt;&lt;figure class=&quot;highlight bash&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;cp &lt;span class=&quot;_&quot;&gt;-a&lt;/span&gt; 文件名  目录名/   如 cp &lt;span class=&quot;_&quot;&gt;-a&lt;/span&gt;  hjx hjx/&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-&lt;h3 id=&quot;移动文件&quot;&gt;&lt;a href=&quot;#移动文件&quot; class=&quot;headerlink&quot; title=&quot;移动文件&quot;&gt;&lt;/a&gt;移动文件&lt;/h3&gt;&lt;figure class=&quot;highlight bash&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;mv  文件  目录/   如 mv hjx hjx/&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-&lt;h3 id=&quot;改文件名&quot;&gt;&lt;a href=&quot;#改文件名&quot; class=&quot;headerlink&quot; title=&quot;改文件名&quot;&gt;&lt;/a&gt;改文件名&lt;/h3&gt;&lt;figure class=&quot;highlight bash&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;mv 原文件名 改名后文件名  如 mv hjx hjx1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-&lt;h2 id=&quot;Linux目录&quot;&gt;&lt;a href=&quot;#Linux目录&quot; class=&quot;headerlink&quot; title=&quot;Linux目录&quot;&gt;&lt;/a&gt;Linux目录&lt;/h2&gt;&lt;p&gt;Linux下默认有很多目录，我们来简单的学习下它。&lt;/p&gt;
-&lt;p&gt;/ 根目录&lt;br&gt;/bin 存放必要的命令&lt;br&gt;/boot 存放内核以及启动所需的文件等&lt;br&gt;/dev 存放设备文件&lt;br&gt;/etc 存放系统的配置文件&lt;br&gt;/home 用户文件的主目录，用户数据存放在其主目录中&lt;br&gt;/lib 存放必要的运行库&lt;br&gt;/mnt 存放临时的映射文件系统，我们常把软驱和光驱挂装在这里的floppy和cdrom子目录下。&lt;br&gt;/proc 存放存储进程和系统信息&lt;br&gt;/root 超级用户的主目录&lt;br&gt;/sbin 存放系统管理程序&lt;br&gt;/tmp 存放临时文件的目录&lt;br&gt;/usr 包含了一般不需要修改的应用程序，命令程序文件、程序库、手册和其它文档。&lt;br&gt;/var 包含系统产生的经常变化的文件&lt;/p&gt;
-&lt;p&gt;以上就是对文件目录操作的一些基本命令了。&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;欢迎大家关注我的微信公众号，我会不定期的分享些Android开发的技巧&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;&lt;img src=&quot;/images/weixing.jpg&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
-</content>
-    
-    <summary type="html">
-    
-      Linux,文件目录,命令
-    
-    </summary>
-    
-      <category term="Linux" scheme="http://HJXANDHMR.github.io/categories/Linux/"/>
-    
-    
-      <category term="Linux" scheme="http://HJXANDHMR.github.io/tags/Linux/"/>
     
   </entry>
   
