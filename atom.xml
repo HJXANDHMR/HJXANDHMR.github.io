@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://HJXANDHMR.github.io/"/>
-  <updated>2016-06-21T10:07:43.526Z</updated>
+  <updated>2016-06-22T11:07:49.259Z</updated>
   <id>http://HJXANDHMR.github.io/</id>
   
   <author>
@@ -20,7 +20,7 @@
     <link href="http://HJXANDHMR.github.io/2016/06/21/AndroidStudio-Plug/"/>
     <id>http://HJXANDHMR.github.io/2016/06/21/AndroidStudio-Plug/</id>
     <published>2016-06-21T09:06:09.028Z</published>
-    <updated>2016-06-21T10:07:43.526Z</updated>
+    <updated>2016-06-22T11:07:49.259Z</updated>
     
     <content type="html">&lt;p&gt;在Android Studio开发过程中经常会用到插件，我这里总结了一些常用的插件。&lt;/p&gt;
 &lt;h2 id=&quot;Android-ButterKnife-Zelezny&quot;&gt;&lt;a href=&quot;#Android-ButterKnife-Zelezny&quot; class=&quot;headerlink&quot; title=&quot;Android ButterKnife Zelezny&quot;&gt;&lt;/a&gt;Android ButterKnife Zelezny&lt;/h2&gt;&lt;p&gt;Android ButterKnife Zelezny是一个注入框架，效果图如下：&lt;/p&gt;
@@ -52,7 +52,7 @@
       <category term="Android Studio" scheme="http://HJXANDHMR.github.io/categories/Android-Studio/"/>
     
     
-      <category term="Android Studion" scheme="http://HJXANDHMR.github.io/tags/Android-Studion/"/>
+      <category term="Android Studio" scheme="http://HJXANDHMR.github.io/tags/Android-Studio/"/>
     
   </entry>
   
