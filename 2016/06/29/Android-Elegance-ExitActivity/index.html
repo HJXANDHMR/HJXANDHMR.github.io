@@ -4,24 +4,24 @@
 <head>
   <meta charset="UTF-8">
   
-    <title>hexo 常用命令和更换主题 | Android学习</title>
+    <title>Android中优雅的退出程序 | Android学习</title>
     <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
     
     <meta name="author" content="何健雄">
     
 
     
-    <meta name="description" content="hexo 常用命令">
+    <meta name="description" content="Android，优雅的退出程序">
 <meta property="og:type" content="article">
-<meta property="og:title" content="hexo 常用命令和更换主题">
-<meta property="og:url" content="http://HJXANDHMR.github.io/2016/04/16/hexo-Command/index.html">
+<meta property="og:title" content="Android中优雅的退出程序">
+<meta property="og:url" content="http://HJXANDHMR.github.io/2016/06/29/Android-Elegance-ExitActivity/index.html">
 <meta property="og:site_name" content="Android学习">
-<meta property="og:description" content="hexo 常用命令">
+<meta property="og:description" content="Android，优雅的退出程序">
 <meta property="og:image" content="http://HJXANDHMR.github.io/images/weixing.jpg">
-<meta property="og:updated_time" content="2016-04-18T12:05:21.091Z">
+<meta property="og:updated_time" content="2016-06-29T07:25:27.420Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="hexo 常用命令和更换主题">
-<meta name="twitter:description" content="hexo 常用命令">
+<meta name="twitter:title" content="Android中优雅的退出程序">
+<meta name="twitter:description" content="Android，优雅的退出程序">
 <meta name="twitter:image" content="http://HJXANDHMR.github.io/images/weixing.jpg">
 
     
@@ -82,14 +82,14 @@
 		<header class="article-info clearfix">
   <h1 itemprop="name">
     
-      <a href="/2016/04/16/hexo-Command/" title="hexo 常用命令和更换主题" itemprop="url">hexo 常用命令和更换主题</a>
+      <a href="/2016/06/29/Android-Elegance-ExitActivity/" title="Android中优雅的退出程序" itemprop="url">Android中优雅的退出程序</a>
   </h1>
   <p class="article-author">By
        
 		<a href="/about" title="何健雄" target="_blank" itemprop="author">何健雄</a>
 		
   <p class="article-time">
-    <time datetime="2016-04-16T13:36:08.038Z" itemprop="datePublished"> 发表于 2016-04-16</time>
+    <time datetime="2016-06-29T07:01:54.861Z" itemprop="datePublished"> 发表于 2016-06-29</time>
     
   </p>
 </header>
@@ -98,20 +98,39 @@
 		<div id="toc" class="toc-article">
 			<strong class="toc-title">文章目录</strong>
 		
-			<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#hexo命令"><span class="toc-number">1.</span> <span class="toc-text">hexo命令</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#更换主题"><span class="toc-number">2.</span> <span class="toc-text">更换主题</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#安装主题"><span class="toc-number">2.1.</span> <span class="toc-text">安装主题</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#启用主题"><span class="toc-number">2.2.</span> <span class="toc-text">启用主题</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#主题的配置"><span class="toc-number">2.3.</span> <span class="toc-text">主题的配置</span></a></li></ol></li></ol>
+			<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#建立全局容器"><span class="toc-number">1.</span> <span class="toc-text">建立全局容器</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#广播式"><span class="toc-number">2.</span> <span class="toc-text">广播式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#双击两次返回键退出"><span class="toc-number">3.</span> <span class="toc-text">双击两次返回键退出</span></a></li></ol>
 		
 		</div>
 		
-		<p> 上一篇博客我们已经学会如何在GitHub加hexo搭建博客<a href="http://hjxandhmr.github.io/2016/04/15/hello-hexo/">GitHub加hexo搭建博客教程</a> 这篇博客就来学学常用的hexo命令和更换主题。</p>
-<h2 id="hexo命令"><a href="#hexo命令" class="headerlink" title="hexo命令"></a>hexo命令</h2><p> 本地查看博客内容<br> <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo s <span class="comment">#本地预览文章内容，登录 localhost:4000 查看效果</span></span><br></pre></td></tr></table></figure></p>
-<p>发布内容到 public 文件夹<br> <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">hexo clean  <span class="comment">#修改主题是必须要执行这个命令，否则会有问题</span></span><br><span class="line">hexo g      <span class="comment">#生成public文件，可以手动copy到github上去</span></span><br></pre></td></tr></table></figure></p>
-<p>新建一个文章<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo n     <span class="comment">#新建一个博客名，也可以手动在source\_posts新建</span></span><br></pre></td></tr></table></figure></p>
-<h2 id="更换主题"><a href="#更换主题" class="headerlink" title="更换主题"></a>更换主题</h2><h3 id="安装主题"><a href="#安装主题" class="headerlink" title="安装主题"></a>安装主题</h3><p>在博客目录如E:\Androidstudiochengxu\GitHubPage\hexo下右键点击Git Bash，输入以下命令。其他的主题也类似操作。<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git <span class="built_in">clone</span> https://github.com/wuchong/jacman.git themes/jacman</span><br></pre></td></tr></table></figure></p>
-<h3 id="启用主题"><a href="#启用主题" class="headerlink" title="启用主题"></a>启用主题</h3><p>修改博客目录E:\Androidstudiochengxu\GitHubPage\hexo_config.yml中的theme属性，将其设置为jacman。<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">theme: jacman</span><br></pre></td></tr></table></figure></p>
-<p>到这里主题的更换就好了，启动本地预览一下，可以的话就同步到Github上面吧。</p>
-<h3 id="主题的配置"><a href="#主题的配置" class="headerlink" title="主题的配置"></a>主题的配置</h3><p>主题的配置当然就是在E:\Androidstudiochengxu\GitHubPage\hexo\themes\jacman_config.yml文件里面了。一般而言，主题的作者都会有对主题的相关介绍，看他介绍的修改就可以了。我主要针对导航栏和右边栏小部件举例简单说明一下，后面你就知道如何配置了。</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">menu:  <span class="comment">#导航栏</span></span><br><span class="line">  主页: /</span><br><span class="line">  归档: /archives</span><br><span class="line">  关于: /about  <span class="comment">#介绍自己</span></span><br><span class="line">  网络工具: /tools  <span class="comment">#自己添加</span></span><br><span class="line">  资源共享: /share  <span class="comment">#自己添加</span></span><br><span class="line"></span><br><span class="line">widgets:  <span class="comment">## 右边的零部件，jacman主题提供了7个：category、tag、rss、archive、tagcloud、links、weibo、douban，可以根据自己喜好增减</span></span><br><span class="line">- category  <span class="comment">#目录</span></span><br><span class="line">- tags      <span class="comment">#标签（标签上显示数量）</span></span><br><span class="line">- links  <span class="comment">#友情链接</span></span><br></pre></td></tr></table></figure>
-<p>注意，修改任何的配置内容，都需要生成之后才有效。</p>
+		<p>Android 中退出程序有很多种方法，如建立一个全局容器，把所有的Activity存储起来，退出时循环遍历finish所有Activity;用广播的方式退出;双击两次返回键退出应用。</p>
+<h2 id="建立全局容器"><a href="#建立全局容器" class="headerlink" title="建立全局容器"></a>建立全局容器</h2><p>每次启动Activity都添加到容器内，当退出程序时可以结束所有Activity。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">public class MainActivity extends Activity &#123;</span><br><span class="line">    @Override</span><br><span class="line">    protected void onCreate(Bundle savedInstanceState) &#123;</span><br><span class="line">        super.onCreate(savedInstanceState);</span><br><span class="line">        // 添加Activity到堆栈</span><br><span class="line">        ActivityContainer.getInstance().addActivity(this);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    protected void <span class="function"><span class="title">onDestroy</span></span>() &#123;</span><br><span class="line">        super.onDestroy();</span><br><span class="line">        // 结束Activity从栈中移除该Activity</span><br><span class="line">        ActivityContainer.getInstance().removeActivity(this);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>Activity 容器</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line">class ActivityContainer &#123;</span><br><span class="line"></span><br><span class="line">    private <span class="function"><span class="title">ActivityContainer</span></span>() &#123;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    private static ActivityContainer instance = new ActivityContainer();</span><br><span class="line">    private static List&lt;Activity&gt; activityStack = new ArrayList&lt;Activity&gt;();</span><br><span class="line"></span><br><span class="line">    public static ActivityContainer <span class="function"><span class="title">getInstance</span></span>() &#123;</span><br><span class="line">        <span class="built_in">return</span> instance;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public void addActivity(Activity activity) &#123;</span><br><span class="line">        activityStack.add(activity);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public void removeActivity(Activity activity) &#123;</span><br><span class="line">        activityStack.remove(activity);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    /**</span><br><span class="line">     * 结束所有Activity</span><br><span class="line">     */</span><br><span class="line">    public void <span class="function"><span class="title">finishAllActivity</span></span>() &#123;</span><br><span class="line">        <span class="keyword">for</span> (int i = 0, size = activityStack.size(); i &lt; size; i++) &#123;</span><br><span class="line">            <span class="keyword">if</span> (null != activityStack.get(i)) &#123;</span><br><span class="line">                activityStack.get(i).finish();</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        activityStack.clear();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>这种方法比较简单， 但是可以看到activityStack持有这Activity的强引用，也就是说当某个Activity异常退出时，activityStack没有即使释放掉引用，就会导致内存问题，</p>
+<h2 id="广播式"><a href="#广播式" class="headerlink" title="广播式"></a>广播式</h2><p> 通过在BaseActivity中注册一个广播，当退出时发送一个广播，finish退出。</p>
+ <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">public class BaseActivity extends Activity &#123;</span><br><span class="line"></span><br><span class="line">    private static final String EXITACTION = <span class="string">"action.exit"</span>;</span><br><span class="line"></span><br><span class="line">    private ExitReceiver <span class="built_in">exit</span>Receiver = new ExitReceiver();</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    protected void onCreate(Bundle savedInstanceState) &#123;</span><br><span class="line">        super.onCreate(savedInstanceState);</span><br><span class="line">        IntentFilter filter = new IntentFilter();</span><br><span class="line">        filter.addAction(EXITACTION);</span><br><span class="line">        registerReceiver(<span class="built_in">exit</span>Receiver, filter);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    protected void <span class="function"><span class="title">onDestroy</span></span>() &#123;</span><br><span class="line">        super.onDestroy();</span><br><span class="line">        unregisterReceiver(<span class="built_in">exit</span>Receiver);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    class ExitReceiver extends BroadcastReceiver &#123;</span><br><span class="line"></span><br><span class="line">        @Override</span><br><span class="line">        public void onReceive(Context context, Intent intent) &#123;</span><br><span class="line">            BaseActivity.this.finish();</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="双击两次返回键退出"><a href="#双击两次返回键退出" class="headerlink" title="双击两次返回键退出"></a>双击两次返回键退出</h2><p>重写onKeyDown方法</p>
+<pre><code class="bash">
+private long <span class="built_in">exit</span>Time = 0;
+
+@Override
+   public boolean onKeyDown(int keyCode, KeyEvent event) {
+       <span class="keyword">if</span> (keyCode == KeyEvent.KEYCODE_BACK &amp;&amp; event.getAction() == KeyEvent.ACTION_DOWN) {
+          //两秒之内按返回键就会退出
+           <span class="keyword">if</span> ((System.currentTimeMillis() - <span class="built_in">exit</span>Time) &gt; 2000) {
+               Toast.makeText(getApplicationContext(), <span class="string">"再按一次退出程序"</span>, Toast.LENGTH_SHORT).show();
+               <span class="built_in">exit</span>Time = System.currentTimeMillis();
+           } <span class="keyword">else</span> {
+               finish();
+               System.exit(0);
+           }
+           <span class="built_in">return</span> <span class="literal">true</span>;
+       }
+       <span class="built_in">return</span> super.onKeyDown(keyCode, event);
+   }
+</code></pre>
+<p>以上三种是比较常用的几种退出应用程序的方式，具体还要根据项目来选择合适的退出方式。</p>
 <p><strong>欢迎大家关注我的微信公众号，我会不定期的分享些Android开发的技巧</strong></p>
 <p><img src="/images/weixing.jpg" alt=""></p>
   
@@ -121,13 +140,13 @@
 
 <div class="article-categories">
   <span></span>
-  <a class="article-category-link" href="/categories/hexo/">hexo</a>
+  <a class="article-category-link" href="/categories/Android/">Android</a>
 </div>
 
 
   <div class="article-tags">
   
-  <span></span> <a href="/tags/hexo/">hexo</a>
+  <span></span> <a href="/tags/Android/">Android</a>
   </div>
 
 </div>
@@ -136,7 +155,7 @@
 
 	<div class="article-share" id="share">
 	
-	  <div data-url="http://HJXANDHMR.github.io/2016/04/16/hexo-Command/" data-title="hexo 常用命令和更换主题 | Android学习" data-tsina="null" class="share clearfix">
+	  <div data-url="http://HJXANDHMR.github.io/2016/06/29/Android-Elegance-ExitActivity/" data-title="Android中优雅的退出程序 | Android学习" data-tsina="null" class="share clearfix">
 	  </div>
 	
 	</div>
@@ -149,19 +168,11 @@
 	
 <nav class="article-nav clearfix">
  
- <div class="prev" >
- <a href="/2016/04/17/markdown-grammar/" title="Markdown基本语法">
-  <strong>上一篇：</strong><br/>
-  <span>
-  Markdown基本语法</span>
-</a>
-</div>
-
 
 <div class="next">
-<a href="/2016/04/15/hello-hexo/"  title="GitHub加hexo搭建博客教程">
+<a href="/2016/06/21/AndroidStudio-Plug/"  title="Android Studio必备插件">
  <strong>下一篇：</strong><br/> 
- <span>GitHub加hexo搭建博客教程
+ <span>Android Studio必备插件
 </span>
 </a>
 </div>
@@ -170,7 +181,7 @@
 
 	
 <section id="comments" class="comment">
-	<div class="ds-thread" data-thread-key="2016/04/16/hexo-Command/" data-title="hexo 常用命令和更换主题" data-url="http://HJXANDHMR.github.io/2016/04/16/hexo-Command/"></div>
+	<div class="ds-thread" data-thread-key="2016/06/29/Android-Elegance-ExitActivity/" data-title="Android中优雅的退出程序" data-url="http://HJXANDHMR.github.io/2016/06/29/Android-Elegance-ExitActivity/"></div>
 </section>
 
 
@@ -180,7 +191,7 @@
   <div id="toc" class="toc-aside">
   <strong class="toc-title">文章目录</strong>
  
- <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#hexo命令"><span class="toc-number">1.</span> <span class="toc-text">hexo命令</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#更换主题"><span class="toc-number">2.</span> <span class="toc-text">更换主题</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#安装主题"><span class="toc-number">2.1.</span> <span class="toc-text">安装主题</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#启用主题"><span class="toc-number">2.2.</span> <span class="toc-text">启用主题</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#主题的配置"><span class="toc-number">2.3.</span> <span class="toc-text">主题的配置</span></a></li></ol></li></ol>
+ <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#建立全局容器"><span class="toc-number">1.</span> <span class="toc-text">建立全局容器</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#广播式"><span class="toc-number">2.</span> <span class="toc-text">广播式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#双击两次返回键退出"><span class="toc-number">3.</span> <span class="toc-text">双击两次返回键退出</span></a></li></ol>
  
   </div>
 
