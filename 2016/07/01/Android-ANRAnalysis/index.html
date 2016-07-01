@@ -4,25 +4,25 @@
 <head>
   <meta charset="UTF-8">
   
-    <title>Android Robolectric 实例 | Android学习</title>
+    <title>Android中ANR分析 | Android学习</title>
     <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
     
     <meta name="author" content="何健雄">
     
 
     
-    <meta name="description" content="Android ,单元测试,Robolectric">
+    <meta name="description" content="Android,ANR">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Android Robolectric 实例">
-<meta property="og:url" content="http://HJXANDHMR.github.io/2016/05/10/Android-RobolectricDemo/index.html">
+<meta property="og:title" content="Android中ANR分析">
+<meta property="og:url" content="http://HJXANDHMR.github.io/2016/07/01/Android-ANRAnalysis/index.html">
 <meta property="og:site_name" content="Android学习">
-<meta property="og:description" content="Android ,单元测试,Robolectric">
-<meta property="og:image" content="http://HJXANDHMR.github.io/images/weixing.jpg">
-<meta property="og:updated_time" content="2016-05-11T07:07:34.760Z">
+<meta property="og:description" content="Android,ANR">
+<meta property="og:image" content="http://HJXANDHMR.github.io/images/Android/qqANR.png">
+<meta property="og:updated_time" content="2016-07-01T05:06:10.604Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Android Robolectric 实例">
-<meta name="twitter:description" content="Android ,单元测试,Robolectric">
-<meta name="twitter:image" content="http://HJXANDHMR.github.io/images/weixing.jpg">
+<meta name="twitter:title" content="Android中ANR分析">
+<meta name="twitter:description" content="Android,ANR">
+<meta name="twitter:image" content="http://HJXANDHMR.github.io/images/Android/qqANR.png">
 
     
     <link rel="alternative" href="/atom.xml" title="Android学习" type="application/atom+xml">
@@ -82,14 +82,14 @@
 		<header class="article-info clearfix">
   <h1 itemprop="name">
     
-      <a href="/2016/05/10/Android-RobolectricDemo/" title="Android Robolectric 实例" itemprop="url">Android Robolectric 实例</a>
+      <a href="/2016/07/01/Android-ANRAnalysis/" title="Android中ANR分析" itemprop="url">Android中ANR分析</a>
   </h1>
   <p class="article-author">By
        
 		<a href="/about" title="何健雄" target="_blank" itemprop="author">何健雄</a>
 		
   <p class="article-time">
-    <time datetime="2016-05-10T07:52:27.399Z" itemprop="datePublished"> 发表于 2016-05-10</time>
+    <time datetime="2016-07-01T04:30:30.127Z" itemprop="datePublished"> 发表于 2016-07-01</time>
     
   </p>
 </header>
@@ -98,24 +98,50 @@
 		<div id="toc" class="toc-article">
 			<strong class="toc-title">文章目录</strong>
 		
-			<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#环境搭建"><span class="toc-number">1.</span> <span class="toc-text">环境搭建</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Gradle-配置"><span class="toc-number">1.1.</span> <span class="toc-text">Gradle 配置</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#通过注解配置测试类"><span class="toc-number">1.2.</span> <span class="toc-text">通过注解配置测试类</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#测试实例"><span class="toc-number">2.</span> <span class="toc-text">测试实例</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#源程序代码"><span class="toc-number">2.1.</span> <span class="toc-text">源程序代码</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#测试代码"><span class="toc-number">2.2.</span> <span class="toc-text">测试代码</span></a></li></ol></li></ol>
+			<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#什么是ANR"><span class="toc-number">1.</span> <span class="toc-text">什么是ANR</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#什么会引发ANR"><span class="toc-number">2.</span> <span class="toc-text">什么会引发ANR</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#如何避免ANR"><span class="toc-number">3.</span> <span class="toc-text">如何避免ANR</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#分析并解决ANR"><span class="toc-number">4.</span> <span class="toc-text">分析并解决ANR</span></a></li></ol>
 		
 		</div>
 		
-		<p>Android 开发过程中会到 <em>Junit</em>  来进行单元测试,那么Android中的界面应该用什么来测？<br>今天我们的主角就是 <em>Robolectric</em> ，Robolectric 可以用来在Android 上进行界面测试，下面我们就来学习下 Robolectric怎么使用。</p>
-<h2 id="环境搭建"><a href="#环境搭建" class="headerlink" title="环境搭建"></a>环境搭建</h2><h3 id="Gradle-配置"><a href="#Gradle-配置" class="headerlink" title="Gradle 配置"></a>Gradle 配置</h3><p>在Android Studio 下使用Robolectric 非常简单只需要一行代码就可以了。<br>在build.gradle 文件下配置如下依赖关系</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">test</span>Compile <span class="string">"org.robolectric:robolectric:3.0"</span></span><br></pre></td></tr></table></figure>
-<h3 id="通过注解配置测试类"><a href="#通过注解配置测试类" class="headerlink" title="通过注解配置测试类"></a>通过注解配置测试类</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">@RunWith(RobolectricGradleTestRunner.class)</span><br><span class="line">@Config(constants = BuildConfig.class, sdk = 21)</span><br><span class="line">public class MainActivityUITest &#123;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>完成以上两步就把 Robolectric的环境搭建好了，下面我们来学习下怎样测界面。</p>
-<h2 id="测试实例"><a href="#测试实例" class="headerlink" title="测试实例"></a>测试实例</h2><h3 id="源程序代码"><a href="#源程序代码" class="headerlink" title="源程序代码"></a>源程序代码</h3><p>MainActivity.java 代码</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">public class MainActivity extends Activity &#123;</span><br><span class="line"></span><br><span class="line">    Button button;</span><br><span class="line">    TextView textView;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    protected void onCreate(Bundle savedInstanceState) &#123;</span><br><span class="line">        super.onCreate(savedInstanceState);</span><br><span class="line">        <span class="built_in">set</span>ContentView(R.layout.activity_main);</span><br><span class="line"></span><br><span class="line">        button = (Button) findViewById(R.id.button);</span><br><span class="line">        textView = (TextView) findViewById(R.id.textView);</span><br><span class="line"></span><br><span class="line">        button.setOnClickListener(new View.<span class="function"><span class="title">OnClickListener</span></span>() &#123;</span><br><span class="line">            @Override</span><br><span class="line">            public void onClick(View v) &#123;</span><br><span class="line">                textView.setText(<span class="string">"Text change"</span>);</span><br><span class="line">                startActivity(new Intent(MainActivity.this, NextActivity.class));</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>NextActivity.java 代码</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">public class NextActivity extends Activity &#123;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    protected void onCreate(Bundle savedInstanceState) &#123;</span><br><span class="line">        super.onCreate(savedInstanceState);</span><br><span class="line">        <span class="built_in">set</span>ContentView(R.layout.activity_next_avtivity);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="测试代码"><a href="#测试代码" class="headerlink" title="测试代码"></a>测试代码</h3><p>MainActivityUITest.java</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">@RunWith(RobolectricGradleTestRunner.class)</span><br><span class="line">@Config(constants = BuildConfig.class, sdk = 21)</span><br><span class="line">public class MainActivityUITest &#123;</span><br><span class="line"></span><br><span class="line">    private Activity activity;</span><br><span class="line"></span><br><span class="line">    @Before</span><br><span class="line">    public void <span class="function"><span class="title">setup</span></span>() &#123;</span><br><span class="line">        activity = Robolectric.buildActivity(MainActivity.class).create().get();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    @Test</span><br><span class="line">    public void <span class="function"><span class="title">clickButton_shouldTextViewChange</span></span>() &#123;</span><br><span class="line"></span><br><span class="line">        Button button = (Button) activity.findViewById(R.id.button);</span><br><span class="line">        TextView textView = (TextView) activity.findViewById(R.id.textView);</span><br><span class="line"></span><br><span class="line">        String resultsText = textView.getText().toString();</span><br><span class="line">        assertThat(resultsText, equalTo(<span class="string">"Hello World!"</span>));</span><br><span class="line">        button.performClick();</span><br><span class="line">        resultsText = textView.getText().toString();</span><br><span class="line">        assertThat(resultsText, equalTo(<span class="string">"Text change"</span>));</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    @Test</span><br><span class="line">    public void <span class="function"><span class="title">clickButton_shouldStartNextActivity</span></span>() &#123;</span><br><span class="line">        activity.findViewById(R.id.button).performClick();</span><br><span class="line">        Intent expectedIntent = new Intent(activity, NextActivity.class);</span><br><span class="line">        Intent actualIntent = ShadowApplication.getInstance().getNextStartedActivity();</span><br><span class="line">        assertEquals(expectedIntent, actualIntent);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>以上就是Robolectric 框架的基本使用，完整代码我已经上传到<a href="https://github.com/HJXANDHMR/AndroidUiTestRobolectric" target="_blank" rel="external">Github</a>上了,想要更深入的学习以上就是Robolectric，可以去<a href="http://robolectric.org/" target="_blank" rel="external">官网</a>学习。</p>
-<p><strong>欢迎大家关注我的微信公众号，我会不定期的分享些Android开发的技巧</strong></p>
-<p><img src="/images/weixing.jpg" alt=""></p>
+		<h2 id="什么是ANR"><a href="#什么是ANR" class="headerlink" title="什么是ANR"></a>什么是ANR</h2><p>ANR全称Application Not Responding，意思就是程序未响应。如果一个应用无法响应用户的输入，系统就会弹出一个ANR对话框，如下图所示,用户可以自行选择继续等待亦或者是停止当前程序。</p>
+<p><img src="/images/Android/qqANR.png" alt=""></p>
+<h2 id="什么会引发ANR"><a href="#什么会引发ANR" class="headerlink" title="什么会引发ANR"></a>什么会引发ANR</h2><ol>
+<li><p>KeyDispatchTimeout(5 seconds) –主要类型按键或触摸事件在5秒内无响应</p>
+</li>
+<li><p>BroadcastTimeout(10 seconds) –BroadcastReceiver在10秒内无法处理完成</p>
+</li>
+<li><p>ServiceTimeout(20 seconds) –Service在20秒内无法处理完成</p>
+</li>
+</ol>
+<h2 id="如何避免ANR"><a href="#如何避免ANR" class="headerlink" title="如何避免ANR"></a>如何避免ANR</h2><p>基本的思路就是将IO操作在工作线程来处理，减少其他耗时操作和错误操作</p>
+<ul>
+<li><p>使用AsyncTask处理耗时IO操作。</p>
+</li>
+<li><p>使用Thread或者HandlerThread时，调用Process.setThreadPriority(Process.THREAD<em>PRIORITY</em><br>BACKGROUND)设置优先级，否则仍然会降低程序响应，因为默认Thread的优先级和主线程相同。</p>
+</li>
+<li><p>使用Handler处理工作线程结果，而不是使用Thread.wait()或者Thread.sleep()来阻塞主线程。</p>
+</li>
+<li><p>Activity的onCreate和onResume回调中尽量避免耗时的代码</p>
+</li>
+<li><p>BroadcastReceiver中onReceive代码也要尽量减少耗时，建议使用IntentService处理。</p>
+</li>
+</ul>
+<h2 id="分析并解决ANR"><a href="#分析并解决ANR" class="headerlink" title="分析并解决ANR"></a>分析并解决ANR</h2><ol>
+<li><p>首先分析log</p>
+</li>
+<li><p>从trace.txt文件查看调用stack.</p>
+</li>
+<li><p>看代码</p>
+</li>
+<li><p>仔细查看ANR的成因（iowait?block?memoryleak?）</p>
+</li>
+</ol>
+<p>这里有两篇博客关于ANR写的非常详细，感兴趣的可以移步到下面链接去更深入的学习。</p>
+<ul>
+<li><p><a href="http://www.cnblogs.com/purediy/p/3225060.html" target="_blank" rel="external">http://www.cnblogs.com/purediy/p/3225060.html</a></p>
+</li>
+<li><p><a href="http://droidyue.com/blog/2015/07/18/anr-in-android/index.html" target="_blank" rel="external">http://droidyue.com/blog/2015/07/18/anr-in-android/index.html</a></p>
+</li>
+</ul>
   
 	</div>
 		<footer class="article-footer clearfix">
@@ -129,7 +155,7 @@
 
   <div class="article-tags">
   
-  <span></span> <a href="/tags/Robolectric/">Robolectric</a>
+  <span></span> <a href="/tags/Android/">Android</a>
   </div>
 
 </div>
@@ -138,7 +164,7 @@
 
 	<div class="article-share" id="share">
 	
-	  <div data-url="http://HJXANDHMR.github.io/2016/05/10/Android-RobolectricDemo/" data-title="Android Robolectric 实例 | Android学习" data-tsina="null" class="share clearfix">
+	  <div data-url="http://HJXANDHMR.github.io/2016/07/01/Android-ANRAnalysis/" data-title="Android中ANR分析 | Android学习" data-tsina="null" class="share clearfix">
 	  </div>
 	
 	</div>
@@ -151,19 +177,11 @@
 	
 <nav class="article-nav clearfix">
  
- <div class="prev" >
- <a href="/2016/05/16/AndroidStudio-Source-Error/" title="Android Studio查看源代码报错">
-  <strong>上一篇：</strong><br/>
-  <span>
-  Android Studio查看源代码报错</span>
-</a>
-</div>
-
 
 <div class="next">
-<a href="/2016/05/06/Linux-DirectoryProcessingCommand/"  title="Linux文件目录处理命令">
+<a href="/2016/06/29/Android-Elegance-ExitActivity/"  title="Android中优雅的退出程序">
  <strong>下一篇：</strong><br/> 
- <span>Linux文件目录处理命令
+ <span>Android中优雅的退出程序
 </span>
 </a>
 </div>
@@ -172,7 +190,7 @@
 
 	
 <section id="comments" class="comment">
-	<div class="ds-thread" data-thread-key="2016/05/10/Android-RobolectricDemo/" data-title="Android Robolectric 实例" data-url="http://HJXANDHMR.github.io/2016/05/10/Android-RobolectricDemo/"></div>
+	<div class="ds-thread" data-thread-key="2016/07/01/Android-ANRAnalysis/" data-title="Android中ANR分析" data-url="http://HJXANDHMR.github.io/2016/07/01/Android-ANRAnalysis/"></div>
 </section>
 
 
@@ -182,7 +200,7 @@
   <div id="toc" class="toc-aside">
   <strong class="toc-title">文章目录</strong>
  
- <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#环境搭建"><span class="toc-number">1.</span> <span class="toc-text">环境搭建</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Gradle-配置"><span class="toc-number">1.1.</span> <span class="toc-text">Gradle 配置</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#通过注解配置测试类"><span class="toc-number">1.2.</span> <span class="toc-text">通过注解配置测试类</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#测试实例"><span class="toc-number">2.</span> <span class="toc-text">测试实例</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#源程序代码"><span class="toc-number">2.1.</span> <span class="toc-text">源程序代码</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#测试代码"><span class="toc-number">2.2.</span> <span class="toc-text">测试代码</span></a></li></ol></li></ol>
+ <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#什么是ANR"><span class="toc-number">1.</span> <span class="toc-text">什么是ANR</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#什么会引发ANR"><span class="toc-number">2.</span> <span class="toc-text">什么会引发ANR</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#如何避免ANR"><span class="toc-number">3.</span> <span class="toc-text">如何避免ANR</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#分析并解决ANR"><span class="toc-number">4.</span> <span class="toc-text">分析并解决ANR</span></a></li></ol>
  
   </div>
 

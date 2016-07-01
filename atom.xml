@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://HJXANDHMR.github.io/"/>
-  <updated>2016-07-01T04:21:42.840Z</updated>
+  <updated>2016-07-01T05:06:10.604Z</updated>
   <id>http://HJXANDHMR.github.io/</id>
   
   <author>
@@ -14,6 +14,68 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Android中ANR分析</title>
+    <link href="http://HJXANDHMR.github.io/2016/07/01/Android-ANRAnalysis/"/>
+    <id>http://HJXANDHMR.github.io/2016/07/01/Android-ANRAnalysis/</id>
+    <published>2016-07-01T04:30:30.127Z</published>
+    <updated>2016-07-01T05:06:10.604Z</updated>
+    
+    <content type="html">&lt;h2 id=&quot;什么是ANR&quot;&gt;&lt;a href=&quot;#什么是ANR&quot; class=&quot;headerlink&quot; title=&quot;什么是ANR&quot;&gt;&lt;/a&gt;什么是ANR&lt;/h2&gt;&lt;p&gt;ANR全称Application Not Responding，意思就是程序未响应。如果一个应用无法响应用户的输入，系统就会弹出一个ANR对话框，如下图所示,用户可以自行选择继续等待亦或者是停止当前程序。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/images/Android/qqANR.png&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;h2 id=&quot;什么会引发ANR&quot;&gt;&lt;a href=&quot;#什么会引发ANR&quot; class=&quot;headerlink&quot; title=&quot;什么会引发ANR&quot;&gt;&lt;/a&gt;什么会引发ANR&lt;/h2&gt;&lt;ol&gt;
+&lt;li&gt;&lt;p&gt;KeyDispatchTimeout(5 seconds) –主要类型按键或触摸事件在5秒内无响应&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;BroadcastTimeout(10 seconds) –BroadcastReceiver在10秒内无法处理完成&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;ServiceTimeout(20 seconds) –Service在20秒内无法处理完成&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2 id=&quot;如何避免ANR&quot;&gt;&lt;a href=&quot;#如何避免ANR&quot; class=&quot;headerlink&quot; title=&quot;如何避免ANR&quot;&gt;&lt;/a&gt;如何避免ANR&lt;/h2&gt;&lt;p&gt;基本的思路就是将IO操作在工作线程来处理，减少其他耗时操作和错误操作&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;使用AsyncTask处理耗时IO操作。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;使用Thread或者HandlerThread时，调用Process.setThreadPriority(Process.THREAD&lt;em&gt;PRIORITY&lt;/em&gt;&lt;br&gt;BACKGROUND)设置优先级，否则仍然会降低程序响应，因为默认Thread的优先级和主线程相同。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;使用Handler处理工作线程结果，而不是使用Thread.wait()或者Thread.sleep()来阻塞主线程。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Activity的onCreate和onResume回调中尽量避免耗时的代码&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;BroadcastReceiver中onReceive代码也要尽量减少耗时，建议使用IntentService处理。&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&quot;分析并解决ANR&quot;&gt;&lt;a href=&quot;#分析并解决ANR&quot; class=&quot;headerlink&quot; title=&quot;分析并解决ANR&quot;&gt;&lt;/a&gt;分析并解决ANR&lt;/h2&gt;&lt;ol&gt;
+&lt;li&gt;&lt;p&gt;首先分析log&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;从trace.txt文件查看调用stack.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;看代码&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;仔细查看ANR的成因（iowait?block?memoryleak?）&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;这里有两篇博客关于ANR写的非常详细，感兴趣的可以移步到下面链接去更深入的学习。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;&lt;a href=&quot;http://www.cnblogs.com/purediy/p/3225060.html&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;http://www.cnblogs.com/purediy/p/3225060.html&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;a href=&quot;http://droidyue.com/blog/2015/07/18/anr-in-android/index.html&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;http://droidyue.com/blog/2015/07/18/anr-in-android/index.html&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+</content>
+    
+    <summary type="html">
+    
+      Android,ANR
+    
+    </summary>
+    
+      <category term="Android" scheme="http://HJXANDHMR.github.io/categories/Android/"/>
+    
+    
+      <category term="Android" scheme="http://HJXANDHMR.github.io/tags/Android/"/>
+    
+  </entry>
   
   <entry>
     <title>Android中优雅的退出程序</title>
@@ -1095,42 +1157,6 @@ public interface ActivityComponent {
     
     
       <category term="Android" scheme="http://HJXANDHMR.github.io/tags/Android/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Android Studio查看源代码报错</title>
-    <link href="http://HJXANDHMR.github.io/2016/05/16/AndroidStudio-Source-Error/"/>
-    <id>http://HJXANDHMR.github.io/2016/05/16/AndroidStudio-Source-Error/</id>
-    <published>2016-05-16T06:58:19.028Z</published>
-    <updated>2016-06-21T09:10:37.478Z</updated>
-    
-    <content type="html">&lt;p&gt;我们经常用Android Studio 查看Android的源代码，今天我们就来学习查看源代码的正确姿势。&lt;/p&gt;
-&lt;h2 id=&quot;Android-Studio查看源代码&quot;&gt;&lt;a href=&quot;#Android-Studio查看源代码&quot; class=&quot;headerlink&quot; title=&quot;Android Studio查看源代码&quot;&gt;&lt;/a&gt;Android Studio查看源代码&lt;/h2&gt;&lt;p&gt;我们用Android Studio查看源代码会遇到下面的问题。&lt;br&gt;&lt;img src=&quot;/images/AndroidStudio/AndroidStudio-readSource.png&quot; alt=&quot;&quot;&gt;&lt;br&gt;这是由于Android SDK自带的Source源码包很小，并没有包括所有的Android Framework的源码，仅仅提供给应用开发参考用，一些比较少用的系统类的源码并没有给出。&lt;br&gt;“RuntimeException(“Stub!”)”表示实际运行时的逻辑会由Android ROM里面相同的类代替执行。&lt;/p&gt;
-&lt;p&gt;此外，在IDE里看源码的时候，有时候一些方法或者类会出现报红（找不到）的情况，如下。&lt;/p&gt;
-&lt;p&gt;&lt;img src=&quot;/images/AndroidStudio/AndroidStudio-source-error.png&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
-&lt;p&gt;这是因为这些方法或者类是被Android SDK隐藏的，出于安全或者某些原因，这些API不能暴露给应用层的开发者，所以编译完成的android.jar包里会把这些API隐藏掉，而我们的Android项目是依赖android.jar的，查看源码的时候，IDE会自动去android.jar找对应的API，自然会找不到。当然，这些API在ROM中是实际存在的，有些开发者发现了一些可以修改系统行为的隐藏API，在应用层通过反射的方式强行调用这些API执行系统功能，这种手段也是一种HACK。&lt;/p&gt;
-&lt;h2 id=&quot;Source-Insight&quot;&gt;&lt;a href=&quot;#Source-Insight&quot; class=&quot;headerlink&quot; title=&quot;Source Insight&quot;&gt;&lt;/a&gt;Source Insight&lt;/h2&gt;&lt;p&gt;基于以上两点Android Studio 不是很好的研究Android源码的工具，想要深入的研究Android源码，大家可以用 &lt;a href=&quot;http://www.sourceinsight.com/down35.html&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Source Insight&lt;/a&gt; 来研究Android源码。&lt;/p&gt;
-&lt;p&gt;我们来看看在 ‘Source Insight’ 下查看源码的效果。&lt;/p&gt;
-&lt;p&gt;&lt;img src=&quot;/images/AndroidStudio/SourceInsight-readSource.png&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
-&lt;p&gt;从图片可以看出RuntimeException(“Stub!”) 已经被具体的代码替代了。&lt;/p&gt;
-&lt;p&gt;&lt;img src=&quot;/images/AndroidStudio/SourceInsight-normal.png&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
-&lt;p&gt;也没有出现一些方法或者类会出现报红（找不到）的情况。&lt;/p&gt;
-&lt;p&gt;大家可以好好的研究Android 源码了。&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;欢迎大家关注我的微信公众号，我会不定期的分享些Android开发的技巧&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;&lt;img src=&quot;/images/weixing.jpg&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
-</content>
-    
-    <summary type="html">
-    
-      Android Studio,Source,Source Insight
-    
-    </summary>
-    
-      <category term="Android Studio" scheme="http://HJXANDHMR.github.io/categories/Android-Studio/"/>
-    
-    
-      <category term="Android Studio" scheme="http://HJXANDHMR.github.io/tags/Android-Studio/"/>
     
   </entry>
   
