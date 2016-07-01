@@ -18,7 +18,7 @@
 <meta property="og:site_name" content="Android学习">
 <meta property="og:description" content="Android，优雅的退出程序">
 <meta property="og:image" content="http://HJXANDHMR.github.io/images/weixing.jpg">
-<meta property="og:updated_time" content="2016-06-29T07:25:27.420Z">
+<meta property="og:updated_time" content="2016-07-01T04:21:42.840Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Android中优雅的退出程序">
 <meta name="twitter:description" content="Android，优雅的退出程序">
@@ -109,7 +109,7 @@
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line">class ActivityContainer &#123;</span><br><span class="line"></span><br><span class="line">    private <span class="function"><span class="title">ActivityContainer</span></span>() &#123;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    private static ActivityContainer instance = new ActivityContainer();</span><br><span class="line">    private static List&lt;Activity&gt; activityStack = new ArrayList&lt;Activity&gt;();</span><br><span class="line"></span><br><span class="line">    public static ActivityContainer <span class="function"><span class="title">getInstance</span></span>() &#123;</span><br><span class="line">        <span class="built_in">return</span> instance;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public void addActivity(Activity activity) &#123;</span><br><span class="line">        activityStack.add(activity);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public void removeActivity(Activity activity) &#123;</span><br><span class="line">        activityStack.remove(activity);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    /**</span><br><span class="line">     * 结束所有Activity</span><br><span class="line">     */</span><br><span class="line">    public void <span class="function"><span class="title">finishAllActivity</span></span>() &#123;</span><br><span class="line">        <span class="keyword">for</span> (int i = 0, size = activityStack.size(); i &lt; size; i++) &#123;</span><br><span class="line">            <span class="keyword">if</span> (null != activityStack.get(i)) &#123;</span><br><span class="line">                activityStack.get(i).finish();</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        activityStack.clear();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>这种方法比较简单， 但是可以看到activityStack持有这Activity的强引用，也就是说当某个Activity异常退出时，activityStack没有即使释放掉引用，就会导致内存问题，</p>
 <h2 id="广播式"><a href="#广播式" class="headerlink" title="广播式"></a>广播式</h2><p> 通过在BaseActivity中注册一个广播，当退出时发送一个广播，finish退出。</p>
- <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">public class BaseActivity extends Activity &#123;</span><br><span class="line"></span><br><span class="line">    private static final String EXITACTION = <span class="string">"action.exit"</span>;</span><br><span class="line"></span><br><span class="line">    private ExitReceiver <span class="built_in">exit</span>Receiver = new ExitReceiver();</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    protected void onCreate(Bundle savedInstanceState) &#123;</span><br><span class="line">        super.onCreate(savedInstanceState);</span><br><span class="line">        IntentFilter filter = new IntentFilter();</span><br><span class="line">        filter.addAction(EXITACTION);</span><br><span class="line">        registerReceiver(<span class="built_in">exit</span>Receiver, filter);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    protected void <span class="function"><span class="title">onDestroy</span></span>() &#123;</span><br><span class="line">        super.onDestroy();</span><br><span class="line">        unregisterReceiver(<span class="built_in">exit</span>Receiver);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    class ExitReceiver extends BroadcastReceiver &#123;</span><br><span class="line"></span><br><span class="line">        @Override</span><br><span class="line">        public void onReceive(Context context, Intent intent) &#123;</span><br><span class="line">            BaseActivity.this.finish();</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+ <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">public class BaseActivity extends Activity &#123;</span><br><span class="line"></span><br><span class="line">    private static final String EXITACTION = <span class="string">"action.exit"</span>;</span><br><span class="line"></span><br><span class="line">    private ExitReceiver <span class="built_in">exit</span>Receiver = new ExitReceiver();</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    protected void onCreate(Bundle savedInstanceState) &#123;</span><br><span class="line">        super.onCreate(savedInstanceState);</span><br><span class="line">        IntentFilter filter = new IntentFilter();</span><br><span class="line">        filter.addAction(EXITACTION);</span><br><span class="line">        registerReceiver(<span class="built_in">exit</span>Receiver, filter);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    protected void <span class="function"><span class="title">onDestroy</span></span>() &#123;</span><br><span class="line">        super.onDestroy();</span><br><span class="line">        unregisterReceiver(<span class="built_in">exit</span>Receiver);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    class ExitReceiver extends BroadcastReceiver &#123;</span><br><span class="line"></span><br><span class="line">        @Override</span><br><span class="line">        public void onReceive(Context context, Intent intent) &#123;</span><br><span class="line">            BaseActivity.this.finish();</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <h2 id="双击两次返回键退出"><a href="#双击两次返回键退出" class="headerlink" title="双击两次返回键退出"></a>双击两次返回键退出</h2><p>重写onKeyDown方法</p>
 <pre><code class="bash">
 private long <span class="built_in">exit</span>Time = 0;
@@ -262,11 +262,11 @@ private long <span class="built_in">exit</span>Time = 0;
 			
 		
 			
-				<li><a href="/tags/Android-Studio/" title="Android Studio">Android Studio<sup>3</sup></a></li>
+				<li><a href="/tags/hexo/" title="hexo">hexo<sup>3</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/hexo/" title="hexo">hexo<sup>3</sup></a></li>
+				<li><a href="/tags/Android-Studio/" title="Android Studio">Android Studio<sup>3</sup></a></li>
 			
 		
 			
@@ -274,11 +274,7 @@ private long <span class="built_in">exit</span>Time = 0;
 			
 		
 			
-				<li><a href="/tags/Markdown/" title="Markdown">Markdown<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/Android-NDK/" title="Android NDK">Android NDK<sup>1</sup></a></li>
+				<li><a href="/tags/WCF/" title="WCF">WCF<sup>1</sup></a></li>
 			
 		
 			
@@ -294,7 +290,11 @@ private long <span class="built_in">exit</span>Time = 0;
 			
 		
 			
-				<li><a href="/tags/WCF/" title="WCF">WCF<sup>1</sup></a></li>
+				<li><a href="/tags/Markdown/" title="Markdown">Markdown<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Android-NDK/" title="Android NDK">Android NDK<sup>1</sup></a></li>
 			
 		
 		</ul>

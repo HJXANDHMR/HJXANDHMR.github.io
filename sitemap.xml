@@ -2,9 +2,16 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://HJXANDHMR.github.io/2016/05/23/Android-Dagger2-DI/</loc>
+    
+    <lastmod>2016-07-01T04:25:02.207Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://HJXANDHMR.github.io/2016/06/29/Android-Elegance-ExitActivity/</loc>
     
-    <lastmod>2016-06-29T07:25:27.420Z</lastmod>
+    <lastmod>2016-07-01T04:21:42.840Z</lastmod>
     
   </url>
   
@@ -145,13 +152,6 @@
     <loc>http://HJXANDHMR.github.io/2016/05/28/DesigPattern-FactoryMethod/</loc>
     
     <lastmod>2016-05-28T02:00:03.004Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://HJXANDHMR.github.io/2016/05/23/Android-Dagger2-DI/</loc>
-    
-    <lastmod>2016-05-23T07:34:09.017Z</lastmod>
     
   </url>
   
