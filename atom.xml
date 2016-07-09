@@ -515,7 +515,7 @@ private long &lt;span class=&quot;built_in&quot;&gt;exit&lt;/span&gt;Time = 0;
     <link href="http://HJXANDHMR.github.io/2016/06/06/DesignPattern-Proxy/"/>
     <id>http://HJXANDHMR.github.io/2016/06/06/DesignPattern-Proxy/</id>
     <published>2016-06-06T09:49:07.412Z</published>
-    <updated>2016-06-06T10:05:08.366Z</updated>
+    <updated>2016-07-07T09:55:36.814Z</updated>
     
     <content type="html">&lt;p&gt;今天我们来学习一种结构型模式，代理模式(Proxy Pattern)。&lt;/p&gt;
 &lt;h2 id=&quot;模式定义&quot;&gt;&lt;a href=&quot;#模式定义&quot; class=&quot;headerlink&quot; title=&quot;模式定义&quot;&gt;&lt;/a&gt;模式定义&lt;/h2&gt;&lt;p&gt;给某一个对象提供一个代理，并由代理对象控制对原对象的引用。&lt;/p&gt;
@@ -543,6 +543,7 @@ private long &lt;span class=&quot;built_in&quot;&gt;exit&lt;/span&gt;Time = 0;
 &lt;li&gt;&lt;p&gt;实现代理模式需要额外的工作，有些代理模式的实现 非常复杂。&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ul&gt;
+&lt;p&gt;代码已经放到GitHub上了&lt;a href=&quot;https://github.com/HJXANDHMR/DesignPattern&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;https://github.com/HJXANDHMR/DesignPattern&lt;/a&gt;。&lt;/p&gt;
 &lt;p&gt;参考&lt;br&gt;    &lt;a href=&quot;http://design-patterns.readthedocs.io/zh_CN/latest/structural_patterns/proxy.html&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;http://design-patterns.readthedocs.io/zh_CN/latest/structural_patterns/proxy.html&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;欢迎大家关注我的微信公众号，我会不定期的分享些Android开发的技巧&lt;/strong&gt;&lt;/p&gt;
 &lt;p&gt;&lt;img src=&quot;/images/weixing.jpg&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
