@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://HJXANDHMR.github.io/"/>
-  <updated>2016-07-01T05:06:10.604Z</updated>
+  <updated>2016-07-18T12:40:15.383Z</updated>
   <id>http://HJXANDHMR.github.io/</id>
   
   <author>
@@ -14,6 +14,37 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Android Studio 进行签名打包</title>
+    <link href="http://HJXANDHMR.github.io/2016/07/18/Android-SignaturePackage/"/>
+    <id>http://HJXANDHMR.github.io/2016/07/18/Android-SignaturePackage/</id>
+    <published>2016-07-18T12:36:21.829Z</published>
+    <updated>2016-07-18T12:40:15.383Z</updated>
+    
+    <content type="html">&lt;h2 id=&quot;Android-Studio中进行签名&quot;&gt;&lt;a href=&quot;#Android-Studio中进行签名&quot; class=&quot;headerlink&quot; title=&quot;Android Studio中进行签名&quot;&gt;&lt;/a&gt;Android Studio中进行签名&lt;/h2&gt;&lt;p&gt;首先点击Android Studio 的菜单栏下的build目录下的Generate signed APK&lt;/p&gt;
+&lt;p&gt;然后创建Keystore文件&lt;br&gt;&lt;img src=&quot;http://upload-images.jianshu.io/upload_images/1797049-424823f41a6e4e0e.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&quot; alt=&quot;&quot;&gt;&lt;br&gt;按要求填好信息后，点击OK（记住所填的密码后面将会用到）&lt;br&gt;&lt;img src=&quot;http://upload-images.jianshu.io/upload_images/1797049-490b11679767ceb7.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&quot; alt=&quot;&quot;&gt;&lt;br&gt;接下来将设置Keystore的存放路径及命名文件名称，该文件后缀默认为jks。点击OK。&lt;br&gt;&lt;img src=&quot;http://upload-images.jianshu.io/upload_images/1797049-dee089a2f80481ba.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;p&gt;填写之前设置的密码，点击Next,生成带签名的apk&lt;br&gt;&lt;img src=&quot;http://upload-images.jianshu.io/upload_images/1797049-fcb76e790f208e16.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;p&gt;选择build Type为release，点击finish。&lt;br&gt;&lt;img src=&quot;http://upload-images.jianshu.io/upload_images/1797049-22cbf88505585e80.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;p&gt;然后就可看到app/build/outputs/apk 路径下查看生成的带签名的apk。&lt;/p&gt;
+&lt;h2 id=&quot;利用Android-Studio-自动打包&quot;&gt;&lt;a href=&quot;#利用Android-Studio-自动打包&quot; class=&quot;headerlink&quot; title=&quot;利用Android Studio 自动打包&quot;&gt;&lt;/a&gt;利用Android Studio 自动打包&lt;/h2&gt;&lt;p&gt;我在用百度定位sdk的时候必须要用签名好的apk才可以定位，而Android Studio 默认签名的apk是不可以定位的，这让我很郁闷，后来去网上搜了下，原来Gradle可以很好的帮我们解决这个问题。&lt;/p&gt;
+&lt;p&gt;只需要在module 下的build.gradle 下加上如下代码就可以了：&lt;/p&gt;
+&lt;figure class=&quot;highlight bash&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;10&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;11&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;12&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;13&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;14&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;15&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;16&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;17&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;18&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;19&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;signingConfigs&amp;#123;    &lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  release &amp;#123;        &lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    storeFile file(&lt;span class=&quot;string&quot;&gt;&quot;/home/h/hjxkeystore.jks&quot;&lt;/span&gt;)        //证书存放目录&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    storePassword &lt;span class=&quot;string&quot;&gt;&quot;123456&quot;&lt;/span&gt;                               //密码&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    keyAlias &lt;span class=&quot;string&quot;&gt;&quot;hjx&quot;&lt;/span&gt;                                                //别名&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    keyPassword &lt;span class=&quot;string&quot;&gt;&quot;123456&quot;&lt;/span&gt;                                //密码(就是设置证书那两个密码，建议都填一样的)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;   &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;buildTypes &amp;#123;   &lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;     debug &amp;#123;        &lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        signingConfig signingConfigs.release   &lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;            &amp;#125;  &lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;     release &amp;#123;      &lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;         signingConfig signingConfigs.release    &lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;              &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;到这一步就大功完成了，每次编译生成的apk都是你已经签过名的apk了，而不是Android Studio 自动生成的apk。&lt;/p&gt;
+</content>
+    
+    <summary type="html">
+    
+      Android Studio,签名打包
+    
+    </summary>
+    
+      <category term="Android Studio" scheme="http://HJXANDHMR.github.io/categories/Android-Studio/"/>
+    
+    
+      <category term="Android Studio" scheme="http://HJXANDHMR.github.io/tags/Android-Studio/"/>
+    
+  </entry>
   
   <entry>
     <title>Android中ANR分析</title>
@@ -1097,80 +1128,6 @@ private long &lt;span class=&quot;built_in&quot;&gt;exit&lt;/span&gt;Time = 0;
     
     
       <category term="Design Pattern" scheme="http://HJXANDHMR.github.io/tags/Design-Pattern/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Android中使用Dagger2进行依赖注入</title>
-    <link href="http://HJXANDHMR.github.io/2016/05/23/Android-Dagger2-DI/"/>
-    <id>http://HJXANDHMR.github.io/2016/05/23/Android-Dagger2-DI/</id>
-    <published>2016-05-23T06:43:51.203Z</published>
-    <updated>2016-07-01T04:25:02.207Z</updated>
-    
-    <content type="html">&lt;p&gt;Dagger2是首个使用生成代码实现完整依赖注入的框架，极大减少了使用者的编码负担，本文主要介绍如何使用Dagger2进行依赖注入。&lt;/p&gt;
-&lt;h2 id=&quot;Dagger2简单介绍&quot;&gt;&lt;a href=&quot;#Dagger2简单介绍&quot; class=&quot;headerlink&quot; title=&quot;Dagger2简单介绍&quot;&gt;&lt;/a&gt;Dagger2简单介绍&lt;/h2&gt;&lt;p&gt;Dagger2，起源于Square的Dagger，是一个完全在编译期间进行的依赖注入框架，完全去除了反射。Dagger2是通过依赖注入让你少写很多公式化代码，更容易测试，降低耦合，创建可复用可互换的模块。&lt;/p&gt;
-&lt;h2 id=&quot;Dagger2实例&quot;&gt;&lt;a href=&quot;#Dagger2实例&quot; class=&quot;headerlink&quot; title=&quot;Dagger2实例&quot;&gt;&lt;/a&gt;Dagger2实例&lt;/h2&gt;&lt;h3 id=&quot;Dagger2环境搭建&quot;&gt;&lt;a href=&quot;#Dagger2环境搭建&quot; class=&quot;headerlink&quot; title=&quot;Dagger2环境搭建&quot;&gt;&lt;/a&gt;Dagger2环境搭建&lt;/h3&gt;&lt;p&gt;project的build.gradle添加&lt;/p&gt;
-&lt;figure class=&quot;highlight bash&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;dependencies &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    ... // 其他classpath&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    classpath &lt;span class=&quot;string&quot;&gt;&#39;com.neenbedankt.gradle.plugins:android-apt:1.8&#39;&lt;/span&gt; //添加apt命令&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-&lt;p&gt;module的build.gradle添加&lt;/p&gt;
-&lt;figure class=&quot;highlight bash&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;apply plugin: &lt;span class=&quot;string&quot;&gt;&#39;com.neenbedankt.android-apt&#39;&lt;/span&gt;//添加apt命令&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;dependencies &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    apt &lt;span class=&quot;string&quot;&gt;&#39;com.google.dagger:dagger-compiler:2.0.2&#39;&lt;/span&gt; //指定注解处理器&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    compile &lt;span class=&quot;string&quot;&gt;&#39;com.google.dagger:dagger:2.0.2&#39;&lt;/span&gt;  //dagger公用api&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    provided &lt;span class=&quot;string&quot;&gt;&#39;org.glassfish:javax.annotation:10.0-b28&#39;&lt;/span&gt;  //添加android缺失的部分javax注解&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-&lt;h3 id=&quot;代码实现&quot;&gt;&lt;a href=&quot;#代码实现&quot; class=&quot;headerlink&quot; title=&quot;代码实现&quot;&gt;&lt;/a&gt;代码实现&lt;/h3&gt;&lt;p&gt;Usermodele 是一些基本消息&lt;/p&gt;
-&lt;figure class=&quot;highlight bash&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;10&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;11&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;12&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;13&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;14&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;15&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;16&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;17&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;18&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;19&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;20&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;21&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;22&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;23&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;24&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;25&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;26&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;27&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;28&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;29&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;30&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;31&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;32&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;33&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;34&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;35&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;36&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;37&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;38&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;39&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;public class UserModel &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    private String id;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    private String name;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    private String gender;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    public &lt;span class=&quot;function&quot;&gt;&lt;span class=&quot;title&quot;&gt;UserModel&lt;/span&gt;&lt;/span&gt;() &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    public UserModel(String id, String name, String gender) &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        this.id = id;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        this.name = name;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        this.gender = gender;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    public String &lt;span class=&quot;function&quot;&gt;&lt;span class=&quot;title&quot;&gt;getId&lt;/span&gt;&lt;/span&gt;() &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        &lt;span class=&quot;built_in&quot;&gt;return&lt;/span&gt; id;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    public void &lt;span class=&quot;built_in&quot;&gt;set&lt;/span&gt;Id(String id) &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        this.id = id;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    public String &lt;span class=&quot;function&quot;&gt;&lt;span class=&quot;title&quot;&gt;getName&lt;/span&gt;&lt;/span&gt;() &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        &lt;span class=&quot;built_in&quot;&gt;return&lt;/span&gt; name;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    public void &lt;span class=&quot;built_in&quot;&gt;set&lt;/span&gt;Name(String name) &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        this.name = name;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    public String &lt;span class=&quot;function&quot;&gt;&lt;span class=&quot;title&quot;&gt;getGender&lt;/span&gt;&lt;/span&gt;() &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        &lt;span class=&quot;built_in&quot;&gt;return&lt;/span&gt; gender;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    public void &lt;span class=&quot;built_in&quot;&gt;set&lt;/span&gt;Gender(String gender) &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        this.gender = gender;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-&lt;p&gt;Module其实就是一个依赖的制造工厂。我们只需要为其添加制造依赖的方法即可。&lt;/p&gt;
-&lt;pre&gt;&lt;code class=&quot;bash&quot;&gt;@Module
-public class ActivityModule {
-
-    @Provides
-    public UserModel &lt;span class=&quot;function&quot;&gt;&lt;span class=&quot;title&quot;&gt;provideUserModel&lt;/span&gt;&lt;/span&gt;() {
-        &lt;span class=&quot;built_in&quot;&gt;return&lt;/span&gt; new UserModel(&lt;span class=&quot;string&quot;&gt;&quot;1&quot;&lt;/span&gt;, &lt;span class=&quot;string&quot;&gt;&quot;hjx&quot;&lt;/span&gt;, &lt;span class=&quot;string&quot;&gt;&quot;man&quot;&lt;/span&gt;);
-    }
-}
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;注解@Module注明本类属于Module ，注解@Provides注明该方法是用来提供依赖对象的特殊方法 。&lt;br&gt;一个完整的Module必须拥有@Module与@Provides注解 。&lt;/p&gt;
-&lt;p&gt;Component就是一个将Module生成的实例注入Container中的注入器&lt;/p&gt;
-&lt;pre&gt;&lt;code class=&quot;bash&quot;&gt;@Component(modules = ActivityModule.class)
-public interface ActivityComponent {
-    void inject(MainActivity mainActivity);
-}
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;@Component使用modules指向使用的Module的集合。 所有的Component都必须以接口形式定义。Dagger2框架将自动生成Component的实现类，对应的类名是Dagger×××××，这个例子中对应的实现类是DaggerActivityComponent,添加注入方法,一般使用inject做为方法名，方法参数为对应的Container。&lt;/p&gt;
-&lt;p&gt;Container就是可以被注入依赖关系的容器,这里的容器为Activity。具体实现如下&lt;/p&gt;
-&lt;pre&gt;&lt;code class=&quot;bash&quot;&gt;public class MainActivity extends AppCompatActivity {
-
-    private ActivityComponent mActivityComponent;
-
-    @Inject
-    UserModel mUserModel;   //不能为private
-
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        &lt;span class=&quot;built_in&quot;&gt;set&lt;/span&gt;ContentView(R.layout.activity_main);
-
-        mActivityComponent = DaggerActivityComponent.builder().
-                activityModule(new ActivityModule()).build();
-        mActivityComponent.inject(this);
-        ((TextView) findViewById(R.id.textView)).
-                &lt;span class=&quot;built_in&quot;&gt;set&lt;/span&gt;Text(&lt;span class=&quot;string&quot;&gt;&quot;ID:&quot;&lt;/span&gt; + mUserModel.getId() + &lt;span class=&quot;string&quot;&gt;&quot; Name: &quot;&lt;/span&gt; + mUserModel.getName()
-                 + &lt;span class=&quot;string&quot;&gt;&quot;  Gender: &quot;&lt;/span&gt; + mUserModel.getGender());
-    }
-}
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;Container中@Inject标记需要被注入的对象，mActivityComponent.inject(this)表示将调用Component的实现类将Module的生成的对象注入到mUserModel中。&lt;/p&gt;
-&lt;p&gt;到这为止，怎样使用Dagger2进行依赖注入的小demo已经完成了，代码已经上传到&lt;a href=&quot;https://github.com/HJXANDHMR/AndroidDagger2&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Github&lt;/a&gt;。&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;欢迎大家关注我的微信公众号，我会不定期的分享些Android开发的技巧&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;&lt;img src=&quot;/images/weixing.jpg&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
-</content>
-    
-    <summary type="html">
-    
-      Dagger2,依赖注入
-    
-    </summary>
-    
-      <category term="Android" scheme="http://HJXANDHMR.github.io/categories/Android/"/>
-    
-    
-      <category term="Android" scheme="http://HJXANDHMR.github.io/tags/Android/"/>
     
   </entry>
   
