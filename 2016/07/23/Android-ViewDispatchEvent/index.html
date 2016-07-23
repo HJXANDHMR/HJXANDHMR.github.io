@@ -1,0 +1,576 @@
+
+ <!DOCTYPE HTML>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  
+    <title>View的事件分发机制理解 | Android学习</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
+    
+    <meta name="author" content="何健雄">
+    
+
+    
+    <meta name="description" content="Android,View事件分发">
+<meta property="og:type" content="article">
+<meta property="og:title" content="View的事件分发机制理解">
+<meta property="og:url" content="http://HJXANDHMR.github.io/2016/07/23/Android-ViewDispatchEvent/index.html">
+<meta property="og:site_name" content="Android学习">
+<meta property="og:description" content="Android,View事件分发">
+<meta property="og:updated_time" content="2016-07-23T04:42:34.862Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="View的事件分发机制理解">
+<meta name="twitter:description" content="Android,View事件分发">
+
+    
+    <link rel="alternative" href="/atom.xml" title="Android学习" type="application/atom+xml">
+    
+    
+    <link rel="icon" href="/img/favicon.ico">
+    
+    
+    <link rel="apple-touch-icon" href="/img/jacman.jpg">
+    <link rel="apple-touch-icon-precomposed" href="/img/jacman.jpg">
+    
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+
+  <body>
+    <header>
+      
+<div>
+		
+			<div id="imglogo">
+				<a href="/"><img src="/img/logo.png" alt="Android学习" title="Android学习"/></a>
+			</div>
+			
+			<div id="textlogo">
+				<h1 class="site-name"><a href="/" title="Android学习">Android学习</a></h1>
+				<h2 class="blog-motto">学有所思，思有所悟，悟有所行。</h2>
+			</div>
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="菜单">
+			</a></div>
+			<nav class="animated">
+				<ul>
+					<ul>
+					 
+						<li><a href="/">主页</a></li>
+					
+						<li><a href="/archives">归档</a></li>
+					
+						<li><a href="/about">简介</a></li>
+					
+					<li>
+ 					
+					<form class="search" action="//google.com/search" method="get" accept-charset="utf-8">
+						<label>Search</label>
+						<input type="search" id="search" name="q" autocomplete="off" maxlength="20" placeholder="搜索" />
+						<input type="hidden" name="q" value="site:HJXANDHMR.github.io">
+					</form>
+					
+					</li>
+				</ul>
+			</nav>			
+</div>
+    </header>
+    <div id="container">
+      <div id="main" class="post" itemscope itemprop="blogPost">
+  
+	<article itemprop="articleBody"> 
+		<header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2016/07/23/Android-ViewDispatchEvent/" title="View的事件分发机制理解" itemprop="url">View的事件分发机制理解</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="/about" title="何健雄" target="_blank" itemprop="author">何健雄</a>
+		
+  <p class="article-time">
+    <time datetime="2016-07-23T04:32:19.898Z" itemprop="datePublished"> 发表于 2016-07-23</time>
+    
+  </p>
+</header>
+	<div class="article-content">
+		
+		<div id="toc" class="toc-article">
+			<strong class="toc-title">文章目录</strong>
+		
+			<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#概述"><span class="toc-number">1.</span> <span class="toc-text">概述</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#三个方法"><span class="toc-number">2.</span> <span class="toc-text">三个方法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#运用"><span class="toc-number">3.</span> <span class="toc-text">运用</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#自定义View"><span class="toc-number">3.1.</span> <span class="toc-text">自定义View</span></a></li></ol></li></ol>
+		
+		</div>
+		
+		<h2 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h2><p>View的事件分发机制是个重点也是一个难点，最近也在学习关于这方面的知识，并根据这个重写了View的长按事件。</p>
+<h2 id="三个方法"><a href="#三个方法" class="headerlink" title="三个方法"></a>三个方法</h2><p>想要深入的学习View的事件分发机制以下这三个方法是必须要知道的：</p>
+<p><strong>dispatchTouchEvent()</strong><br><strong>onInterceptTouchEvent()</strong><br><strong>onTouchEvent() </strong></p>
+<p> dispatchTouchEvent()方法</p>
+<p>该方法是用来处理事件的分发。如果事件能够传递到当前View，那么一定会调用此方法。View中该方法的源码：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br></pre></td><td class="code"><pre><span class="line">/**</span><br><span class="line">     * Pass the touch screen motion event down to the target view, or this</span><br><span class="line">     * view <span class="keyword">if</span> it is the target.</span><br><span class="line">     *</span><br><span class="line">     * @param event The motion event to be dispatched.</span><br><span class="line">     * @<span class="built_in">return</span> True <span class="keyword">if</span> the event was handled by the view, <span class="literal">false</span> otherwise.</span><br><span class="line">     */</span><br><span class="line">    public boolean dispatchTouchEvent(MotionEvent event) &#123;</span><br><span class="line">        // If the event should be handled by accessibility focus first.</span><br><span class="line">        <span class="keyword">if</span> (event.isTargetAccessibilityFocus()) &#123;</span><br><span class="line">            // We don<span class="string">'t have focus or no virtual descendant has it, do not handle the event.</span><br><span class="line">            if (!isAccessibilityFocusedViewOrHost()) &#123;</span><br><span class="line">                return false;</span><br><span class="line">            &#125;</span><br><span class="line">            // We have focus and got the event, then use normal event dispatch.</span><br><span class="line">            event.setTargetAccessibilityFocus(false);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        boolean result = false;</span><br><span class="line"></span><br><span class="line">        if (mInputEventConsistencyVerifier != null) &#123;</span><br><span class="line">            mInputEventConsistencyVerifier.onTouchEvent(event, 0);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        final int actionMasked = event.getActionMasked();</span><br><span class="line">        if (actionMasked == MotionEvent.ACTION_DOWN) &#123;</span><br><span class="line">            // Defensive cleanup for new gesture</span><br><span class="line">            stopNestedScroll();</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        if (onFilterTouchEventForSecurity(event)) &#123;</span><br><span class="line">            //noinspection SimplifiableIfStatement</span><br><span class="line">            ListenerInfo li = mListenerInfo;</span><br><span class="line">            if (li != null &amp;&amp; li.mOnTouchListener != null</span><br><span class="line">                    &amp;&amp; (mViewFlags &amp; ENABLED_MASK) == ENABLED</span><br><span class="line">                    &amp;&amp; li.mOnTouchListener.onTouch(this, event)) &#123;</span><br><span class="line">                result = true;</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            if (!result &amp;&amp; onTouchEvent(event)) &#123;</span><br><span class="line">                result = true;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        if (!result &amp;&amp; mInputEventConsistencyVerifier != null) &#123;</span><br><span class="line">            mInputEventConsistencyVerifier.onUnhandledEvent(event, 0);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        // Clean up after nested scrolls if this is the end of a gesture;</span><br><span class="line">        // also cancel it if we tried an ACTION_DOWN but we didn'</span>t want the rest</span><br><span class="line">        // of the gesture.</span><br><span class="line">        <span class="keyword">if</span> (actionMasked == MotionEvent.ACTION_UP ||</span><br><span class="line">                actionMasked == MotionEvent.ACTION_CANCEL ||</span><br><span class="line">                (actionMasked == MotionEvent.ACTION_DOWN &amp;&amp; !result)) &#123;</span><br><span class="line">            stopNestedScroll();</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="built_in">return</span> result;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<p>代码比较长，可以简化来看：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">public boolean dispatchTouchEvent(Motion e)&#123;</span><br><span class="line">     boolean result=<span class="literal">false</span>;</span><br><span class="line">     <span class="keyword">if</span>(onInterceptTouchEvent(e))&#123;</span><br><span class="line">     //如果当前View截获事件，那么事件就会由当前View处理，即调用onTouchEvent()</span><br><span class="line">        result=onTouchEvent(e);</span><br><span class="line">     &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">        //如果不截获那么交给其子View来分发</span><br><span class="line">        result=child.dispatchTouchEvent(e);</span><br><span class="line">     &#125;</span><br><span class="line">     <span class="built_in">return</span> result;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>从以上可以看出，这三个方法的联系。onInterceptTouchEvent()方法在上边可以看出，是在dispatchTouchEvent中调用，来判断自己是否需要截取事件，如果该方法返回为true，那么View将消费该事件，即会调用onTouchEvent()方法。如果返回false,那么通过调用子View的dispatchTouchEvent()将事件交由子View来处理。</p>
+<p> onTouchEvent()和onInterceptTouchEvent()一样也是在dispatchTouchEvent中调用的。用来处理点击事件，包括ACTION_DOWN,ACTION_MOVE,ACTION_UP。如果返回结果为false表示不消费该事件，并且也不会截获接下来的事件序列。如果返回为true表示当前View消费该事件。 </p>
+<p>在这里要强调View 的OnTouchListener。如果View设置了该监听，那么OnTouch()将会回调。<strong>如果返回为true那么该View的OnTouchEvent将不会在执行</strong> 这是因为设置的OnTouchListener执行时的优先级要比onTouchEvent高。 </p>
+<p>还有我们平时很熟悉的onClickListener，其优先级比上边两个都低。</p>
+<p>关于View的事件分发机制更深刻的理解可以去看看鸿洋大神写的这篇博客：<a href="http://blog.csdn.net/lmj623565791/article/details/38960443" target="_blank" rel="external">Android View 事件分发机制 源码解析</a></p>
+<h2 id="运用"><a href="#运用" class="headerlink" title="运用"></a>运用</h2><p>有了以上知识的储备，我们可以重写系统的长按事件。<br>大家都知道系统的长按时间大概在500ms的样子，现在我们来重写这个，让长按时间增加到2秒。</p>
+<h3 id="自定义View"><a href="#自定义View" class="headerlink" title="自定义View"></a>自定义View</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">public class LongPressView extends ImageView &#123;</span><br><span class="line"></span><br><span class="line">    private int mLastMotionX, mLastMotionY;</span><br><span class="line">    private boolean isMoved=<span class="literal">false</span>;</span><br><span class="line">    private Runnable mLongPressRunnable;</span><br><span class="line">    // 移动的阈值</span><br><span class="line">    private static final int TOUCH_SLOP = 20;</span><br><span class="line"></span><br><span class="line">    public LongPressView(Context context, AttributeSet attrs) &#123;</span><br><span class="line">        super(context, attrs);</span><br><span class="line">        mLongPressRunnable = new <span class="function"><span class="title">Runnable</span></span>() &#123;</span><br><span class="line">            @Override</span><br><span class="line">            public void <span class="function"><span class="title">run</span></span>() &#123;</span><br><span class="line">                // 回调长按事件</span><br><span class="line">                performLongClick();</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    // 事件响应</span><br><span class="line">    @Override</span><br><span class="line">    public boolean onTouchEvent(MotionEvent event) &#123;</span><br><span class="line"></span><br><span class="line">        Log.d(<span class="string">"onTouchEvent"</span>,<span class="string">"onTouchEvent"</span>);</span><br><span class="line">        <span class="built_in">return</span> super.onTouchEvent(event);</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line"></span><br><span class="line">    // 事件分发</span><br><span class="line">    public boolean dispatchTouchEvent(MotionEvent event) &#123;</span><br><span class="line">        int x = (int) event.getX();</span><br><span class="line">        int y = (int) event.getY();</span><br><span class="line"></span><br><span class="line">        switch (event.getAction()) &#123;</span><br><span class="line">            <span class="keyword">case</span> MotionEvent.ACTION_DOWN:</span><br><span class="line">                mLastMotionX = x;</span><br><span class="line">                mLastMotionY = y;</span><br><span class="line">                // 按下 2秒后调用线程</span><br><span class="line">                postDelayed(mLongPressRunnable, 2*1000);</span><br><span class="line">                <span class="built_in">break</span>;</span><br><span class="line"></span><br><span class="line">            <span class="keyword">case</span> MotionEvent.ACTION_MOVE:</span><br><span class="line">                <span class="keyword">if</span> (Math.abs(mLastMotionX - x) &gt; TOUCH_SLOP</span><br><span class="line">                        || Math.abs(mLastMotionY - y) &gt; TOUCH_SLOP) &#123;</span><br><span class="line">                    // 移动超过阈值，则表示移动了</span><br><span class="line">                    isMoved=<span class="literal">true</span>;</span><br><span class="line">                    removeCallbacks(mLongPressRunnable);</span><br><span class="line">                &#125;</span><br><span class="line"></span><br><span class="line">                <span class="built_in">break</span>;</span><br><span class="line">            <span class="keyword">case</span> MotionEvent.ACTION_UP:</span><br><span class="line">                <span class="keyword">if</span> (!isMoved) &#123;</span><br><span class="line">                    performClick();</span><br><span class="line">                &#125;</span><br><span class="line">                isMoved=<span class="literal">false</span>;</span><br><span class="line">                removeCallbacks(mLongPressRunnable);</span><br><span class="line">                <span class="built_in">break</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        //如果 <span class="built_in">return</span> <span class="literal">true</span>，事件会分发给当前 View 并由 dispatchTouchEvent 方法进行消费，同时事件会停止向下传递；</span><br><span class="line">        <span class="built_in">return</span>  <span class="literal">true</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>到这一步为止长按事件已经重写了，但点击事件失效了，大家可以思考下这是什么原因造成的。</p>
+<p>关于View的事件分发机制网络上有许多好的文章，想要深入理解建议大家去看<a href="http://blog.csdn.net/lmj623565791/article/details/38960443" target="_blank" rel="external">鸿洋大神</a>的博客。</p>
+  
+	</div>
+		<footer class="article-footer clearfix">
+<div class="article-catetags">
+
+<div class="article-categories">
+  <span></span>
+  <a class="article-category-link" href="/categories/Android/">Android</a>
+</div>
+
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/Android/">Android</a>
+  </div>
+
+</div>
+
+
+
+	<div class="article-share" id="share">
+	
+	  <div data-url="http://HJXANDHMR.github.io/2016/07/23/Android-ViewDispatchEvent/" data-title="View的事件分发机制理解 | Android学习" data-tsina="null" class="share clearfix">
+	  </div>
+	
+	</div>
+
+
+</footer>
+
+   	       
+	</article>
+	
+<nav class="article-nav clearfix">
+ 
+
+<div class="next">
+<a href="/2016/07/18/Android-SignaturePackage/"  title="Android Studio 进行签名打包">
+ <strong>下一篇：</strong><br/> 
+ <span>Android Studio 进行签名打包
+</span>
+</a>
+</div>
+
+</nav>
+
+	
+<section id="comments" class="comment">
+	<div class="ds-thread" data-thread-key="2016/07/23/Android-ViewDispatchEvent/" data-title="View的事件分发机制理解" data-url="http://HJXANDHMR.github.io/2016/07/23/Android-ViewDispatchEvent/"></div>
+</section>
+
+
+</div>  
+      <div class="openaside"><a class="navbutton" href="#" title="显示侧边栏"></a></div>
+
+  <div id="toc" class="toc-aside">
+  <strong class="toc-title">文章目录</strong>
+ 
+ <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#概述"><span class="toc-number">1.</span> <span class="toc-text">概述</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#三个方法"><span class="toc-number">2.</span> <span class="toc-text">三个方法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#运用"><span class="toc-number">3.</span> <span class="toc-text">运用</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#自定义View"><span class="toc-number">3.1.</span> <span class="toc-text">自定义View</span></a></li></ol></li></ol>
+ 
+  </div>
+
+<div id="asidepart">
+<div class="closeaside"><a class="closebutton" href="#" title="隐藏侧边栏"></a></div>
+<aside class="clearfix">
+
+  
+<div class="categorieslist">
+	<p class="asidetitle">分类</p>
+		<ul>
+		
+		  
+			<li><a href="/categories/Android/" title="Android">Android<sup>9</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Android-NDK/" title="Android NDK">Android NDK<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Android-Studio/" title="Android Studio">Android Studio<sup>4</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Android工具类/" title="Android工具类">Android工具类<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Design-Pattern/" title="Design Pattern">Design Pattern<sup>14</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Linux/" title="Linux">Linux<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/ListView/" title="ListView">ListView<sup>2</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Markdown/" title="Markdown">Markdown<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/WCF/" title="WCF">WCF<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/hexo/" title="hexo">hexo<sup>3</sup></a></li>
+		  
+		
+		</ul>
+</div>
+
+
+  
+<div class="tagslist">
+	<p class="asidetitle">标签</p>
+		<ul class="clearfix">
+		
+			
+				<li><a href="/tags/Design-Pattern/" title="Design Pattern">Design Pattern<sup>14</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Android/" title="Android">Android<sup>8</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Android-Studio/" title="Android Studio">Android Studio<sup>4</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/hexo/" title="hexo">hexo<sup>3</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/ListView/" title="ListView">ListView<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Android-NDK/" title="Android NDK">Android NDK<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/WCF/" title="WCF">WCF<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Robolectric/" title="Robolectric">Robolectric<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Linux/" title="Linux">Linux<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Markdown/" title="Markdown">Markdown<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Android工具类/" title="Android工具类">Android工具类<sup>1</sup></a></li>
+			
+		
+		</ul>
+</div>
+
+
+  
+
+
+  
+<div class="github-card">
+<p class="asidetitle">Github 名片</p>
+<div class="github-card" data-github="HJXANDHMR" data-width="220" data-height="119" data-theme="medium">
+<script type="text/javascript" src="//cdn.jsdelivr.net/github-cards/latest/widget.js" ></script>
+</div>
+  </div>
+
+
+
+  <div class="linkslist">
+  <p class="asidetitle">友情链接</p>
+    <ul>
+        
+          <li>
+            
+            	<a href="http://blog.csdn.net/qq_14906597" target="_blank" title="一个面向程序员交流分享的新一代社区">csdn</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="http://www.jianshu.com/users/0319ca84cd2a/latest_articles" target="_blank" title="一个将写作与阅读整合在一起的网络产品">简书</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="http://gold.xitu.io/user/56d4f7ed6be3ff005c0957c7/article" target="_blank" title="专为开发者掘取干货的APP">掘金</a>
+            
+          </li>
+        
+    </ul>
+</div>
+
+  <div class="weiboshow">
+  <p class="asidetitle">新浪微博</p>
+    <iframe width="100%" height="119" class="share_self"  frameborder="0" scrolling="no" src="http://widget.weibo.com/weiboshow/index.php?language=&width=0&height=119&fansRow=2&ptype=1&speed=0&skin=9&isTitle=1&noborder=1&isWeibo=0&isFans=0&uid=null&verifier=&dpc=1"></iframe>
+</div>
+
+
+</aside>
+</div>
+    </div>
+    <footer><div id="footer" >
+	
+	
+	<section class="info">
+		<p> Hello ,I&#39;m hjx  <br/>
+			This is my blog,believe it or not.</p>
+	</section>
+	 
+	<div class="social-font" class="clearfix">
+		
+		<a href="http://weibo.com/hjxandhmr" target="_blank" class="icon-weibo" title="微博"></a>
+		
+		
+		<a href="https://github.com/HJXANDHMR" target="_blank" class="icon-github" title="github"></a>
+		
+		
+		
+		
+		
+		
+		
+		
+		
+	</div>
+			
+		
+
+		<p class="copyright">
+		Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/wuchong/jacman" target="_blank" title="Jacman">Jacman</a> © 2016 
+		
+		<a href="/about" target="_blank" title="何健雄">何健雄</a>
+		
+		
+		<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+		</script>
+		</br>本站总访问量<span id="busuanzi_value_site_pv"></span>次,本站访客数<span id="busuanzi_value_site_uv"></span>人次,本文总阅读量<span id="busuanzi_value_page_pv"></span>次
+
+		</p>
+</div>
+
+
+</footer>
+    <script src="/js/jquery-2.0.3.min.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+<script src="/js/jquery.qrcode-0.12.0.min.js"></script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.navbar').click(function(){
+    $('header nav').toggleClass('shownav');
+  });
+  var myWidth = 0;
+  function getSize(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+  };
+  var m = $('#main'),
+      a = $('#asidepart'),
+      c = $('.closeaside'),
+      o = $('.openaside');
+  c.click(function(){
+    a.addClass('fadeOut').css('display', 'none');
+    o.css('display', 'block').addClass('fadeIn');
+    m.addClass('moveMain');
+  });
+  o.click(function(){
+    o.css('display', 'none').removeClass('beforeFadeIn');
+    a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');      
+    m.removeClass('moveMain');
+  });
+  $(window).scroll(function(){
+    o.css("top",Math.max(80,260-$(this).scrollTop()));
+  });
+  
+  $(window).resize(function(){
+    getSize(); 
+    if (myWidth >= 1024) {
+      $('header nav').removeClass('shownav');
+    }else{
+      m.removeClass('moveMain');
+      a.css('display', 'block').removeClass('fadeOut');
+      o.css('display', 'none');
+      
+      $('#toc.toc-aside').css('display', 'none');
+        
+    }
+  });
+});
+</script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var ai = $('.article-content>iframe'),
+      ae = $('.article-content>embed'),
+      t  = $('#toc'),
+      ta = $('#toc.toc-aside'),
+      o  = $('.openaside'),
+      c  = $('.closeaside');
+  if(ai.length>0){
+    ai.wrap('<div class="video-container" />');
+  };
+  if(ae.length>0){
+   ae.wrap('<div class="video-container" />');
+  };
+  c.click(function(){
+    ta.css('display', 'block').addClass('fadeIn');
+  });
+  o.click(function(){
+    ta.css('display', 'none');
+  });
+  $(window).scroll(function(){
+    ta.css("top",Math.max(140,320-$(this).scrollTop()));
+  });
+});
+</script>
+
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var $this = $('.share'),
+      url = $this.attr('data-url'),
+      encodedUrl = encodeURIComponent(url),
+      title = $this.attr('data-title'),
+      tsina = $this.attr('data-tsina'),
+      description = $this.attr('description');
+  var html = [
+  '<div class="hoverqrcode clearfix"></div>',
+  '<a class="overlay" id="qrcode"></a>',
+  '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+  '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+  '<a href="#qrcode" class="article-share-qrcode" title="微信"></a>',
+  '<a href="http://widget.renren.com/dialog/share?resourceUrl=' + encodedUrl + '&srcUrl=' + encodedUrl + '&title=' + title +'" class="article-share-renren" target="_blank" title="人人"></a>',
+  '<a href="http://service.weibo.com/share/share.php?title='+title+'&url='+encodedUrl +'&ralateUid='+ tsina +'&searchPic=true&style=number' +'" class="article-share-weibo" target="_blank" title="微博"></a>',
+  '<span title="Share to"></span>'
+  ].join('');
+  $this.append(html);
+
+  $('.hoverqrcode').hide();
+
+  var myWidth = 0;
+  function updatehoverqrcode(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+    var qrsize = myWidth > 1024 ? 200:100;
+    var options = {render: 'image', size: qrsize, fill: '#2ca6cb', text: url, radius: 0.5, quiet: 1};
+    var p = $('.article-share-qrcode').position();
+    $('.hoverqrcode').empty().css('width', qrsize).css('height', qrsize)
+                          .css('left', p.left-qrsize/2+20).css('top', p.top-qrsize-10)
+                          .qrcode(options);
+  };
+  $(window).resize(function(){
+    $('.hoverqrcode').hide();
+  });
+  $('.article-share-qrcode').click(function(){
+    updatehoverqrcode();
+    $('.hoverqrcode').toggle();
+  });
+  $('.article-share-qrcode').hover(function(){}, function(){
+      $('.hoverqrcode').hide();
+  });
+});   
+</script>
+
+
+
+<script type="text/javascript">
+  var duoshuoQuery = {short_name:"hjxandhmr"};
+  (function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';ds.async = true;
+    ds.src = '//static.duoshuo.com/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0] 
+    || document.getElementsByTagName('body')[0]).appendChild(ds);
+  })();
+</script> 
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.article-content').each(function(i){
+    $(this).find('img').each(function(){
+      if ($(this).parent().hasClass('fancybox')) return;
+      var alt = this.alt;
+      if (alt) $(this).after('<span class="caption">' + alt + '</span>');
+      $(this).wrap('<a href="' + this.src + '" title="' + alt + '" class="fancybox"></a>');
+    });
+    $(this).find('.fancybox').each(function(){
+      $(this).attr('rel', 'article' + i);
+    });
+  });
+  if($.fancybox){
+    $('.fancybox').fancybox();
+  }
+}); 
+</script>
+
+
+
+<!-- Analytics Begin -->
+
+
+
+
+
+<!-- Analytics End -->
+
+<!-- Totop Begin -->
+
+	<div id="totop">
+	<a title="返回顶部"><img src="/img/scrollup.png"/></a>
+	</div>
+	<script src="/js/totop.js"></script>
+
+<!-- Totop End -->
+
+<!-- MathJax Begin -->
+<!-- mathjax config similar to math.stackexchange -->
+
+
+<!-- MathJax End -->
+
+<!-- Tiny_search Begin -->
+
+<!-- Tiny_search End -->
+
+  </body>
+</html>
